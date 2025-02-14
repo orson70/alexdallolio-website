@@ -5,51 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex Dallolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function setLanguage(lang) {
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang;
+            updateContent();
+        }
+        
+        function getLanguage() {
+            return localStorage.getItem('lang') || navigator.language.substring(0, 2) || 'en';
+        }
+        
+        function updateContent() {
+            const lang = getLanguage();
+            const translations = {
+                en: {
+                    title: "Alex Dallolio",
+                    subtitle: "AI Artist, Creative Director & Filmmaker from Italy",
+                    description: "Specialized in advertising campaigns and artistic storytelling. Collaborated with: Nike, Prada, Tetrapack, Luisa Spagnoli, Lavazza, and many others.",
+                    email: "Email",
+                    portfolio: "View Portfolio",
+                    bookCall: "Book a Call"
+                },
+                it: {
+                    title: "Alex Dallolio",
+                    subtitle: "Artista AI, Regista Creativo & Filmmaker dall'Italia",
+                    description: "Specializzato in campagne pubblicitarie e narrazione artistica. Ha collaborato con: Nike, Prada, Tetrapack, Luisa Spagnoli, Lavazza e molti altri.",
+                    email: "Email",
+                    portfolio: "Visualizza Portfolio",
+                    bookCall: "Prenota una Chiamata"
+                },
+                fr: {
+                    title: "Alex Dallolio",
+                    subtitle: "Artiste IA, Réalisateur Créatif & Cinéaste d'Italie",
+                    description: "Spécialisé dans les campagnes publicitaires et la narration artistique. A collaboré avec : Nike, Prada, Tetrapack, Luisa Spagnoli, Lavazza et bien d'autres.",
+                    email: "Email",
+                    portfolio: "Voir Portfolio",
+                    bookCall: "Réserver un Appel"
+                },
+                de: {
+                    title: "Alex Dallolio",
+                    subtitle: "KI-Künstler, Kreativdirektor & Filmemacher aus Italien",
+                    description: "Spezialisiert auf Werbekampagnen und künstlerisches Storytelling. Zusammenarbeit mit: Nike, Prada, Tetrapack, Luisa Spagnoli, Lavazza und vielen anderen.",
+                    email: "Email",
+                    portfolio: "Portfolio Ansehen",
+                    bookCall: "Anruf Buchen"
+                },
+                zh: {
+                    title: "Alex Dallolio",
+                    subtitle: "人工智能艺术家，意大利创意总监兼电影制作人",
+                    description: "专注于广告活动和艺术叙事。曾与 Nike、Prada、Tetrapack、Luisa Spagnoli、Lavazza 等众多品牌合作。",
+                    email: "电子邮件",
+                    portfolio: "查看作品集",
+                    bookCall: "预约通话"
+                }
+            };
+            
+            const content = translations[lang] || translations.en;
+            document.getElementById('title').innerText = content.title;
+            document.getElementById('subtitle').innerText = content.subtitle;
+            document.getElementById('description').innerText = content.description;
+            document.getElementById('email').innerText = content.email;
+            document.getElementById('portfolio').innerText = content.portfolio;
+            document.getElementById('bookCall').innerText = content.bookCall;
+        }
+        
+        document.addEventListener("DOMContentLoaded", updateContent);
+    </script>
 </head>
 <body>
     <div class="language-selector">
-        <select id="language-switcher">
-            <option value="en">English</option>
-            <option value="it">Italiano</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="zh">中文</option>
-        </select>
+        <button onclick="setLanguage('en')">🇬🇧</button>
+        <button onclick="setLanguage('it')">🇮🇹</button>
+        <button onclick="setLanguage('fr')">🇫🇷</button>
+        <button onclick="setLanguage('de')">🇩🇪</button>
+        <button onclick="setLanguage('zh')">🇨🇳</button>
     </div>
-    <div class="video-background">
-        <video autoplay loop muted playsinline>
-            <source src="https://www.dropbox.com/scl/fi/set13ok3qv9cdpo4ygtwg/background-reel.mp4?rlkey=25ztkg7koa20or3t5kg9y1xsv&st=br4ci3c0&dl=1" type="video/mp4">
-        </video>
-        <div class="overlay"></div>
-        <div class="content">
-            <h1>Alex Dallolio</h1>
-            <p id="description">AI Artist, Creative Film Director & Creator from Italy. Specialized in advertising campaigns and artistic storytelling.</p>
-            <p>Collaborated with: Nike, Prada, Tetrapack, Luisa Spagnoli, Lavazza, and many others.</p>
-            <a href="mailto:alexdallolio@alexdallolio.com" class="email-btn">Email</a>
-            <a href="https://www.youtube.com/channel/UCPUh5o9YJ732EAR8z82ljvg" target="_blank">YouTube</a>
-            <a href="https://vimeo.com/alexdallolio" target="_blank">Vimeo</a>
-            <a href="https://www.instagram.com/alex_dallolio/" target="_blank">Instagram</a>
-            <a href="portfolio.html" class="portfolio-btn">View Portfolio</a>
-            <a href="https://calendly.com/alexdallolio" class="calendly-btn">Book a Call</a>
+    
+    <video autoplay loop muted playsinline class="background-video">
+        <source src="https://www.dropbox.com/scl/fi/set13ok3qv9cdpo4ygtwg/background-reel.mp4?rlkey=25ztkg7koa20or3t5kg9y1xsv&st=br4ci3c0&dl=1" type="video/mp4">
+    </video>
+    
+    <div class="content">
+        <h1 id="title"></h1>
+        <h2 id="subtitle"></h2>
+        <p id="description"></p>
+        <div class="links">
+            <a id="email" href="mailto:alexdallolio@alexdallolio.com"></a>
+            <a id="portfolio" href="portfolio.html"></a>
+            <a id="bookCall" href="https://calendly.com/alexdallolio"></a>
         </div>
     </div>
-    <script>
-        const translations = {
-            'en': "Creator & Artist from Italy. Specialized in advertising campaigns and artistic storytelling.",
-            'it': "Artista AI, Regista Creativo & Creatore dall'Italia. Specializzato in campagne pubblicitarie e narrazione artistica.",
-            'fr': "Artiste IA, Réalisateur Créatif & Créateur d'Italie. Spécialisé dans les campagnes publicitaires et la narration artistique.",
-            'de': "KI-Künstler, Kreativer Filmregisseur & Kreator aus Italien. Spezialisiert auf Werbekampagnen und künstlerisches Storytelling.",
-            'zh': "来自意大利的人工智能艺术家、创意电影导演和创作者。专注于广告宣传和艺术叙事。"
-        };
-        document.getElementById("language-switcher").addEventListener("change", function() {
-            document.getElementById("description").innerText = translations[this.value];
-        });
-        document.addEventListener("DOMContentLoaded", () => {
-            const userLang = navigator.language.slice(0,2);
-            if (translations[userLang]) {
-                document.getElementById("description").innerText = translations[userLang];
-            }
-        });
-    </script>
 </body>
 </html>
