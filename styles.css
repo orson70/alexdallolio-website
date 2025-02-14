@@ -1,48 +1,71 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2821
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww12720\viewh7800\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: white;
+    text-align: center;
+}
 
-\f0\fs24 \cf0 \
-<!DOCTYPE html>\
-<html lang="it">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>Alex Dallolio</title>\
-    <link rel="stylesheet" href="styles.css">\
-</head>\
-<body>\
-    <div class="language-switcher">\
-        <a href="#" data-lang="it">IT</a> |\
-        <a href="#" data-lang="en">EN</a> |\
-        <a href="#" data-lang="fr">FR</a> |\
-        <a href="#" data-lang="de">DE</a> |\
-        <a href="#" data-lang="cn">CN</a>\
-    </div>\
-    \
-    <div class="video-container">\
-        <video autoplay loop muted>\
-            <source src="background-reel.mp4" type="video/mp4">\
-        </video>\
-    </div>\
-    \
-    <div class="content">\
-        <p class="name">Alex Dallolio</p>\
-        <p>\'97 artista AI, regista creativo & creatore dall'Italia. Specializzato in campagne pubblicitarie e narrazione artistica.</p>\
-        <p>Collaborated with: Nike, Prada, Tetrapack, Luisa Spagnoli, Lavazza, and many others.</p>\
-        \
-        <div class="links">\
-            <a href="mailto:alexdallolio@alexdallolio.com">Email</a>\
-            <a href="https://youtube.com">YouTube</a>\
-            <a href="https://vimeo.com/alexdallolio">Vimeo</a>\
-            <a href="https://instagram.com">Instagram</a>\
-            <a href="portfolio.html">View Portfolio</a>\
-            <a href="https://calendly.com/alexdallolio">Book a Call</a>\
-        </div>\
-    </div>\
-</body>\
-</html>\
+.language-switcher {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.language-switcher a {
+    color: white;
+    text-decoration: none;
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+.video-container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-width: 80%;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+.links {
+    margin-top: 15px;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.links a:hover {
+    background: white;
+    color: black;
 }
