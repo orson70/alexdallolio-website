@@ -5,37 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Alex Dallolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://player.vimeo.com/api/player.js"></script>
 </head>
 <body>
-    <div class="portfolio-container">
-        <h1>Selected Works</h1>
-        <p id="portfolio-description">Loading...</p>
-        <div class="video-grid">
-            <div class="video-item">
-                <iframe src="https://player.vimeo.com/video/123456789" frameborder="0" allowfullscreen></iframe>
-                <p>Title 1 - Commercial</p>
-            </div>
-            <div class="video-item">
-                <iframe src="https://player.vimeo.com/video/987654321" frameborder="0" allowfullscreen></iframe>
-                <p>Title 2 - Art Film</p>
-            </div>
-            <div class="video-item">
-                <iframe src="https://player.vimeo.com/video/112233445" frameborder="0" allowfullscreen></iframe>
-                <p>Title 3 - Experimental</p>
-            </div>
+    <header>
+        <h1>Portfolio</h1>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+    <main class="portfolio-grid">
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/944500991" frameborder="0" allowfullscreen></iframe>
+            <p>Project 1</p>
         </div>
-        <a href="index.html" class="back-btn">Back to Home</a>
-    </div>
-    <script>
-        const translations = {
-            'en': "A selection of works by Alex Dallolio, showcasing his AI artistry, creative film direction, and storytelling.",
-            'it': "Una selezione di opere di Alex Dallolio, che mostrano la sua arte AI, regia creativa e narrazione.",
-            'fr': "Une sélection d'œuvres d'Alex Dallolio, mettant en avant son art IA, sa réalisation créative et sa narration.",
-            'de': "Eine Auswahl von Arbeiten von Alex Dallolio, die seine KI-Kunst, kreative Regie und Erzählkunst zeigen.",
-            'zh': "Alex Dallolio 的作品精选，展示了他的人工智能艺术、创意电影导演和叙事能力。"
-        };
-        const userLang = navigator.language.slice(0,2);
-        document.getElementById("portfolio-description").innerText = translations[userLang] || translations['en'];
-    </script>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/944007815" frameborder="0" allowfullscreen></iframe>
+            <p>Project 2</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/944016604" frameborder="0" allowfullscreen></iframe>
+            <p>Project 3</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/943986521" frameborder="0" allowfullscreen></iframe>
+            <p>Project 4</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/930995049" frameborder="0" allowfullscreen></iframe>
+            <p>Project 5</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/915120445" frameborder="0" allowfullscreen></iframe>
+            <p>Project 6</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/153108111" frameborder="0" allowfullscreen></iframe>
+            <p>Project 7</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/424546449" frameborder="0" allowfullscreen></iframe>
+            <p>Project 8</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/86403960" frameborder="0" allowfullscreen></iframe>
+            <p>Project 9</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/165761125" frameborder="0" allowfullscreen></iframe>
+            <p>Project 10</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/248659835" frameborder="0" allowfullscreen></iframe>
+            <p>Project 11</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/2038051" frameborder="0" allowfullscreen></iframe>
+            <p>Project 12</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/153109009" frameborder="0" allowfullscreen></iframe>
+            <p>Project 13</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/167865026" frameborder="0" allowfullscreen></iframe>
+            <p>Project 14</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/165758420" frameborder="0" allowfullscreen></iframe>
+            <p>Project 15</p>
+        </div>
+    </main>
 </body>
 </html>
