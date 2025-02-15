@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,38 +7,41 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Selettore Lingua -->
     <div class="language-switcher">
-        <a href="#" data-lang="en">EN</a> |
         <a href="#" data-lang="it">IT</a> |
+        <a href="#" data-lang="en">EN</a> |
         <a href="#" data-lang="fr">FR</a> |
         <a href="#" data-lang="de">DE</a> |
         <a href="#" data-lang="cn">CN</a>
     </div>
-    
+
+    <!-- Video Background con Vimeo -->
     <div class="video-container">
-        <iframe 
-            src="https://player.vimeo.com/video/1057021961?background=1&autoplay=1&loop=1&muted=1"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
+        <iframe src="https://player.vimeo.com/video/1057021961?background=1&autoplay=1&loop=1&muted=1" 
+            frameborder="0" 
+            allow="autoplay; fullscreen" 
             allowfullscreen>
         </iframe>
+        <div class="video-overlay"></div> <!-- Layer per scurimento -->
     </div>
-    
+
+    <!-- Testo e Link -->
     <div class="content">
-        <p class="name" data-lang="name">Alex Dallolio – Creative Film Director | AI Artist | Visual Alchemist</p>
-        <p class="tagline" data-lang="tagline">Blending human intuition with machine intelligence to craft compelling visual narratives.</p>
-        <p class="collaborations" data-lang="collaborations">Collaborated with: Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza, WeBuild, Bonaveri, Canali.</p>
-        <p class="cta" data-lang="cta">Elevating brands through bold visual storytelling.</p>
-        
+        <p class="name">Alex Dallolio</p>
+        <p class="tagline">Creative Film Director | AI Artist | Visual Alchemist</p>
+        <p class="collaborations">Collaborated with: Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza, WeBuild, Bonaveri, Canali.</p>
+
         <div class="links">
-            <a href="portfolio.html" data-lang="portfolio">View Portfolio</a>
-            <a href="mailto:alexdallolio@alexdallolio.com" data-lang="email">Email</a>
-            <a href="https://calendly.com/alexdallolio" data-lang="call">Book a Call</a>
-            <a href="https://vimeo.com/alexdallolio" data-lang="vimeo">Vimeo</a>
-            <a href="https://www.instagram.com/alex_dallolio_filmcreativeai?igsh=azV6MWdybnpoY28x&utm_source=qr" data-lang="instagram">Instagram</a>
+            <a href="mailto:alexdallolio@alexdallolio.com">Email</a>
+            <a href="https://vimeo.com/alexdallolio">Vimeo</a>
+            <a href="https://instagram.com/alex_dallolio_filmcreativeai">Instagram</a>
+            <a href="portfolio.html">View Portfolio</a>
+            <a href="https://calendly.com/alexdallolio">Book a Call</a>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
