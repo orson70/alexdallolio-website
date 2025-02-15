@@ -1,0 +1,84 @@
+/* Reset base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* Contenitore del video */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-container iframe {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+/* Contenuto sopra il video */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+.description {
+    font-size: 1rem;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+.collaborations {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    opacity: 0.6;
+}
+
+.cta {
+    font-size: 1rem;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.links {
+    margin-top: 20px;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 8px 12px;
+    margin: 5px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    background: white;
+    color: black;
+}
