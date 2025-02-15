@@ -11,24 +11,19 @@ body, html {
 
 .video-container {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 96%; /* Aggiunta cornice nera del 2% per lato */
-    height: 96vh; /* Aggiunta cornice nera del 2% per lato */
-    margin: 2vh 2%;
+    top: 50%;
+    left: 50%;
+    width: 96vw; /* 2% di bordo nero su ogni lato */
+    height: 96vh;
+    transform: translate(-50%, -50%);
     overflow: hidden;
     z-index: -1;
+    background: black;
 }
 
 .video-container video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -45,7 +40,7 @@ body, html {
 }
 
 .video-container.dark .video-overlay {
-    background: rgba(0, 0, 0, 0.9); /* Oscuramento al 90% */
+    background: rgba(0, 0, 0, 0.5); /* Oscuramento al 50% */
 }
 
 .content {
