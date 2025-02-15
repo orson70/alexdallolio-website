@@ -1,113 +1,71 @@
+/* Imposta il corpo della pagina con sfondo nero */
 body {
-    font-family: Arial, sans-serif;
-    background-color: black;
-    color: white;
     margin: 0;
     padding: 0;
-    text-align: center;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
     overflow: hidden;
 }
 
+/* Contenitore del video */
 .video-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 98vw;
-    height: 98vh;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    background: black;
-}
-
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.8;
-}
-
-.language-switcher {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.language-switcher a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
-    cursor: pointer;
+/* Stile del video con scurimento e bordo */
+.video-container iframe {
+    width: 90vw; /* Riduci leggermente la larghezza per lasciare spazio ai lati */
+    height: 90vh; /* Riduci leggermente l'altezza per dare respiro */
+    border: 10px solid black; /* Cornice nera attorno al video */
+    filter: brightness(50%); /* Oscuramento del video al 50% */
 }
 
+/* Contenitore del testo */
 .content {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: left;
-    max-width: 800px;
-    color: white;
+    text-align: center;
+    z-index: 2;
 }
 
-h1 {
-    font-size: 24px;
-    font-weight: normal;
+/* Nome con stile uniforme */
+.name {
+    font-size: 28px;
+    font-weight: bold;
     text-transform: lowercase;
     letter-spacing: 1px;
-    margin-bottom: 10px;
-    display: inline-block;
 }
 
-h1 span {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 25px;
-    letter-spacing: 2px;
-}
-
-p[data-lang-text] {
-    display: none;
+/* Testo descrittivo */
+.description, .collaborations, .cta {
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.5;
+    margin: 10px 0;
 }
 
-p[data-lang-text].active {
-    display: block;
-}
-
-.links {
-    margin-top: 20px;
-}
-
+/* Link */
 .links a {
-    display: inline-block;
-    margin: 5px 10px;
-    color: #00aaff;
+    color: #00ADEF;
     text-decoration: none;
     font-size: 18px;
+    margin: 0 10px;
 }
 
-#youtube-videos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.video-item {
-    max-width: 560px;
-    text-align: center;
-}
-
-.video-item iframe {
-    width: 100%;
-    height: 315px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+.links a:hover {
+    text-decoration: underline;
 }
