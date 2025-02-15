@@ -84,14 +84,14 @@ window.onload = function () {
     changeLanguage(savedLang);
 };
 
-// Effetto scurimento forte al movimento del mouse
+// Effetto scurimento più intenso al movimento del mouse
 const videoContainer = document.querySelector(".video-container");
 
 document.addEventListener("mousemove", () => {
     videoContainer.style.transition = "background 0.5s ease-in-out";
-    videoContainer.style.background = "rgba(0, 0, 0, 0.7)"; // Oscuramento al 70%
+    videoContainer.style.background = "rgba(0, 0, 0, 0.9)"; // Oscuramento al 90%
     clearTimeout(window.scurimentoTimeout);
-    
+
     window.scurimentoTimeout = setTimeout(() => {
         videoContainer.style.background = "rgba(0, 0, 0, 0)"; // Torna trasparente dopo 2 secondi
     }, 2000);
