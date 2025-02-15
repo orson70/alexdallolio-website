@@ -1,16 +1,4 @@
 const translations = {
-    en: {
-        name: "Alex Dallolio – Creative Film Director | AI Artist | Visual Alchemist",
-        tagline: "Blending human intuition with machine intelligence to craft compelling visual narratives.",
-        collaborations: "Collaborated with: Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza, WeBuild, Bonaveri, Canali.",
-        cta: "Elevating brands through bold visual storytelling.",
-        portfolio: "View Portfolio",
-        email: "Email",
-        call: "Book a Call",
-        vimeo: "Vimeo",
-        instagram: "Instagram",
-        back: "Back to Home"
-    },
     it: {
         name: "Alex Dallolio – Regista Creativo | Artista AI | Alchimista Visivo",
         tagline: "Fondendo intuizione umana e intelligenza artificiale per creare narrazioni visive straordinarie.",
@@ -22,6 +10,18 @@ const translations = {
         vimeo: "Vimeo",
         instagram: "Instagram",
         back: "Torna alla Home"
+    },
+    en: {
+        name: "Alex Dallolio – Creative Film Director | AI Artist | Visual Alchemist",
+        tagline: "Blending human intuition with machine intelligence to craft compelling visual narratives.",
+        collaborations: "Collaborated with: Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza, WeBuild, Bonaveri, Canali.",
+        cta: "Elevating brands through bold visual storytelling.",
+        portfolio: "View Portfolio",
+        email: "Email",
+        call: "Book a Call",
+        vimeo: "Vimeo",
+        instagram: "Instagram",
+        back: "Back to Home"
     },
     fr: {
         name: "Alex Dallolio – Réalisateur Créatif | Artiste IA | Alchimiste Visuel",
@@ -83,3 +83,15 @@ window.onload = function () {
     const savedLang = localStorage.getItem('selectedLang') || 'it';
     changeLanguage(savedLang);
 };
+
+// Effetto scurimento video al movimento del mouse
+const videoContainer = document.querySelector(".video-container");
+
+document.addEventListener("mousemove", () => {
+    videoContainer.classList.add("dark");
+    clearTimeout(window.scurimentoTimeout);
+    
+    window.scurimentoTimeout = setTimeout(() => {
+        videoContainer.classList.remove("dark");
+    }, 2000); // Dopo 2 secondi torna chiaro
+});
