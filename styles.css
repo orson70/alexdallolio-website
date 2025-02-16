@@ -1,3 +1,4 @@
+
 /* Reset generale */
 * {
     margin: 0;
@@ -7,7 +8,7 @@
     color: white;
 }
 
-/* Sfondo video */
+/* Contenitore del video */
 .video-container {
     position: fixed;
     top: 0;
@@ -15,13 +16,18 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background: black;
 }
 
+/* Video di sfondo */
 .video-container iframe {
-    width: 100vw;
-    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    filter: brightness(50%);
+    filter: brightness(40%);  /* Oscuramento più forte */
 }
 
 /* Contenuto testuale */
@@ -38,29 +44,29 @@
 
 /* Nome */
 .name {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-/* Collegamenti */
+/* Link e contatti */
 .links {
     margin-top: 20px;
 }
 
 .links a {
     text-decoration: none;
-    color: white;
-    font-size: 1rem;
-    margin: 0 10px;
+    color: white;  /* Niente blu orrendo */
+    font-size: 1.2rem;
+    margin: 0 15px;
     transition: 0.3s ease-in-out;
     border-bottom: 1px solid white;
 }
 
 .links a:hover {
-    color: #999;
-    border-bottom: 1px solid #999;
+    color: #aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
 }
 
 /* Selettore lingue */
@@ -68,18 +74,22 @@
     position: absolute;
     top: 20px;
     right: 20px;
+    background: rgba(0, 0, 0, 0.6);  /* Sfondo scuro per evitare che spariscano */
+    padding: 10px 15px;
+    border-radius: 5px;
 }
 
 .language-switcher a {
     font-size: 1rem;
-    margin: 0 5px;
+    margin: 0 8px;
     text-decoration: none;
     text-transform: uppercase;
     transition: 0.3s ease;
+    color: white;
 }
 
 .language-switcher a:hover {
-    color: #999;
+    color: #aaaaaa;
 }
 
 /* Effetto di apparizione */
@@ -96,5 +106,4 @@
 
 .content, .links, .language-switcher {
     animation: fadeIn 1s ease-in-out;
-}
 }
