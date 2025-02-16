@@ -1,100 +1,100 @@
-/* Stili per il Portfolio */
-body {
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
+/* Reset generale */
+* {
     margin: 0;
     padding: 0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 40px 20px;
-    overflow-y: auto;
-    height: 100vh;
-}
-
-h1 {
-    text-transform: uppercase;
-    font-size: 24px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    font-weight: 300;
-}
-
-/* Griglia video */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    justify-content: center;
-    align-content: start;
-}
-
-.video-item {
-    background: black;
-    padding: 10px;
-    border-radius: 0;
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: none;
-}
-
-.video-item:hover {
-    transform: scale(1.02);
-}
-
-.video-item iframe {
-    width: 100%;
-    height: 200px;
-    border-radius: 0;
-    border: none;
-    background-color: black;
-}
-
-.video-item p {
-    font-size: 14px;
-    margin-top: 10px;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     color: white;
-    text-align: center;
-    max-width: 280px;
-    font-weight: 300;
 }
 
-/* Stili per la navigazione */
+/* Sfondo video */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+/* Contenuto testuale */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-width: 80vw;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Nome */
+.name {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Collegamenti */
+.links {
+    margin-top: 20px;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    margin: 0 10px;
+    transition: 0.3s ease-in-out;
+    border-bottom: 1px solid white;
+}
+
+.links a:hover {
+    color: #999;
+    border-bottom: 1px solid #999;
+}
+
+/* Selettore lingue */
 .language-switcher {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 16px;
 }
 
 .language-switcher a {
-    color: white;
-    text-decoration: none;
+    font-size: 1rem;
     margin: 0 5px;
-    font-weight: 300;
+    text-decoration: none;
     text-transform: uppercase;
+    transition: 0.3s ease;
 }
 
 .language-switcher a:hover {
-    text-decoration: underline;
+    color: #999;
 }
 
-.back-home {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 300;
+/* Effetto di apparizione */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.back-home:hover {
-    text-decoration: underline;
+.content, .links, .language-switcher {
+    animation: fadeIn 1s ease-in-out;
+}
 }
