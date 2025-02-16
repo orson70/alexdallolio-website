@@ -1,34 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const languageLinks = document.querySelectorAll(".language-switcher a");
-    const textElements = document.querySelectorAll(".content p, .links a");
+    // Gestione cambio lingua
+    const languageSwitcher = document.querySelectorAll(".language-switcher a");
+    const textElements = document.querySelectorAll("[data-lang-text]");
     
-    const translations = {
-        "it": {
-            "tagline": "Alex Dallolio – Film Creative Director | AI Artist | Visual Alchemist",
-            "description": "Creativo e innovatore nel mondo della comunicazione visiva.",
-            "cta": "Specializzato in campagne pubblicitarie, storytelling visivo e narrazione artistica.",
-            "collaborations": "Ha collaborato con brand come: Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza e molti altri."
-        },
-        "en": {
-            "tagline": "Alex Dallolio – Film Creative Director | AI Artist | Visual Alchemist",
-            "description": "Creative and innovator in the world of visual communication.",
-            "cta": "Specialized in advertising campaigns, visual storytelling, and artistic narration.",
-            "collaborations": "Collaborated with brands like Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza, and many others."
-        }
-        // Altre lingue possono essere aggiunte qui
-    };
-
-    languageLinks.forEach(link => {
+    languageSwitcher.forEach(link => {
         link.addEventListener("click", function (e) {
             e.preventDefault();
             const selectedLang = this.getAttribute("data-lang");
-            
-            if (translations[selectedLang]) {
-                textElements[0].textContent = translations[selectedLang]["tagline"];
-                textElements[1].textContent = translations[selectedLang]["description"];
-                textElements[2].textContent = translations[selectedLang]["cta"];
-                textElements[3].textContent = translations[selectedLang]["collaborations"];
-            }
+
+            // Salva la lingua selezionata nel localStorage
+            localStorage.setItem("selectedLanguage", selectedLang);
+
+            // Cambia il testo
+            textElements.forEach(el => {
+                el.innerText = el.getAttribute(`data-text-${selectedLang}`) || el.innerText;
+            });
         });
     });
+
+    // Mantiene la lingua selezionata anche dopo il refresh
+    const savedLang = localStorage.getItem("selectedLanguage") || "it";
+    textElements.forEach(el => {
+        el.innerText = el.getAttribute(`data-text-${savedLang}`) || el.innerText;
+    });
+
+    // Effetto scurimento dello sfondo con movimento del mouse
+    const videoContainer = document.querySelector(".video-container");
+    if (videoContainer) {
+        document.addEventListener("mousemove", (e) => {
+            let opacity = Math.min(0.6, e.clientY / window.innerHeight);
+            videoContainer.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+        });
+    }
+
+    // Mobile - Assicura che il testo rimanga visibile e ben distribuito
+    function adjustMobileLayout() {
+        if (window.innerWidth < 768) {
+            document.querySelector(".content").style.textAlign = "center";
+        } else {
+            document.querySelector(".content").style.textAlign = "left";
+        }
+    }
+
+    adjustMobileLayout();
+    window.addEventListener("resize", adjustMobileLayout);
 });
