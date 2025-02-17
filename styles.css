@@ -29,15 +29,19 @@ body {
 .content {
     position: relative;
     z-index: 1;
-    padding: 20px;
+    /* Per centrare verticalmente e orizzontalmente l'area testo */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+
+    /* Occupiamo tutta la finestra per restare "dentro" il video */
+    width: 100%;
+    height: 100vh;
+    padding: 0 20px;
 }
 
-/* Overlay per migliorare leggibilità su sfondi scuri */
+/* Overlay leggero per migliorare la leggibilità del testo */
 .content::before {
     content: "";
     position: absolute;
@@ -50,40 +54,42 @@ body {
     pointer-events: none;
 }
 
-/* Branding: nome e descrizione a fianco */
-.branding {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    max-width: 80%;
+/* Contenitore più stretto, per non spandere il testo su tutto lo schermo */
+.container {
+    max-width: 700px; 
+    width: 100%;
+    margin: 0 auto;
 }
-.branding .name {
-    margin-right: 20px;
+
+/* Branding: nome e tagline in una colonna unica, centrati */
+.branding {
+    margin-bottom: 20px;
 }
 .branding .name h1 {
     margin: 0;
-    font-size: 3em;
-}
-.branding .tagline {
-    max-width: 600px;
-    text-align: left;
+    font-size: 2.4em;
+    line-height: 1.2;
+    margin-bottom: 15px;
 }
 .branding .tagline p {
-    text-align: justify;
-    margin: 5px 0;
+    margin: 10px 0;
+    font-size: 1.1em;
+    line-height: 1.4;
+    text-align: center; /* testo centrato */
 }
 
 /* Navigation Links */
 .links {
     margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .links a {
     color: white;
     text-decoration: none;
-    margin: 0 10px;
-    font-size: 1.1em;
+    margin: 5px 10px;
+    font-size: 1em;
 }
 .links a:hover {
     text-decoration: underline;
@@ -96,7 +102,7 @@ body {
 .language-switcher a {
     color: white;
     text-decoration: none;
-    margin: 0 5px;
+    margin: 0 10px;
     font-size: 1em;
 }
 .language-switcher a:hover {
@@ -121,58 +127,22 @@ body {
     height: 250px;
 }
 
-/* --- Regole responsive per schermi fino a 768px --- */
+/* Responsive: regole per schermi più piccoli */
 @media (max-width: 768px) {
-    .content {
-        padding: 20px;
-        align-items: flex-start; /* Allinea a sinistra su mobile */
-    }
-
-    .branding {
-        flex-direction: column;
-        align-items: flex-start; 
-        margin: 0 auto;
-        max-width: 90%;
-    }
-
     .branding .name h1 {
-        font-size: 2.2em; /* Più piccolo per evitare brutti a capo */
-        margin-bottom: 15px;
+        font-size: 2em;
+        margin-bottom: 10px;
     }
-
-    .branding .tagline {
-        max-width: 100%;
-        text-align: left;
-    }
-
     .branding .tagline p {
-        text-align: left; /* A bandiera sinistra */
-        margin: 5px 0;
-        font-size: 1em; 
-        line-height: 1.4em;
+        font-size: 1em;
+        margin: 8px 0;
     }
-
-    .links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start; /* Allinea i link a sinistra */
-        margin: 20px 0;
-    }
-
     .links a {
-        margin: 5px 10px 5px 0; 
+        margin: 5px;
         font-size: 0.95em;
     }
-
-    .language-switcher {
-        display: flex;
-        justify-content: flex-start; 
-        margin-top: 20px;
-        width: 100%;
-    }
-
     .language-switcher a {
-        margin-right: 10px;
         font-size: 0.95em;
+        margin: 0 5px;
     }
 }
