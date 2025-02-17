@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 const videoElement = document.createElement("div");
                 videoElement.classList.add("video-item");
                 videoElement.innerHTML = `
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}?rel=0" frameborder="0" allowfullscreen></iframe>
                     <p>${title}</p>
                 `;
                 videoContainer.appendChild(videoElement);

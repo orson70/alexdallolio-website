@@ -10,7 +10,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                 `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${maxResults}`
             );
             const data = await response.json();
-            displayVideos(data.items);
+            if (data.items) {
+                displayVideos(data.items);
+            } else {
+                throw new Error("Nessun video trovato");
+            }
         } catch (error) {
             console.error("Errore nel caricamento dei video", error);
             videoContainer.innerHTML = "<p>Impossibile caricare i video.</p>";
@@ -24,22 +28,23 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        videos.forEach(video => {
-            if (video.id.videoId) {
-                const videoId = video.id.videoId;
-                const title = video.snippet.title;
-                const videoElement = document.createElement("div");
-                videoElement.classList.add("video-item");
+    // Creazione della griglia video con layout responsive
+    videos.forEach(video => {
+        if (video.id.videoId) {
+            const videoId = video.id.videoId;
+            const title = video.snippet.title;
+            const videoElement = document.createElement("div");
+            videoElement.classList.add("video-item");
 
-                videoElement.innerHTML = `
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-                    <p>${title}</p>
-                `;
+            videoElement.innerHTML = `
+                <iframe width="100%" height="250" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                <p class="video-title">${title}</p>
+            `;
 
-                videoContainer.appendChild(videoElement);
-            }
-        });
-    }
+            videoContainer.appendChild(videoElement);
+        }
+    });
+}
 
     fetchVideos();
 });
