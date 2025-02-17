@@ -37,6 +37,19 @@ body {
     min-height: 100vh;
 }
 
+/* Overlay per migliorare leggibilità su sfondi scuri */
+.content::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    pointer-events: none;
+}
+
 /* Branding: nome e descrizione a fianco */
 .branding {
     display: flex;
@@ -90,7 +103,7 @@ body {
     text-decoration: underline;
 }
 
-/* Portfolio (se già funziona, lasciamo invariato) */
+/* Portfolio */
 .portfolio {
     padding: 50px 20px;
 }
@@ -108,20 +121,58 @@ body {
     height: 250px;
 }
 
-/* Responsive adjustments */
+/* --- Regole responsive per schermi fino a 768px --- */
 @media (max-width: 768px) {
+    .content {
+        padding: 20px;
+        align-items: flex-start; /* Allinea a sinistra su mobile */
+    }
+
     .branding {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start; 
+        margin: 0 auto;
+        max-width: 90%;
     }
-    .branding .name {
-        margin-right: 0;
+
+    .branding .name h1 {
+        font-size: 2.2em; /* Più piccolo per evitare brutti a capo */
         margin-bottom: 15px;
     }
-    .branding .name h1 {
-        font-size: 2.5em;
-    }
+
     .branding .tagline {
-        max-width: 90%;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .branding .tagline p {
+        text-align: left; /* A bandiera sinistra */
+        margin: 5px 0;
+        font-size: 1em; 
+        line-height: 1.4em;
+    }
+
+    .links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start; /* Allinea i link a sinistra */
+        margin: 20px 0;
+    }
+
+    .links a {
+        margin: 5px 10px 5px 0; 
+        font-size: 0.95em;
+    }
+
+    .language-switcher {
+        display: flex;
+        justify-content: flex-start; 
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .language-switcher a {
+        margin-right: 10px;
+        font-size: 0.95em;
     }
 }
