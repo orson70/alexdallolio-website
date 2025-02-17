@@ -1,45 +1,56 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Alex Dallolio - Film Creative Director, AI Artist, Visual Alchemist. Creativo e innovatore nel mondo della comunicazione visiva.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Alex Dallolio - Film Creative Director, AI Artist, Visual Alchemist. Creativo e innovatore nel mondo della comunicazione visiva."
+  />
   <title>Alex Dallolio - Personal Branding</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="video-background">
-    <iframe src="https://player.vimeo.com/video/1057021961?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&loop=1" 
-      frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="background reel"></iframe>
+    <!-- Video di sfondo da Vimeo in loop e silenziato -->
+    <iframe
+      src="https://player.vimeo.com/video/1057021961?autoplay=1&loop=1&background=1&muted=1&byline=0&title=0"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+      title="background reel"
+    ></iframe>
   </div>
 
   <main class="content">
     <div class="branding">
+      <!-- Qui i testi verranno inseriti via JavaScript -->
       <div class="name">
-        <h1>Alex Dallolio</h1>
+        <h1 id="name"></h1>
       </div>
       <div class="tagline">
-        <p>Film Creative Director | AI Artist | Visual Alchemist</p>
-        <p>Creativo e innovatore nel mondo della comunicazione visiva.</p>
-        <p>Ha collaborato con brand come Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza e molti altri.</p>
+        <p id="tagline1"></p>
+        <p id="tagline2"></p>
+        <p id="tagline3"></p>
       </div>
     </div>
 
     <nav class="links">
-      <a href="mailto:info@alexdallolio.com">Email</a>
-      <a href="https://vimeo.com/alexdallolio" target="_blank">Vimeo</a>
-      <a href="https://www.instagram.com/alexdallolio" target="_blank">Instagram</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="https://calendly.com/alexdallolio" target="_blank">Book a Call</a>
+      <!-- Anche qui i link verranno tradotti via JavaScript -->
+      <a href="mailto:info@alexdallolio.com" id="email"></a>
+      <a href="https://vimeo.com/alexdallolio" target="_blank" id="vimeo"></a>
+      <a href="https://www.instagram.com/alexdallolio" target="_blank" id="instagram"></a>
+      <a href="portfolio.html" id="portfolio"></a>
+      <a href="https://calendly.com/alexdallolio" target="_blank" id="bookACall"></a>
     </nav>
 
+    <!-- Switcher lingue (solo IT e EN) -->
     <div class="language-switcher">
-      <a href="#" data-lang="it">IT</a>
-      <a href="#" data-lang="en">EN</a>
-      <a href="#" data-lang="fr">FR</a>
-      <a href="#" data-lang="de">DE</a>
-      <a href="#" data-lang="cn">CN</a>
+      <a href="#" data-lang="it" class="lang-link">IT</a>
+      <a href="#" data-lang="en" class="lang-link">EN</a>
     </div>
   </main>
+  
+  <!-- Carichiamo lo script per la traduzione -->
+  <script src="lang.js"></script>
 </body>
 </html>

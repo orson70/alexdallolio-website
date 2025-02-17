@@ -8,7 +8,7 @@ body {
     text-align: center;
 }
 
-/* Video background */
+/* Contenitore del video di sfondo */
 .video-background {
     position: fixed;
     top: 0;
@@ -22,9 +22,10 @@ body {
     width: 100%;
     height: 100%;
     filter: brightness(50%);
+    pointer-events: none; /* Il video non blocca i clic sugli elementi in primo piano */
 }
 
-/* Contenuto */
+/* Contenuto principale */
 .content {
     position: relative;
     z-index: 1;
@@ -41,8 +42,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 20px;
+    max-width: 80%;
 }
 .branding .name {
     margin-right: 20px;
@@ -88,7 +90,7 @@ body {
     text-decoration: underline;
 }
 
-/* Portfolio (rimane invariato per ora) */
+/* Portfolio (se già funziona, lasciamo invariato) */
 .portfolio {
     padding: 50px 20px;
 }
@@ -110,6 +112,7 @@ body {
 @media (max-width: 768px) {
     .branding {
         flex-direction: column;
+        align-items: center;
     }
     .branding .name {
         margin-right: 0;
