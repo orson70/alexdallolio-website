@@ -1,8 +1,14 @@
 document.addEventListener("DOMContentLoaded", async function () {
+    const videoContainer = document.getElementById("video-container");
+    if (!videoContainer) {
+        // Se non c'è il container per i video, non eseguire nulla.
+        return;
+    }
+    
+    // Nota bene: l'API key è esposta qui. In un ambiente di produzione, valuta l'uso di un backend per proteggerla.
     const apiKey = "AIzaSyDFwhl52JdgQsR1L13qhlXqsneVWVbVFdU";
     const channelId = "UCPUh5o9YJ732EAR8z82ljvg";
     const maxResults = 12;
-    const videoContainer = document.getElementById("video-container");
 
     async function fetchVideos() {
         try {
@@ -36,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 videoElement.classList.add("video-item");
                 videoElement.innerHTML = `
                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}?rel=0" frameborder="0" allowfullscreen></iframe>
-                    <p>${title}</p>
+                    <p class="video-title">${title}</p>
                 `;
                 videoContainer.appendChild(videoElement);
             }
