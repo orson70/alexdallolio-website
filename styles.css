@@ -1,4 +1,4 @@
-/* Stili generali */
+/* Reset e font */
 body {
     margin: 0;
     padding: 0;
@@ -8,7 +8,20 @@ body {
     text-align: center;
 }
 
-/* Contenitore del video di sfondo */
+/* HEADLINE (NOME FUORI DAL VIDEO) */
+.headline {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin: 20px 0;
+}
+.headline h1 {
+    margin: 0;
+    font-size: 2.5em;  /* Dimensione desktop */
+    color: white;
+}
+
+/* VIDEO BACKGROUND */
 .video-background {
     position: fixed;
     top: 0;
@@ -25,20 +38,17 @@ body {
     pointer-events: none; /* Il video non blocca i clic sugli elementi in primo piano */
 }
 
-/* Contenuto principale */
+/* CONTENUTO (DENTRO AL VIDEO) */
 .content {
     position: relative;
     z-index: 1;
-    /* Per centrare verticalmente e orizzontalmente l'area testo */
+    width: 100%;
+    min-height: 100vh;
+
+    /* Centro verticalmente e orizzontalmente l'area testo */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* Occupiamo tutta la finestra per restare "dentro" il video */
-    width: 100%;
-    height: 100vh;
-    padding: 0 20px;
 }
 
 /* Overlay leggero per migliorare la leggibilità del testo */
@@ -54,62 +64,54 @@ body {
     pointer-events: none;
 }
 
-/* Contenitore più stretto, per non spandere il testo su tutto lo schermo */
+/* CONTAINER: area ridotta e centrata */
 .container {
-    max-width: 700px; 
+    position: relative;
+    max-width: 500px;  /* Larghezza massima del testo */
     width: 100%;
-    margin: 0 auto;
+    margin: 0 20px;    /* un po’ di spazio ai lati */
+    text-align: center;
 }
 
-/* Branding: nome e tagline in una colonna unica, centrati */
-.branding {
-    margin-bottom: 20px;
-}
-.branding .name h1 {
-    margin: 0;
-    font-size: 2.4em;
-    line-height: 1.2;
-    margin-bottom: 15px;
-}
-.branding .tagline p {
-    margin: 10px 0;
-    font-size: 1.1em;
-    line-height: 1.4;
-    text-align: center; /* testo centrato */
+/* TAGLINE: testo più compatto */
+.tagline p {
+    margin: 8px 0;
+    font-size: 1em;
+    line-height: 1.3;
 }
 
-/* Navigation Links */
+/* LINKS compatti */
 .links {
-    margin: 20px 0;
+    margin: 10px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 .links a {
+    font-size: 0.9em;
+    margin: 5px;
     color: white;
     text-decoration: none;
-    margin: 5px 10px;
-    font-size: 1em;
 }
 .links a:hover {
     text-decoration: underline;
 }
 
-/* Language Switcher */
+/* LANGUAGE SWITCHER */
 .language-switcher {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .language-switcher a {
+    font-size: 0.9em;
+    margin: 0 10px;
     color: white;
     text-decoration: none;
-    margin: 0 10px;
-    font-size: 1em;
 }
 .language-switcher a:hover {
     text-decoration: underline;
 }
 
-/* Portfolio */
+/* PORTFOLIO (rimane invariato, se già funziona) */
 .portfolio {
     padding: 50px 20px;
 }
@@ -127,22 +129,52 @@ body {
     height: 250px;
 }
 
-/* Responsive: regole per schermi più piccoli */
+/* --- RESPONSIVE: regole per schermi <= 768px --- */
 @media (max-width: 768px) {
-    .branding .name h1 {
-        font-size: 2em;
-        margin-bottom: 10px;
+
+    /* Ridimensiono il nome (headline) */
+    .headline h1 {
+        font-size: 1.8em; 
+        margin: 10px 0;
     }
-    .branding .tagline p {
-        font-size: 1em;
-        margin: 8px 0;
+
+    /* Riduco l’altezza minima e impilo i contenuti in modo più “sciolto” */
+    .content {
+        min-height: auto;
+        padding: 20px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    /* Stringo ancora la larghezza del container e riduco i margini */
+    .container {
+        max-width: 450px;
+        margin: 0 10px;
+    }
+
+    /* Testo più piccolo e spazi ridotti */
+    .tagline p {
+        font-size: 0.9em;
+        line-height: 1.2;
+        margin: 6px 0;
+    }
+
+    /* Link più compatti */
+    .links {
+        margin: 10px 0;
     }
     .links a {
-        margin: 5px;
-        font-size: 0.95em;
+        font-size: 0.85em;
+        margin: 3px 5px;
+    }
+
+    /* Lingue ridotte */
+    .language-switcher {
+        margin-top: 10px;
     }
     .language-switcher a {
-        font-size: 0.95em;
+        font-size: 0.85em;
         margin: 0 5px;
     }
 }
