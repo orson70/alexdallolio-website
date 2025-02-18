@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alex Dallolio - Home</title>
-  <!-- Includiamo Font Awesome per le icone -->
+  <!-- Font Awesome per le icone -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-d8NfQW7Pv+6Kav3d3Hpg5Ksx40qq5sIWGQZqhx8fROuJ63B8f2u/wq9Yq+CQX8q9oylBzFufz8X6Oe+QK+HJqA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -25,20 +25,20 @@
     <!-- Overlay semitrasparente per migliorare la leggibilità -->
     <div class="overlay"></div>
 
-    <!-- Container centrato, con tutto il testo allineato a sinistra -->
+    <!-- Container centrato, testo a sinistra con traduzione -->
     <div class="container">
-      <h1 class="name">Alex Dallolio</h1>
+      <h1 class="name" data-key="name">Alex Dallolio</h1>
       
-      <p class="tagline">Film Creative Director | AI Artist | Visual Alchemist</p>
-      <p class="tagline">Creativo e innovatore nel mondo della comunicazione visiva.</p>
-      <p class="tagline">Ha collaborato con brand come Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza e molti altri.</p>
+      <p class="tagline" data-key="tagline1">Film Creative Director | AI Artist | Visual Alchemist</p>
+      <p class="tagline" data-key="tagline2">Creativo e innovatore nel mondo della comunicazione visiva.</p>
+      <p class="tagline" data-key="tagline3">Ha collaborato con brand come Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza e molti altri.</p>
 
       <nav class="links">
-        <a href="mailto:alexdallolio@alexdallolio.com"><i class="fa fa-envelope"></i> Email</a>
-        <a href="https://vimeo.com/alexdallolio" target="_blank"><i class="fab fa-vimeo-v"></i> Vimeo</a>
-        <a href="https://www.instagram.com/alexdallolio" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="portfolio.html"><i class="fa fa-folder"></i> Portfolio</a>
-        <a href="https://calendly.com/alexdallolio" target="_blank"><i class="fa fa-calendar"></i> Prenota</a>
+        <a href="mailto:alexdallolio@alexdallolio.com" data-key="email"><i class="fa fa-envelope"></i> Email</a>
+        <a href="https://vimeo.com/alexdallolio" target="_blank" data-key="vimeo"><i class="fab fa-vimeo-v"></i> Vimeo</a>
+        <a href="https://www.instagram.com/alexdallolio" target="_blank" data-key="instagram"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="portfolio.html" data-key="portfolio"><i class="fa fa-folder"></i> Portfolio</a>
+        <a href="https://calendly.com/alexdallolio" target="_blank" data-key="prenota"><i class="fa fa-calendar"></i> Prenota</a>
       </nav>
 
       <!-- Language Switcher -->
@@ -49,5 +49,6 @@
     </div>
   </main>
 
+  <script src="lang.js"></script>
 </body>
 </html>

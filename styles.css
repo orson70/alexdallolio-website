@@ -7,7 +7,7 @@ body {
   color: white;
 }
 
-/* VIDEO DI SFONDO */
+/* VIDEO DI SFONDO (Homepage) */
 .video-background {
   position: fixed;
   top: 0;
@@ -24,7 +24,7 @@ body {
   pointer-events: none;
 }
 
-/* CONTENUTO */
+/* CONTENUTO HOMEPAGE */
 .content {
   position: relative;
   z-index: 1;
@@ -35,8 +35,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-/* OVERLAY PER MIGLIORARE LA LEGIBILITÀ */
 .overlay {
   position: absolute;
   top: 0;
@@ -47,31 +45,23 @@ body {
   z-index: -1;
   pointer-events: none;
 }
-
-/* CONTAINER CENTRATO CON TESTO ALLINEATO A SINISTRA */
 .container {
   max-width: 600px;
   width: 90%;
   margin: 0 auto;
   text-align: left;
 }
-
-/* NOME PICCOLO */
 .name {
   font-size: 1.3em;
   font-weight: bold;
   margin-bottom: 15px;
 }
-
-/* PARAGRAFI GIUSTIFICATI */
 .tagline {
   font-size: 1em;
   line-height: 1.4;
   margin: 8px 0;
   text-align: justify;
 }
-
-/* LINK CON ICONE */
 .links {
   margin-top: 20px;
   display: flex;
@@ -88,8 +78,6 @@ body {
 .links a i {
   margin-right: 5px;
 }
-
-/* LANGUAGE SWITCHER */
 .language-switcher {
   margin-top: 15px;
 }
@@ -108,7 +96,7 @@ body {
   color: black;
 }
 
-/* RESPONSIVE PER MOBILE (SCHERMI < 768PX) */
+/* RESPONSIVE HOMEPAGE (Mobile) */
 @media (max-width: 768px) {
   .container {
     max-width: 90%;
@@ -129,4 +117,45 @@ body {
     font-size: 0.85em;
     margin-right: 8px;
   }
+}
+
+/* PORTFOLIO */
+.portfolio {
+  padding: 50px 20px;
+  text-align: center;
+  background: #000;
+  color: white;
+}
+.portfolio h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+.home-link {
+  color: white;
+  text-decoration: none;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+/* Griglia dei video nel portfolio */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Video responsive (rapporto 16:9) */
+.video-item {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+.video-item iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
