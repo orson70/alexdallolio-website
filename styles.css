@@ -1,180 +1,115 @@
-/* Reset e font */
+/* RESET E FONT */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: white;
-    background-color: black;
-    text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
 
-/* HEADLINE (NOME FUORI DAL VIDEO) */
+/* NOME (HEADLINE) FUORI DAL VIDEO */
 .headline {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    margin: 20px 0;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin: 20px 0;
 }
 .headline h1 {
-    margin: 0;
-    font-size: 2.5em;  /* Dimensione desktop */
-    color: white;
+  margin: 0;
+  font-size: 2.5em; /* Dimensione su desktop */
 }
 
-/* VIDEO BACKGROUND */
+/* VIDEO DI SFONDO */
 .video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
 }
 .video-background iframe {
-    width: 100%;
-    height: 100%;
-    filter: brightness(50%);
-    pointer-events: none; /* Il video non blocca i clic sugli elementi in primo piano */
+  width: 100%;
+  height: 100%;
+  filter: brightness(50%);
+  pointer-events: none; /* Per poter cliccare sul testo davanti */
 }
 
 /* CONTENUTO (DENTRO AL VIDEO) */
 .content {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
 
-    /* Centro verticalmente e orizzontalmente l'area testo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* Overlay leggero per migliorare la leggibilità del testo */
-.content::before {
-    content: "";
-    position: absolute;
-    top: 0; 
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: -1;
-    pointer-events: none;
+/* OVERLAY SCURO */
+.overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* CONTAINER: area ridotta e centrata */
+/* CONTAINER CENTRALE */
 .container {
-    position: relative;
-    max-width: 500px;  /* Larghezza massima del testo */
-    width: 100%;
-    margin: 0 20px;    /* un po’ di spazio ai lati */
-    text-align: center;
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto;
 }
 
-/* TAGLINE: testo più compatto */
-.tagline p {
-    margin: 8px 0;
-    font-size: 1em;
-    line-height: 1.3;
+/* TESTI */
+.subtitle {
+  margin: 10px 0;
+  font-size: 1.1em;
+  line-height: 1.4;
 }
 
-/* LINKS compatti */
+/* LINK */
 .links {
-    margin: 10px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .links a {
-    font-size: 0.9em;
-    margin: 5px;
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
+  margin: 5px 10px;
+  font-size: 1em;
 }
 .links a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* LANGUAGE SWITCHER */
-.language-switcher {
-    margin-top: 10px;
-}
-.language-switcher a {
-    font-size: 0.8em;
-    margin: 0 10px;
-    color: white;
-    text-decoration: none;
-}
-.language-switcher a:hover {
-    text-decoration: underline;
-}
-
-/* PORTFOLIO (rimane invariato, se già funziona) */
-.portfolio {
-    padding: 50px 20px;
-}
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-.video-item {
-    text-align: center;
-}
-.video-item iframe {
-    width: 100%;
-    height: 250px;
-}
-
-/* --- RESPONSIVE: regole per schermi <= 768px --- */
+/* RESPONSIVE: MOBILE */
 @media (max-width: 768px) {
-
-    /* Ridimensiono il nome (headline) */
-    .headline h1 {
-        font-size: 1.4em; 
-        margin: 10px 0;
-    }
-
-    /* Riduco l’altezza minima e impilo i contenuti in modo più “sciolto” */
-    .content {
-        min-height: auto;
-        padding: 20px;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    /* Stringo ancora la larghezza del container e riduco i margini */
-    .container {
-        max-width: 450px;
-        margin: 0 10px;
-    }
-
-    /* Testo più piccolo e spazi ridotti */
-    .tagline p {
-        font-size: 0.9em;
-        line-height: 1.2;
-        margin: 6px 0;
-    }
-
-    /* Link più compatti */
-    .links {
-        margin: 10px 0;
-    }
-    .links a {
-        font-size: 0.85em;
-        margin: 3px 5px;
-    }
-
-    /* Lingue ridotte */
-    .language-switcher {
-        margin-top: 10px;
-    }
-    .language-switcher a {
-        font-size: 0.85em;
-        margin: 0 5px;
-    }
+  .headline h1 {
+    font-size: 1.8em; /* Ridotto su mobile */
+    margin: 10px 0;
+  }
+  .container {
+    max-width: 90%;
+  }
+  .subtitle {
+    font-size: 1em;
+    line-height: 1.3;
+    margin: 8px 0;
+  }
+  .links a {
+    font-size: 0.9em;
+    margin: 3px 5px;
+  }
 }

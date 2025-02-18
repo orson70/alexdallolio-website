@@ -7,12 +7,19 @@
     name="description"
     content="Alex Dallolio - Film Creative Director, AI Artist, Visual Alchemist. Creativo e innovatore nel mondo della comunicazione visiva."
   />
-  <title>Alex Dallolio g</title>
+  <title>Alex Dallolio - Home</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <!-- NOME FUORI DAL VIDEO -->
+  <header class="headline">
+    <h1>Alex Dallolio</h1>
+  </header>
+
+  <!-- VIDEO DI SFONDO -->
   <div class="video-background">
-    <!-- Video di sfondo da Vimeo in loop e silenziato -->
+    <!-- Controlla che l'embed Vimeo sia pubblico e autorizzato -->
     <iframe
       src="https://player.vimeo.com/video/1057021961?autoplay=1&loop=1&background=1&muted=1&byline=0&title=0"
       frameborder="0"
@@ -21,36 +28,27 @@
     ></iframe>
   </div>
 
+  <!-- CONTENUTO SOVRASTANTE IL VIDEO -->
   <main class="content">
-    <div class="branding">
-      <!-- Qui i testi verranno inseriti via JavaScript -->
-      <div class="name">
-        <h1 id="name"></h1>
-      </div>
-      <div class="tagline">
-        <p id="tagline1"></p>
-        <p id="tagline2"></p>
-        <p id="tagline3"></p>
-      </div>
-    </div>
+    <!-- Overlay scuro per migliorare la leggibilità -->
+    <div class="overlay"></div>
 
-    <nav class="links">
-      <!-- Anche qui i link verranno tradotti via JavaScript -->
-      <a href="mailto:alexdallolio@alexdallolio.com" id="email"></a>
-      <a href="https://vimeo.com/alexdallolio" target="_blank" id="vimeo"></a>
-      <a href="https://www.instagram.com/alexdallolio" target="_blank" id="instagram"></a>
-      <a href="portfolio.html" id="portfolio"></a>
-      <a href="https://calendly.com/alexdallolio" target="_blank" id="bookACall"></a>
-    </nav>
+    <div class="container">
+      <!-- Testi e tagline -->
+      <p class="subtitle">Film Creative Director | AI Artist | Visual Alchemist</p>
+      <p class="subtitle">Creativo e innovatore nel mondo della comunicazione visiva.</p>
+      <p class="subtitle">Ha collaborato con brand come Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza e molti altri.</p>
 
-    <!-- Switcher lingue (solo IT e EN) -->
-    <div class="language-switcher">
-      <a href="#" data-lang="it" class="lang-link">IT</a>
-      <a href="#" data-lang="en" class="lang-link">EN</a>
+      <!-- Link -->
+      <nav class="links">
+        <a href="mailto:alexdallolio@alexdallolio.com">Email</a>
+        <a href="https://vimeo.com/alexdallolio" target="_blank">Vimeo</a>
+        <a href="https://www.instagram.com/alexdallolio" target="_blank">Instagram</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="https://calendly.com/alexdallolio" target="_blank">Prenota una chiamata</a>
+      </nav>
     </div>
   </main>
-  
-  <!-- Carichiamo lo script per la traduzione -->
-  <script src="lang.js"></script>
+
 </body>
 </html>
