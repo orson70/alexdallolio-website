@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  const apiKey = "INSERISCI-LA-TUA-API-KEY"; // Sostituisci con la tua API key YouTube
-  const channelId = "UCPUh5o9YJ732EAR8z82ljvg"; // Sostituisci con il tuo channelId
+  const apiKey = "AIzaSyDFwhl52JdgQsR1L13qhlXqsneVWVbVFdU"; // API key fornita
+  const channelId = "UCPUh5o9YJ732EAR8z82ljvg"; // Assicurati che sia il tuo channelId
   const maxResults = 12;
   const videoContainer = document.getElementById("video-container");
 
