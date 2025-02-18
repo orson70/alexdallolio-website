@@ -3,23 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Alex Dallolio - Film Creative Director, AI Artist, Visual Alchemist. Creativo e innovatore nel mondo della comunicazione visiva."
-  />
   <title>Alex Dallolio - Home</title>
+  <!-- Includiamo Font Awesome per le icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-d8NfQW7Pv+6Kav3d3Hpg5Ksx40qq5sIWGQZqhx8fROuJ63B8f2u/wq9Yq+CQX8q9oylBzFufz8X6Oe+QK+HJqA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- NOME FUORI DAL VIDEO -->
-  <header class="headline">
-    <h1>Alex Dallolio</h1>
-  </header>
-
   <!-- VIDEO DI SFONDO -->
   <div class="video-background">
-    <!-- Controlla che l'embed Vimeo sia pubblico e autorizzato -->
     <iframe
       src="https://player.vimeo.com/video/1057021961?autoplay=1&loop=1&background=1&muted=1&byline=0&title=0"
       frameborder="0"
@@ -28,25 +20,32 @@
     ></iframe>
   </div>
 
-  <!-- CONTENUTO SOVRASTANTE IL VIDEO -->
+  <!-- CONTENUTO SOVRAPPOSTO AL VIDEO -->
   <main class="content">
-    <!-- Overlay scuro per migliorare la leggibilità -->
+    <!-- Overlay semitrasparente per migliorare la leggibilità -->
     <div class="overlay"></div>
 
+    <!-- Container centrato, con tutto il testo allineato a sinistra -->
     <div class="container">
-      <!-- Testi e tagline -->
-      <p class="subtitle">Film Creative Director | AI Artist | Visual Alchemist</p>
-      <p class="subtitle">Creativo e innovatore nel mondo della comunicazione visiva.</p>
-      <p class="subtitle">Ha collaborato con brand come Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza e molti altri.</p>
+      <h1 class="name">Alex Dallolio</h1>
+      
+      <p class="tagline">Film Creative Director | AI Artist | Visual Alchemist</p>
+      <p class="tagline">Creativo e innovatore nel mondo della comunicazione visiva.</p>
+      <p class="tagline">Ha collaborato con brand come Nike, Prada, Tetrapak, Luisa Spagnoli, Lavazza e molti altri.</p>
 
-      <!-- Link -->
       <nav class="links">
-        <a href="mailto:alexdallolio@alexdallolio.com">Email</a>
-        <a href="https://vimeo.com/alexdallolio" target="_blank">Vimeo</a>
-        <a href="https://www.instagram.com/alexdallolio" target="_blank">Instagram</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="https://calendly.com/alexdallolio" target="_blank">Prenota una chiamata</a>
+        <a href="mailto:alexdallolio@alexdallolio.com"><i class="fa fa-envelope"></i> Email</a>
+        <a href="https://vimeo.com/alexdallolio" target="_blank"><i class="fab fa-vimeo-v"></i> Vimeo</a>
+        <a href="https://www.instagram.com/alexdallolio" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="portfolio.html"><i class="fa fa-folder"></i> Portfolio</a>
+        <a href="https://calendly.com/alexdallolio" target="_blank"><i class="fa fa-calendar"></i> Prenota</a>
       </nav>
+
+      <!-- Language Switcher -->
+      <div class="language-switcher">
+        <a href="#" data-lang="it" class="lang-link active">IT</a>
+        <a href="#" data-lang="en" class="lang-link">EN</a>
+      </div>
     </div>
   </main>
 
