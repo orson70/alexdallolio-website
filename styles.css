@@ -102,7 +102,7 @@ body {
     margin-top: 10px;
 }
 .language-switcher a {
-    font-size: 0.9em;
+    font-size: 0.8em;
     margin: 0 10px;
     color: white;
     text-decoration: none;
@@ -134,7 +134,7 @@ body {
 
     /* Ridimensiono il nome (headline) */
     .headline h1 {
-        font-size: 1.8em; 
+        font-size: 1.4em; 
         margin: 10px 0;
     }
 
