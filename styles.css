@@ -1,4 +1,4 @@
-/* RESET E FONT DI BASE */
+/* RESET & BASE */
 body {
   margin: 0;
   padding: 0;
@@ -24,13 +24,12 @@ body {
   pointer-events: none;
 }
 
-/* CONTENUTO HOMEPAGE */
+/* HOMEPAGE CONTENT */
 .content {
   position: relative;
   z-index: 1;
   width: 100%;
   min-height: 100vh;
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,7 +95,7 @@ body {
   color: black;
 }
 
-/* RESPONSIVE HOMEPAGE (Mobile) */
+/* Responsive - Mobile */
 @media (max-width: 768px) {
   .container {
     max-width: 90%;
@@ -119,7 +118,7 @@ body {
   }
 }
 
-/* PORTFOLIO */
+/* PORTFOLIO STYLES */
 .portfolio {
   padding: 50px 20px;
   text-align: center;
@@ -136,19 +135,15 @@ body {
   margin-bottom: 20px;
   display: inline-block;
 }
-
-/* Griglia dei video nel portfolio */
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
 }
-
-/* Video responsive (rapporto 16:9) */
 .video-item {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%; /* 16:9 ratio */
   height: 0;
   overflow: hidden;
 }

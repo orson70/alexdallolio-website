@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       vimeo: "Vimeo",
       instagram: "Instagram",
       portfolio: "Portfolio",
-      prenota: "Prenota una chiamata"
+      prenota: "Prenota"
     },
     en: {
       name: "Alex Dallolio",
@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const lang = link.getAttribute("data-lang");
       setLanguage(lang);
-      // Aggiorna lo stato active
       langLinks.forEach(l => l.classList.remove("active"));
       link.classList.add("active");
     });
