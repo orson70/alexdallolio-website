@@ -6,21 +6,18 @@
 <title>Alex Dallolio — Film Director & AI Artist</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --black: #0a0a0a;
-    --white: #f0ede8;
-    --grey: #888;
-    --accent: #c8b89a;
-    --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
+  :root { --black: #0a0a0a; --white: #f0ede8; --grey: #888; --accent: #c8b89a; --font: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
   html { scroll-behavior: smooth; }
   body { background: var(--black); color: var(--white); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; pointer-events: none; }
+  .video-bg iframe { position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.78vh; transform: translate(-50%, -50%); border: none; pointer-events: none; }
+  .video-bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: rgba(10,10,10,0.72); pointer-events: none; }
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); }
   nav .logo { font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; }
   nav ul { list-style: none; display: flex; gap: 2.5rem; }
   nav ul a { color: var(--grey); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
   nav ul a:hover { color: var(--white); }
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 6rem 3rem 4rem; position: relative; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 6rem 3rem 4rem; position: relative; border-bottom: 1px solid rgba(255,255,255,0.06); background: transparent; }
   .hero-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
   .hero h1 { font-size: clamp(2.8rem, 7vw, 6.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; max-width: 900px; margin-bottom: 2rem; }
   .hero h1 em { font-style: normal; color: var(--accent); }
@@ -60,18 +57,22 @@
   footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
   footer p { font-size: 0.75rem; color: var(--grey); letter-spacing: 0.05em; }
   @media (max-width: 768px) {
-    nav { padding: 1.2rem 1.5rem; }
-    nav ul { gap: 1.5rem; }
-    .hero { padding: 5rem 1.5rem 3rem; }
-    section { padding: 4rem 1.5rem; }
+    nav { padding: 1.2rem 1.5rem; } nav ul { gap: 1.5rem; }
+    .hero { padding: 5rem 1.5rem 3rem; } section { padding: 4rem 1.5rem; }
     .approach-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .work-grid { grid-template-columns: 1fr; }
-    footer { padding: 1.5rem; }
+    .work-grid { grid-template-columns: 1fr; } footer { padding: 1.5rem; }
     .scroll-hint { display: none; }
   }
 </style>
 </head>
 <body>
+
+<div class="video-bg">
+  <iframe src="https://player.vimeo.com/video/1057021961?autoplay=1&loop=1&background=1&muted=1&byline=0&title=0"
+    allow="autoplay; fullscreen; picture-in-picture" title="background reel"></iframe>
+</div>
+<div class="video-bg-overlay"></div>
+
 <nav>
   <a href="#" class="logo">Alex Dallolio</a>
   <ul>
@@ -81,6 +82,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
+
 <section class="hero">
   <div class="hero-label">Film Director · AI Artist · Visual Alchemist</div>
   <h1>I make films<br>without <em>shooting</em> them.</h1>
@@ -92,6 +94,7 @@
   </div>
   <span class="scroll-hint">Scroll</span>
 </section>
+
 <section class="approach" id="approach">
   <div class="section-label">The Approach</div>
   <div class="approach-grid">
@@ -108,6 +111,7 @@
     </div>
   </div>
 </section>
+
 <section id="work">
   <div class="section-label">Selected Work</div>
   <div class="work-grid">
@@ -130,6 +134,7 @@
   </div>
   <div class="work-cta"><a href="https://vimeo.com/alexdallolio" target="_blank">Full portfolio on Vimeo &rarr;</a></div>
 </section>
+
 <section class="clients" id="clients">
   <div class="section-label">Selected Clients</div>
   <h2>Brands that trusted the process.</h2>
@@ -137,6 +142,7 @@
     <span class="client-name">Nike</span><span class="client-name">Prada</span><span class="client-name">Converse</span><span class="client-name">Fila</span><span class="client-name">Chopard</span><span class="client-name">Mini BMW</span><span class="client-name">Lavazza</span><span class="client-name">Luisa Spagnoli</span><span class="client-name">Colmar</span><span class="client-name">Richmond</span><span class="client-name">Tassoni</span><span class="client-name">Tetrapak</span><span class="client-name">Webuild</span><span class="client-name">Transpack</span>
   </div>
 </section>
+
 <section class="contact" id="contact">
   <div class="section-label">Contact</div>
   <h2>Let's make something<br><em>worth watching.</em></h2>
@@ -148,9 +154,11 @@
     <a href="https://calendly.com/alexdallolio" target="_blank">Book a call</a>
   </div>
 </section>
+
 <footer>
   <p>© 2025 Alex Dallolio. All rights reserved.</p>
   <p>Milan, Italy — Working globally</p>
 </footer>
+
 </body>
 </html>
