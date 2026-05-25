@@ -5,366 +5,452 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All Work — Alex Dallolio</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --black: #0a0a0a; --white: #f0ede8; --grey: #8a8a8a;
-    --soft-grey: #b7b0a6; --accent: #c8b89a;
-    --line: rgba(255,255,255,0.08);
-    --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-  html { scroll-behavior: smooth; }
-  body { background: var(--black); color: var(--white); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.5rem 3rem;
-    background: rgba(10,10,10,0.96);
-    border-bottom: 1px solid var(--line);
-  }
-  nav .logo { font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--white); text-decoration: none; }
-  nav ul { list-style: none; display: flex; gap: 2.4rem; }
-  nav ul a { color: var(--grey); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
-  nav ul a:hover { color: var(--white); }
-  .page-header {
-    padding: 8rem 3rem 3rem;
-    border-bottom: 1px solid var(--line);
-    background: rgba(10,10,10,0.9);
-  }
-  .section-label { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-  .page-header h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; letter-spacing: -0.03em; }
-  .page-header h1 em { font-style: normal; color: var(--accent); }
-  .all-work-grid {
-    padding: 3rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.8rem;
-    background: rgba(10,10,10,0.9);
-    min-height: calc(100vh - 200px);
-  }
-  .video-card { position: relative; background: #111; border-radius: 3px; overflow: hidden; }
-  .video-card a { display:block; position:relative; overflow:hidden; text-decoration:none; }
-  .video-card a img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; transition:transform 0.35s; }
-  .video-card a:hover img { transform:scale(1.06); }
-  .video-card a::after { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.25); transition:background 0.3s; }
-  .video-card a:hover::after { background:rgba(0,0,0,0.05); }
-  .video-card .video-info { padding: 0.55rem 0.5rem 0.3rem; }
-  .video-title { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .video-client { font-size: 0.6rem; color: var(--accent); margin-top: 0.2rem; opacity: 0.75; }
-  footer {
-    padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center;
-    gap: 1rem; flex-wrap: wrap; background: rgba(10,10,10,0.96);
-    border-top: 1px solid var(--line);
-  }
-  footer p { font-size: 0.75rem; color: var(--grey); letter-spacing: 0.05em; }
-  footer a { font-size: 0.75rem; color: var(--grey); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
-  footer a:hover { color: var(--accent); }
-  @media (max-width: 900px) { .all-work-grid { grid-template-columns: repeat(3, 1fr); padding: 2rem 1.5rem; } }
-  @media (max-width: 600px) { .all-work-grid { grid-template-columns: repeat(2, 1fr); padding: 1.5rem 1rem; } nav ul { display: none; } .page-header { padding: 6rem 1.5rem 2rem; } }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0d0c0b; --white: #f0ede8; --grey: #7a7570; --soft: #b0a99f;
+  --accent: #c8b89a; --line: rgba(200,184,154,0.12);
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem 3rem;
+  background: rgba(13,12,11,0.97);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+nav .logo { font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+nav ul { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
+nav ul a { color: var(--grey); text-decoration: none; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.25s; }
+nav ul a:hover { color: var(--white); }
+.lang-switcher { display: flex; gap: 0.3rem; align-items: center; margin-left: 1.8rem; }
+.lang-btn { background: none; border: none; color: var(--grey); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; padding: 3px 6px; font-family: var(--font); transition: color 0.2s; }
+.lang-btn:hover { color: var(--white); }
+.lang-btn.active { color: var(--accent); border-bottom: 1px solid rgba(200,184,154,0.6); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  padding: 8rem 3rem 3.5rem;
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse at 10% 60%, rgba(200,184,154,0.06) 0%, transparent 50%);
+}
+.section-label { font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+.page-header h1 { font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 200; letter-spacing: -0.02em; line-height: 1.1; }
+.page-header h1 em { font-style: italic; color: var(--accent); }
+.page-header-meta { margin-top: 1.2rem; font-size: 0.82rem; color: var(--grey); }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  padding: 1.2rem 3rem;
+  border-bottom: 1px solid var(--line);
+  display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;
+  background: rgba(13,12,11,0.6);
+  position: sticky; top: 64px; z-index: 50;
+  backdrop-filter: blur(10px);
+}
+.filter-btn {
+  background: none; border: 1px solid rgba(255,255,255,0.08);
+  color: var(--grey); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; cursor: pointer; padding: 0.4rem 0.9rem;
+  font-family: var(--font); border-radius: 1px; transition: all 0.2s;
+}
+.filter-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.25); }
+.filter-btn.active { color: var(--accent); border-color: rgba(200,184,154,0.4); background: rgba(200,184,154,0.05); }
+
+/* ── VIDEO GRID ── */
+.work-grid {
+  padding: 2.5rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  min-height: calc(100vh - 300px);
+}
+.video-card {
+  position: relative; background: #111; border-radius: 2px;
+  overflow: hidden; cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+.video-card.hidden { display: none; }
+.thumb-wrap { position: relative; overflow: hidden; aspect-ratio: 16/9; }
+.thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; filter: brightness(0.88); }
+.video-card:hover .thumb-wrap img { transform: scale(1.05); filter: brightness(1); }
+.thumb-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,12,11,0.8) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.video-card:hover .thumb-overlay { opacity: 1; }
+.play-icon {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 44px; height: 44px; border: 1px solid rgba(200,184,154,0.7); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+}
+.play-icon::after { content: ''; border-left: 10px solid var(--accent); border-top: 6px solid transparent; border-bottom: 6px solid transparent; margin-left: 3px; }
+.video-card:hover .play-icon { opacity: 1; }
+.video-info { padding: 0.7rem 0.8rem 0.6rem; }
+.video-title { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.4; }
+.video-tag { font-size: 0.62rem; color: var(--accent); margin-top: 0.25rem; opacity: 0.8; letter-spacing: 0.05em; }
+
+/* ── LIGHTBOX ── */
+#lightbox {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(13,12,11,0.95); backdrop-filter: blur(10px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.35s, visibility 0.35s;
+}
+#lightbox.open { opacity: 1; visibility: visible; }
+.lb-inner { position: relative; width: 90vw; max-width: 1100px; }
+.lb-video { position: relative; aspect-ratio: 16/9; border-radius: 3px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+.lb-video iframe { width: 100%; height: 100%; border: none; display: block; }
+.lb-close {
+  position: absolute; top: -2.5rem; right: 0;
+  background: none; border: none; color: var(--soft);
+  font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+  cursor: pointer; font-family: var(--font); transition: color 0.2s;
+}
+.lb-close:hover { color: var(--white); }
+.lb-title { margin-top: 1.2rem; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--soft); text-align: center; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap; border-top: 1px solid var(--line);
+}
+footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
+footer a { font-size: 0.72rem; color: var(--grey); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+footer a:hover { color: var(--accent); }
+
+/* ── MOBILE ── */
+@media (max-width: 1100px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) {
+  nav { padding: 1.2rem 1.5rem; flex-wrap: wrap; gap: 0.8rem; }
+  nav ul { gap: 1rem; }
+  .lang-switcher { margin-left: 0; }
+  .page-header { padding: 6rem 1.5rem 2.5rem; }
+  .filter-bar { padding: 1rem 1.5rem; }
+  .work-grid { grid-template-columns: repeat(2, 1fr); padding: 1.5rem; gap: 0.8rem; }
+  footer { padding: 1.5rem; }
+}
+@media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="index.html" class="logo">Alex Dallolio</a>
   <ul>
-    <li><a href="index.html#work">Work</a></li>
-    <li><a href="index.html#approach">Approach</a></li>
-    <li><a href="index.html#clients">Clients</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="index.html#work" data-i18n="nav_work">Work</a></li>
+    <li><a href="index.html#approach" data-i18n="nav_approach">Approach</a></li>
+    <li><a href="index.html#clients" data-i18n="nav_clients">Clients</a></li>
+    <li><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
   </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('it')">IT</button>
+  </div>
 </nav>
 
+<!-- PAGE HEADER -->
 <div class="page-header">
-  <div class="section-label">Portfolio</div>
-  <h1>All <em>Work</em></h1>
+  <div class="section-label" data-i18n="label">Selected Work</div>
+  <h1 data-i18n-html="title">All <em>Work</em></h1>
+  <p class="page-header-meta" data-i18n="meta">30 films — Direction, Concept &amp; Edit</p>
 </div>
 
-<div class="all-work-grid">
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=N7Ta9EZstzA" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/N7Ta9EZstzA/mqdefault.jpg" alt="Showreel 2026" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Showreel 2026</div>
-        <div class="video-client">Concept & Direction</div>
-      </div>
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+  <button class="filter-btn" data-filter="corporate" data-i18n="filter_corp">Corporate</button>
+  <button class="filter-btn" data-filter="fashion" data-i18n="filter_fashion">Fashion</button>
+  <button class="filter-btn" data-filter="documentary" data-i18n="filter_doc">Documentary</button>
+  <button class="filter-btn" data-filter="ai" data-i18n="filter_ai">AI &amp; Concept</button>
+</div>
+
+<!-- GRID -->
+<div class="work-grid" id="grid">
+
+  <div class="video-card" data-cat="ai" onclick="openLb('N7Ta9EZstzA','Showreel 2026 — Concept &amp; Direction')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/N7Ta9EZstzA/mqdefault.jpg" alt="Showreel 2026" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Showreel 2026</div><div class="video-tag">Concept &amp; Direction</div></div>
+  </div>
+
+  <div class="video-card" data-cat="documentary" onclick="openLb('ySthwmhR-y4','GERD — Grand Ethiopian Renaissance Dam')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/ySthwmhR-y4/mqdefault.jpg" alt="GERD" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">GERD</div><div class="video-tag">Documentary</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('xv2S2flaYJQ','Fashion Spot — Chopard')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/xv2S2flaYJQ/mqdefault.jpg" alt="Chopard" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Fashion Spot</div><div class="video-tag">Chopard</div></div>
+  </div>
+
+  <div class="video-card" data-cat="ai" onclick="openLb('r0N34NuRFZc','WAKE UP!')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/r0N34NuRFZc/mqdefault.jpg" alt="Wake Up" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Wake Up!</div><div class="video-tag">AI &amp; Concept</div></div>
+  </div>
+
+  <div class="video-card" data-cat="ai" onclick="openLb('pbjb2oghBaE','Influencer IAP')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/pbjb2oghBaE/mqdefault.jpg" alt="Influencer IAP" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Influencer IAP</div><div class="video-tag">AI &amp; Concept</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('pbGWFFmW1Fc','2025 WeSearch — Webuild')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/pbGWFFmW1Fc/mqdefault.jpg" alt="WeSearch" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">2025 WeSearch</div><div class="video-tag">Webuild · Corporate</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('nqzF46Nb5D0','Best in Parking — Bergamo Alta')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/nqzF46Nb5D0/mqdefault.jpg" alt="Best in Parking" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Best in Parking</div><div class="video-tag">Bergamo Alta</div></div>
+  </div>
+
+  <div class="video-card" data-cat="documentary" onclick="openLb('03Y4JbKL5F0','GERD Teaser')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/03Y4JbKL5F0/mqdefault.jpg" alt="GERD Teaser" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">GERD Teaser</div><div class="video-tag">Documentary</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('IS-adwoOhCU','Molto Bello Icons — Heide Museum')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/IS-adwoOhCU/mqdefault.jpg" alt="Molto Bello" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Molto Bello Icons</div><div class="video-tag">Heide Museum</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('BJZrFUbMk-4','Spazio Tetha — Bio Well')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/BJZrFUbMk-4/mqdefault.jpg" alt="Bio Well" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Spazio Tetha</div><div class="video-tag">Bio Well</div></div>
+  </div>
+
+  <div class="video-card" data-cat="ai" onclick="openLb('B4Rv_BOayx8','Dell Ala — Atomic Dream Dance')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/B4Rv_BOayx8/mqdefault.jpg" alt="Atomic Dream Dance" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Atomic Dream Dance</div><div class="video-tag">Dell Ala</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('588LDT1c3zs','Custodiamo il domani — Tetra Pak')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/588LDT1c3zs/mqdefault.jpg" alt="Tetra Pak" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Custodiamo il domani</div><div class="video-tag">Tetra Pak · Corporate</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('UYnvGmCuroQ','Builderhero — Webuild')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/UYnvGmCuroQ/mqdefault.jpg" alt="Builderhero" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Builderhero</div><div class="video-tag">Webuild · Corporate</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('z-GjfCZasFo','Progetto Italia — Salini Impregilo')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/z-GjfCZasFo/mqdefault.jpg" alt="Progetto Italia" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Progetto Italia</div><div class="video-tag">Salini Impregilo</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('nfpBWwwjCTw','Stavros Niarchos — Webuild')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/nfpBWwwjCTw/mqdefault.jpg" alt="Stavros Niarchos" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Stavros Niarchos</div><div class="video-tag">Webuild · Corporate</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('mOygY_ZPATQ','Railways Experience — Webuild')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/mOygY_ZPATQ/mqdefault.jpg" alt="Railways" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Railways Experience</div><div class="video-tag">Webuild · Corporate</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('FnKHGWT7FgE','Dream Builders — Webuild')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/FnKHGWT7FgE/mqdefault.jpg" alt="Dream Builders" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Dream Builders</div><div class="video-tag">Webuild · Corporate</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('fA3pBdKnWbo','Prada Canali')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/fA3pBdKnWbo/mqdefault.jpg" alt="Prada Canali" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Prada Canali</div><div class="video-tag">Fashion</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('sRMixFeTOKM','Perfetti Manichini — Bonaveri')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/sRMixFeTOKM/mqdefault.jpg" alt="Bonaveri" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Perfetti Manichini</div><div class="video-tag">Bonaveri</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('MCNgc1CNS3w','Biodegradable Mannequin — Bonaveri')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/MCNgc1CNS3w/mqdefault.jpg" alt="Bonaveri Bio" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Biodegradable Mannequin</div><div class="video-tag">Bonaveri</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('OmuVD3zRVVQ','We Are Lane')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/OmuVD3zRVVQ/mqdefault.jpg" alt="Lane" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">We Are Lane</div><div class="video-tag">Fashion</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('YVLem2cHfoc','Hands — Canali Directors Cut')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/YVLem2cHfoc/mqdefault.jpg" alt="Canali Hands" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Canali Hands</div><div class="video-tag">Canali · Director's Cut</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('GYw8TAla5Sg','Investing in the Future')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/GYw8TAla5Sg/mqdefault.jpg" alt="Investing Future" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Investing in the Future</div><div class="video-tag">Corporate</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('zJ28dM8DRYo','Fila Installation — F Box Salone')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/zJ28dM8DRYo/mqdefault.jpg" alt="Fila" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Fila — F Box</div><div class="video-tag">Salone del Mobile 2023</div></div>
+  </div>
+
+  <div class="video-card" data-cat="corporate" onclick="openLb('fAwmTQlsNTs','Calida Group Corporate')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/fAwmTQlsNTs/mqdefault.jpg" alt="Calida" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Calida Group</div><div class="video-tag">Corporate</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('RhJl57UGFbg','John Richmond Parfume')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/RhJl57UGFbg/mqdefault.jpg" alt="John Richmond" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">John Richmond</div><div class="video-tag">Parfume · Fashion</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('Z3IW1Piynhc','Canali Mood')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/Z3IW1Piynhc/mqdefault.jpg" alt="Canali Mood" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Canali Mood</div><div class="video-tag">Canali · Fashion</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('mGsInLyetaE','Dimensione Danza — Directors Cut')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/mGsInLyetaE/mqdefault.jpg" alt="Dimensione Danza" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Dimensione Danza</div><div class="video-tag">Director's Cut</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('1C1ICMJcdVk','Cromia — Italian Stylish Bags')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/1C1ICMJcdVk/mqdefault.jpg" alt="Cromia" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Cromia</div><div class="video-tag">Italian Stylish Bags</div></div>
+  </div>
+
+  <div class="video-card" data-cat="fashion" onclick="openLb('nQpwJ2VzS6w','Luisa Spagnoli — Spring Summer')">
+    <div class="thumb-wrap"><img src="https://img.youtube.com/vi/nQpwJ2VzS6w/mqdefault.jpg" alt="Luisa Spagnoli" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
+    <div class="video-info"><div class="video-title">Luisa Spagnoli</div><div class="video-tag">Spring Summer · Director's Cut</div></div>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLbOutside(event)">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLb()" data-i18n="close">&#x2715; Close</button>
+    <div class="lb-video">
+      <iframe id="lb-iframe" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
     </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=pbGWFFmW1Fc" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/pbGWFFmW1Fc/mqdefault.jpg" alt="WeSearch" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">WeSearch</div>
-        <div class="video-client">Webuild · 2025</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=588LDT1c3zs" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/588LDT1c3zs/mqdefault.jpg" alt="Custodiamo il domani" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Custodiamo il domani</div>
-        <div class="video-client">Tetrapack · Corporate</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=nqzF46Nb5D0" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/nqzF46Nb5D0/mqdefault.jpg" alt="Best in Parking" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Best in Parking</div>
-        <div class="video-client">Bergamo Alta</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=xv2S2flaYJQ" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/xv2S2flaYJQ/mqdefault.jpg" alt="Fashion Spot" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Fashion Spot</div>
-        <div class="video-client">Chopard · Fashion</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=r0N34NuRFZc" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/r0N34NuRFZc/mqdefault.jpg" alt="Wake Up!" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Wake Up!</div>
-        <div class="video-client">Short Film</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=BJZrFUbMk-4" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/BJZrFUbMk-4/mqdefault.jpg" alt="Spazio Tetha" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Spazio Tetha</div>
-        <div class="video-client">Bio Well</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=IS-adwoOhCU" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/IS-adwoOhCU/mqdefault.jpg" alt="Molto Bello" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Molto Bello</div>
-        <div class="video-client">Heide Museum · Design</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=pbjb2oghBaE" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/pbjb2oghBaE/mqdefault.jpg" alt="Influencer Campaign" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Influencer Campaign</div>
-        <div class="video-client">IAP</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=B4Rv_BOayx8" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/B4Rv_BOayx8/mqdefault.jpg" alt="Atomic Dream Dance" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Atomic Dream Dance</div>
-        <div class="video-client">Dell Ala</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=03Y4JbKL5F0" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/03Y4JbKL5F0/mqdefault.jpg" alt="GERD Teaser" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">GERD Teaser</div>
-        <div class="video-client">Documentary</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=ySthwmhR-y4" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/ySthwmhR-y4/mqdefault.jpg" alt="Grand Ethiopian Renaissance Dam" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Grand Ethiopian Renaissance Dam</div>
-        <div class="video-client">GERD · Documentary</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=mOygY_ZPATQ" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/mOygY_ZPATQ/mqdefault.jpg" alt="Railways Experience" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Railways Experience</div>
-        <div class="video-client">Webuild · Corporate</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=UYnvGmCuroQ" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/UYnvGmCuroQ/mqdefault.jpg" alt="Builderhero" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Builderhero</div>
-        <div class="video-client">Webuild · Corporate</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=z-GjfCZasFo" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/z-GjfCZasFo/mqdefault.jpg" alt="Progetto Italia" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Progetto Italia</div>
-        <div class="video-client">Salini Impregilo</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=nfpBWwwjCTw" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/nfpBWwwjCTw/mqdefault.jpg" alt="Stavros Niarchos" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Stavros Niarchos</div>
-        <div class="video-client">Webuild · Corporate</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=FnKHGWT7FgE" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/FnKHGWT7FgE/mqdefault.jpg" alt="Dream Builders" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Dream Builders</div>
-        <div class="video-client">Webuild · Corporate</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=svriDmnNu8Q" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/svriDmnNu8Q/mqdefault.jpg" alt="ADV" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">ADV</div>
-        <div class="video-client">Aquolina · Beauty</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=RhJl57UGFbg" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/RhJl57UGFbg/mqdefault.jpg" alt="Parfume" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Parfume</div>
-        <div class="video-client">John Richmond · Fashion</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=fA3pBdKnWbo" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/fA3pBdKnWbo/mqdefault.jpg" alt="Prada Canali" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Prada Canali</div>
-        <div class="video-client">Fashion Film</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=OmuVD3zRVVQ" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/OmuVD3zRVVQ/mqdefault.jpg" alt="We Are Lane" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">We Are Lane</div>
-        <div class="video-client">Corporate</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=Z3IW1Piynhc" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/Z3IW1Piynhc/mqdefault.jpg" alt="Canali Mood" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Canali Mood</div>
-        <div class="video-client">Fashion Film</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=MCNgc1CNS3w" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/MCNgc1CNS3w/mqdefault.jpg" alt="Biodegradable Mannequin" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Biodegradable Mannequin</div>
-        <div class="video-client">Bonaveri</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=sRMixFeTOKM" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/sRMixFeTOKM/mqdefault.jpg" alt="Perfetti Manichini" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Perfetti Manichini</div>
-        <div class="video-client">Bonaveri</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=GYw8TAla5Sg" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/GYw8TAla5Sg/mqdefault.jpg" alt="Investing in the Future" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Investing in the Future</div>
-        <div class="video-client">Corporate</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=1C1ICMJcdVk" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/1C1ICMJcdVk/mqdefault.jpg" alt="Italian Stylish Bags" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Italian Stylish Bags</div>
-        <div class="video-client">Cromia · Fashion</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=zJ28dM8DRYo" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/zJ28dM8DRYo/mqdefault.jpg" alt="F Box Installation" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">F Box Installation</div>
-        <div class="video-client">Fila · Salone del Mobile</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=fAwmTQlsNTs" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/fAwmTQlsNTs/mqdefault.jpg" alt="Corporate" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Corporate</div>
-        <div class="video-client">Calida Group</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=mGsInLyetaE" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/mGsInLyetaE/mqdefault.jpg" alt="Director's Cut" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Director's Cut</div>
-        <div class="video-client">Dimensione Danza</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=YVLem2cHfoc" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/YVLem2cHfoc/mqdefault.jpg" alt="Canali Hands" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Canali Hands</div>
-        <div class="video-client">Director's Cut</div>
-      </div>
-    </div>
-    <div class="video-card">
-      <a href="https://www.youtube.com/watch?v=nQpwJ2VzS6w" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/nQpwJ2VzS6w/mqdefault.jpg" alt="Spring Summer Campaign" loading="lazy">
-      </a>
-      <div class="video-info">
-        <div class="video-title">Spring Summer Campaign</div>
-        <div class="video-client">Luisa Spagnoli</div>
-      </div>
-    </div>
+    <div class="lb-title" id="lb-title"></div>
+  </div>
 </div>
 
 <footer>
-  <p>© 2026 Alex Dallolio. Milan, Italy.</p>
-  <a href="index.html">← Back to home</a>
+  <p>&copy; 2026 Alex Dallolio. All rights reserved.</p>
+  <p>
+    <a href="https://vimeo.com/alexdallolio" target="_blank">Vimeo</a>
+    &ensp;&middot;&ensp;
+    <a href="https://www.youtube.com/@alchemistfilm-d4k" target="_blank">YouTube</a>
+    &ensp;&middot;&ensp;
+    <a href="index.html#contact" data-i18n="nav_contact">Contact</a>
+  </p>
 </footer>
 
+<script>
+// ── TRANSLATIONS ─────────────────────────────────────────────────────
+const T = {
+  en: {
+    nav_work: "Work", nav_approach: "Approach", nav_clients: "Clients", nav_contact: "Contact",
+    label: "Selected Work",
+    title: "All <em>Work</em>",
+    meta: "30 films — Direction, Concept & Edit",
+    filter_all: "All", filter_corp: "Corporate", filter_fashion: "Fashion",
+    filter_doc: "Documentary", filter_ai: "AI & Concept",
+    close: "✕ Close"
+  },
+  it: {
+    nav_work: "Lavori", nav_approach: "Metodo", nav_clients: "Clienti", nav_contact: "Contatti",
+    label: "Lavori Selezionati",
+    title: "Tutti i <em>Lavori</em>",
+    meta: "30 film — Regia, Concept &amp; Montaggio",
+    filter_all: "Tutti", filter_corp: "Corporate", filter_fashion: "Moda",
+    filter_doc: "Documentario", filter_ai: "AI &amp; Concept",
+    close: "✕ Chiudi"
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+  document.documentElement.lang = lang;
+}
+
+// ── GEO DETECT ──────────────────────────────────────────────────────
+async function detectLang() {
+  try {
+    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
+    const data = await res.json();
+    const country = (data.country_code || '').toUpperCase();
+    // Italian-speaking countries
+    if (['IT', 'SM', 'VA', 'CH'].includes(country)) {
+      setLang('it');
+    } else {
+      setLang('en');
+    }
+  } catch {
+    setLang('en');
+  }
+}
+
+// ── FILTER ──────────────────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.getAttribute('data-filter');
+    document.querySelectorAll('.video-card').forEach(card => {
+      if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+
+// ── LIGHTBOX ────────────────────────────────────────────────────────
+function openLb(id, title) {
+  document.getElementById('lb-iframe').src =
+    'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+  document.getElementById('lb-title').textContent = title;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lb-iframe').src = '';
+  document.body.style.overflow = '';
+}
+function closeLbOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLb();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+// ── INIT ────────────────────────────────────────────────────────────
+detectLang();
+</script>
 </body>
 </html>
