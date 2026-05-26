@@ -141,6 +141,12 @@ section { padding: 6rem 3rem; border-bottom: 1px solid var(--line); background: 
 .client-cat li { font-size: 0.88rem; color: var(--soft); letter-spacing: 0.04em; transition: color 0.2s; }
 .client-cat li:hover { color: var(--white); }
 
+/* ── BIO ────────────────────────────────────────────────────── */
+.bio { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--line); max-width: 680px; }
+.bio p { font-size: 0.95rem; color: var(--soft); line-height: 1.85; margin-bottom: 1.3em; }
+.bio p:last-child { margin-bottom: 0; }
+.bio em { color: var(--accent); font-style: italic; }
+
 /* ── CONTACT ───────────────────────────────────────────────── */
 .contact h2 { font-size: clamp(1.8rem, 3.8vw, 3.2rem); font-weight: 200; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.8rem; max-width: 700px; }
 .contact h2 em { font-style: italic; color: var(--accent); }
@@ -216,7 +222,6 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
   <p class="hero-sub" data-i18n="hero_sub">I transform existing footage, archive material, product images, AI generation and motion design into cinematic brand films. No traditional production required.</p>
   <div class="hero-links">
     <a href="#work" data-i18n="nav_work">Selected Work</a>
-    <a href="https://vimeo.com/alexdallolio" target="_blank">Vimeo</a>
     <a href="#contact" data-i18n="hero_cta">Get in touch</a>
   </div>
 </section>
@@ -244,6 +249,7 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
       <div class="point"><strong data-i18n="p4_title">Works anywhere</strong><p data-i18n="p4_text">Based in Milan, working globally. If the material exists, geography matters less.</p></div>
     </div>
   </div>
+  <div class="bio" data-i18n-html="bio"></div>
 </section>
 
 <!-- WORK -->
@@ -254,8 +260,6 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
   </div>
   <div class="work-cta">
     <a href="videos.html" data-i18n="all_work">All Work &rarr;</a>
-    <a href="https://vimeo.com/alexdallolio" target="_blank">Vimeo</a>
-    <a href="https://www.youtube.com/@alchemistfilm-d4k" target="_blank">YouTube</a>
   </div>
 </section>
 
@@ -286,7 +290,6 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
   <p data-i18n="contact_p">Tell me what you have: archive footage, product images, a case study, an event, an idea, or just a problem. I will tell you what kind of film can be built from it.</p>
   <div class="contact-links">
     <a href="mailto:alexdallolio@alexdallolio.com" data-i18n="contact_email">Email</a>
-    <a href="https://vimeo.com/alexdallolio" target="_blank">Vimeo</a>
     <a href="https://www.youtube.com/@alchemistfilm-d4k" target="_blank">YouTube</a>
     <a href="https://www.instagram.com/alex_dallolio/" target="_blank">Instagram</a>
     <a href="https://calendly.com/alexdallolio" target="_blank" class="cta-book" data-i18n="contact_book">Book a call</a>
@@ -327,7 +330,8 @@ const T = {
     contact_label: "Contact",
     contact_h2: "Let's make something<br><em>worth watching.</em>",
     contact_p: "Tell me what you have: archive footage, product images, a case study, an event, an idea, or just a problem. I will tell you what kind of film can be built from it.",
-    contact_email: "Email", contact_book: "Book a call"
+    contact_email: "Email", contact_book: "Book a call",
+    bio: "<p>Alessandro Dallolio was born in Turin and spent part of his childhood in Asia — India, Indonesia, Malaysia.</p><p>He has been making images for as long as he can remember. First drawing, painting, collage. Then cinema, advertising, video installations, artificial intelligence. The one thing he hasn't done yet is a feature film. Everything else, yes.</p><p>His method hasn't changed in thirty years: he takes material that doesn't seem to have a soul — corporate archives, found footage, generated images — and assembles it following a musical intuition rather than a visual logic. The result is recognisable before it can be explained.</p><p>He has worked with Nike, Lavazza, Prada, BMW, Disney. With Webuild for eleven years. The work he does for companies uses the language of advertising as a Trojan horse — to smuggle in something harder to define, and harder to forget.</p><p>Declared influences: Kubrick, Fellini, Buñuel, Gilliam. The common thread: <em>disturbance as method, not effect.</em></p><p>He lives and works in Milan.</p>"
   },
   it: {
     name: "Alex Dallolio",
@@ -355,7 +359,8 @@ const T = {
     contact_label: "Contatti",
     contact_h2: "Facciamo qualcosa<br><em>che valga la pena guardare.</em>",
     contact_p: "Dimmi cosa hai: riprese d'archivio, immagini di prodotto, una case history, un evento, un'idea o semplicemente un problema. Ti dirò che tipo di film possiamo costruire.",
-    contact_email: "Email", contact_book: "Prenota una call"
+    contact_email: "Email", contact_book: "Prenota una call",
+    bio: "<p>Alessandro Dallolio è nato a Torino e ha trascorso parte dell'infanzia in Asia — India, Indonesia, Malesia.</p><p>Fa immagini da quando sa ricordare. Prima disegno, pittura, collage. Poi cinema, pubblicità, installazioni, intelligenza artificiale. Quello che non ha ancora fatto è il lungometraggio. <em>Tutto il resto sì.</em></p><p>Il suo metodo non è cambiato in trent'anni: prende materiale che non sembra avere un'anima — archivio aziendale, found footage, immagini generate — e lo assembla seguendo <em>un'intuizione musicale</em> più che una logica visiva. Il risultato è riconoscibile prima di essere spiegabile.</p><p>Ha lavorato con Nike, Lavazza, Prada, BMW, Disney. Con Webuild da undici anni. Il lavoro che fa per le aziende usa il linguaggio pubblicitario come cavallo di Troia per infilare dentro qualcosa di più difficile da definire — e da rimuovere dalla memoria.</p><p>Le influenze dichiarate sono Kubrick, Fellini, Buñuel, Gilliam. Il denominatore comune: <em>la perturbazione come metodo, non come effetto.</em></p><p>Vive e lavora a Milano.</p>"
   }
 };
 
