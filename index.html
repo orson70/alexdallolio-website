@@ -4,6 +4,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alex Dallolio — Film Director &amp; AI Artist</title>
+<meta name="description" content="Film director and AI artist based in Milan. I turn the material you already have — archive, footage, product images, AI — into cinematic brand films. No traditional production required.">
+<link rel="canonical" href="https://www.alexdallolio.com/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#0d0c0b">
+
+<!-- Open Graph (anteprima quando si condivide il link) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alex Dallolio">
+<meta property="og:title" content="Alex Dallolio — Film Director &amp; AI Artist">
+<meta property="og:description" content="I turn the material you already have into cinematic brand films. No traditional production required.">
+<meta property="og:url" content="https://www.alexdallolio.com/">
+<meta property="og:image" content="https://www.alexdallolio.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="it_IT">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alex Dallolio — Film Director &amp; AI Artist">
+<meta name="twitter:description" content="I turn the material you already have into cinematic brand films.">
+<meta name="twitter:image" content="https://www.alexdallolio.com/og-image.jpg">
+
+<!-- Scheda Google (dati strutturati) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Alex Dallolio",
+  "alternateName": "Alessandro Dallolio",
+  "jobTitle": "Film Director & AI Artist",
+  "description": "Film director and AI artist who turns existing material into cinematic brand films.",
+  "url": "https://www.alexdallolio.com",
+  "image": "https://www.alexdallolio.com/og-image.jpg",
+  "address": { "@type": "PostalAddress", "addressLocality": "Milan", "addressCountry": "IT" },
+  "sameAs": [
+    "https://www.youtube.com/@alchemistfilm-d4k",
+    "https://www.instagram.com/alex_dallolio/",
+    "https://vimeo.com/alexdallolio",
+    "https://www.linkedin.com/in/alexdallolio/"
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -15,6 +62,7 @@
   --accent: #c8b89a;
   --line: rgba(200,184,154,0.12);
   --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Didot", "Bodoni Moda", "Georgia", serif;
 }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--white); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
@@ -129,17 +177,30 @@ section { padding: 6rem 3rem; border-bottom: 1px solid var(--line); background: 
 /* ── WORK ──────────────────────────────────────────────────── */
 .showreel-wrap { max-width: 820px; margin: 0 auto 3rem; position: relative; border-radius: 3px; overflow: hidden; aspect-ratio: 16/9; background: #111; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
 .showreel-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-.work-cta { margin-top: 2.5rem; text-align: center; display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
-.work-cta a { font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey); text-decoration: none; border-bottom: 1px solid rgba(136,136,136,0.3); padding-bottom: 2px; transition: color 0.25s; }
-.work-cta a:hover { color: var(--white); }
+.work-cta { margin-top: 3rem; text-align: center; }
+.work-cta a { display: inline-flex; align-items: center; gap: 0.7rem; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid rgba(200,184,154,0.45); padding: 1rem 2.6rem; border-radius: 1px; transition: color 0.25s, border-color 0.25s, background 0.25s; }
+.work-cta a:hover { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+.work-cta a .arrow { transition: transform 0.25s; }
+.work-cta a:hover .arrow { transform: translateX(4px); }
+
+/* ── AI SECTION ────────────────────────────────────────────── */
+.ai-section h2 { font-size: clamp(1.7rem, 3.2vw, 2.8rem); font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.2rem; }
+.ai-section h2 em { font-style: italic; color: var(--accent); }
+.ai-section > p { color: var(--soft); max-width: 620px; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem; }
+.ai-reel-wrap { max-width: 820px; margin: 2.8rem auto 0; border-radius: 3px; overflow: hidden; aspect-ratio: 16/9; background: #111; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+.ai-reel-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ── CLIENTS ───────────────────────────────────────────────── */
 .clients h2 { font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 200; margin-bottom: 3rem; letter-spacing: -0.01em; }
-.clients-categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+.clients-system { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-bottom: 3.5rem; }
 .client-cat h3 { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; border-bottom: 1px solid var(--line); padding-bottom: 0.7rem; }
 .client-cat ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-.client-cat li { font-size: 0.88rem; color: var(--soft); letter-spacing: 0.04em; transition: color 0.2s; }
-.client-cat li:hover { color: var(--white); }
+.client-cat li { font-size: 0.88rem; color: var(--soft); letter-spacing: 0.04em; }
+.brands-block { border-top: 1px solid var(--line); padding-top: 2.5rem; }
+.brands-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+.brands-wall { display: flex; flex-wrap: wrap; gap: 0.6rem 1.7rem; }
+.brands-wall span { font-size: 0.92rem; color: var(--soft); letter-spacing: 0.03em; transition: color 0.2s; }
+.brands-wall span:hover { color: var(--white); }
 
 /* ── BIO ────────────────────────────────────────────────────── */
 .bio { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--line); max-width: 680px; }
@@ -167,9 +228,24 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
   nav ul { gap: 1.2rem; }
   .lang-switcher { margin-left: 0; }
   .hero, section { padding: 4rem 1.5rem; }
-  .approach-grid, .clients-categories { grid-template-columns: 1fr; gap: 2.5rem; }
+  .approach-grid, .clients-system { grid-template-columns: 1fr; gap: 2.5rem; }
   footer { padding: 1.5rem; }
 }
+
+/* ── DISPLAY TYPE (serif da cinema sui titoli) ─────────────── */
+#splash-name,
+.hero h1,
+.for-whom h2,
+.approach h2,
+.clients h2,
+.contact h2,
+.ai-section h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.hero h1 { font-size: clamp(3rem, 7.5vw, 7rem); font-weight: 500; }
+.hero h1 em, .contact h2 em, .ai-section h2 em { font-weight: 400; }
 </style>
 </head>
 <body>
@@ -205,6 +281,7 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
   <a href="#" class="logo">Alex Dallolio</a>
   <ul>
     <li><a href="#work" data-i18n="nav_work">Work</a></li>
+    <li><a href="#ai" data-i18n="nav_ai">AI</a></li>
     <li><a href="#approach" data-i18n="nav_approach">Approach</a></li>
     <li><a href="#clients" data-i18n="nav_clients">Clients</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
@@ -259,7 +336,17 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
     <iframe src="https://www.youtube.com/embed/N7Ta9EZstzA?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Showreel 2026"></iframe>
   </div>
   <div class="work-cta">
-    <a href="videos.html" data-i18n="all_work">All Work &rarr;</a>
+    <a href="videos.html" data-i18n-html="all_work">View all 30 films <span class="arrow">&rarr;</span></a>
+  </div>
+</section>
+
+<!-- AI -->
+<section class="ai-section" id="ai">
+  <div class="section-label" data-i18n="ai_label">AI / Generative</div>
+  <h2 data-i18n-html="ai_h2">When the machine<br>becomes <em>cinema.</em></h2>
+  <p data-i18n="ai_p">A reel built entirely with generative AI — directed, not just prompted. Same eye, new tools.</p>
+  <div class="ai-reel-wrap">
+    <video src="ai-reel.mp4" controls playsinline preload="metadata"></video>
   </div>
 </section>
 
@@ -267,18 +354,24 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
 <section class="clients" id="clients">
   <div class="section-label" data-i18n="clients_label">Selected Clients</div>
   <h2 data-i18n="clients_h2">Brands and companies I have worked with.</h2>
-  <div class="clients-categories">
+  <div class="clients-system">
     <div class="client-cat">
-      <h3 data-i18n="cat_fashion">Fashion / Luxury</h3>
-      <ul><li>Prada</li><li>Fila</li><li>Converse</li><li>Colmar</li><li>Luisa Spagnoli</li><li>Richmond</li></ul>
+      <h3 data-i18n="cat_agencies">Agencies</h3>
+      <ul><li>DLV Agency</li><li>Young &amp; Rubicam</li><li>JWT</li><li>Leo Burnett</li><li>Armando Testa</li></ul>
     </div>
     <div class="client-cat">
-      <h3 data-i18n="cat_corp">Corporate / Industry</h3>
-      <ul><li>Webuild</li><li>Transpack</li><li>Leonardo</li><li>Tetra Pak</li><li>Mini BMW</li></ul>
+      <h3 data-i18n="cat_production">Production Companies</h3>
+      <ul><li>Movie Magic</li><li>Alto Verbano</li><li>Haibun</li><li>BRW</li><li>Filmaster</li></ul>
     </div>
     <div class="client-cat">
-      <h3 data-i18n="cat_food">Food / Beverage</h3>
-      <ul><li>Lavazza</li><li>Tassoni</li></ul>
+      <h3 data-i18n="cat_broadcast">TV &amp; Broadcast</h3>
+      <ul><li>Mediaset</li><li>Rai</li><li>Sky</li><li>Fox</li></ul>
+    </div>
+  </div>
+  <div class="brands-block">
+    <h3 class="brands-label" data-i18n="cat_brands">Brands</h3>
+    <div class="brands-wall">
+      <span>Prada</span><span>Nike</span><span>BMW</span><span>Volkswagen</span><span>Bugatti</span><span>Ray-Ban</span><span>Timberland</span><span>Converse</span><span>Diadora</span><span>Fila</span><span>Colmar</span><span>Canali</span><span>John Richmond</span><span>Jacob Cohen</span><span>Malìparmi</span><span>Luisa Spagnoli</span><span>Dimensione Danza</span><span>Cromia</span><span>Polaroid</span><span>Lavazza</span><span>Tetra Pak</span><span>Allianz</span><span>Novartis</span><span>Sisal</span><span>TIM</span><span>Webuild</span><span>Best in Parking</span><span>Imetec</span><span>RAS</span><span>AEM</span><span>Transpack</span><span>Tassoni</span>
     </div>
   </div>
 </section>
@@ -324,14 +417,18 @@ const T = {
     p2_title: "AI-native workflow", p2_text: "Generative AI is used as part of the visual process: to extend, reframe, imagine and build what the archive cannot provide.",
     p3_title: "Director's eye", p3_text: "Concept, editing, rhythm, music and visual treatment turn scattered material into something people can actually watch.",
     p4_title: "Works anywhere", p4_text: "Based in Milan, working globally. If the material exists, geography matters less.",
-    work_label: "Selected Work", all_work: "All Work →",
+    work_label: "Selected Work", all_work: "View all 30 films <span class=\"arrow\">→</span>",
+    nav_ai: "AI",
+    ai_label: "AI / Generative",
+    ai_h2: "When the machine<br>becomes <em>cinema.</em>",
+    ai_p: "A reel built entirely with generative AI — directed, not just prompted. Same eye, new tools.",
     clients_label: "Selected Clients", clients_h2: "Brands and companies I have worked with.",
-    cat_fashion: "Fashion / Luxury", cat_corp: "Corporate / Industry", cat_food: "Food / Beverage",
+    cat_agencies: "Agencies", cat_production: "Production Companies", cat_broadcast: "TV & Broadcast", cat_brands: "Brands",
     contact_label: "Contact",
     contact_h2: "Let's make something<br><em>worth watching.</em>",
     contact_p: "Tell me what you have: archive footage, product images, a case study, an event, an idea, or just a problem. I will tell you what kind of film can be built from it.",
     contact_email: "Email", contact_book: "Book a call",
-    bio: "<p>Alessandro Dallolio was born in Turin and spent part of his childhood in Asia — India, Indonesia, Malaysia.</p><p>He has been making images for as long as he can remember. First drawing, painting, collage. Then cinema, advertising, video installations, artificial intelligence. The one thing he hasn't done yet is a feature film. Everything else, yes.</p><p>His method hasn't changed in thirty years: he takes material that doesn't seem to have a soul — corporate archives, found footage, generated images — and assembles it following a musical intuition rather than a visual logic. The result is recognisable before it can be explained.</p><p>He has worked with Nike, Lavazza, Prada, BMW, Disney. With Webuild for eleven years. The work he does for companies uses the language of advertising as a Trojan horse — to smuggle in something harder to define, and harder to forget.</p><p>Declared influences: Kubrick, Fellini, Buñuel, Gilliam. The common thread: <em>disturbance as method, not effect.</em></p><p>He lives and works in Milan.</p>"
+    bio: "<p>Alessandro Dallolio was born in Turin and spent part of his childhood in Asia — India, Indonesia, Malaysia.</p><p>He has been making images for as long as he can remember. First drawing, painting, collage. Then cinema, advertising, video installations, artificial intelligence.</p><p>His method hasn't changed in thirty years: he takes material that doesn't seem to have a soul — corporate archives, found footage, generated images — and assembles it following a musical intuition rather than a visual logic. The result is recognisable before it can be explained.</p><p>He has worked with Nike, Lavazza, Prada, BMW, Disney. With Webuild for eleven years. The work he does for companies uses the language of advertising as a Trojan horse — to smuggle in something harder to define, and harder to forget.</p><p>Declared influences: Kubrick, Fellini, Buñuel, Gilliam. The common thread: <em>disturbance as method, not effect.</em></p><p>He lives and works in Milan.</p>"
   },
   it: {
     name: "Alex Dallolio",
@@ -353,14 +450,18 @@ const T = {
     p2_title: "Workflow AI-native", p2_text: "L'AI generativa è parte del processo visivo: per estendere, reinterpretare, immaginare e costruire ciò che l'archivio non può fornire.",
     p3_title: "Occhio del regista", p3_text: "Concept, montaggio, ritmo, musica e trattamento visivo trasformano materiale sparso in qualcosa che le persone vogliono davvero guardare.",
     p4_title: "Ovunque nel mondo", p4_text: "Basato a Milano, lavoro globalmente. Se il materiale esiste, la geografia conta meno.",
-    work_label: "Lavori Selezionati", all_work: "Tutti i lavori →",
+    work_label: "Lavori Selezionati", all_work: "Guarda tutti i 30 film <span class=\"arrow\">→</span>",
+    nav_ai: "AI",
+    ai_label: "AI / Generative",
+    ai_h2: "Quando la macchina<br>diventa <em>cinema.</em>",
+    ai_p: "Un reel costruito interamente con l'AI generativa — diretto, non solo promptato. Stesso occhio, strumenti nuovi.",
     clients_label: "Clienti Selezionati", clients_h2: "Brand e aziende con cui ho lavorato.",
-    cat_fashion: "Moda / Lusso", cat_corp: "Corporate / Industria", cat_food: "Food / Bevande",
+    cat_agencies: "Agenzie", cat_production: "Case di produzione", cat_broadcast: "TV & Broadcast", cat_brands: "Brand",
     contact_label: "Contatti",
     contact_h2: "Facciamo qualcosa<br><em>che valga la pena guardare.</em>",
     contact_p: "Dimmi cosa hai: riprese d'archivio, immagini di prodotto, una case history, un evento, un'idea o semplicemente un problema. Ti dirò che tipo di film possiamo costruire.",
     contact_email: "Email", contact_book: "Prenota una call",
-    bio: "<p>Alessandro Dallolio è nato a Torino e ha trascorso parte dell'infanzia in Asia — India, Indonesia, Malesia.</p><p>Fa immagini da quando sa ricordare. Prima disegno, pittura, collage. Poi cinema, pubblicità, installazioni, intelligenza artificiale. Quello che non ha ancora fatto è il lungometraggio. <em>Tutto il resto sì.</em></p><p>Il suo metodo non è cambiato in trent'anni: prende materiale che non sembra avere un'anima — archivio aziendale, found footage, immagini generate — e lo assembla seguendo <em>un'intuizione musicale</em> più che una logica visiva. Il risultato è riconoscibile prima di essere spiegabile.</p><p>Ha lavorato con Nike, Lavazza, Prada, BMW, Disney. Con Webuild da undici anni. Il lavoro che fa per le aziende usa il linguaggio pubblicitario come cavallo di Troia per infilare dentro qualcosa di più difficile da definire — e da rimuovere dalla memoria.</p><p>Le influenze dichiarate sono Kubrick, Fellini, Buñuel, Gilliam. Il denominatore comune: <em>la perturbazione come metodo, non come effetto.</em></p><p>Vive e lavora a Milano.</p>"
+    bio: "<p>Alessandro Dallolio è nato a Torino e ha trascorso parte dell'infanzia in Asia — India, Indonesia, Malesia.</p><p>Fa immagini da quando sa ricordare. Prima disegno, pittura, collage. Poi cinema, pubblicità, installazioni, intelligenza artificiale.</p><p>Il suo metodo non è cambiato in trent'anni: prende materiale che non sembra avere un'anima — archivio aziendale, found footage, immagini generate — e lo assembla seguendo <em>un'intuizione musicale</em> più che una logica visiva. Il risultato è riconoscibile prima di essere spiegabile.</p><p>Ha lavorato con Nike, Lavazza, Prada, BMW, Disney. Con Webuild da undici anni. Il lavoro che fa per le aziende usa il linguaggio pubblicitario come cavallo di Troia per infilare dentro qualcosa di più difficile da definire — e da rimuovere dalla memoria.</p><p>Le influenze dichiarate sono Kubrick, Fellini, Buñuel, Gilliam. Il denominatore comune: <em>la perturbazione come metodo, non come effetto.</em></p><p>Vive e lavora a Milano.</p>"
   }
 };
 
@@ -385,18 +486,7 @@ function setLang(lang) {
 
 // ── VIDEO ROTATION (changes every 2 hours based on time of day) ─────
 const BG_VIDEOS = [
-  'N7Ta9EZstzA',   // Showreel 2026
-  'YOUR_VIDEO_ID_2',
-  'YOUR_VIDEO_ID_3',
-  'YOUR_VIDEO_ID_4',
-  'YOUR_VIDEO_ID_5',
-  'YOUR_VIDEO_ID_6',
-  'YOUR_VIDEO_ID_7',
-  'YOUR_VIDEO_ID_8',
-  'YOUR_VIDEO_ID_9',
-  'YOUR_VIDEO_ID_10',
-  'YOUR_VIDEO_ID_11',
-  'YOUR_VIDEO_ID_12'
+  'N7Ta9EZstzA'    // Showreel 2026 — sfondo unico
 ];
 
 function getBgVideoForNow() {

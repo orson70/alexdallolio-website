@@ -449,8 +449,21 @@ function closeLbOutside(e) {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
+// ── DEEP-LINK: apri un film specifico se l'URL ha #play=ID ───────────
+function openFromHash() {
+  const m = (location.hash || '').match(/play=([\w-]+)/);
+  if (!m) return;
+  const id = m[1];
+  const card = document.querySelector('.video-card[onclick*="' + id + '"]');
+  let title = '';
+  if (card) { const t = card.querySelector('.video-title'); if (t) title = t.textContent; }
+  openLb(id, title);
+}
+window.addEventListener('hashchange', openFromHash);
+
 // ── INIT ────────────────────────────────────────────────────────────
 detectLang();
+openFromHash();
 </script>
 </body>
 </html>
