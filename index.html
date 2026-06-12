@@ -165,6 +165,17 @@ section { padding: 6rem 3rem; border-bottom: 1px solid var(--line); background: 
 .for-whom h2 { font-size: clamp(1.5rem, 3vw, 2.6rem); font-weight: 200; line-height: 1.2; letter-spacing: -0.01em; max-width: 820px; margin-bottom: 2rem; }
 .for-whom p { color: var(--soft); font-size: 0.92rem; max-width: 640px; line-height: 1.8; }
 
+.forwho-ask { margin-top: 2.4rem; font-size: 1.15rem !important; color: var(--white) !important; line-height: 1.6 !important; max-width: 640px; }
+.forwho-ask em { color: var(--accent); font-style: italic; }
+.forwho-best { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+.forwho-best .best-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-right: 0.4rem; }
+.forwho-best .chip { font-size: 0.74rem; letter-spacing: 0.06em; color: var(--soft); border: 1px solid rgba(200,184,154,0.3); padding: 0.35rem 0.8rem; border-radius: 2px; }
+.cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 820px; margin: 0 auto; text-align: left; }
+.case { border-left: 1px solid rgba(200,184,154,0.25); padding-left: 1.4rem; }
+.case strong { display: block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; font-weight: 500; }
+.case p { font-size: 0.85rem; color: var(--grey); margin: 0; line-height: 1.7; }
+@media (max-width: 760px) { .cases { grid-template-columns: 1fr; } }
+
 /* ── APPROACH ──────────────────────────────────────────────── */
 .approach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .approach h2 { font-size: clamp(1.7rem, 3.2vw, 2.8rem); font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 2rem; }
@@ -298,7 +309,7 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
   <p class="hero-sub" data-i18n="hero_sub">I transform existing footage, archive material, product images, AI generation and motion design into cinematic brand films. No traditional production required.</p>
   <div class="hero-links">
     <a href="#work" data-i18n="nav_work">Selected Work</a>
-    <a href="#contact" data-i18n="hero_cta">Get in touch</a>
+    <a href="#contact" data-i18n="hero_cta">Send me what you have</a>
   </div>
 </section>
 
@@ -307,6 +318,14 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
   <div class="section-label" data-i18n="forwho_label">Who this is for</div>
   <h2 data-i18n="forwho_h2">For companies with strong products, rich material and a video narrative that does not yet match their value.</h2>
   <p data-i18n="forwho_p">Factories, archives, case studies, technical processes, events, products, buildings, prototypes, old footage. I work with what already exists and turn it into films for websites, fairs, presentations, campaigns and internal launches.</p>
+  <p class="forwho-ask" data-i18n-html="forwho_ask">Send me what you already have.<br><em>I will tell you if there is a film inside it.</em></p>
+  <div class="forwho-best">
+    <span class="best-label" data-i18n="best_label">Best for</span>
+    <span class="chip" data-i18n="best_1">Corporate films from existing footage</span>
+    <span class="chip" data-i18n="best_2">Brand films</span>
+    <span class="chip" data-i18n="best_3">Launch videos</span>
+    <span class="chip" data-i18n="best_4">Fashion films</span>
+  </div>
 </section>
 
 <!-- APPROACH -->
@@ -333,6 +352,11 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
   <div class="section-label" data-i18n="work_label">Selected Work</div>
   <div class="showreel-wrap">
     <iframe src="https://www.youtube.com/embed/N7Ta9EZstzA?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Showreel 2026"></iframe>
+  </div>
+  <div class="cases">
+    <div class="case"><strong>Webuild</strong><p data-i18n="case_webuild">Eleven years of films for the group behind some of the world's largest construction projects — from the GERD dam to WeSearch and Progetto Italia. Much of it built from site footage, archive and technical material.</p></div>
+    <div class="case"><strong>FILA</strong><p data-i18n="case_fila">Five fashion films for the FW26 collection, presented at Milan Fashion Week: three directed on set, two created without shooting a single frame.</p></div>
+    <div class="case"><strong>Prada · Canali</strong><p data-i18n="case_fashion">Fashion films where rhythm, music and treatment do the work of a large production — campaign material and product imagery turned into cinema.</p></div>
   </div>
   <div class="work-cta">
     <a href="videos.html" data-i18n-html="all_work">View all 30 films <span class="arrow">&rarr;</span></a>
@@ -427,6 +451,12 @@ const T = {
     contact_h2: "Let's make something<br><em>worth watching.</em>",
     contact_p: "Tell me what you have: archive footage, product images, a case study, an event, an idea, or just a problem. I will tell you what kind of film can be built from it.",
     contact_email: "Email", contact_book: "Book a call",
+    hero_cta: "Send me what you have",
+    forwho_ask: "Send me what you already have.<br><em>I will tell you if there is a film inside it.</em>",
+    best_label: "Best for", best_1: "Corporate films from existing footage", best_2: "Brand films", best_3: "Launch videos", best_4: "Fashion films",
+    case_webuild: "Eleven years of films for the group behind some of the world's largest construction projects — from the GERD dam to WeSearch and Progetto Italia. Much of it built from site footage, archive and technical material.",
+    case_fila: "Five fashion films for the FW26 collection, presented at Milan Fashion Week: three directed on set, two created without shooting a single frame.",
+    case_fashion: "Fashion films where rhythm, music and treatment do the work of a large production — campaign material and product imagery turned into cinema.",
     bio: "<p>Alessandro Dallolio was born in Turin and spent part of his childhood in Asia — India, Indonesia, Malaysia.</p><p>He has been making images for as long as he can remember. First drawing, painting, collage. Then cinema, advertising, video installations, artificial intelligence.</p><p>His method hasn't changed in thirty years: he takes material that doesn't seem to have a soul — corporate archives, found footage, generated images — and assembles it following a musical intuition rather than a visual logic. The result is recognisable before it can be explained.</p><p>He has worked with Nike, Lavazza, Prada, BMW, Disney. With Webuild for eleven years. The work he does for companies uses the language of advertising as a Trojan horse — to smuggle in something harder to define, and harder to forget.</p><p>Declared influences: Kubrick, Fellini, Buñuel, Gilliam. The common thread: <em>disturbance as method, not effect.</em></p><p>He lives and works in Milan.</p>"
   },
   it: {
@@ -437,7 +467,12 @@ const T = {
     hero_label: "Film Director · AI Artist · Visual Alchemist",
     hero_h1: "Faccio film<br>senza <em>girarli.</em>",
     hero_sub: "Trasformo materiale esistente — riprese d'archivio, immagini di prodotto, AI generativa, motion design — in film di marca cinematografici. Nessuna produzione tradizionale necessaria.",
-    hero_cta: "Scrivimi",
+    hero_cta: "Mandami quello che hai",
+    forwho_ask: "Mandami quello che hai già.<br><em>Ti dirò se dentro c'è un film.</em>",
+    best_label: "Ideale per", best_1: "Film aziendali da materiale esistente", best_2: "Brand film", best_3: "Video di lancio", best_4: "Fashion film",
+    case_webuild: "Undici anni di film per il gruppo dietro alcuni dei più grandi progetti di costruzione del mondo — dalla diga GERD a WeSearch e Progetto Italia. In gran parte costruiti da girato di cantiere, archivio e materiale tecnico.",
+    case_fila: "Cinque fashion film per la collezione FW26, presentati alla Milano Fashion Week: tre diretti sul set, due creati senza girare un solo fotogramma.",
+    case_fashion: "Fashion film dove ritmo, musica e trattamento fanno il lavoro di una grande produzione — materiale di campagna e immagini di prodotto trasformati in cinema.",
     forwho_label: "A chi è rivolto",
     forwho_h2: "Per aziende con prodotti forti, materiale ricco e una narrazione video che non rispecchia ancora il loro valore.",
     forwho_p: "Fabbriche, archivi, case history, processi tecnici, eventi, prodotti, edifici, prototipi, riprese d'epoca. Lavoro con ciò che esiste già e lo trasformo in film per siti web, fiere, presentazioni, campagne e lanci interni.",
