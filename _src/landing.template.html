@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{canonical}}">
+{{hreflang}}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#0d0c0b">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Alex Dallolio">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{canonical}}">
+<meta property="og:image" content="{{og_image}}">
+<meta property="og:locale" content="{{og_locale}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{title}}">
+<meta name="twitter:description" content="{{description}}">
+<meta name="twitter:image" content="{{og_image}}">
+<script type="application/ld+json">
+{{jsonld}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0d0c0b; --bg2: #141210; --white: #f0ede8; --grey: #7a7570; --soft: #b0a99f;
+  --accent: #c8b89a; --line: rgba(200,184,154,0.12);
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Didot", "Bodoni Moda", "Georgia", serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+
+nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; background: rgba(13,12,11,0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+nav .logo { font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+nav ul { list-style: none; display: flex; gap: 2.4rem; align-items: center; }
+nav ul a { color: var(--grey); text-decoration: none; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.25s; }
+nav ul a:hover { color: var(--white); }
+.lang-switcher { display: flex; gap: 0.3rem; margin-left: 1.8rem; }
+.lang-btn { color: var(--grey); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 6px; text-decoration: none; }
+.lang-btn:hover { color: var(--white); }
+.lang-btn.active { color: var(--accent); border-bottom: 1px solid rgba(200,184,154,0.6); }
+
+.crumbs { padding: 2rem 3rem 0; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); }
+.crumbs a { text-decoration: none; color: var(--grey); }
+.crumbs a:hover { color: var(--accent); }
+
+header.page-hero { padding: 4.5rem 3rem 4rem; border-bottom: 1px solid var(--line); }
+.label { font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.6rem; }
+h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(2.4rem, 5.6vw, 5rem); line-height: 1.05; max-width: 960px; margin-bottom: 1.8rem; }
+h1 em, h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+.lede { font-size: 1.05rem; color: var(--soft); max-width: 640px; line-height: 1.75; }
+
+main section { padding: 5rem 3rem; border-bottom: 1px solid var(--line); }
+.prose { max-width: 680px; }
+.prose h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 1.6rem; }
+.prose p { color: var(--soft); font-size: 0.97rem; line-height: 1.85; margin-bottom: 1.2rem; }
+.prose ul { list-style: none; margin: 0 0 1.4rem; }
+.prose li { color: var(--soft); font-size: 0.95rem; line-height: 1.7; padding: 0.45rem 0 0.45rem 1.4rem; border-left: 1px solid rgba(200,184,154,0.25); margin-bottom: 0.4rem; }
+.prose li strong { color: var(--white); font-weight: 500; }
+
+.films { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.6rem; margin-top: 2.4rem; }
+.film { background: var(--bg2); border-radius: 3px; overflow: hidden; }
+.film button { all: unset; cursor: pointer; display: block; position: relative; width: 100%; aspect-ratio: 16/9; background: #111 center/cover no-repeat; }
+.film button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; transform: translate(-50%,-50%); border-radius: 50%; background: rgba(13,12,11,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='%23f0ede8'/%3E%3C/svg%3E") center/26px no-repeat; border: 1px solid rgba(200,184,154,0.5); transition: background-color 0.25s; }
+.film button:hover::after { background-color: rgba(200,184,154,0.35); }
+.film button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.film iframe { width: 100%; aspect-ratio: 16/9; border: 0; display: block; }
+.film .cap { padding: 0.9rem 1.1rem 1.1rem; }
+.film .cap strong { display: block; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+.film .cap span { font-size: 0.8rem; color: var(--grey); }
+
+.faq details { border-top: 1px solid var(--line); padding: 1.2rem 0; max-width: 680px; }
+.faq details:last-child { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; font-size: 1rem; color: var(--white); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::after { content: "+"; color: var(--accent); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { color: var(--soft); font-size: 0.93rem; line-height: 1.8; margin-top: 0.9rem; }
+
+.related { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+.related a { display: block; text-decoration: none; border: 1px solid var(--line); padding: 1.3rem 1.4rem; border-radius: 2px; transition: border-color 0.25s; }
+.related a:hover { border-color: var(--accent); }
+.related a strong { display: block; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; font-weight: 500; }
+.related a span { font-size: 0.88rem; color: var(--soft); }
+
+.cta h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.8rem, 3.8vw, 3rem); line-height: 1.15; margin-bottom: 1.4rem; }
+.cta p { color: var(--soft); max-width: 520px; margin-bottom: 2.2rem; line-height: 1.75; }
+.cta-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+.cta-links a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px; }
+.cta-links a:hover { color: var(--accent); border-color: var(--accent); }
+.cta-links a.primary { color: var(--accent); border-color: rgba(200,184,154,0.5); }
+
+footer { padding: 2rem 3rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+footer p, footer a { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; text-decoration: none; }
+footer a:hover { color: var(--accent); }
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 16px; flex-wrap: wrap; gap: 0.6rem; }
+  nav ul { gap: 1rem; flex-wrap: wrap; }
+  .lang-switcher { margin-left: 0; }
+  .crumbs, header.page-hero, main section, footer { padding-left: 16px; padding-right: 16px; }
+  header.page-hero { padding-top: 3rem; }
+  main section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .films { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="{{home}}" class="logo">Alex Dallolio</a>
+  <ul>
+    <li><a href="{{home}}#work">{{nav_work}}</a></li>
+    <li><a href="{{videos}}">{{nav_all}}</a></li>
+    <li><a href="{{home}}#contact">{{nav_contact}}</a></li>
+  </ul>
+  <div class="lang-switcher">{{lang_links}}</div>
+</nav>
+
+<div class="crumbs"><a href="{{home}}">Alex Dallolio</a> &nbsp;/&nbsp; {{crumb}}</div>
+
+<header class="page-hero">
+  <div class="label">{{label}}</div>
+  <h1>{{h1}}</h1>
+  <p class="lede">{{lede}}</p>
+</header>
+
+<main>
+{{sections}}
+</main>
+
+<footer>
+  <p>&copy; 2026 Alex Dallolio &middot; {{footer_city}}</p>
+  <p>{{footer_links}}</p>
+</footer>
+
+<script>
+// Video su click: la pagina resta leggera, l'iframe YouTube parte solo quando serve
+document.querySelectorAll('.film button[data-yt]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.yt + '?autoplay=1&rel=0&modestbranding=1';
+    f.allow = 'autoplay; fullscreen; picture-in-picture';
+    f.allowFullscreen = true;
+    f.title = btn.getAttribute('aria-label');
+    btn.replaceWith(f);
+  });
+});
+</script>
+</body>
+</html>

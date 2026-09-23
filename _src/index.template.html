@@ -232,6 +232,13 @@ section { padding: 6rem 3rem; border-bottom: 1px solid var(--line); background: 
 .contact-links a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px; transition: color 0.25s, border-color 0.25s; }
 .contact-links a:hover { color: var(--accent); border-color: var(--accent); }
 .contact-links a.cta-book { color: var(--accent); border-color: rgba(200,184,154,0.4); }
+.chip-link { text-decoration: none; transition: color 0.25s, border-color 0.25s; }
+.chip-link:hover { color: var(--white); border-color: var(--accent); }
+.case-more { display: inline-block; margin-top: 0.8rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200,184,154,0.35); padding-bottom: 2px; }
+.case-more:hover { color: var(--white); border-color: var(--white); }
+.footer-links { width: 100%; }
+.footer-links a { color: var(--grey); text-decoration: none; }
+.footer-links a:hover { color: var(--accent); }
 .contact-links a.cta-book:hover { color: var(--white); border-color: var(--white); }
 
 /* ── FOOTER ────────────────────────────────────────────────── */
@@ -326,7 +333,7 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
   <p class="forwho-ask" data-i18n-html="forwho_ask">Send me what you already have.<br><em>I will tell you if there is a film inside it.</em></p>
   <div class="forwho-best">
     <span class="best-label" data-i18n="best_label">Best for</span>
-    <span class="chip" data-i18n="best_1">Corporate films from existing footage</span>
+    <a class="chip chip-link" href="@archive" data-i18n="best_1">Corporate films from existing footage</a>
     <span class="chip" data-i18n="best_2">Brand films</span>
     <span class="chip" data-i18n="best_3">Launch videos</span>
     <span class="chip" data-i18n="best_4">Fashion films</span>
@@ -359,8 +366,8 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
     <iframe src="https://www.youtube.com/embed/N7Ta9EZstzA?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Showreel 2026"></iframe>
   </div>
   <div class="cases">
-    <div class="case"><strong>Webuild</strong><p data-i18n="case_webuild">Eleven years of films for the group behind some of the world's largest construction projects — from the GERD dam to WeSearch and Progetto Italia. Much of it built from site footage, archive and technical material.</p></div>
-    <div class="case"><strong>FILA</strong><p data-i18n="case_fila">Five fashion films for the FW26 collection, presented at Milan Fashion Week: three directed on set, two created without shooting a single frame.</p></div>
+    <div class="case"><strong>Webuild</strong><p data-i18n="case_webuild">Eleven years of films for the group behind some of the world's largest construction projects — from the GERD dam to WeSearch and Progetto Italia. Much of it built from site footage, archive and technical material.</p><a class="case-more" href="@webuild" data-i18n-html="read_case">Read the case &rarr;</a></div>
+    <div class="case"><strong>FILA</strong><p data-i18n="case_fila">Five fashion films for the FW26 collection, presented at Milan Fashion Week: three directed on set, two created without shooting a single frame.</p><a class="case-more" href="@fila" data-i18n-html="read_case">Read the case &rarr;</a></div>
     <div class="case"><strong>Prada · Canali</strong><p data-i18n="case_fashion">Fashion films where rhythm, music and treatment do the work of a large production — campaign material and product imagery turned into cinema.</p></div>
   </div>
   <div class="work-cta">
@@ -377,6 +384,7 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
     <video src="ai-reel.mp4" controls playsinline preload="metadata"></video>
   </div>
   <div class="ai-follow">
+    <a href="@ai" data-i18n-html="ai_more">AI films for brands &rarr;</a>&emsp;
     <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener" data-i18n-html="ai_follow">More AI films on Instagram &rarr; <span>@alexdallolio_aifilms</span></a>
   </div>
 </section>
@@ -423,6 +431,7 @@ footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
 <footer>
   <p>&copy; 2026 Alex Dallolio. All rights reserved.</p>
   <p>Milan, Italy &mdash; Working globally</p>
+  <p class="footer-links"><a href="@archive" data-i18n="f_archive">Corporate films from existing footage</a> &middot; <a href="@ai" data-i18n="f_ai">AI brand films</a> &middot; <a href="@webuild" data-i18n="f_webuild">Webuild case study</a> &middot; <a href="@fila" data-i18n="f_fila">FILA case study</a></p>
 </footer>
 
 <script>
@@ -462,6 +471,8 @@ const T = {
     contact_email: "Email", contact_book: "Book a call",
     hero_cta: "Send me what you have",
     forwho_ask: "Send me what you already have.<br><em>I will tell you if there is a film inside it.</em>",
+    read_case: "Read the case &rarr;", ai_more: "AI films for brands &rarr;",
+    f_archive: "Corporate films from existing footage", f_ai: "AI brand films", f_webuild: "Webuild case study", f_fila: "FILA case study",
     best_label: "Best for", best_1: "Corporate films from existing footage", best_2: "Brand films", best_3: "Launch videos", best_4: "Fashion films",
     case_webuild: "Eleven years of films for the group behind some of the world's largest construction projects — from the GERD dam to WeSearch and Progetto Italia. Much of it built from site footage, archive and technical material.",
     case_fila: "Five fashion films for the FW26 collection, presented at Milan Fashion Week: three directed on set, two created without shooting a single frame.",
@@ -478,6 +489,8 @@ const T = {
     hero_sub: "Trasformo materiale esistente — riprese d'archivio, immagini di prodotto, AI generativa, motion design — in film di marca cinematografici. Nessuna produzione tradizionale necessaria.",
     hero_cta: "Mandami quello che hai",
     forwho_ask: "Mandami quello che hai già.<br><em>Ti dirò se dentro c'è un film.</em>",
+    read_case: "Leggi il caso &rarr;", ai_more: "Video con l'AI per aziende &rarr;",
+    f_archive: "Video aziendali da archivio", f_ai: "Video aziendali con l'AI", f_webuild: "Caso Webuild", f_fila: "Caso FILA",
     best_label: "Ideale per", best_1: "Film aziendali da materiale esistente", best_2: "Brand film", best_3: "Video di lancio", best_4: "Fashion film",
     case_webuild: "Undici anni di film per il gruppo dietro alcuni dei più grandi progetti di costruzione del mondo — dalla diga GERD a WeSearch e Progetto Italia. In gran parte costruiti da girato di cantiere, archivio e materiale tecnico.",
     case_fila: "Cinque fashion film per la collezione FW26, presentati alla Milano Fashion Week: tre diretti sul set, due creati senza girare un solo fotogramma.",
