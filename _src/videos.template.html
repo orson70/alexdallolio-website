@@ -3,12 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Work — Alex Dallolio | Corporate, Fashion and AI Films</title>
-<meta name="description" content="30 films directed by Alex Dallolio for Webuild, Prada, Fila, Canali, Luisa Spagnoli and more — corporate, fashion, documentary and AI-driven cinematic work.">
+<title>All Work — Alex Dallolio | Film Director & AI Artist</title>
+<meta name="description" content="30 brand films directed by Alex Dallolio for Webuild, Prada, Fila, Canali, Luisa Spagnoli and more — corporate, fashion and AI-driven cinematic work.">
 <link rel="canonical" href="https://www.alexdallolio.com/videos.html">
-<link rel="alternate" hreflang="en" href="https://www.alexdallolio.com/videos.html">
-<link rel="alternate" hreflang="it" href="https://www.alexdallolio.com/it/videos.html">
-<link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/videos.html">
 <meta name="theme-color" content="#0d0c0b">
 
 <!-- Open Graph -->
@@ -25,7 +22,7 @@
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="All Work — Alex Dallolio">
-<meta name="twitter:description" content="30 brand films directed by Alex Dallolio for Webuild, Prada, Fila, Canali, Luisa Spagnoli and more.">
+<meta name="twitter:description" content="30 brand films directed by Alex Dallolio for Webuild, Prada, Fila, Canali and more.">
 <meta name="twitter:image" content="https://www.alexdallolio.com/og-image.jpg">
 
 <script type="application/ld+json">
@@ -214,16 +211,16 @@ footer a:hover { color: var(--accent); }
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="logo">Alex Dallolio</a>
+  <a href="index.html" class="logo">Alex Dallolio</a>
   <ul>
-    <li><a href="/#work" data-i18n="nav_work">Work</a></li>
-    <li><a href="/#approach" data-i18n="nav_approach">Approach</a></li>
-    <li><a href="/#clients" data-i18n="nav_clients">Clients</a></li>
-    <li><a href="/#contact" data-i18n="nav_contact">Contact</a></li>
+    <li><a href="index.html#work" data-i18n="nav_work">Work</a></li>
+    <li><a href="index.html#approach" data-i18n="nav_approach">Approach</a></li>
+    <li><a href="index.html#clients" data-i18n="nav_clients">Clients</a></li>
+    <li><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
   </ul>
   <div class="lang-switcher">
-    <a class="lang-btn active" href="/videos.html" hreflang="en">EN</a>
-    <a class="lang-btn" href="/it/videos.html" hreflang="it">IT</a>
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('it')">IT</button>
   </div>
 </nav>
 
@@ -231,7 +228,7 @@ footer a:hover { color: var(--accent); }
 <div class="page-header">
   <div class="section-label" data-i18n="label">Selected Work</div>
   <h1 data-i18n-html="title">All <em>Work</em></h1>
-  <p class="page-header-meta" data-i18n-html="meta">30 films — Direction, Concept & Edit</p>
+  <p class="page-header-meta" data-i18n-html="meta">30 films — Direction, Concept &amp; Edit</p>
 </div>
 
 <!-- FILTER BAR -->
@@ -240,7 +237,7 @@ footer a:hover { color: var(--accent); }
   <button class="filter-btn" data-filter="corporate" data-i18n="filter_corp">Corporate</button>
   <button class="filter-btn" data-filter="fashion" data-i18n="filter_fashion">Fashion</button>
   <button class="filter-btn" data-filter="documentary" data-i18n="filter_doc">Documentary</button>
-  <button class="filter-btn" data-filter="ai" data-i18n="filter_ai">AI &amp; Concept</button>
+  <button class="filter-btn" data-filter="ai" data-i18n="filter_ai">AI & Concept</button>
 </div>
 
 <!-- GRID -->
@@ -401,7 +398,7 @@ footer a:hover { color: var(--accent); }
 <!-- LIGHTBOX -->
 <div id="lightbox" onclick="closeLbOutside(event)">
   <div class="lb-inner">
-    <button class="lb-close" onclick="closeLb()" data-i18n="close">✕ Close</button>
+    <button class="lb-close" onclick="closeLb()" data-i18n="close">&#x2715; Close</button>
     <div class="lb-video">
       <iframe id="lb-iframe" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
     </div>
@@ -418,11 +415,69 @@ footer a:hover { color: var(--accent); }
     &ensp;&middot;&ensp;
     <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">Instagram</a>
     &ensp;&middot;&ensp;
-    <a href="/#contact" data-i18n="nav_contact">Contact</a>
+    <a href="index.html#contact" data-i18n="nav_contact">Contact</a>
   </p>
 </footer>
 
 <script>
+// ── TRANSLATIONS ─────────────────────────────────────────────────────
+const T = {
+  en: {
+    nav_work: "Work", nav_approach: "Approach", nav_clients: "Clients", nav_contact: "Contact",
+    label: "Selected Work",
+    title: "All <em>Work</em>",
+    meta: "30 films — Direction, Concept & Edit",
+    filter_all: "All", filter_corp: "Corporate", filter_fashion: "Fashion",
+    filter_doc: "Documentary", filter_ai: "AI & Concept",
+    close: "✕ Close"
+  },
+  it: {
+    nav_work: "Lavori", nav_approach: "Metodo", nav_clients: "Clienti", nav_contact: "Contatti",
+    label: "Lavori Selezionati",
+    title: "Tutti i <em>Lavori</em>",
+    meta: "30 film — Regia, Concept & Montaggio",
+    filter_all: "Tutti", filter_corp: "Corporate", filter_fashion: "Moda",
+    filter_doc: "Documentario", filter_ai: "AI & Concept",
+    close: "✕ Chiudi"
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+  document.documentElement.lang = lang;
+}
+
+// ── GEO DETECT ──────────────────────────────────────────────────────
+async function detectLang() {
+  try {
+    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
+    const data = await res.json();
+    const country = (data.country_code || '').toUpperCase();
+    // Italian-speaking countries
+    if (['IT', 'SM', 'VA', 'CH'].includes(country)) {
+      setLang('it');
+    } else {
+      setLang('en');
+    }
+  } catch {
+    setLang('en');
+  }
+}
+
 // ── FILTER ──────────────────────────────────────────────────────────
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -470,6 +525,7 @@ function openFromHash() {
 window.addEventListener('hashchange', openFromHash);
 
 // ── INIT ────────────────────────────────────────────────────────────
+detectLang();
 openFromHash();
 </script>
 </body>
