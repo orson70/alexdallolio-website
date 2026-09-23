@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bozza A · Monolito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#000;--fg:#ecebe7;--dim:#6f6d69;--hot:#ff4a1c;--line:rgba(236,235,231,.14);
+--sans:"Inter Tight",Helvetica,Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+
+/* NAV: sempre leggibile grazie a difference */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 24px;mix-blend-mode:difference;color:#fff}
+nav .links{display:flex;gap:22px}
+nav a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* HERO: video visto attraverso le lettere */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 28px}
+.mask{display:grid;overflow:hidden;isolation:isolate}
+.mask>*{grid-area:1/1}
+.mask video{width:100%;height:100%;object-fit:cover;contain:size;align-self:stretch}
+.mask .ink{position:relative;background:#000;color:#fff;mix-blend-mode:multiply;font-weight:900;letter-spacing:-.045em;line-height:.82;
+  font-size:19.5vw;padding:.08em 0 .1em;white-space:nowrap;text-align:center;text-transform:uppercase}
+.mask .ink span{display:block}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:22px 24px 0;border-top:1px solid var(--line);margin-top:18px}
+.hero-meta div{color:var(--dim)}
+.hero-meta b{display:block;color:var(--fg);font-weight:500}
+.statement{padding:22vh 24px 16vh;font-size:clamp(40px,7.4vw,128px);font-weight:500;letter-spacing:-.045em;line-height:.95;max-width:15ch}
+.statement em{font-style:normal;color:var(--hot)}
+
+/* INDICE LAVORI */
+.sec-head{display:flex;justify-content:space-between;padding:0 24px 14px;border-bottom:1px solid var(--line);color:var(--dim)}
+.index{list-style:none}
+.index li{border-bottom:1px solid var(--line)}
+.index button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:70px 1fr 1fr 120px 70px;align-items:baseline;gap:16px;padding:18px 24px;transition:background .2s,color .2s}
+.index .t{font-size:clamp(24px,3.4vw,52px);font-weight:500;letter-spacing:-.035em;line-height:1}
+.index .m{color:var(--dim)}
+.index button:hover,.index button:focus-visible{background:var(--fg);color:var(--bg)}
+.index button:hover .m{color:#444}
+.index .th{display:none}
+.float{position:fixed;left:0;top:0;width:34vw;max-width:480px;aspect-ratio:16/9;pointer-events:none;z-index:40;opacity:0;transition:opacity .2s;background:#111 center/cover;transform:translate(-50%,-50%)}
+.all{display:block;padding:22px 24px;border-bottom:1px solid var(--line)}
+.all:hover{color:var(--hot)}
+
+/* METODO */
+.method{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.method div{padding:48px 24px 64px;border-right:1px solid var(--line)}
+.method div:last-child{border-right:0}
+.method h3{font-size:clamp(26px,2.6vw,40px);font-weight:500;letter-spacing:-.03em;line-height:1.05;margin:18px 0 16px}
+.method p{color:var(--dim);font-size:15px;line-height:1.6;max-width:36ch}
+
+/* AI */
+.ai{position:relative;border-bottom:1px solid var(--line)}
+.ai video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:#111}
+.ai .cap{display:flex;justify-content:space-between;gap:24px;padding:16px 24px;flex-wrap:wrap}
+.ai .cap a{color:var(--hot)}
+
+/* CLIENTI: nastro */
+.tape{overflow:hidden;border-bottom:1px solid var(--line);padding:26px 0}
+.tape .row{display:flex;gap:48px;width:max-content;animation:roll 60s linear infinite;font-size:clamp(34px,5vw,80px);font-weight:800;letter-spacing:-.04em;text-transform:uppercase}
+.tape .row span:nth-child(odd){color:transparent;-webkit-text-stroke:1px var(--fg)}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* CONTATTI */
+.contact{padding:18vh 24px 28px}
+.contact .big{display:block;font-size:clamp(48px,11vw,190px);font-weight:900;letter-spacing:-.06em;line-height:.85;transition:color .2s}
+.contact .big:hover{color:var(--hot)}
+.contact .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:10vh;padding-top:18px;border-top:1px solid var(--line);color:var(--dim)}
+.contact .row a:hover{color:var(--fg)}
+
+@media (max-width:760px){
+  nav{padding:14px 16px} nav .links{gap:14px}
+  .hero-meta{grid-template-columns:1fr 1fr;padding:18px 16px 0}
+  .statement{padding:14vh 16px 10vh}
+  .sec-head,.all,.ai .cap,.contact{padding-left:16px;padding-right:16px}
+  .index button{grid-template-columns:44px 1fr;padding:14px 16px}
+  .index .m.c3,.index .m.c4{display:none}
+  .index .th{display:block;grid-column:2;aspect-ratio:16/9;background:#111 center/cover;margin-top:10px}
+  .index .m.c2{grid-column:2}
+  .float{display:none}
+  .method{grid-template-columns:1fr} .method div{border-right:0;border-bottom:1px solid var(--line);padding:36px 16px 44px}
+}
+@media (prefers-reduced-motion:reduce){.tape .row{animation:none}}
+</style>
+</head>
+<body>
+
+<nav class="mono">
+  <a href="#">AD</a>
+  <div class="links"><a href="#lavori">Lavori</a><a href="#metodo">Metodo</a><a href="#ai">AI</a><a href="#contatti">Contatti</a></div>
+</nav>
+
+<header class="hero">
+  <div class="mask">
+    <video src="/bg-reel.mp4" autoplay muted loop playsinline></video>
+    <div class="ink"><span>Alex</span><span>Dallolio</span></div>
+  </div>
+  <div class="hero-meta mono">
+    <div><b>Regista</b>AI artist</div>
+    <div><b>Milano</b>45.46°N 9.19°E</div>
+    <div><b id="clock">--:--:--</b>Ora locale</div>
+    <div><b>30 film</b>Webuild · FILA · Prada</div>
+  </div>
+</header>
+
+<p class="statement">Faccio film <em>senza</em> girarli.</p>
+
+<section id="lavori">
+  <div class="sec-head mono"><span>Indice</span><span>Selezione · 12 / 30</span></div>
+  <ol class="index" id="index"></ol>
+  <a class="all mono" href="/it/videos.html">Tutti i 30 film →</a>
+  <div class="float" id="float"></div>
+</section>
+
+<section class="method" id="metodo">
+  <div><span class="mono" style="color:var(--dim)">01</span><h3>Si parte da quello che avete.</h3><p>Archivio, girato di cantiere, immagini di prodotto, render, frammenti. Il film spesso è già lì.</p></div>
+  <div><span class="mono" style="color:var(--dim)">02</span><h3>L'AI completa quello che manca.</h3><p>Estendere, riquadrare, immaginare le immagini che l'archivio non può dare. Diretto, non solo promptato.</p></div>
+  <div><span class="mono" style="color:var(--dim)">03</span><h3>La regia fa il resto.</h3><p>Concept, montaggio, ritmo, musica, trattamento. Da remoto, da Milano, per chiunque.</p></div>
+</section>
+
+<section class="ai" id="ai">
+  <video src="/ai-reel.mp4" poster="/og-image.jpg" controls playsinline preload="none"></video>
+  <div class="cap mono"><span>AI Reel 2026 · interamente generato</span><a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms ↗</a></div>
+</section>
+
+<div class="tape" aria-label="Clienti"><div class="row" id="tape"></div></div>
+
+<section class="contact" id="contatti">
+  <span class="mono" style="color:var(--dim)">Mandami quello che hai. Ti dico se dentro c'è un film.</span>
+  <a class="big" href="mailto:alexdallolio@alexdallolio.com">Scrivimi →</a>
+  <div class="row mono">
+    <a href="https://calendly.com/alexdallolio" target="_blank" rel="noopener">Prenota una call ↗</a>
+    <a href="https://www.youtube.com/@alchemistfilm-d4k" target="_blank" rel="noopener">YouTube ↗</a>
+    <a href="https://vimeo.com/alexdallolio" target="_blank" rel="noopener">Vimeo ↗</a>
+    <span>© 2026 Alex Dallolio</span>
+  </div>
+</section>
+
+<script src="data.js"></script>
+<script>
+const idx = document.getElementById('index'), fl = document.getElementById('float');
+WORKS.forEach((w, i) => {
+  const li = document.createElement('li');
+  li.innerHTML = `<button type="button"><span class="mono m">${String(i + 1).padStart(2, '0')}</span><span class="t">${w.t}</span><span class="mono m c2">${w.c}</span><span class="mono m c3">${w.cat}</span><span class="mono m c4">${w.y || '—'}</span><span class="th" style="background-image:url(${thumb(w.id)})"></span></button>`;
+  const b = li.querySelector('button');
+  b.onclick = () => openFilm(w.id, w.t);
+  b.onmouseenter = () => { fl.style.backgroundImage = `url(${thumb(w.id)})`; fl.style.opacity = 1; };
+  b.onmouseleave = () => { fl.style.opacity = 0; };
+  idx.appendChild(li);
+});
+addEventListener('mousemove', e => { fl.style.transform = `translate(${e.clientX + 24}px, ${e.clientY - 60}px)`; });
+const tape = document.getElementById('tape');
+tape.innerHTML = [...BRANDS, ...BRANDS].map(b => `<span>${b}</span>`).join('');
+const clock = document.getElementById('clock');
+const tick = () => clock.textContent = new Date().toLocaleTimeString('it-IT', { timeZone: 'Europe/Rome' });
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>

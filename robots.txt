@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /bozze/
 
 Sitemap: https://www.alexdallolio.com/sitemap.xml

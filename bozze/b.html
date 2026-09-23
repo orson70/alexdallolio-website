@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bozza B · Moviola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0e0f0f;--fg:#e9ece6;--dim:#7c817b;--sig:#d4ff3a;--line:rgba(233,236,230,.16);
+--head:"Archivo",Helvetica,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--head);-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:crosshair}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+
+/* MONITOR fisso: video + HUD */
+.viewer{position:fixed;inset:0;z-index:-1}
+.viewer video{width:100%;height:100%;object-fit:cover;filter:saturate(.75) contrast(1.05)}
+.viewer::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(14,15,15,.35),rgba(14,15,15,.55))}
+.hud{position:fixed;inset:14px;z-index:30;pointer-events:none}
+.hud .c{position:absolute;width:26px;height:26px;border:1px solid var(--fg);opacity:.7}
+.hud .tl{top:0;left:0;border-right:0;border-bottom:0}.hud .tr{top:0;right:0;border-left:0;border-bottom:0}
+.hud .bl{bottom:0;left:0;border-right:0;border-top:0}.hud .br{bottom:0;right:0;border-left:0;border-top:0}
+.hud .t{position:absolute;display:flex;gap:18px;align-items:center}
+.hud .t1{top:8px;left:40px}.hud .t2{top:8px;right:40px}.hud .t3{bottom:30px;left:40px}.hud .t4{bottom:30px;right:40px}
+.rec{width:8px;height:8px;border-radius:50%;background:#ff3b30;animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.tc{font-size:15px;color:var(--sig);letter-spacing:.08em}
+.hud nav{pointer-events:auto;display:flex;gap:18px}
+.hud nav a:hover{color:var(--sig)}
+/* timeline in basso */
+.tl-bar{position:absolute;left:40px;right:40px;bottom:10px;height:10px;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 2.5%)}
+.tl-bar i{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--sig);left:0}
+
+/* SCENE */
+.scene{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:12vh 8vw}
+.slate{display:flex;gap:16px;color:var(--sig);margin-bottom:26px}
+h1{font-stretch:125%;font-weight:800;font-size:clamp(46px,9.5vw,170px);line-height:.86;letter-spacing:-.03em;text-transform:uppercase}
+h1 .thin{font-weight:300;font-stretch:62%;letter-spacing:0}
+h2{font-stretch:112%;font-weight:700;font-size:clamp(34px,5.6vw,96px);line-height:.92;letter-spacing:-.025em;text-transform:uppercase;max-width:14ch}
+.lead{font-size:clamp(17px,1.5vw,21px);line-height:1.55;max-width:46ch;margin-top:30px;color:#cfd3cc}
+.panel{background:rgba(14,15,15,.82);backdrop-filter:blur(6px);border:1px solid var(--line);padding:clamp(24px,4vw,56px);max-width:980px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
+.steps b{display:block;font-family:var(--mono);font-size:11px;color:var(--sig);letter-spacing:.08em;margin-bottom:10px}
+.steps p{font-size:15px;line-height:1.55;color:#cfd3cc}
+
+/* PELLICOLA orizzontale */
+.strip-wrap{background:var(--bg);padding:10vh 0 12vh;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.strip-head{display:flex;justify-content:space-between;padding:0 8vw 26px;align-items:end;gap:20px;flex-wrap:wrap}
+.strip{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 8vw;scrollbar-width:none;cursor:grab}
+.strip::-webkit-scrollbar{display:none}
+.frame{flex:0 0 clamp(280px,34vw,520px);scroll-snap-align:start;background:#050505;padding:26px 10px;position:relative;
+  --holes:repeating-linear-gradient(90deg,transparent 0 10px,#2a2b2b 10px 22px,transparent 22px 32px)}
+.frame::before,.frame::after{content:"";position:absolute;left:0;right:0;height:10px;background:var(--holes)}
+.frame::before{top:8px}.frame::after{bottom:8px}
+.frame button{all:unset;cursor:pointer;display:block;width:100%;aspect-ratio:16/9;background:#111 center/cover;position:relative;filter:grayscale(.6);transition:filter .3s}
+.frame button:hover,.frame button:focus-visible{filter:none;outline:1px solid var(--sig)}
+.frame .fi{display:flex;justify-content:space-between;margin-top:10px;color:var(--dim)}
+.frame .fi b{color:var(--fg);font-weight:500}
+
+/* AI */
+.ai video{width:100%;max-width:1100px;display:block;aspect-ratio:16/9;background:#000;border:1px solid var(--line)}
+.ai .mono a{color:var(--sig)}
+
+/* CLIENTI come titoli di coda */
+.credits{background:var(--bg);padding:14vh 8vw;text-align:center}
+.credits .role{color:var(--dim);margin:34px 0 10px}
+.credits .names{font-stretch:88%;font-weight:500;font-size:clamp(20px,2.2vw,30px);line-height:1.5;max-width:900px;margin:0 auto;text-transform:uppercase;letter-spacing:.02em}
+
+.end{background:var(--bg);padding:14vh 8vw 20vh;border-top:1px solid var(--line)}
+.end a.big{display:inline-block;margin-top:24px;font-stretch:125%;font-weight:800;font-size:clamp(40px,8vw,140px);line-height:.9;text-transform:uppercase;letter-spacing:-.03em}
+.end a.big:hover{color:var(--sig)}
+.end .links{display:flex;gap:26px;flex-wrap:wrap;margin-top:40px;color:var(--dim)}
+.end .links a:hover{color:var(--fg)}
+
+@media (max-width:760px){
+  .hud{inset:8px}.hud .t1{left:30px}.hud .t2{right:30px}.hud .t3{left:30px;bottom:24px}.hud .t4{display:none}
+  .hud nav{display:none}.tl-bar{left:30px;right:30px}
+  .scene{padding:14vh 16px}
+  .steps{grid-template-columns:1fr}
+  .strip-head,.strip{padding-left:16px;padding-right:16px}
+  .credits,.end{padding-left:16px;padding-right:16px}
+}
+@media (prefers-reduced-motion:reduce){.rec{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="viewer"><video src="/bg-reel.mp4" autoplay muted loop playsinline></video></div>
+
+<div class="hud mono" aria-hidden="false">
+  <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+  <div class="t t1"><span class="rec"></span><span>A001_C026 · 25 fps</span></div>
+  <div class="t t2"><nav><a href="#lavori">Lavori</a><a href="#metodo">Metodo</a><a href="#ai">AI</a><a href="#contatti">Contatti</a></nav></div>
+  <div class="t t3"><span class="tc" id="tc">00:00:00:00</span><span id="scn">SC.00</span></div>
+  <div class="t t4"><span>Alex Dallolio · Milano</span></div>
+  <div class="tl-bar"><i id="head"></i></div>
+</div>
+
+<section class="scene" data-sc="01">
+  <div class="slate mono"><span>SC.01</span><span>Take 1</span><span>Regista · AI artist</span></div>
+  <h1>Alex<br>Dallolio<br><span class="thin">faccio film senza girarli</span></h1>
+</section>
+
+<section class="scene" id="metodo" data-sc="02">
+  <div class="panel">
+    <div class="slate mono"><span>SC.02</span><span>Il metodo</span></div>
+    <h2>Il film è già nel vostro archivio.</h2>
+    <p class="lead">Girato di cantiere, immagini di prodotto, render, fotografie, frammenti. Parto da quello che un'azienda ha già e lo trasformo in cinema.</p>
+    <div class="steps">
+      <div><b>IN</b><p>Mi mandate il materiale. Vi dico se dentro c'è un film.</p></div>
+      <div><b>EDIT</b><p>Concept, montaggio, ritmo, musica. L'AI generativa completa quello che manca.</p></div>
+      <div><b>OUT</b><p>Film per siti, fiere, presentazioni, campagne, lanci interni.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="strip-wrap" id="lavori" data-sc="03">
+  <div class="strip-head">
+    <div><div class="slate mono" style="margin-bottom:12px"><span>SC.03</span><span>Rullo</span></div><h2>Lavori</h2></div>
+    <a class="mono" href="/it/videos.html" style="color:var(--sig)">Tutti i 30 film →</a>
+  </div>
+  <div class="strip" id="strip"></div>
+</section>
+
+<section class="scene ai" id="ai" data-sc="04">
+  <div class="slate mono"><span>SC.04</span><span>Generativo</span></div>
+  <h2 style="margin-bottom:34px">Quando la macchina diventa cinema.</h2>
+  <video src="/ai-reel.mp4" poster="/og-image.jpg" controls playsinline preload="none"></video>
+  <p class="mono" style="margin-top:14px">AI Reel 2026 · diretto, non solo promptato · <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms ↗</a></p>
+</section>
+
+<section class="credits" data-sc="05">
+  <div class="slate mono" style="justify-content:center"><span>SC.05</span><span>Titoli di coda</span></div>
+  <div class="role mono">Agenzie</div><div class="names">DLV · Young &amp; Rubicam · JWT · Leo Burnett · Armando Testa</div>
+  <div class="role mono">TV &amp; Broadcast</div><div class="names">Mediaset · Rai · Sky · Fox</div>
+  <div class="role mono">Brand</div><div class="names" id="brands"></div>
+</section>
+
+<section class="end" id="contatti" data-sc="06">
+  <div class="slate mono"><span>SC.06</span><span>Fine</span></div>
+  <p class="lead" style="margin-top:0">Mandami quello che hai. Ti dico se dentro c'è un film.</p>
+  <a class="big" href="mailto:alexdallolio@alexdallolio.com">Scrivimi</a>
+  <div class="links mono">
+    <a href="https://calendly.com/alexdallolio" target="_blank" rel="noopener">Prenota una call ↗</a>
+    <a href="https://www.youtube.com/@alchemistfilm-d4k" target="_blank" rel="noopener">YouTube ↗</a>
+    <a href="https://vimeo.com/alexdallolio" target="_blank" rel="noopener">Vimeo ↗</a>
+    <span>© 2026</span>
+  </div>
+</section>
+
+<script src="data.js"></script>
+<script>
+const strip = document.getElementById('strip');
+WORKS.forEach((w, i) => {
+  const f = document.createElement('div');
+  f.className = 'frame';
+  f.innerHTML = `<button type="button" aria-label="${w.t}" style="background-image:url(${thumb(w.id)})"></button><div class="fi mono"><b>${w.t}</b><span>${String(i + 1).padStart(3, '0')}</span></div>`;
+  f.querySelector('button').onclick = () => openFilm(w.id, w.t);
+  strip.appendChild(f);
+});
+document.getElementById('brands').textContent = BRANDS.join(' · ');
+
+// Rotella verticale → pellicola orizzontale (solo desktop)
+strip.addEventListener('wheel', e => {
+  if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+    const max = strip.scrollWidth - strip.clientWidth;
+    if ((e.deltaY > 0 && strip.scrollLeft < max) || (e.deltaY < 0 && strip.scrollLeft > 0)) {
+      e.preventDefault(); strip.scrollLeft += e.deltaY;
+    }
+  }
+}, { passive: false });
+
+// Timecode e testina legati allo scroll (25 fps, tutta la pagina = 2 minuti)
+const tc = document.getElementById('tc'), head = document.getElementById('head'), scn = document.getElementById('scn');
+const pad = n => String(n).padStart(2, '0');
+const scenes = [...document.querySelectorAll('[data-sc]')];
+function upd() {
+  const p = scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  const fr = Math.round(p * 120 * 25);
+  tc.textContent = `00:${pad(Math.floor(fr / 1500))}:${pad(Math.floor(fr / 25) % 60)}:${pad(fr % 25)}`;
+  head.style.left = (p * 100) + '%';
+  let cur = scenes[0];
+  scenes.forEach(s => { if (s.getBoundingClientRect().top < innerHeight / 2) cur = s; });
+  scn.textContent = 'SC.' + cur.dataset.sc;
+}
+addEventListener('scroll', upd, { passive: true }); upd();
+</script>
+</body>
+</html>
