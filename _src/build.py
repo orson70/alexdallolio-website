@@ -175,6 +175,9 @@ import landing_pages as LP  # noqa: E402
 
 def film_html(f: dict) -> str:
     cap = f'<div class="cap"><strong>{f["t"]}</strong><span>{f["s"]}</span></div>'
+    if "ig" in f:
+        return (f'<div class="film film-ig"><iframe src="https://www.instagram.com/reel/{f["ig"]}/embed/" '
+                f'title="{html.escape(f["t"])}" loading="lazy" scrolling="no" allowtransparency="true"></iframe>{cap}</div>')
     if "src" in f:
         return (f'<div class="film"><video src="{f["src"]}" poster="/og-image.jpg" controls playsinline preload="none" '
                 f'style="width:100%;aspect-ratio:16/9;display:block;background:#111"></video>{cap}</div>')

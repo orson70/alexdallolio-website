@@ -280,6 +280,10 @@ PAGES = {
 <p>Il set e l'AI generativa, nello stesso progetto e con la stessa regia. I film girati e quelli generati dovevano stare insieme: stesso sguardo, stesso ritmo, stessa collezione.</p>
 <p>È il modo in cui lavoro oggi: scelgo lo strumento in base a quello che serve al film, non il contrario.</p>
 """),
+                ("films", "FILA FW26", [
+                    {"ig": "DXgtfvYBFMP", "t": "FILA FW26", "s": "Pubblicato da FILA sul profilo ufficiale @fila_global"},
+                    {"ig": "DYHmdXQOWYZ", "t": "FILA FW26 · Milano Fashion Week", "s": "Pubblicato da FILA Japan @fila_japan_official"},
+                ]),
                 ("films", "FILA F-Box, Salone del Mobile 2023", [
                     {"yt": FILA_FBOX, "t": "FILA F-Box", "s": "Installazione AI · Milano Design Week 2023"},
                 ]),
@@ -302,6 +306,10 @@ PAGES = {
 <p>The set and generative AI, in the same project and under the same direction. The shot films and the generated ones had to belong together: same eye, same rhythm, same collection.</p>
 <p>That is how I work today: I choose the tool based on what the film needs, not the other way around.</p>
 """),
+                ("films", "FILA FW26", [
+                    {"ig": "DXgtfvYBFMP", "t": "FILA FW26", "s": "Published by FILA on its official account @fila_global"},
+                    {"ig": "DYHmdXQOWYZ", "t": "FILA FW26 · Milan Fashion Week", "s": "Published by FILA Japan @fila_japan_official"},
+                ]),
                 ("films", "FILA F-Box, Salone del Mobile 2023", [
                     {"yt": FILA_FBOX, "t": "FILA F-Box", "s": "AI installation · Milan Design Week 2023"},
                 ]),
