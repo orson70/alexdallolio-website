@@ -207,6 +207,22 @@ def render_landing(key: str, lang: str) -> str:
                                    "thumbnailUrl": f'https://i.ytimg.com/vi/{f["yt"]}/hqdefault.jpg',
                                    "embedUrl": f'https://www.youtube.com/embed/{f["yt"]}',
                                    "uploadDate": "2026-04-29"})
+        elif kind == "reels":
+            db_path = SRC / "aifilms.json"
+            reels = json.loads(db_path.read_text()) if db_path.exists() else []
+            tiles = []
+            for r in reels:
+                cap = html.escape(r["caption"] or "AI film")
+                short = cap if len(cap) < 90 else cap[:88].rsplit(" ", 1)[0] + "…"
+                tiles.append(
+                    f'<figure class="reel"><button type="button" data-ig="{r["code"]}" aria-label="{short}" '
+                    f'style="aspect-ratio:{r["w"]}/{r["h"]}"><video src="/aifilms/{r["code"]}.mp4" '
+                    f'poster="/aifilms/{r["code"]}.jpg" muted loop playsinline preload="none"></video></button>'
+                    f'<figcaption>{short}<time datetime="{r["date"]}">{r["date"][8:10]}.{r["date"][5:7]}.{r["date"][:4]}</time></figcaption></figure>')
+                videos.append({"@type": "VideoObject", "name": short, "description": cap + ". Alex Dallolio, AI film.",
+                               "thumbnailUrl": f'{SITE}/aifilms/{r["code"]}.jpg', "contentUrl": f'{SITE}/aifilms/{r["code"]}.mp4',
+                               "uploadDate": r["date"], "duration": f'PT{int(round(r["duration"]))}S'})
+            secs.append(f'<section><div class="prose"><h2>{h2}</h2></div><div class="reels">' + "".join(tiles) + "</div></section>")
         elif kind == "faq":
             items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in sec[2])
             secs.append(f'<section class="faq"><div class="prose"><h2>{h2}</h2></div>{items}</section>')

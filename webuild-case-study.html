@@ -179,6 +179,18 @@ main section { padding: 5rem 3rem; border-bottom: 1px solid var(--line); }
 .film .cap strong { display: block; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
 .film .cap span { font-size: 0.8rem; color: var(--grey); }
 
+.reels { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2.2rem 1.2rem; margin-top: 2.4rem; }
+.reel button { all: unset; cursor: pointer; display: block; width: 100%; background: #111; border-radius: 3px; overflow: hidden; position: relative; }
+.reel button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.reel video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.reel button:hover video { transform: scale(1.03); }
+.reel button::after { content: "♪"; position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px; border-radius: 50%; background: rgba(13,12,11,.6); color: var(--white); font-size: 14px; display: grid; place-items: center; }
+.reel figcaption { font-size: 0.82rem; color: var(--soft); line-height: 1.5; margin-top: 0.7rem; }
+.reel time { display: block; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--grey); margin-top: 0.3rem; }
+#ig-lb { position: fixed; inset: 0; z-index: 200; background: rgba(5,5,5,.94); display: none; align-items: center; justify-content: center; padding: 16px; }
+#ig-lb.open { display: flex; }
+#ig-lb iframe { width: min(420px, 100%); height: min(760px, 92vh); border: 0; background: #fff; border-radius: 4px; }
+#ig-lb button { position: absolute; top: 12px; right: 18px; background: none; border: 0; color: var(--white); font-size: 36px; cursor: pointer; line-height: 1; }
 .faq details { border-top: 1px solid var(--line); padding: 1.2rem 0; max-width: 680px; }
 .faq details:last-child { border-bottom: 1px solid var(--line); }
 .faq summary { cursor: pointer; font-size: 1rem; color: var(--white); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
@@ -244,7 +256,7 @@ footer a:hover { color: var(--accent); }
 <p>That an industrial company does not need a large production to have films. It needs someone who can see what is inside the material it produces every day.</p>
 <p>If your company has a similar archive, <a href="/corporate-films-from-existing-footage.html">here is how I work</a>.</p>
 </div></section>
-<section><div class="prose"><h2>Keep exploring</h2></div><div class="related"><a href="/corporate-films-from-existing-footage.html"><strong>Service</strong><span>Corporate films from existing footage</span></a><a href="/ai-brand-films.html"><strong>Service</strong><span>AI brand films</span></a><a href="/fila-fashion-films.html"><strong>Case study</strong><span>FILA FW26, set and AI</span></a></div></section>
+<section><div class="prose"><h2>Keep exploring</h2></div><div class="related"><a href="/corporate-films-from-existing-footage.html"><strong>Service</strong><span>Corporate films from existing footage</span></a><a href="/ai-brand-films.html"><strong>Service</strong><span>AI brand films</span></a><a href="/fila-fashion-films.html"><strong>Case study</strong><span>FILA FW26, set and AI</span></a><a href="/ai-films.html"><strong>Instagram</strong><span>AI Films, all reels</span></a></div></section>
 <section class="cta" id="contact"><h2>Send me what you have.<br><em>I will tell you if there is a film inside.</em></h2><p>Archive footage, product images, a case study, an event, or just a problem to solve.</p>
 <div class="cta-links"><a class="primary" href="https://calendly.com/alexdallolio" target="_blank" rel="noopener">Book a call</a>
 <a href="mailto:alexdallolio@alexdallolio.com">Email me</a></div></section>
@@ -252,7 +264,7 @@ footer a:hover { color: var(--accent); }
 
 <footer>
   <p>&copy; 2026 Alex Dallolio &middot; Milan</p>
-  <p><a href="/corporate-films-from-existing-footage.html">Corporate films from existing footage</a> &middot; <a href="/ai-brand-films.html">AI brand films</a> &middot; <a href="/webuild-case-study.html">Webuild, eleven years of films</a> &middot; <a href="/fila-fashion-films.html">FILA FW26, set and AI</a></p>
+  <p><a href="/corporate-films-from-existing-footage.html">Corporate films from existing footage</a> &middot; <a href="/ai-brand-films.html">AI brand films</a> &middot; <a href="/webuild-case-study.html">Webuild, eleven years of films</a> &middot; <a href="/fila-fashion-films.html">FILA FW26, set and AI</a> &middot; <a href="/ai-films.html">AI Films, all reels</a></p>
 </footer>
 
 <script>
@@ -267,6 +279,28 @@ document.querySelectorAll('.film button[data-yt]').forEach(btn => {
     btn.replaceWith(f);
   });
 });
+// Reel: partono muti quando entrano nello schermo; clic = lettore Instagram con audio
+const reelVideos = document.querySelectorAll('.reel video');
+if (reelVideos.length && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.preload = 'auto'; e.target.play().catch(() => {}); } else e.target.pause();
+  }), { threshold: 0.6 });
+  reelVideos.forEach(v => io.observe(v));
+}
+document.querySelectorAll('.reel button[data-ig]').forEach(btn => btn.addEventListener('click', () => {
+  let lb = document.getElementById('ig-lb');
+  if (!lb) {
+    lb = document.createElement('div'); lb.id = 'ig-lb';
+    lb.innerHTML = '<button type="button" aria-label="Close">×</button><iframe title="Instagram" allow="autoplay; encrypted-media"></iframe>';
+    const close = () => { lb.classList.remove('open'); lb.querySelector('iframe').src = 'about:blank'; };
+    lb.querySelector('button').onclick = close;
+    lb.onclick = e => { if (e.target === lb) close(); };
+    addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    document.body.appendChild(lb);
+  }
+  lb.querySelector('iframe').src = 'https://www.instagram.com/reel/' + btn.dataset.ig + '/embed/';
+  lb.classList.add('open');
+}));
 </script>
 </body>
 </html>

@@ -320,6 +320,40 @@ PAGES = {
             ],
         },
     },
+    # ─────────────────────────────────────────────────────────────
+    # Reel da @alexdallolio_aifilms, aggiornati da ~/CLAUDE/SITO_ALEXDALLOLIO/sync_aifilms.py
+    "aifilms": {
+        "it": {
+            "path": "/it/ai-films.html",
+            "title": "AI Films: brevi film fatti con l'AI | Alex Dallolio",
+            "description": "I brevi film di Alex Dallolio realizzati con l'intelligenza artificiale generativa: luoghi, persone e atmosfere che non esistono. Un reel nuovo ogni pochi giorni.",
+            "crumb": "AI Films",
+            "label": "AI Films · Instagram · Aggiornato di continuo",
+            "h1": "AI Films.<br>Un film nuovo <em>ogni pochi giorni.</em>",
+            "lede": "Brevi film fatti con l'AI generativa: luoghi, persone e atmosfere che non esistono, diretti come se esistessero. Nascono su Instagram, qui li trovi tutti. Clicca un film per vederlo con l'audio.",
+            "sections": [
+                ("reels", "Tutti i film"),
+                ("prose", "Seguili su Instagram", """
+<p>Ogni film esce prima su <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>. Se ti interessa come l'AI può entrare nei film della tua azienda, <a href="/it/video-aziendali-ai.html">qui spiego come lavoro</a>.</p>
+"""),
+            ],
+        },
+        "en": {
+            "path": "/ai-films.html",
+            "title": "AI Films: Short Films Made with AI | Alex Dallolio",
+            "description": "Short films by Alex Dallolio made with generative AI: places, people and moods that do not exist. A new reel every few days.",
+            "crumb": "AI Films",
+            "label": "AI Films · Instagram · Always updated",
+            "h1": "AI Films.<br>A new film <em>every few days.</em>",
+            "lede": "Short films made with generative AI: places, people and moods that do not exist, directed as if they did. They are born on Instagram; here you can find them all. Click a film to watch it with sound.",
+            "sections": [
+                ("reels", "All films"),
+                ("prose", "Follow on Instagram", """
+<p>Every film comes out first on <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>. If you are curious how AI can work in your company's films, <a href="/ai-brand-films.html">here is how I work</a>.</p>
+"""),
+            ],
+        },
+    },
 }
 
 # Testi fissi dell'interfaccia
@@ -346,4 +380,5 @@ SHORT = {
     "ai": {"it": ("Servizio", "Video e brand film con l'AI"), "en": ("Service", "AI brand films")},
     "webuild": {"it": ("Caso studio", "Webuild, undici anni di film"), "en": ("Case study", "Webuild, eleven years of films")},
     "fila": {"it": ("Caso studio", "FILA FW26, set e AI"), "en": ("Case study", "FILA FW26, set and AI")},
+    "aifilms": {"it": ("Instagram", "AI Films, tutti i reel"), "en": ("Instagram", "AI Films, all reels")},
 }

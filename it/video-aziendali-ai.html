@@ -196,6 +196,18 @@ main section { padding: 5rem 3rem; border-bottom: 1px solid var(--line); }
 .film .cap strong { display: block; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
 .film .cap span { font-size: 0.8rem; color: var(--grey); }
 
+.reels { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2.2rem 1.2rem; margin-top: 2.4rem; }
+.reel button { all: unset; cursor: pointer; display: block; width: 100%; background: #111; border-radius: 3px; overflow: hidden; position: relative; }
+.reel button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.reel video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.reel button:hover video { transform: scale(1.03); }
+.reel button::after { content: "♪"; position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px; border-radius: 50%; background: rgba(13,12,11,.6); color: var(--white); font-size: 14px; display: grid; place-items: center; }
+.reel figcaption { font-size: 0.82rem; color: var(--soft); line-height: 1.5; margin-top: 0.7rem; }
+.reel time { display: block; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--grey); margin-top: 0.3rem; }
+#ig-lb { position: fixed; inset: 0; z-index: 200; background: rgba(5,5,5,.94); display: none; align-items: center; justify-content: center; padding: 16px; }
+#ig-lb.open { display: flex; }
+#ig-lb iframe { width: min(420px, 100%); height: min(760px, 92vh); border: 0; background: #fff; border-radius: 4px; }
+#ig-lb button { position: absolute; top: 12px; right: 18px; background: none; border: 0; color: var(--white); font-size: 36px; cursor: pointer; line-height: 1; }
 .faq details { border-top: 1px solid var(--line); padding: 1.2rem 0; max-width: 680px; }
 .faq details:last-child { border-bottom: 1px solid var(--line); }
 .faq summary { cursor: pointer; font-size: 1rem; color: var(--white); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
@@ -267,7 +279,7 @@ footer a:hover { color: var(--accent); }
 </div></section>
 <section><div class="prose"><h2>Altri lavori con l'AI</h2></div><div class="films"><div class="film"><button type="button" data-yt="zJ28dM8DRYo" aria-label="FILA F-Box" style="background-image:url(https://i.ytimg.com/vi/zJ28dM8DRYo/hqdefault.jpg)"></button><div class="cap"><strong>FILA F-Box</strong><span>Installazione AI · Salone del Mobile 2023</span></div></div><div class="film"><button type="button" data-yt="r0N34NuRFZc" aria-label="Wake Up!" style="background-image:url(https://i.ytimg.com/vi/r0N34NuRFZc/hqdefault.jpg)"></button><div class="cap"><strong>Wake Up!</strong><span>AI & Concept</span></div></div><div class="film"><button type="button" data-yt="pbjb2oghBaE" aria-label="Influencer IAP" style="background-image:url(https://i.ytimg.com/vi/pbjb2oghBaE/hqdefault.jpg)"></button><div class="cap"><strong>Influencer IAP</strong><span>AI & Concept</span></div></div><div class="film"><button type="button" data-yt="B4Rv_BOayx8" aria-label="Atomic Dream Dance" style="background-image:url(https://i.ytimg.com/vi/B4Rv_BOayx8/hqdefault.jpg)"></button><div class="cap"><strong>Atomic Dream Dance</strong><span>Dell Ala · Videoclip AI</span></div></div></div></section>
 <section class="faq"><div class="prose"><h2>Domande frequenti</h2></div><details><summary>Il video è fatto tutto con l'AI?</summary><p>Dipende dal progetto. Può essere interamente generato oppure misto: materiale reale dell'azienda completato da immagini generate. Si decide in base a cosa c'è e a cosa serve.</p></details><details><summary>Si possono usare le immagini dei nostri prodotti?</summary><p>Sì. Le immagini di prodotto e di campagna sono uno dei punti di partenza più comuni.</p></details><details><summary>Che differenza c'è con un video fatto da un'app AI?</summary><p>La regia. Un'app produce clip; un film ha una struttura, un ritmo e un'idea. È lo stesso lavoro di sempre, con strumenti nuovi.</p></details><details><summary>Come si comincia?</summary><p>Raccontatemi il progetto e mandatemi il materiale che avete. Vi dico cosa si può costruire.</p></details></section>
-<section><div class="prose"><h2>Continua</h2></div><div class="related"><a href="/it/video-aziendali-da-archivio.html"><strong>Servizio</strong><span>Video aziendali da archivio</span></a><a href="/it/webuild-caso-studio.html"><strong>Caso studio</strong><span>Webuild, undici anni di film</span></a><a href="/it/fila-fashion-film.html"><strong>Caso studio</strong><span>FILA FW26, set e AI</span></a></div></section>
+<section><div class="prose"><h2>Continua</h2></div><div class="related"><a href="/it/video-aziendali-da-archivio.html"><strong>Servizio</strong><span>Video aziendali da archivio</span></a><a href="/it/webuild-caso-studio.html"><strong>Caso studio</strong><span>Webuild, undici anni di film</span></a><a href="/it/fila-fashion-film.html"><strong>Caso studio</strong><span>FILA FW26, set e AI</span></a><a href="/it/ai-films.html"><strong>Instagram</strong><span>AI Films, tutti i reel</span></a></div></section>
 <section class="cta" id="contact"><h2>Mandatemi quello che avete.<br><em>Vi dico se dentro c'è un film.</em></h2><p>Archivio, immagini di prodotto, una case history, un evento o solo un problema da risolvere.</p>
 <div class="cta-links"><a class="primary" href="https://calendly.com/alexdallolio" target="_blank" rel="noopener">Prenota una call</a>
 <a href="mailto:alexdallolio@alexdallolio.com">Scrivimi</a></div></section>
@@ -275,7 +287,7 @@ footer a:hover { color: var(--accent); }
 
 <footer>
   <p>&copy; 2026 Alex Dallolio &middot; Milano</p>
-  <p><a href="/it/video-aziendali-da-archivio.html">Video aziendali da archivio</a> &middot; <a href="/it/video-aziendali-ai.html">Video e brand film con l'AI</a> &middot; <a href="/it/webuild-caso-studio.html">Webuild, undici anni di film</a> &middot; <a href="/it/fila-fashion-film.html">FILA FW26, set e AI</a></p>
+  <p><a href="/it/video-aziendali-da-archivio.html">Video aziendali da archivio</a> &middot; <a href="/it/video-aziendali-ai.html">Video e brand film con l'AI</a> &middot; <a href="/it/webuild-caso-studio.html">Webuild, undici anni di film</a> &middot; <a href="/it/fila-fashion-film.html">FILA FW26, set e AI</a> &middot; <a href="/it/ai-films.html">AI Films, tutti i reel</a></p>
 </footer>
 
 <script>
@@ -290,6 +302,28 @@ document.querySelectorAll('.film button[data-yt]').forEach(btn => {
     btn.replaceWith(f);
   });
 });
+// Reel: partono muti quando entrano nello schermo; clic = lettore Instagram con audio
+const reelVideos = document.querySelectorAll('.reel video');
+if (reelVideos.length && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.preload = 'auto'; e.target.play().catch(() => {}); } else e.target.pause();
+  }), { threshold: 0.6 });
+  reelVideos.forEach(v => io.observe(v));
+}
+document.querySelectorAll('.reel button[data-ig]').forEach(btn => btn.addEventListener('click', () => {
+  let lb = document.getElementById('ig-lb');
+  if (!lb) {
+    lb = document.createElement('div'); lb.id = 'ig-lb';
+    lb.innerHTML = '<button type="button" aria-label="Close">×</button><iframe title="Instagram" allow="autoplay; encrypted-media"></iframe>';
+    const close = () => { lb.classList.remove('open'); lb.querySelector('iframe').src = 'about:blank'; };
+    lb.querySelector('button').onclick = close;
+    lb.onclick = e => { if (e.target === lb) close(); };
+    addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    document.body.appendChild(lb);
+  }
+  lb.querySelector('iframe').src = 'https://www.instagram.com/reel/' + btn.dataset.ig + '/embed/';
+  lb.classList.add('open');
+}));
 </script>
 </body>
 </html>
