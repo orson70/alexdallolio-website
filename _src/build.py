@@ -310,6 +310,11 @@ def main():
             write(LP.PAGES[key][lang]["path"], render_landing(key, lang))
         groups.append({l: LP.PAGES[key][l]["path"] for l in LANGS})
     write_sitemap(groups)
+    # Copia pubblica dei reel per le altre pagine (es. la home): /aifilms/reels.json
+    db = SRC / "aifilms.json"
+    if db.exists():
+        (ROOT / "aifilms").mkdir(exist_ok=True)
+        (ROOT / "aifilms" / "reels.json").write_text(db.read_text())
 
 
 if __name__ == "__main__":
