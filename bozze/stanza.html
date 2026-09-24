@@ -13,14 +13,13 @@
 :root{--fg:#ecebe7;--dim:#8a867f;--sig:#d4ff3a;--ink:#1d2344;--paper:#f3ecdf;
 --sans:"Inter Tight",Helvetica,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--hand:"Caveat",cursive}
 html,body{height:100%}
-body{background:#060504;color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
+body{background:#000;color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
 a{color:inherit;text-decoration:none}
 .mono{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase}
 
-/* la stanza: buio, una luce calda dall'alto */
-.room{position:fixed;inset:0;background:
-  radial-gradient(ellipse 60% 55% at 50% 38%,rgba(255,196,120,.22),rgba(255,170,90,.06) 45%,transparent 70%),
-  radial-gradient(ellipse at 50% 120%,rgba(60,40,20,.5),transparent 60%),#060504}
+/* la stanza: buio, e un cubo di soli spigoli */
+.room{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 45%,#0d0d0d,#000 70%)}
+#cube{position:fixed;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .room::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .top{position:fixed;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;z-index:5;color:var(--dim)}
@@ -31,7 +30,7 @@ a{color:inherit;text-decoration:none}
 .prompt span{color:var(--sig)}
 
 /* il foglio */
-.sheet{position:relative;width:min(640px,92vw);min-height:min(56vh,520px);background:var(--paper);
+.sheet{position:relative;width:min(560px,88vw);min-height:min(46vh,440px);background:var(--paper);
   background-image:
     repeating-linear-gradient(transparent 0 43px,rgba(60,80,140,.16) 43px 44px),
     radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.6),transparent 60%),
@@ -75,6 +74,7 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
 </head>
 <body>
 <div class="room"></div>
+<canvas id="cube" aria-hidden="true"></canvas>
 <div class="top mono"><a href="/it/">Alex Dallolio</a><a href="/it/#film">Le altre stanze →</a></div>
 
 <div class="stage" id="stage">
@@ -100,6 +100,51 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
 </div>
 
 <script>
+// ── Il cubo: solo spigoli, gira piano, reagisce al mouse e alla scrittura ──
+const cv = document.getElementById('cube'), cx = cv.getContext('2d');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W, H, DPR;
+function fit() { DPR = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; cx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+fit(); addEventListener('resize', fit);
+const V = [[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
+const E = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+const cube = { ax: .5, ay: .6, vx: .0011, vy: .0017, kick: 0, scale: 1, target: 1, open: 0, openT: 0 };
+let mx = 0, my = 0;
+addEventListener('pointermove', e => { mx = e.clientX / W - .5; my = e.clientY / H - .5; });
+function rot([x, y, z], ax, ay) {
+  let c = Math.cos(ay), s = Math.sin(ay); [x, z] = [x * c + z * s, -x * s + z * c];
+  c = Math.cos(ax); s = Math.sin(ax); [y, z] = [y * c - z * s, y * s + z * c];
+  return [x, y, z];
+}
+function drawCube(size, alpha, ax, ay, open) {
+  const P = V.map(v => {
+    // "apertura": ogni vertice si allontana dal centro lungo la sua diagonale
+    const o = 1 + open * 1.6;
+    const [x, y, z] = rot([v[0] * o, v[1] * o, v[2] * o], ax, ay);
+    const f = 3.2 / (3.2 + z * .9);
+    return [W / 2 + x * size * f, H / 2 + y * size * f, z];
+  });
+  E.forEach(([a, b]) => {
+    const depth = (P[a][2] + P[b][2]) / 2;
+    cx.strokeStyle = `rgba(236,235,231,${(alpha * (0.55 - depth * .22)).toFixed(3)})`;
+    cx.beginPath(); cx.moveTo(P[a][0], P[a][1]); cx.lineTo(P[b][0], P[b][1]); cx.stroke();
+  });
+}
+function frame() {
+  cx.clearRect(0, 0, W, H);
+  if (!reduce) { cube.ay += cube.vy + cube.kick * .02; cube.ax += cube.vx + cube.kick * .012; }
+  cube.kick *= .9;
+  cube.scale += (cube.target - cube.scale) * .04;
+  cube.open += (cube.openT - cube.open) * .03;
+  const base = Math.min(W, H) * .34 * cube.scale;
+  const ax = cube.ax + my * .5, ay = cube.ay + mx * .7;
+  cx.lineWidth = 1;
+  drawCube(base * 1.18, .18, ax - .06, ay - .09, cube.open);   // eco
+  drawCube(base, .9, ax, ay, cube.open);                        // il cubo
+  requestAnimationFrame(frame);
+}
+frame();
+
 const input = document.getElementById('in'), writing = document.getElementById('writing'), caret = document.getElementById('caret');
 const done = document.getElementById('done'), sheet = document.getElementById('sheet');
 let text = '';
@@ -127,7 +172,7 @@ function render(prev, next) {
   }
   done.classList.toggle('on', next.trim().length > 2);
 }
-input.addEventListener('input', () => { const n = input.value.slice(0, 600); render(text, n); text = n; input.value = n; });
+input.addEventListener('input', () => { const n = input.value.slice(0, 600); render(text, n); text = n; input.value = n; cube.kick = Math.min(cube.kick + .35, 1.2); });
 sheet.addEventListener('click', () => input.focus());
 addEventListener('keydown', e => {
   if (document.activeElement !== input && e.key.length === 1 && !e.metaKey && !e.ctrlKey) input.focus();
@@ -173,6 +218,7 @@ function finish() {
   input.blur();
   document.getElementById('prompt').style.opacity = 0;
   sheet.classList.add('fold');
+  cube.openT = 1; cube.target = 1.25; cube.kick = 1;
   const r = pick(text);
   document.getElementById('yours').textContent = '«' + text.trim() + '»';
   const film = document.getElementById('film');
@@ -188,6 +234,7 @@ document.getElementById('again').onclick = () => {
   document.getElementById('answer').classList.remove('on');
   document.getElementById('film').innerHTML = '';
   text = ''; input.value = ''; render('x', '');
+  cube.openT = 0; cube.target = 1;
   setTimeout(() => { sheet.classList.remove('fold'); document.getElementById('prompt').style.opacity = 1; input.focus(); }, 600);
 };
 function openIG(code) {
