@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex, nofollow"><title>La tua grafia</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{background:#000;color:#ecebe7;font-family:"Inter Tight",sans-serif}
+.p{min-height:60vh;display:flex;flex-direction:column;justify-content:center;padding:10vh 24px;gap:28px}
+.p.paper{background:#f3ecdf;color:#1d2344}
+.lab{font:12px "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;opacity:.55}
+.hand{width:min(1100px,100%);aspect-ratio:2400/327;background:currentColor;-webkit-mask:url(/assets/mandami_quello_che_hai.png) left center/contain no-repeat;mask:url(/assets/mandami_quello_che_hai.png) left center/contain no-repeat;animation:write 4.2s cubic-bezier(.45,.05,.55,.95) both}
+.paper .hand{color:#1d2344}
+@keyframes write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.links{display:flex;gap:28px;font-size:20px}.links a{color:inherit;border-bottom:1px solid currentColor;padding-bottom:3px;text-decoration:none}
+button{all:unset;cursor:pointer;font:12px "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor;padding:6px 10px;align-self:flex-start;opacity:.7}
+</style></head><body>
+<section class="p"><div class="lab">1 · Sul nero, come nell'invito finale della home</div><div class="hand" role="img" aria-label="Mandami quello che hai, ti dico se dentro c'è un film"></div><div class="links"><a href="mailto:alexdallolio@alexdallolio.com">Scrivimi →</a><a href="https://calendly.com/alexdallolio">Prenota una call ↗</a></div><button onclick="replay()">↻ Riscrivi</button></section>
+<section class="p paper"><div class="lab">2 · Sulla carta, come nella stanza</div><div class="hand" role="img" aria-label="Mandami quello che hai, ti dico se dentro c'è un film"></div><button onclick="replay()">↻ Riscrivi</button></section>
+<script>function replay(){document.querySelectorAll('.hand').forEach(h=>{h.style.animation='none';h.offsetWidth;h.style.animation=''})}</script>
+</body></html>
