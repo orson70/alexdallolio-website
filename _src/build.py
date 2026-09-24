@@ -275,7 +275,7 @@ def render_landing(key: str, lang: str) -> str:
             {"@type": "ListItem", "position": 1, "name": "Alex Dallolio", "item": SITE + home},
             {"@type": "ListItem", "position": 2, "name": d["crumb"], "item": url}]},
     ]
-    if key in ("archive", "ai"):
+    if key in ("archive", "ai", "fashion"):
         graph.append({"@type": "Service", "name": d["crumb"], "description": d["description"],
                       "provider": {"@id": SITE + "/#person"},
                       "areaServed": "Worldwide", "url": url})

@@ -325,6 +325,95 @@ PAGES = {
         },
     },
     # ─────────────────────────────────────────────────────────────
+    "fashion": {
+        "it": {
+            "path": "/it/fashion-film.html",
+            "title": "Fashion film a Milano: regia per moda e lusso | Alex Dallolio",
+            "description": "Fashion film e campagne per Prada, Canali, Chopard, Luisa Spagnoli, FILA. Regia a Milano, sul set o con l'AI generativa.",
+            "crumb": "Fashion film",
+            "label": "Fashion film · Moda · Lusso",
+            "h1": "Fashion film.<br>La collezione, <em>in movimento.</em>",
+            "lede": "Giro fashion film e campagne per la moda e il lusso: Prada, Canali, Chopard, Luisa Spagnoli, Cromia, John Richmond. Per FILA FW26 ho messo il set e l'AI generativa nella stessa collezione.",
+            "sections": [
+                ("prose", "Come lavoro", """
+<p>Un fashion film non è un catalogo che si muove. Parte da un'idea sulla collezione: un gesto, una luce, un ritmo. Casting, set, montaggio e musica servono a quell'idea.</p>
+<p>Giro sul set quando il capo va visto addosso, toccato, fatto muovere. Uso l'AI generativa quando serve un luogo che non esiste o un'immagine che nessuna produzione potrebbe permettersi. Spesso le due strade stanno nello stesso progetto.</p>
+"""),
+                ("films", "Fashion film e campagne", [
+                    {"yt": "YVLem2cHfoc", "t": "Hands", "s": "Canali · Director's cut"},
+                    {"yt": "Z3IW1Piynhc", "t": "Canali Mood", "s": "Canali · Fashion film"},
+                    {"yt": "xv2S2flaYJQ", "t": "Chopard", "s": "Fashion spot"},
+                    {"yt": "fA3pBdKnWbo", "t": "Prada Canali", "s": "Fashion film"},
+                    {"yt": "nQpwJ2VzS6w", "t": "Luisa Spagnoli", "s": "Campagna Primavera Estate · Director's cut"},
+                    {"yt": "1C1ICMJcdVk", "t": "Cromia", "s": "Campagna Autunno Inverno"},
+                    {"yt": "RhJl57UGFbg", "t": "John Richmond", "s": "Spot profumo"},
+                    {"yt": "sRMixFeTOKM", "t": "Perfetti Manichini", "s": "Bonaveri"},
+                ]),
+                ("films", "FILA FW26 · Milano Fashion Week", [
+                    {"ig": "DXgtfvYBFMP", "t": "FILA FW26", "s": "Pubblicato da FILA sul profilo ufficiale @fila_global"},
+                    {"ig": "DYHmdXQOWYZ", "t": "FILA FW26 · Milano Fashion Week", "s": "Pubblicato da FILA Japan @fila_japan_official"},
+                ]),
+                ("prose", "Dal set all'AI", """
+<p>Per FILA FW26 ho fatto cinque fashion film: tre girati sul set, due generati con l'AI, con lo stesso sguardo. <a href="/it/fila-fashion-film.html">Il caso FILA →</a></p>
+<p>Gli esperimenti più liberi, moda compresa, sono nel <a href="/it/ai-films.html">Taccuino</a>.</p>
+"""),
+                ("faq", "Domande frequenti", [
+                    ("Giri anche sul set?",
+                     "Sì. Molti dei miei fashion film sono girati sul set, con troupe, casting e luci. L'AI entra quando serve qualcosa che il set non può dare."),
+                    ("Lavori con le agenzie o direttamente con i brand?",
+                     "Con entrambi. Ho lavorato con agenzie come DLV, Young &amp; Rubicam, JWT, Leo Burnett e Armando Testa, e direttamente con i brand."),
+                    ("Posso avere anche le versioni per i social?",
+                     "Sì. Dallo stesso materiale si ricavano il film principale e le versioni brevi e verticali."),
+                    ("Come si comincia?",
+                     "Raccontami la collezione e mandami moodboard, lookbook o immagini di campagna. Partiamo da lì."),
+                ]),
+            ],
+        },
+        "en": {
+            "path": "/fashion-films.html",
+            "title": "Fashion Films in Milan, Fashion and Luxury | Alex Dallolio",
+            "description": "Fashion films and campaigns for Prada, Canali, Chopard, Luisa Spagnoli, FILA. Directed in Milan, on set or with generative AI.",
+            "crumb": "Fashion films",
+            "label": "Fashion films · Fashion · Luxury",
+            "h1": "Fashion films.<br>The collection, <em>in motion.</em>",
+            "lede": "I direct fashion films and campaigns for fashion and luxury: Prada, Canali, Chopard, Luisa Spagnoli, Cromia, John Richmond. For FILA FW26 I brought the set and generative AI into the same collection.",
+            "sections": [
+                ("prose", "How I work", """
+<p>A fashion film is not a catalog that moves. It starts from an idea about the collection: a gesture, a light, a rhythm. Casting, set, editing and music all serve that idea.</p>
+<p>I shoot on set when a garment has to be seen on a body, touched, set in motion. I use generative AI when the film needs a place that does not exist, or an image no production could afford. Often both paths live in the same project.</p>
+"""),
+                ("films", "Fashion films and campaigns", [
+                    {"yt": "YVLem2cHfoc", "t": "Hands", "s": "Canali · Director's cut"},
+                    {"yt": "Z3IW1Piynhc", "t": "Canali Mood", "s": "Canali · Fashion film"},
+                    {"yt": "xv2S2flaYJQ", "t": "Chopard", "s": "Fashion spot"},
+                    {"yt": "fA3pBdKnWbo", "t": "Prada Canali", "s": "Fashion film"},
+                    {"yt": "nQpwJ2VzS6w", "t": "Luisa Spagnoli", "s": "Spring Summer campaign · Director's cut"},
+                    {"yt": "1C1ICMJcdVk", "t": "Cromia", "s": "Fall Winter campaign"},
+                    {"yt": "RhJl57UGFbg", "t": "John Richmond", "s": "Perfume commercial"},
+                    {"yt": "sRMixFeTOKM", "t": "Perfetti Manichini", "s": "Bonaveri"},
+                ]),
+                ("films", "FILA FW26 · Milan Fashion Week", [
+                    {"ig": "DXgtfvYBFMP", "t": "FILA FW26", "s": "Published by FILA on its official account @fila_global"},
+                    {"ig": "DYHmdXQOWYZ", "t": "FILA FW26 · Milan Fashion Week", "s": "Published by FILA Japan @fila_japan_official"},
+                ]),
+                ("prose", "From set to AI", """
+<p>For FILA FW26 I made five fashion films: three shot on set, two generated with AI, with the same eye. <a href="/fila-fashion-films.html">The FILA case →</a></p>
+<p>The freer experiments, fashion included, are in the <a href="/ai-films.html">Notebook</a>.</p>
+"""),
+                ("faq", "Frequently asked questions", [
+                    ("Do you also shoot on set?",
+                     "Yes. Many of my fashion films are shot on set, with a crew, casting and lighting. AI comes in when the film needs something a set cannot give."),
+                    ("Do you work with agencies or directly with brands?",
+                     "Both. I have worked with agencies such as DLV, Young &amp; Rubicam, JWT, Leo Burnett and Armando Testa, and directly with brands."),
+                    ("Can I also get versions for social media?",
+                     "Yes. The same material gives the main film plus short and vertical cuts."),
+                    ("How do we start?",
+                     "Tell me about the collection and send me a moodboard, lookbook or campaign images. We start from there."),
+                ]),
+            ],
+        },
+    },
+    # ─────────────────────────────────────────────────────────────
     # Reel da @alexdallolio_aifilms, aggiornati da ~/CLAUDE/SITO_ALEXDALLOLIO/sync_aifilms.py
     "aifilms": {
         "it": {
@@ -386,5 +475,6 @@ SHORT = {
     "ai": {"it": ("Servizio", "Video e brand film con l'AI"), "en": ("Service", "AI brand films")},
     "webuild": {"it": ("Caso studio", "Webuild, undici anni di film"), "en": ("Case study", "Webuild, eleven years of films")},
     "fila": {"it": ("Caso studio", "FILA FW26, set e AI"), "en": ("Case study", "FILA FW26, set and AI")},
+    "fashion": {"it": ("Servizio", "Fashion film"), "en": ("Service", "Fashion films")},
     "aifilms": {"it": ("Taccuino", "Taccuino. Appunti AI"), "en": ("Notebook", "Notebook. AI sketches")},
 }

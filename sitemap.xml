@@ -86,6 +86,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/fila-fashion-films.html"/>
   </url>
   <url>
+    <loc>https://www.alexdallolio.com/fashion-films.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alexdallolio.com/fashion-films.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.alexdallolio.com/it/fashion-film.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/fashion-films.html"/>
+  </url>
+  <url>
+    <loc>https://www.alexdallolio.com/it/fashion-film.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alexdallolio.com/fashion-films.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.alexdallolio.com/it/fashion-film.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/fashion-films.html"/>
+  </url>
+  <url>
     <loc>https://www.alexdallolio.com/ai-films.html</loc>
     <lastmod>2026-09-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.alexdallolio.com/ai-films.html"/>
