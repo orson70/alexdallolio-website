@@ -27,6 +27,8 @@ a{color:inherit;text-decoration:none}
 .top .tr{display:flex;gap:18px;align-items:center}
 #snd{all:unset;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);border:1px solid rgba(236,235,231,.25);padding:4px 8px}
 #snd[aria-pressed=true]{color:var(--sig);border-color:var(--sig)}
+#vu{display:inline-flex;gap:2px;align-items:flex-end;height:12px;margin-left:-10px}
+#vu i{display:block;width:2px;height:2px;background:var(--sig);opacity:.8}
 .doors{position:fixed;left:0;right:0;bottom:18px;z-index:6;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:0 16px;transition:opacity .6s}
 .doors span{color:var(--dim);margin-right:4px}
 .doors a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(236,235,231,.3);padding:8px 12px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);transition:border-color .2s,color .2s}
@@ -130,7 +132,7 @@ body.gl .offer-line{margin-top:58px}
 <div class="room"></div>
 <canvas id="cube" aria-hidden="true"></canvas>
 <video id="proj" src="/aifilms/DcUTu47R_im.mp4" muted loop playsinline autoplay preload="auto" style="display:none"></video>
-<div class="top mono"><a href="/it/">← Torna al sito</a><span class="tr"><button type="button" id="snd" aria-pressed="false">♪ Suono: no</button><a href="#porte">Le altre stanze ↓</a></span></div>
+<div class="top mono"><a href="/it/">← Torna al sito</a><span class="tr"><button type="button" id="snd" aria-pressed="false">♪ Suono: no</button><span id="vu" aria-hidden="true"><i></i><i></i><i></i><i></i></span><a href="#porte">Le altre stanze ↓</a></span></div>
 <div class="gesture-hint mono" id="ghint">Trascina lo spazio per girarlo · rotella per avvicinarti</div>
 <nav class="doors mono" id="porte" aria-label="Le altre stanze"><span>Le altre stanze</span><a href="/it/#film">La moviola</a><a href="/it/ai-films.html">Il taccuino</a><a href="/it/videos.html">Tutti i film</a><a href="/it/#contatti">Chi sono</a></nav>
 
@@ -215,6 +217,16 @@ const SOUND = (() => {
   function init() {
     ac = new (window.AudioContext || window.webkitAudioContext)();
     master = ac.createGain(); master.gain.value = 0; master.connect(ac.destination);
+    // indicatore di livello: si muove solo se esce davvero suono
+    const an = ac.createAnalyser(); an.fftSize = 256; master.connect(an);
+    const buf = new Float32Array(an.fftSize), bars = document.querySelectorAll('#vu i');
+    window.__stanzaAudio = { ac, master, an };
+    (function meter() {
+      an.getFloatTimeDomainData(buf); let rms = 0; for (const v of buf) rms += v * v; rms = Math.sqrt(rms / buf.length);
+      window.__stanzaAudio.rms = rms;
+      bars.forEach((b, i) => { b.style.height = Math.max(2, Math.min(12, rms * 90 * (1 + i * .35) * (0.6 + Math.random() * .6))) + 'px'; });
+      requestAnimationFrame(meter);
+    })();
     // ambiente: aria della stanza (rumore marrone filtrato che respira) + ronzio lontano
     const air = ac.createBufferSource(); air.buffer = noiseBuf(6, true); air.loop = true;
     const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1100;
@@ -235,7 +247,8 @@ const SOUND = (() => {
     if (!ac) return;
     ac.resume();
     master.gain.cancelScheduledValues(ac.currentTime);
-    master.gain.linearRampToValueAtTime(v ? .9 : 0, ac.currentTime + (v ? 1.5 : .4));
+    master.gain.setValueAtTime(master.gain.value, ac.currentTime);
+    master.gain.linearRampToValueAtTime(v ? .9 : 0, ac.currentTime + (v ? .8 : .3));
   }
   btn.addEventListener('click', () => set(!on));
   let want = true; try { want = localStorage.getItem('stanza-suono') !== '0'; } catch (e) {}
