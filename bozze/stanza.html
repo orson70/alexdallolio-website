@@ -24,6 +24,9 @@ a{color:inherit;text-decoration:none}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .top{position:fixed;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;z-index:5;color:var(--dim)}
 .top a:hover{color:var(--fg)}
+.top .tr{display:flex;gap:18px;align-items:center}
+#snd{all:unset;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);border:1px solid rgba(236,235,231,.25);padding:4px 8px}
+#snd[aria-pressed=true]{color:var(--sig);border-color:var(--sig)}
 .doors{position:fixed;left:0;right:0;bottom:18px;z-index:6;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:0 16px;transition:opacity .6s}
 .doors span{color:var(--dim);margin-right:4px}
 .doors a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(236,235,231,.3);padding:8px 12px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);transition:border-color .2s,color .2s}
@@ -126,7 +129,7 @@ body.gl .offer-line{margin-top:58px}
 <div class="room"></div>
 <canvas id="cube" aria-hidden="true"></canvas>
 <video id="proj" src="/aifilms/DcUTu47R_im.mp4" muted loop playsinline autoplay preload="auto" style="display:none"></video>
-<div class="top mono"><a href="/it/">← Torna al sito</a><a href="#porte">Le altre stanze ↓</a></div>
+<div class="top mono"><a href="/it/">← Torna al sito</a><span class="tr"><button type="button" id="snd" aria-pressed="false">♪ Suono: no</button><a href="#porte">Le altre stanze ↓</a></span></div>
 <div class="gesture-hint mono" id="ghint">Trascina lo spazio per girarlo · rotella per avvicinarti</div>
 <nav class="doors mono" id="porte" aria-label="Le altre stanze"><span>Le altre stanze</span><a href="/it/#film">La moviola</a><a href="/it/ai-films.html">Il taccuino</a><a href="/it/videos.html">Tutti i film</a><a href="/it/#contatti">Chi sono</a></nav>
 
@@ -199,6 +202,63 @@ body.gl .offer-line{margin-top:58px}
 </div>
 
 <script>
+// ── Suono: tutto generato dal vivo (Web Audio), parte solo se il visitatore lo accende ──
+const SOUND = (() => {
+  let ac = null, master = null, on = false, amb = null;
+  const btn = document.getElementById('snd');
+  function noiseBuf(sec, brown) {
+    const b = ac.createBuffer(1, ac.sampleRate * sec, ac.sampleRate), d = b.getChannelData(0); let last = 0;
+    for (let i = 0; i < d.length; i++) { const w = Math.random() * 2 - 1; d[i] = brown ? (last = (last + .02 * w) / 1.02) * 3.5 : w; }
+    return b;
+  }
+  function init() {
+    ac = new (window.AudioContext || window.webkitAudioContext)();
+    master = ac.createGain(); master.gain.value = 0; master.connect(ac.destination);
+    // ambiente: aria della stanza (rumore marrone filtrato che respira) + ronzio lontano
+    const air = ac.createBufferSource(); air.buffer = noiseBuf(6, true); air.loop = true;
+    const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 380;
+    const lfo = ac.createOscillator(), lg = ac.createGain(); lfo.frequency.value = .07; lg.gain.value = 140; lfo.connect(lg).connect(lp.frequency);
+    const ag = ac.createGain(); ag.gain.value = .22; air.connect(lp).connect(ag).connect(master);
+    const hum = ac.createOscillator(), hum2 = ac.createOscillator(), hg = ac.createGain();
+    hum.frequency.value = 55; hum2.frequency.value = 82.6; hum2.detune.value = 7; hg.gain.value = .018;
+    hum.connect(hg); hum2.connect(hg); hg.connect(master);
+    air.start(); lfo.start(); hum.start(); hum2.start();
+    amb = { ag, hg };
+  }
+  function set(v) {
+    on = v; btn.setAttribute('aria-pressed', v); btn.textContent = v ? '♪ Suono: sì' : '♪ Suono: no';
+    try { localStorage.setItem('stanza-suono', v ? '1' : '0'); } catch (e) {}
+    if (v && !ac) init();
+    if (!ac) return;
+    ac.resume();
+    master.gain.cancelScheduledValues(ac.currentTime);
+    master.gain.linearRampToValueAtTime(v ? .9 : 0, ac.currentTime + (v ? 1.5 : .4));
+  }
+  btn.addEventListener('click', () => set(!on));
+  let want = false; try { want = localStorage.getItem('stanza-suono') === '1'; } catch (e) {}
+  if (want) addEventListener('pointerdown', function first() { removeEventListener('pointerdown', first); set(true); }, { once: true });
+  const burst = (dur, f, q, gain, delay = 0) => {
+    if (!on || !ac) return;
+    const t = ac.currentTime + delay, src = ac.createBufferSource(); src.buffer = noiseBuf(dur + .05);
+    const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = f; bp.Q.value = q;
+    const g = ac.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(gain, t + .006); g.gain.exponentialRampToValueAtTime(.0005, t + dur);
+    src.connect(bp).connect(g).connect(master); src.start(t); src.stop(t + dur + .05);
+  };
+  return {
+    pen(ch) { if (ch === ' ') return burst(.03, 1400, 1, .05); burst(.045 + Math.random() * .04, 3200 + Math.random() * 2200, 2.5 + Math.random() * 2, .16); },
+    rustle() { for (let i = 0; i < 9; i++) burst(.07 + Math.random() * .12, 1500 + Math.random() * 4500, 1.2, .12 + Math.random() * .1, i * .07 + Math.random() * .04); },
+    swell() {
+      if (!on || !ac) return;
+      const t = ac.currentTime + .6;
+      [220, 277.2, 329.6, 440].forEach((f, i) => {
+        const o = ac.createOscillator(), g = ac.createGain(); o.type = i % 2 ? 'triangle' : 'sine'; o.frequency.value = f; o.detune.value = (Math.random() - .5) * 8;
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.035, t + 1.6); g.gain.linearRampToValueAtTime(0, t + 5.5);
+        o.connect(g).connect(master); o.start(t); o.stop(t + 5.6);
+      });
+    },
+  };
+})();
+
 // ── Pannelli: invio diretto, senza aprire programmi di posta ──
 const POSTINO = 'https://stanza-postino.postino.workers.dev';
 let shownFilm = null;   // il film che la stanza ha mostrato, va nella mail
@@ -462,7 +522,7 @@ function render(prev, next) {
   }
   done.classList.toggle('on', next.trim().length > 2);
 }
-input.addEventListener('input', () => { const n = input.value.slice(0, 600); render(text, n); text = n; input.value = n; window.PAPER?.setText(n); window.PAPER?.kick(); cube.kick = Math.min(cube.kick + .35, 1.2); sheetKick = Math.min(sheetKick + .6, 1.4); });
+input.addEventListener('input', () => { const n = input.value.slice(0, 600), added = n.length > text.length; render(text, n); text = n; input.value = n; window.PAPER?.setText(n); window.PAPER?.kick(); if (added) SOUND.pen(n.slice(-1)); cube.kick = Math.min(cube.kick + .35, 1.2); sheetKick = Math.min(sheetKick + .6, 1.4); });
 sheet.addEventListener('click', () => input.focus());
 addEventListener('keydown', e => {
   if (document.querySelector('.panel.open')) return;
@@ -510,7 +570,7 @@ function finish() {
   document.getElementById('prompt').style.opacity = 0;
   document.getElementById('offer').style.opacity = 0;
   document.body.classList.add('answering');
-  sheet.classList.add('fold'); window.PAPER?.fold();
+  sheet.classList.add('fold'); window.PAPER?.fold(); SOUND.rustle(); SOUND.swell();
   cube.openT = 1; cube.target = 1.25; cube.kick = 1;
   const r = pick(text);
   shownFilm = { code: r.code, caption: r.caption };
@@ -524,6 +584,7 @@ function finish() {
 }
 done.addEventListener('click', finish);
 document.getElementById('back').onclick = () => {
+  SOUND.rustle();
   document.getElementById('answer').classList.remove('on');
   document.getElementById('film').innerHTML = '';
   cube.openT = 0; cube.target = 1;

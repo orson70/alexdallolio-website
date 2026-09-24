@@ -384,6 +384,7 @@ def restyle(src: str, lang: str) -> str:
     src = re.sub(r"(<nav>\s*<a [^>]*class=\"logo\"[^>]*>[^<]*</a>\s*)<ul>.*?</ul>", lambda m: m.group(1) + nav_ul, src, count=1, flags=re.S)
     src = src.replace('<meta name="theme-color" content="#0d0c0b">', '<meta name="theme-color" content="#000000">')
     css = (SRC / "nuovo.css").read_text()
+    src = src.replace("</body>", '<script src="/assets/scrivimi.js" defer></script>\n</body>', 1)
     return src.replace("</head>", f"{NUOVO_FONTS}\n<style>\n{css}</style>\n</head>", 1)
 
 
