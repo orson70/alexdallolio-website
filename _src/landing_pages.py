@@ -335,6 +335,7 @@ PAGES = {
                 ("reels", "Tutti gli appunti"),
                 ("prose", "Seguili su Instagram", """
 <p>Ogni film esce prima su <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>. Se ti interessa come l'AI può entrare nei film della tua azienda, <a href="/it/video-aziendali-ai.html">qui spiego come lavoro</a>.</p>
+<p><a href="/bozze/stanza.html">Entra nella stanza →</a> Scrivi un pensiero a mano, ti risponde un film del taccuino.</p>
 """),
             ],
         },
@@ -350,6 +351,7 @@ PAGES = {
                 ("reels", "All sketches"),
                 ("prose", "Follow on Instagram", """
 <p>Every film comes out first on <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>. If you are curious how AI can work in your company's films, <a href="/ai-brand-films.html">here is how I work</a>.</p>
+<p><a href="/bozze/stanza.html">Enter the room →</a> Write a thought by hand, a film from the notebook answers.</p>
 """),
             ],
         },
