@@ -170,7 +170,8 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
 
 <script>
 // ── Pannelli: invio diretto, senza aprire programmi di posta ──
-const FORM_URL = 'https://formsubmit.co/ajax/alexdallolio@alexdallolio.com';
+const POSTINO = 'https://stanza-postino.postino.workers.dev';
+let shownFilm = null;   // il film che la stanza ha mostrato, va nella mail
 document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => {
   const p = document.getElementById(b.dataset.open);
   const ta = p.querySelector('textarea');
@@ -190,15 +191,16 @@ document.querySelectorAll('.panel form').forEach(f => f.addEventListener('submit
   const data = Object.fromEntries(new FormData(f).entries());
   if (data._honey) return;
   const kind = f.dataset.kind;
-  data._subject = kind === 'commission' ? `Opera unica dalla stanza: ${data.livello}` : 'Un foglio dalla stanza';
-  data._template = 'box';
-  if (data.email) data._replyto = data.email;
+  data.kind = kind;
+  if (shownFilm) data.film = shownFilm;
   btn.disabled = true; msg.textContent = 'Invio…';
   try {
-    const r = await fetch(FORM_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+    const r = await fetch(POSTINO, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     const j = await r.json().catch(() => ({}));
-    if (!r.ok || j.success === 'false' || j.success === false) throw new Error(j.message || r.status);
-    msg.textContent = kind === 'commission' ? 'Ricevuto. Lo leggo e ti rispondo io.' : 'Arrivato. Grazie.';
+    if (!r.ok || !j.ok) throw new Error(j.error || r.status);
+    msg.textContent = kind === 'commission'
+      ? (data.email ? 'Ricevuto. Ti ho mandato una copia del tuo sogno: lo leggo e ti rispondo io.' : 'Ricevuto. Lo leggo e ti rispondo io.')
+      : (data.email ? 'Arrivato. Ti ho mandato una copia del tuo foglio.' : 'Arrivato. Grazie.');
     f.querySelectorAll('input,textarea').forEach(i => { if (i.type !== 'radio') i.disabled = true; });
   } catch (err) {
     btn.disabled = false;
@@ -328,6 +330,7 @@ function finish() {
   sheet.classList.add('fold');
   cube.openT = 1; cube.target = 1.25; cube.kick = 1;
   const r = pick(text);
+  shownFilm = { code: r.code, caption: r.caption };
   document.getElementById('yours').textContent = '«' + text.trim() + '»';
   const film = document.getElementById('film');
   film.innerHTML = `<video src="/aifilms/${r.code}.mp4" poster="/aifilms/${r.code}.jpg" autoplay muted loop playsinline></video>`;
