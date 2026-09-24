@@ -177,6 +177,30 @@ import landing_pages as LP  # noqa: E402
 import home_texts  # noqa: E402,F401
 
 
+# Didascalie del Taccuino: vengono da Instagram così come sono; qui si correggono i refusi
+# solo sul sito (il sync le riscrive, questa lista le ripulisce a ogni build)
+CAPTION_FIX = [
+    (r"\bforniture\b", "furniture"), (r"\bcastel\b", "castle"), (r"\bawaking\b", "awakening"),
+    (r"video extract Dell ala music video\s*,\s*realized 2024", "from the Dell Ala music video, 2024"),
+    (r"\s+,", ","), (r",(?=\S)", ", "), (r",\s*,", ","), (r"\bfake beach fake\b", "fake beach, fake"),
+    (r"\bfake studio fake\b", "fake studio, fake"), (r"\bFake Location Fashion series 2\b", "Fake Location. Fashion series 2"),
+]
+
+
+def fix_caption(t: str) -> str:
+    for a, b in CAPTION_FIX:
+        t = re.sub(a, b, t or "")
+    return t
+
+
+def load_reels() -> list:
+    db = SRC / "aifilms.json"
+    reels = json.loads(db.read_text()) if db.exists() else []
+    for r in reels:
+        r["caption"] = fix_caption(r.get("caption", ""))
+    return [r for r in reels if not r.get("hide")]
+
+
 YT_DATES = dict((m[1], m[0]) for m in re.findall(
     r'"uploadDate": "([^"]+)", "embedUrl": "https://www.youtube.com/embed/([^"]+)"', (SRC / "videos.template.html").read_text()))
 
@@ -217,10 +241,8 @@ def render_landing(key: str, lang: str) -> str:
                                    "embedUrl": f'https://www.youtube.com/embed/{f["yt"]}',
                                    "uploadDate": YT_DATES.get(f["yt"], "2026-04-29T12:00:00Z")})
         elif kind == "reels":
-            db_path = SRC / "aifilms.json"
-            reels = json.loads(db_path.read_text()) if db_path.exists() else []
             tiles = []
-            for r in (r for r in reels if not r.get("hide")):
+            for r in load_reels():
                 cap = html.escape(r["caption"] or "AI film")
                 short = cap if len(cap) < 90 else cap[:88].rsplit(" ", 1)[0] + "…"
                 tiles.append(
@@ -461,7 +483,7 @@ def main():
     db = SRC / "aifilms.json"
     if db.exists():
         (ROOT / "aifilms").mkdir(exist_ok=True)
-        (ROOT / "aifilms" / "reels.json").write_text(json.dumps([r for r in json.loads(db.read_text()) if not r.get("hide")], ensure_ascii=False, indent=1))
+        (ROOT / "aifilms" / "reels.json").write_text(json.dumps(load_reels(), ensure_ascii=False, indent=1))
 
 
 if __name__ == "__main__":

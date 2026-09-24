@@ -108,13 +108,14 @@ a{color:inherit;text-decoration:none}
 
 /* 1 · APERTURA: una riga sola */
 .open{height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 16px;position:relative}
-.open h1{font-family:var(--sans);font-weight:900;font-size:clamp(48px,9.4vw,168px);line-height:.92;letter-spacing:-.032em;word-spacing:.04em;max-width:12ch}
-.open p{font-family:var(--sans);font-weight:400;font-size:clamp(20px,2.4vw,34px);color:#bdb9b2;margin-top:22px;max-width:26ch;line-height:1.2}
-.open .foot{position:absolute;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;color:var(--dim)}
+.open .h1{font-family:var(--sans);font-weight:900;font-size:clamp(48px,9.4vw,168px);line-height:.92;letter-spacing:-.032em;word-spacing:.04em;max-width:12ch}
+.open p:not(.h1){font-family:var(--sans);font-weight:400;font-size:clamp(20px,2.4vw,34px);color:#bdb9b2;margin-top:22px;max-width:26ch;line-height:1.2}
+.open .foot{gap:16px;align-items:end;position:absolute;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;color:var(--dim)}
+.open .foot .role{font:inherit;letter-spacing:inherit;text-transform:inherit;margin:0;text-align:left}
 .open .foot span:last-child{animation:nudge 2s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateY(4px)}}
 .fade{opacity:0;animation:in 1.6s ease forwards}
-.open h1.fade{opacity:1;animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
+.open .h1.fade{opacity:1;animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
 @keyframes rise{from{transform:translateY(.12em)}}
 .fade.d2{animation-delay:1.1s}.fade.d3{animation-delay:2.2s}
 @keyframes in{to{opacity:1}}
@@ -196,8 +197,8 @@ a{color:inherit;text-decoration:none}
 #ig-lb button{position:absolute;top:12px;right:18px;background:none;border:0;color:#fff;font-size:36px;cursor:pointer}
 
 /* accenti: corsivo serif dentro i titoli pesanti */
-.open h1 em,.ig-head h2 em,.who h2 em,.cta2 h2 em{font-family:var(--sans);font-weight:900;font-style:normal}
-.open h1 em{color:var(--sig)}
+.open .h1 em,.ig-head h2 em,.who h2 em,.cta2 h2 em{font-family:var(--sans);font-weight:900;font-style:normal}
+.open .h1 em{color:var(--sig)}
 /* invito finale */
 .cta2{padding:16vh 24px 12vh;border-top:1px solid var(--line)}
 .cta2 h2{font-family:var(--sans);font-weight:900;font-size:clamp(40px,6.4vw,110px);line-height:.95;letter-spacing:-.03em;word-spacing:.05em;max-width:16ch}
@@ -243,7 +244,8 @@ a{color:inherit;text-decoration:none}
   .ig-head{padding:0 16px 24px}.ig-row{padding:0 16px;scroll-padding:0 16px}
   .ig-nav{display:none}
 }
-@media (prefers-reduced-motion:reduce){.frame .grain,.fade,.open .foot span:last-child{animation:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.frame .grain,.fade,.open .foot .role{font:inherit;letter-spacing:inherit;text-transform:inherit;margin:0;text-align:left}
+.open .foot span:last-child{animation:none;opacity:1}}
 </style>
 </head>
 <body>
@@ -252,9 +254,9 @@ a{color:inherit;text-decoration:none}
 <a class="lng mono" href="/" hreflang="en">EN</a>
 
 <header class="open">
-  <h1 class="fade">Non tutto va <em>girato.</em></h1>
+  <p class="h1 fade">Non tutto va <em>girato.</em></p>
   <p class="fade d2">Giro quello che serve. Il resto esiste già, o lo creo con l'AI.</p>
-  <div class="foot mono fade d3"><span>Alex Dallolio · Regista · Milano</span><span>Scorri ↓</span></div>
+  <div class="foot mono fade d3"><h1 class="role">Alex Dallolio · Regista di video aziendali e brand film · Milano</h1><span>Scorri ↓</span></div>
 </header>
 
 <section class="reel" id="film">
