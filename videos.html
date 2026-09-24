@@ -111,6 +111,13 @@ nav ul a:hover { color: var(--white); }
 .page-header h1 { font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 200; letter-spacing: -0.02em; line-height: 1.1; }
 .page-header h1 em { font-style: italic; color: var(--accent); }
 .page-header-meta { margin-top: 1.2rem; font-size: 0.82rem; color: var(--grey); }
+.page-intro { margin-top: 1.4rem; max-width: 62ch; font-size: 1rem; line-height: 1.65; color: var(--soft); }
+.page-more { padding: 3rem 3rem 4rem; border-top: 1px solid var(--line); }
+.page-more h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1rem; }
+.page-more p { line-height: 2; color: var(--soft); }
+.page-more a { color: var(--white); text-decoration: none; border-bottom: 1px solid var(--line); }
+.page-more a:hover { color: #d4ff3a; border-color: #d4ff3a; }
+@media (max-width: 768px) { .page-more { padding: 2rem 1.5rem 3rem; } }
 
 /* ── FILTER BAR ── */
 .filter-bar {
@@ -214,7 +221,8 @@ footer a:hover { color: var(--accent); }
 }
 @media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/inter-tight-900.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/inter-tight-400.woff2) format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/inter-tight-500.woff2) format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fonts/inter-tight-900.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-400.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-500.woff2) format('woff2')}</style>
 <style>
 /* Stile "nuovo" sopra le pagine interne (applicato da build.py solo con HOME_STYLE = "nuovo") */
 :root{--bg:#000;--bg2:#0c0c0c;--white:#ecebe7;--grey:#8a867f;--soft:#bdb9b2;--accent:#d4ff3a;--line:rgba(236,235,231,.14);
@@ -282,6 +290,7 @@ nav .logo{display:inline-flex}
   <div class="section-label" data-i18n="label">Archive</div>
   <h1 data-i18n-html="title">All <em>films</em></h1>
   <p class="page-header-meta" data-i18n-html="meta">30 films. Direction, concept and edit</p>
+  <p class="page-intro" data-i18n-html="intro">The complete archive: corporate films and documentaries for Webuild, fashion films and campaigns for Prada, Canali, Chopard and Luisa Spagnoli, commercials, music videos, installations and the first films made with generative AI. Use the filters to pick a genre, click a film to watch it.</p>
 </div>
 
 <!-- FILTER BAR -->
@@ -308,7 +317,7 @@ nav .logo{display:inline-flex}
 
   <div class="video-card" data-cat="fashion" onclick="openLb('xv2S2flaYJQ','Fashion Spot: Chopard')">
     <div class="thumb-wrap"><img src="https://img.youtube.com/vi/xv2S2flaYJQ/mqdefault.jpg" alt="Chopard" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
-    <div class="video-info"><div class="video-title">Fashion Spot</div><div class="video-tag">Chopard</div></div>
+    <div class="video-info"><div class="video-title">Chopard</div><div class="video-tag">Fashion spot</div></div>
   </div>
 
   <div class="video-card" data-cat="ai" onclick="openLb('r0N34NuRFZc','WAKE UP!')">
@@ -458,6 +467,8 @@ nav .logo{display:inline-flex}
     <div class="lb-title" id="lb-title"></div>
   </div>
 </div>
+
+<section class="page-more" data-i18n-html="more"><h2>Where to start</h2><p><a href="/corporate-films-from-existing-footage.html">Corporate films from existing footage</a> · <a href="/ai-brand-films.html">AI brand films</a> · <a href="/fashion-films.html">Fashion films</a> · <a href="/webuild-case-study.html">Webuild, eleven years of films</a> · <a href="/fila-fashion-films.html">FILA FW26</a> · <a href="/ai-films.html">Notebook</a></p></section>
 
 <footer>
   <p>&copy; 2026 Alex Dallolio. All rights reserved.</p>

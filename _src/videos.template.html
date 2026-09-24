@@ -108,6 +108,13 @@ nav ul a:hover { color: var(--white); }
 .page-header h1 { font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 200; letter-spacing: -0.02em; line-height: 1.1; }
 .page-header h1 em { font-style: italic; color: var(--accent); }
 .page-header-meta { margin-top: 1.2rem; font-size: 0.82rem; color: var(--grey); }
+.page-intro { margin-top: 1.4rem; max-width: 62ch; font-size: 1rem; line-height: 1.65; color: var(--soft); }
+.page-more { padding: 3rem 3rem 4rem; border-top: 1px solid var(--line); }
+.page-more h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1rem; }
+.page-more p { line-height: 2; color: var(--soft); }
+.page-more a { color: var(--white); text-decoration: none; border-bottom: 1px solid var(--line); }
+.page-more a:hover { color: #d4ff3a; border-color: #d4ff3a; }
+@media (max-width: 768px) { .page-more { padding: 2rem 1.5rem 3rem; } }
 
 /* ── FILTER BAR ── */
 .filter-bar {
@@ -234,6 +241,7 @@ footer a:hover { color: var(--accent); }
   <div class="section-label" data-i18n="label">Archive</div>
   <h1 data-i18n-html="title">All <em>Work</em></h1>
   <p class="page-header-meta" data-i18n-html="meta">30 films: Direction, Concept &amp; Edit</p>
+  <p class="page-intro" data-i18n-html="intro"></p>
 </div>
 
 <!-- FILTER BAR -->
@@ -260,7 +268,7 @@ footer a:hover { color: var(--accent); }
 
   <div class="video-card" data-cat="fashion" onclick="openLb('xv2S2flaYJQ','Fashion Spot: Chopard')">
     <div class="thumb-wrap"><img src="https://img.youtube.com/vi/xv2S2flaYJQ/mqdefault.jpg" alt="Chopard" loading="lazy"><div class="thumb-overlay"></div><div class="play-icon"></div></div>
-    <div class="video-info"><div class="video-title">Fashion Spot</div><div class="video-tag">Chopard</div></div>
+    <div class="video-info"><div class="video-title">Chopard</div><div class="video-tag">Fashion spot</div></div>
   </div>
 
   <div class="video-card" data-cat="ai" onclick="openLb('r0N34NuRFZc','WAKE UP!')">
@@ -411,6 +419,8 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
+<section class="page-more" data-i18n-html="more"></section>
+
 <footer>
   <p>&copy; 2026 Alex Dallolio. All rights reserved.</p>
   <p>
@@ -434,7 +444,9 @@ const T = {
     meta: "30 films. Direction, concept and edit",
     filter_all: "All", filter_corp: "Corporate", filter_fashion: "Fashion",
     filter_doc: "Documentary", filter_ai: "AI & Concept",
-    close: "✕ Close"
+    close: "✕ Close",
+    intro: "The complete archive: corporate films and documentaries for Webuild, fashion films and campaigns for Prada, Canali, Chopard and Luisa Spagnoli, commercials, music videos, installations and the first films made with generative AI. Use the filters to pick a genre, click a film to watch it.",
+    more: "<h2>Where to start</h2><p><a href=\"/corporate-films-from-existing-footage.html\">Corporate films from existing footage</a> · <a href=\"/ai-brand-films.html\">AI brand films</a> · <a href=\"/fashion-films.html\">Fashion films</a> · <a href=\"/webuild-case-study.html\">Webuild, eleven years of films</a> · <a href=\"/fila-fashion-films.html\">FILA FW26</a> · <a href=\"/ai-films.html\">Notebook</a></p>"
   },
   it: {
     nav_work: "Lavori", nav_approach: "Metodo", nav_clients: "Clienti", nav_contact: "Contatti",
@@ -443,7 +455,9 @@ const T = {
     meta: "30 film. Regia, concept e montaggio",
     filter_all: "Tutti", filter_corp: "Corporate", filter_fashion: "Moda",
     filter_doc: "Documentario", filter_ai: "AI & Concept",
-    close: "✕ Chiudi"
+    close: "✕ Chiudi",
+    intro: "L'archivio completo: video aziendali e documentari per Webuild, fashion film e campagne per Prada, Canali, Chopard e Luisa Spagnoli, spot, videoclip, installazioni e i primi film fatti con l'AI generativa. Usa i filtri per scegliere un genere, clicca un film per guardarlo.",
+    more: "<h2>Da dove partire</h2><p><a href=\"/it/video-aziendali-da-archivio.html\">Video aziendali da archivio</a> · <a href=\"/it/video-aziendali-ai.html\">Video aziendali con l'AI</a> · <a href=\"/it/fashion-film.html\">Fashion film</a> · <a href=\"/it/webuild-caso-studio.html\">Webuild, undici anni di film</a> · <a href=\"/it/fila-fashion-film.html\">FILA FW26</a> · <a href=\"/it/ai-films.html\">Taccuino</a></p>"
   }
 };
 

@@ -218,6 +218,20 @@ def film_html(f: dict) -> str:
             f'style="background-image:url(https://i.ytimg.com/vi/{yt}/hqdefault.jpg)"></button>{cap}</div>')
 
 
+def page_og_image(d: dict) -> str:
+    """Anteprima social: il primo film della pagina (YouTube) o il primo reel del Taccuino."""
+    for sec in d["sections"]:
+        if sec[0] == "films":
+            for f in sec[2]:
+                if "yt" in f:
+                    return f"https://i.ytimg.com/vi/{f['yt']}/maxresdefault.jpg"
+        if sec[0] == "reels":
+            r = load_reels()
+            if r:
+                return f"{SITE}/aifilms/{r[0]['code']}.jpg"
+    return SITE + "/og-image.jpg"
+
+
 def render_landing(key: str, lang: str) -> str:
     d = LP.PAGES[key][lang]
     ui = LP.UI[lang]
@@ -294,7 +308,7 @@ def render_landing(key: str, lang: str) -> str:
 
     vals = {
         "lang": lang, "title": e(d["title"]), "description": e(d["description"]), "canonical": url,
-        "hreflang": alts, "og_image": SITE + "/og-image.jpg", "og_locale": "it_IT" if lang == "it" else "en_US",
+        "hreflang": alts, "og_image": page_og_image(d), "og_locale": "it_IT" if lang == "it" else "en_US",
         "jsonld": jsonld, "home": home, "videos": PAGES["videos"][lang]["path"],
         "nav_work": ui["nav_work"], "nav_all": ui["nav_all"], "nav_contact": ui["nav_contact"],
         "lang_links": lang_links, "crumb": d["crumb"], "label": d["label"], "h1": d["h1"], "lede": d["lede"],
@@ -418,8 +432,7 @@ def noindex(src: str, lang: str, base: str) -> str:
     return src
 
 
-NUOVO_FONTS = ('<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;900'
-               '&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">')
+NUOVO_FONTS = '<link rel="preload" href="/assets/fonts/inter-tight-900.woff2" as="font" type="font/woff2" crossorigin>\n<style>@font-face{font-family:\'Inter Tight\';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/inter-tight-400.woff2) format(\'woff2\')}@font-face{font-family:\'Inter Tight\';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/inter-tight-500.woff2) format(\'woff2\')}@font-face{font-family:\'Inter Tight\';font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fonts/inter-tight-900.woff2) format(\'woff2\')}@font-face{font-family:\'IBM Plex Mono\';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-400.woff2) format(\'woff2\')}@font-face{font-family:\'IBM Plex Mono\';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-500.woff2) format(\'woff2\')}</style>'
 NAV_NUOVO = {"it": ("Film", "Tutti i film", "Taccuino", "Stanza", "Contatti"), "en": ("Films", "All films", "Notebook", "Room", "Contact")}
 
 
@@ -440,6 +453,7 @@ def restyle(src: str, lang: str) -> str:
               f'    <li><a href="{home}#contatti">{d}</a></li>\n  </ul>')
     src = re.sub(r"(<nav>\s*<a [^>]*class=\"logo\"[^>]*>[^<]*</a>\s*)<ul>.*?</ul>", lambda m: m.group(1) + nav_ul, src, count=1, flags=re.S)
     src = re.sub(r'<link href="https://fonts.googleapis.com/css2\?family=Bodoni[^>]*>\n?', "", src)
+    src = re.sub(r'<link rel="preconnect" href="https://fonts.(googleapis|gstatic).com"[^>]*>\n?', "", src)
     src = re.sub(r'(<a href="[^"]*" class="logo")>Alex Dallolio</a>', lambda m: m.group(1) + ' aria-label="Alex Dallolio">' + BRAND + '</a>', src, count=1)
     src = src.replace("200,184,154", "236,235,231").replace("#c8b89a", "#d4ff3a")
     src = src.replace('<meta name="theme-color" content="#0d0c0b">', '<meta name="theme-color" content="#000000">')
