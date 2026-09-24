@@ -24,3 +24,9 @@ nav ul a,.lang-btn{font-size:11px!important}
 .related a{border-radius:0!important}
 .related a:hover,.cta-links a:hover{border-color:var(--accent)!important}
 .cta h2 em{color:var(--accent)}
+/* menu compatto su telefono */
+@media (max-width:768px){
+  nav{padding:12px 16px!important;gap:6px!important}
+  nav ul{flex-wrap:wrap;gap:6px 14px!important}
+  nav ul a{white-space:nowrap}
+}

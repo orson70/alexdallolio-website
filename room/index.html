@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
-<title>La stanza | Alex Dallolio</title>
-<meta name="description" content="Scrivi un sogno o un pensiero: la tua scrittura compare a mano su un foglio, e ti risponde un film del taccuino di Alex Dallolio. Oppure diventa un film unico.">
-<link rel="canonical" href="https://www.alexdallolio.com/stanza/">
+<title>The room | Alex Dallolio</title>
+<meta name="description" content="Write a dream or a thought: your words appear by hand on a sheet of paper, and a film from Alex Dallolio's notebook answers. Or it becomes a one-of-a-kind film.">
+<link rel="canonical" href="https://www.alexdallolio.com/room/">
 <link rel="alternate" hreflang="it" href="https://www.alexdallolio.com/stanza/">
 <link rel="alternate" hreflang="en" href="https://www.alexdallolio.com/room/">
 <link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/room/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="La stanza · Alex Dallolio">
-<meta property="og:description" content="Scrivi un sogno. Ti risponde un film.">
+<meta property="og:title" content="The room · Alex Dallolio">
+<meta property="og:description" content="Write a dream. A film answers.">
 <meta property="og:image" content="https://www.alexdallolio.com/aifilms/DcUTu47R_im.jpg">
-<meta property="og:url" content="https://www.alexdallolio.com/stanza/">
+<meta property="og:url" content="https://www.alexdallolio.com/room/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter+Tight:wght@400;500;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -152,74 +152,74 @@ body.gl .offer-line{margin-top:58px}
 <div class="room"></div>
 <canvas id="cube" aria-hidden="true"></canvas>
 <video id="proj" data-src="/aifilms/DcUTu47R_im.mp4" muted loop playsinline preload="none" style="display:none"></video>
-<div class="top mono"><a href="/it/">← Torna al sito</a><span class="tr"><a class="lngs" href="/room/" hreflang="en">EN</a><button type="button" id="snd" aria-pressed="false">♪ Suono: no</button><span id="vu" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span></div>
-<div class="gesture-hint mono" id="ghint"><span class="g-mouse">Trascina lo spazio per girarlo · rotella per avvicinarti</span><span class="g-touch">Trascina col dito per girarlo · due dita per avvicinarti</span></div>
-<nav class="doors mono" id="porte" aria-label="Le altre stanze"><span>Le altre stanze</span><a href="/it/#film">La moviola</a><a href="/it/ai-films.html">Il taccuino</a><a href="/it/videos.html">Tutti i film</a><a href="/it/#chi">Chi sono</a></nav>
+<div class="top mono"><a href="/">← Back to the site</a><span class="tr"><a class="lngs" href="/stanza/" hreflang="it">IT</a><button type="button" id="snd" aria-pressed="false">♪ Sound: off</button><span id="vu" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span></div>
+<div class="gesture-hint mono" id="ghint"><span class="g-mouse">Drag the space to turn it · scroll to move closer</span><span class="g-touch">Drag with a finger to turn it · two fingers to move closer</span></div>
+<nav class="doors mono" id="porte" aria-label="The other rooms"><span>The other rooms</span><a href="/#film">The editing table</a><a href="/ai-films.html">The notebook</a><a href="/videos.html">All films</a><a href="/#chi">About me</a></nav>
 
 <div class="stage" id="stage">
-  <p class="prompt" id="prompt">Scrivi qualcosa. <span>Un sogno, un'idea, un pensiero.</span></p>
+  <p class="prompt" id="prompt">Write something. <span>A dream, an idea, a thought.</span></p>
   <div class="sheet-wrap" id="sw">
-  <div class="sheet" id="sheet" role="textbox" aria-label="Foglio: scrivi qui">
+  <div class="sheet" id="sheet" role="textbox" aria-label="Sheet: write here">
     <canvas class="paper" id="paper" aria-hidden="true"></canvas>
     <div class="writing" id="writing"><span class="caret" id="caret"></span></div>
-    <div class="hint"><span class="mono"><span class="g-mouse">Scrivi con la tastiera</span><span class="g-touch">Tocca il foglio per scrivere</span><span class="count" id="count"></span></span><button class="done" id="done" type="button">Fatto →</button></div>
+    <div class="hint"><span class="mono"><span class="g-mouse">Type on your keyboard</span><span class="g-touch">Tap the sheet to write</span><span class="count" id="count"></span></span><button class="done" id="done" type="button">Done →</button></div>
   </div>
   </div>
-  <p class="offer-line mono" id="offer">Hai un sogno da vedere? <button type="button" data-open="commission">Lo trasformo in un film unico, da 150 €</button></p>
+  <p class="offer-line mono" id="offer">Have a dream you want to see? <button type="button" data-open="commission">I turn it into a one-of-a-kind film, from €150</button></p>
 </div>
-<textarea id="in" maxlength="600" autocapitalize="sentences" autocomplete="off" spellcheck="false" aria-label="Scrivi qui"></textarea>
+<textarea id="in" maxlength="600" autocapitalize="sentences" autocomplete="off" spellcheck="false" aria-label="Write here"></textarea>
 
 <div class="answer" id="answer" aria-live="polite">
-  <button type="button" class="back mono" id="back">← Torna al foglio</button>
-  <div class="lbl mono">Dalle tue parole, un film del mio taccuino</div>
+  <button type="button" class="back mono" id="back">← Back to the sheet</button>
+  <div class="lbl mono">From your words, a film from my notebook</div>
   <div class="yours" id="yours"></div>
   <div class="film" id="film"></div>
   <div class="cap" id="cap"></div>
   <div class="acts">
-    <button type="button" class="primary" data-open="commission">Fanne un'opera unica · da 150 €</button>
-    <button type="button" data-open="note">Mandamelo</button>
-    <button type="button" id="again">Scrivi un altro foglio</button>
-    <a href="/it/#film">La moviola →</a>
+    <button type="button" class="primary" data-open="commission">Make it a one-of-a-kind film · from €150</button>
+    <button type="button" data-open="note">Send it to me</button>
+    <button type="button" id="again">Write another sheet</button>
+    <a href="/#film">The editing table →</a>
   </div>
 </div>
 
 <div class="panel" id="commission" role="dialog" aria-modal="true" aria-labelledby="c-t">
   <form class="box" data-kind="commission">
-    <button type="button" class="x" aria-label="Chiudi">×</button>
-    <button type="button" class="back2">← Indietro</button>
-    <h2 id="c-t">Un sogno, un film. <em>Opera unica.</em></h2>
-    <p>Un sogno, un ricordo, un'immagine che hai in testa e non puoi fotografare. Scrivimela: la trasformo in un film di una sola scena, da 10 a 20 secondi. Ogni film esiste in un solo esemplare ed è tuo. Nella versione Opera arriva con un certificato di unicità firmato a mano.</p>
+    <button type="button" class="x" aria-label="Close">×</button>
+    <button type="button" class="back2">← Back</button>
+    <h2 id="c-t">A dream, a film. <em>One of a kind.</em></h2>
+    <p>A dream, a memory, an image in your head that no camera can take. Write it to me: I turn it into a film of a single scene, 10 to 20 seconds long. Each film exists in one copy only, and it is yours. The Artwork version comes with a certificate of uniqueness, signed by hand.</p>
     <div class="tiers">
-      <label class="tier"><input type="radio" name="livello" value="Appunto, 150 €" required><b>150 €</b><span>Appunto</span><small>Una scena di 10 secondi</small></label>
-      <label class="tier"><input type="radio" name="livello" value="Scena, 250 €"><b>250 €</b><span>Scena</span><small>20 secondi, con suono</small></label>
-      <label class="tier"><input type="radio" name="livello" value="Opera, 350 €"><b>350 €</b><span>Opera</span><small>20 secondi, suono e certificato di unicità firmato a mano</small></label>
+      <label class="tier"><input type="radio" name="livello" value="Sketch, €150" required><b>€150</b><span>Sketch</span><small>A 10-second scene</small></label>
+      <label class="tier"><input type="radio" name="livello" value="Scene, €250"><b>€250</b><span>Scene</span><small>20 seconds, with sound</small></label>
+      <label class="tier"><input type="radio" name="livello" value="Artwork, €350"><b>€350</b><span>Artwork</span><small>20 seconds, sound and a hand-signed certificate of uniqueness</small></label>
     </div>
-    <label class="f" for="c-p">Il tuo sogno, o il tuo pensiero</label>
+    <label class="f" for="c-p">Your dream, or your thought</label>
     <textarea id="c-p" name="pensiero" required minlength="3" maxlength="2000"></textarea>
-    <label class="f" for="c-e">La tua email</label>
+    <label class="f" for="c-e">Your email</label>
     <input id="c-e" type="email" name="email" required autocomplete="email">
-    <label class="f" for="c-n">Nome (facoltativo)</label>
+    <label class="f" for="c-n">Name (optional)</label>
     <input id="c-n" type="text" name="nome" autocomplete="name">
     <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
-    <p class="small">Leggo ogni pensiero. Se ci vedo un film ti scrivo io con i tempi e il pagamento; se no, te lo dico. Paghi solo se accetto. Il film lo mostro nel mio taccuino solo se sei d'accordo. Uso la tua email solo per risponderti.</p>
-    <button type="submit" class="send">Manda il pensiero</button>
+    <p class="small">I read every thought. If I see a film in it, I write back with timing and payment; if not, I tell you. You only pay if I accept. I show the film in my notebook only if you agree. I use your email only to reply to you.</p>
+    <button type="submit" class="send">Send the thought</button>
     <div class="msg" aria-live="polite"></div>
   </form>
 </div>
 
 <div class="panel" id="note" role="dialog" aria-modal="true" aria-labelledby="n-t">
   <form class="box" data-kind="note">
-    <button type="button" class="x" aria-label="Chiudi">×</button>
-    <button type="button" class="back2">← Indietro</button>
-    <h2 id="n-t">Mandalo <em>a me.</em></h2>
-    <p>Un'idea, una domanda, un pensiero: arriva a me, così come l'hai scritto.</p>
-    <label class="f" for="n-p">Il tuo foglio</label>
+    <button type="button" class="x" aria-label="Close">×</button>
+    <button type="button" class="back2">← Back</button>
+    <h2 id="n-t">Send it <em>to me.</em></h2>
+    <p>An idea, a question, a thought: it reaches me just as you wrote it.</p>
+    <label class="f" for="n-p">Your sheet</label>
     <textarea id="n-p" name="pensiero" required minlength="3" maxlength="2000"></textarea>
-    <label class="f" for="n-e">La tua email (se vuoi una risposta)</label>
+    <label class="f" for="n-e">Your email (if you want a reply)</label>
     <input id="n-e" type="email" name="email" autocomplete="email">
     <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
-    <p class="small">Uso la tua email solo per risponderti.</p>
-    <button type="submit" class="send">Manda</button>
+    <p class="small">I use your email only to reply to you.</p>
+    <button type="submit" class="send">Send</button>
     <div class="msg" aria-live="polite"></div>
   </form>
 </div>
@@ -261,7 +261,7 @@ const SOUND = (() => {
     amb = { ag, hg };
   }
   function set(v) {
-    on = v; btn.setAttribute('aria-pressed', v); btn.textContent = v ? '♪ Suono: sì' : '♪ Suono: no';
+    on = v; btn.setAttribute('aria-pressed', v); btn.textContent = v ? '♪ Sound: on' : '♪ Sound: off';
     try { localStorage.setItem('stanza-suono', v ? '1' : '0'); } catch (e) {}
     if (v && !ac) init();
     if (!ac) return;
@@ -325,20 +325,20 @@ document.querySelectorAll('.panel form').forEach(f => f.addEventListener('submit
   const kind = f.dataset.kind;
   data.kind = kind; data.lang = document.documentElement.lang;
   if (shownFilm) data.film = shownFilm;
-  btn.disabled = true; msg.textContent = 'Invio…';
+  btn.disabled = true; msg.textContent = 'Sending…';
   try {
     const r = await fetch(POSTINO, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), signal: AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined });
     const j = await r.json().catch(() => ({}));
     if (!r.ok || !j.ok) { const er = new Error(j.error || r.status); er.status = r.status; throw er; }
     msg.textContent = kind === 'commission'
-      ? (data.email ? 'Ricevuto. Ti ho mandato una copia del tuo sogno: lo leggo e ti rispondo io.' : 'Ricevuto. Lo leggo e ti rispondo io.')
-      : (data.email ? 'Arrivato. Ti ho mandato una copia del tuo foglio.' : 'Arrivato. Grazie.');
+      ? (data.email ? 'Received. I sent you a copy of your dream: I will read it and write back.' : 'Received. I will read it and write back.')
+      : (data.email ? 'It arrived. I sent you a copy of your sheet.' : 'It arrived. Thank you.');
     f.querySelectorAll('input,textarea').forEach(i => { if (i.type !== 'radio') i.disabled = true; });
   } catch (err) {
     btn.disabled = false;
-    if (err.status === 429) { msg.textContent = 'Troppi invii ravvicinati. Riprova tra un minuto.'; return; }
-    if (err.status === 400) { msg.textContent = 'Controlla i campi: serve un testo di almeno tre lettere e un\'email valida.'; return; }
-    msg.innerHTML = 'Non è partito. Riprova, oppure scrivimi a <a href="mailto:alexdallolio@alexdallolio.com" style="color:var(--sig)">alexdallolio@alexdallolio.com</a>.';
+    if (err.status === 429) { msg.textContent = 'Too many messages in a row. Try again in a minute.'; return; }
+    if (err.status === 400) { msg.textContent = 'Check the fields: write at least three letters and a valid email.'; return; }
+    msg.innerHTML = 'It did not go through. Try again, or write to me at <a href="mailto:alexdallolio@alexdallolio.com" style="color:var(--sig)">alexdallolio@alexdallolio.com</a>.';
   }
 }));
 
@@ -634,7 +634,7 @@ function finish() {
   film.innerHTML = `<video src="/aifilms/${r.code}.mp4" poster="/aifilms/${r.code}.jpg" autoplay muted loop playsinline></video>`;
   film.onclick = () => openIG(r.code);
   film.style.cursor = 'pointer';
-  document.getElementById('cap').innerHTML = `${(r.caption || 'AI film').replace(/</g, '&lt;')} <span>· ${r.date.slice(8,10)}.${r.date.slice(5,7)}.${r.date.slice(0,4)} · clic per l'audio</span>`;
+  document.getElementById('cap').innerHTML = `${(r.caption || 'AI film').replace(/</g, '&lt;')} <span>· ${r.date.slice(8,10)}.${r.date.slice(5,7)}.${r.date.slice(0,4)} · click for sound</span>`;
   setTimeout(() => document.getElementById('answer').classList.add('on'), 500);
 }
 done.addEventListener('click', finish);
@@ -660,7 +660,7 @@ function openIG(code) {
   let lb = document.getElementById('ig-lb');
   if (!lb) {
     lb = document.createElement('div'); lb.id = 'ig-lb';
-    lb.innerHTML = '<button type="button" aria-label="Chiudi">×</button><iframe title="Instagram"></iframe>';
+    lb.innerHTML = '<button type="button" aria-label="Close">×</button><iframe title="Instagram"></iframe>';
     const close = () => { lb.classList.remove('open'); lb.querySelector('iframe').src = 'about:blank'; };
     lb.querySelector('button').onclick = close; lb.onclick = e => { if (e.target === lb) close(); };
     document.body.appendChild(lb);
@@ -669,6 +669,6 @@ function openIG(code) {
   lb.classList.add('open');
 }
 </script>
-<script type="module" src="foglio3d.js"></script>
+<script type="module" src="/stanza/foglio3d.js"></script>
 </body>
 </html>

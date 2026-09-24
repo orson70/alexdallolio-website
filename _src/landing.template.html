@@ -169,10 +169,16 @@ document.querySelectorAll('.film button[data-yt]').forEach(btn => {
 });
 // Reel: partono muti quando entrano nello schermo; clic = lettore Instagram con audio
 const reelVideos = document.querySelectorAll('.reel video');
-if (reelVideos.length && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+const saveData = navigator.connection && navigator.connection.saveData;
+if (reelVideos.length && !saveData && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  const one = matchMedia('(pointer: coarse)').matches;   // su telefono ne gira uno alla volta
   const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.preload = 'auto'; e.target.play().catch(() => {}); } else e.target.pause();
-  }), { threshold: 0.6 });
+    const v = e.target;
+    if (e.isIntersecting) {
+      if (one) reelVideos.forEach(o => { if (o !== v) o.pause(); });
+      v.preload = 'metadata'; v.play().catch(() => {});
+    } else v.pause();
+  }), { threshold: 0.75 });
   reelVideos.forEach(v => io.observe(v));
 }
 document.querySelectorAll('.reel button[data-ig]').forEach(btn => btn.addEventListener('click', () => {

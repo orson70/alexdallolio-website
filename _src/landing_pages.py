@@ -355,7 +355,7 @@ PAGES = {
                 ("reels", "All sketches"),
                 ("prose", "Follow on Instagram", """
 <p>Every film comes out first on <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>. If you are curious how AI can work in your company's films, <a href="/ai-brand-films.html">here is how I work</a>.</p>
-<p><a href="/stanza/">Enter the room →</a> Write a thought by hand and a film from the notebook answers.</p>
+<p><a href="/room/">Enter the room →</a> Write a thought by hand and a film from the notebook answers.</p>
 """),
             ],
         },

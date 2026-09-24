@@ -39,17 +39,17 @@ PAGES = {
     "videos": {
         "en": {
             "path": "/videos.html",
-            "title": "All Work: Alex Dallolio | Corporate, Fashion and AI Films",
-            "description": "30 films directed by Alex Dallolio for Webuild, Prada, Fila, Canali, Luisa Spagnoli and more: corporate, fashion, documentary and AI-driven cinematic work.",
-            "og_title": "All Work: Alex Dallolio",
-            "og_description": "30 brand films directed by Alex Dallolio for Webuild, Prada, Fila, Canali, Luisa Spagnoli and more.",
+            "title": "All films: Alex Dallolio | Corporate, Fashion and AI Films",
+            "description": "30 films directed by Alex Dallolio for Webuild, Prada, FILA, Canali, Luisa Spagnoli and more: corporate, fashion, documentary and AI-driven cinematic work.",
+            "og_title": "All films: Alex Dallolio",
+            "og_description": "30 brand films directed by Alex Dallolio for Webuild, Prada, FILA, Canali, Luisa Spagnoli and more.",
         },
         "it": {
             "path": "/it/videos.html",
-            "title": "Tutti i lavori: Alex Dallolio | Video aziendali, fashion film e AI",
-            "description": "30 film diretti da Alex Dallolio per Webuild, Prada, Fila, Canali, Luisa Spagnoli e altri: video aziendali, fashion film, documentari e lavori con l'AI generativa.",
-            "og_title": "Tutti i lavori: Alex Dallolio",
-            "og_description": "30 film diretti da Alex Dallolio per Webuild, Prada, Fila, Canali, Luisa Spagnoli e altri.",
+            "title": "Tutti i film: Alex Dallolio | Video aziendali, fashion film e AI",
+            "description": "30 film diretti da Alex Dallolio per Webuild, Prada, FILA, Canali, Luisa Spagnoli e altri: video aziendali, fashion film, documentari e lavori con l'AI generativa.",
+            "og_title": "Tutti i film: Alex Dallolio",
+            "og_description": "30 film diretti da Alex Dallolio per Webuild, Prada, FILA, Canali, Luisa Spagnoli e altri.",
         },
     },
 }
@@ -164,6 +164,9 @@ def render(page: str, lang: str) -> str:
         src = src.replace("Milan, Italy &mdash; Working globally", "Milano &mdash; Lavoro in tutto il mondo")
         src = src.replace('class="video-tag">Documentary<', 'class="video-tag">Documentario<')
         src = src.replace('class="video-tag">Concept &amp; Direction<', 'class="video-tag">Concept e regia<')
+        for en_t, it_t in [(">Fashion<", ">Moda<"), (">Perfume · Fashion<", ">Profumo · Moda<"), (">Canali · Fashion<", ">Canali · Moda<"),
+                           ("Spring Summer · ", "Primavera Estate · ")]:
+            src = src.replace('class="video-tag"' + en_t if en_t.startswith(">") else en_t, 'class="video-tag"' + it_t if it_t.startswith(">") else it_t)
     return src
 
 
@@ -299,8 +302,6 @@ def write_sitemap(groups):
         alts += f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE}{paths["en"]}"/>'
         for l in LANGS:
             rows.append(f"  <url>\n    <loc>{SITE}{paths[l]}</loc>\n    <lastmod>{lastmod(paths[l])}</lastmod>{alts}\n  </url>")
-    # la stanza: solo italiano per ora
-    rows.append(f"  <url>\n    <loc>{SITE}/stanza/</loc>\n    <lastmod>{lastmod('/stanza/')}</lastmod>\n  </url>")
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
@@ -333,7 +334,7 @@ def render_home_new(lang: str, base: str, robots: str) -> str:
         sub = (c_it if lang == "it" else c_en) + (f" · {year}" if year else "")
         frames.append(
             f'      <div class="frame" data-yt="{yt}" data-t="{e(title)}"><button type="button" aria-label="{e(title)}">'
-            f'<img src="https://i.ytimg.com/vi_webp/{yt}/maxresdefault.webp" width="1280" height="720" alt="{e(title)}, {e(sub)}" loading="{"eager" if i < 3 else "lazy"}">'
+            f'<img src="https://i.ytimg.com/vi_webp/{yt}/maxresdefault.webp" width="1280" height="720" draggable="false" alt="{e(title)}, {e(sub)}" loading="{"eager" if i < 3 else "lazy"}">'
             f'<span class="grain"></span><span class="lines"></span><span class="tag">{i + 1:02d} / {len(H.WORKS):02d}</span>'
             f'<span class="play">{t["film"]}</span></button><div class="cap"><b>{e(title)}</b><span class="mono">{e(sub)}</span></div></div>')
     facts = "\n".join(f"  <p>{a} <span>{b}</span></p>" for a, b in t["facts"])
@@ -366,6 +367,8 @@ def render_home_new(lang: str, base: str, robots: str) -> str:
         "canonical": url, "hreflang": hreflang, "og_title": e(t["og_title"]), "og_description": e(t["og_description"]),
         "og_locale": "it_IT" if lang == "it" else "en_US", "jsonld": jsonld,
         "nav1": t["nav"][0], "nav2": t["nav"][1], "nav3": t["nav"][2],
+        "nav_all": "Tutti i film" if lang == "it" else "All films", "nav_all_href": PAGES["videos"][lang]["path"],
+        "nav_room": "Stanza" if lang == "it" else "Room", "room_href": "/stanza/" if lang == "it" else "/room/",
         "h1": t["h1"], "sub": t["sub"], "role": t["role"], "scroll": t["scroll"],
         "nworks": f"{len(H.WORKS):02d}", "frames": "\n".join(frames), "prev": t["prev"], "next": t["next"], "cta_h": t["cta_h"], "cta_mail": t["cta_mail"],
         "facts": facts, "links": links, "tac_h": t["tac_h"], "tac_href": t["tac_all"][1], "tac_all": t["tac_all"][0], "tac_room": t["tac_room"],
@@ -395,7 +398,7 @@ def noindex(src: str, lang: str, base: str) -> str:
 
 NUOVO_FONTS = ('<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;900'
                '&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">')
-NAV_NUOVO = {"it": ("Film", "Tutti i film", "Taccuino", "Contatti"), "en": ("Films", "All films", "Notebook", "Contact")}
+NAV_NUOVO = {"it": ("Film", "Tutti i film", "Taccuino", "Stanza", "Contatti"), "en": ("Films", "All films", "Notebook", "Room", "Contact")}
 
 
 def restyle(src: str, lang: str) -> str:
@@ -403,13 +406,16 @@ def restyle(src: str, lang: str) -> str:
     if HOME_STYLE != "nuovo":
         return src
     home = "/it/" if lang == "it" else "/"
-    a, b, c, d = NAV_NUOVO[lang]
+    a, b, c, r, d = NAV_NUOVO[lang]
+    room = "/stanza/" if lang == "it" else "/room/"
     nav_ul = (f'<ul>\n    <li><a href="{home}#film">{a}</a></li>\n'
               f'    <li><a href="{PAGES["videos"][lang]["path"]}">{b}</a></li>\n'
               f'    <li><a href="{LP.PAGES["aifilms"][lang]["path"]}">{c}</a></li>\n'
+              f'    <li><a href="{room}">{r}</a></li>\n'
               f'    <li><a href="{home}#contatti">{d}</a></li>\n  </ul>')
     src = re.sub(r"(<nav>\s*<a [^>]*class=\"logo\"[^>]*>[^<]*</a>\s*)<ul>.*?</ul>", lambda m: m.group(1) + nav_ul, src, count=1, flags=re.S)
     src = re.sub(r'<link href="https://fonts.googleapis.com/css2\?family=Bodoni[^>]*>\n?', "", src)
+    src = src.replace("200,184,154", "236,235,231").replace("#c8b89a", "#d4ff3a")
     src = src.replace('<meta name="theme-color" content="#0d0c0b">', '<meta name="theme-color" content="#000000">')
     css = (SRC / "nuovo.css").read_text()
     src = src.replace("</body>", '<script src="/assets/scrivimi.js" defer></script>\n</body>', 1)
@@ -441,6 +447,15 @@ def main():
         for lang in LANGS:
             write(LP.PAGES[key][lang]["path"], restyle(render_landing(key, lang), lang))
         groups.append({l: LP.PAGES[key][l]["path"] for l in LANGS})
+    # la stanza in inglese, generata dalla versione italiana
+    import room_en
+    room = (ROOT / "stanza" / "index.html").read_text()
+    for it_txt, en_txt in room_en.PAIRS:
+        if it_txt not in room:
+            raise SystemExit(f"room_en: testo non trovato nella stanza: {it_txt[:80]}")
+        room = room.replace(it_txt, en_txt)
+    write("/room/", room)
+    groups.append({"it": "/stanza/", "en": "/room/"})
     write_sitemap(groups)
     # Copia pubblica dei reel per le altre pagine (es. la home): /aifilms/reels.json
     db = SRC / "aifilms.json"

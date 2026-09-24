@@ -166,7 +166,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --bg: #0d0c0b; --bg2: #141210; --white: #f0ede8; --grey: #7a7570; --soft: #b0a99f;
-  --accent: #c8b89a; --line: rgba(200,184,154,0.12);
+  --accent: #d4ff3a; --line: rgba(236,235,231,0.12);
   --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-display: "Didot", "Bodoni Moda", "Georgia", serif;
 }
@@ -182,7 +182,7 @@ nav ul a:hover { color: var(--white); }
 .lang-switcher { display: flex; gap: 0.3rem; margin-left: 1.8rem; }
 .lang-btn { color: var(--grey); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 6px; text-decoration: none; }
 .lang-btn:hover { color: var(--white); }
-.lang-btn.active { color: var(--accent); border-bottom: 1px solid rgba(200,184,154,0.6); }
+.lang-btn.active { color: var(--accent); border-bottom: 1px solid rgba(236,235,231,0.6); }
 
 .crumbs { padding: 2rem 3rem 0; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); }
 .crumbs a { text-decoration: none; color: var(--grey); }
@@ -199,14 +199,14 @@ main section { padding: 5rem 3rem; border-bottom: 1px solid var(--line); }
 .prose h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 1.6rem; }
 .prose p { color: var(--soft); font-size: 0.97rem; line-height: 1.85; margin-bottom: 1.2rem; }
 .prose ul { list-style: none; margin: 0 0 1.4rem; }
-.prose li { color: var(--soft); font-size: 0.95rem; line-height: 1.7; padding: 0.45rem 0 0.45rem 1.4rem; border-left: 1px solid rgba(200,184,154,0.25); margin-bottom: 0.4rem; }
+.prose li { color: var(--soft); font-size: 0.95rem; line-height: 1.7; padding: 0.45rem 0 0.45rem 1.4rem; border-left: 1px solid rgba(236,235,231,0.25); margin-bottom: 0.4rem; }
 .prose li strong { color: var(--white); font-weight: 500; }
 
 .films { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.6rem; margin-top: 2.4rem; }
 .film { background: var(--bg2); border-radius: 3px; overflow: hidden; }
 .film button { all: unset; cursor: pointer; display: block; position: relative; width: 100%; aspect-ratio: 16/9; background: #111 center/cover no-repeat; }
-.film button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; transform: translate(-50%,-50%); border-radius: 50%; background: rgba(13,12,11,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='%23f0ede8'/%3E%3C/svg%3E") center/26px no-repeat; border: 1px solid rgba(200,184,154,0.5); transition: background-color 0.25s; }
-.film button:hover::after { background-color: rgba(200,184,154,0.35); }
+.film button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; transform: translate(-50%,-50%); border-radius: 50%; background: rgba(13,12,11,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='%23f0ede8'/%3E%3C/svg%3E") center/26px no-repeat; border: 1px solid rgba(236,235,231,0.5); transition: background-color 0.25s; }
+.film button:hover::after { background-color: rgba(236,235,231,0.35); }
 .film button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .film iframe { width: 100%; aspect-ratio: 16/9; border: 0; display: block; }
 .films:has(.film-ig) { grid-template-columns: repeat(auto-fill, minmax(300px, 400px)); }
@@ -245,7 +245,7 @@ main section { padding: 5rem 3rem; border-bottom: 1px solid var(--line); }
 .cta-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
 .cta-links a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px; }
 .cta-links a:hover { color: var(--accent); border-color: var(--accent); }
-.cta-links a.primary { color: var(--accent); border-color: rgba(200,184,154,0.5); }
+.cta-links a.primary { color: var(--accent); border-color: rgba(236,235,231,0.5); }
 
 footer { padding: 2rem 3rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 footer p, footer a { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; text-decoration: none; }
@@ -289,6 +289,12 @@ nav ul a,.lang-btn{font-size:11px!important}
 .related a{border-radius:0!important}
 .related a:hover,.cta-links a:hover{border-color:var(--accent)!important}
 .cta h2 em{color:var(--accent)}
+/* menu compatto su telefono */
+@media (max-width:768px){
+  nav{padding:12px 16px!important;gap:6px!important}
+  nav ul{flex-wrap:wrap;gap:6px 14px!important}
+  nav ul a{white-space:nowrap}
+}
 </style>
 </head>
 <body>
@@ -299,6 +305,7 @@ nav ul a,.lang-btn{font-size:11px!important}
     <li><a href="/#film">Films</a></li>
     <li><a href="/videos.html">All films</a></li>
     <li><a href="/ai-films.html">Notebook</a></li>
+    <li><a href="/room/">Room</a></li>
     <li><a href="/#contatti">Contact</a></li>
   </ul>
   <div class="lang-switcher"><a class="lang-btn active" href="/corporate-films-from-existing-footage.html" hreflang="en">EN</a><a class="lang-btn" href="/it/video-aziendali-da-archivio.html" hreflang="it">IT</a></div>
@@ -355,10 +362,16 @@ document.querySelectorAll('.film button[data-yt]').forEach(btn => {
 });
 // Reel: partono muti quando entrano nello schermo; clic = lettore Instagram con audio
 const reelVideos = document.querySelectorAll('.reel video');
-if (reelVideos.length && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+const saveData = navigator.connection && navigator.connection.saveData;
+if (reelVideos.length && !saveData && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  const one = matchMedia('(pointer: coarse)').matches;   // su telefono ne gira uno alla volta
   const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.preload = 'auto'; e.target.play().catch(() => {}); } else e.target.pause();
-  }), { threshold: 0.6 });
+    const v = e.target;
+    if (e.isIntersecting) {
+      if (one) reelVideos.forEach(o => { if (o !== v) o.pause(); });
+      v.preload = 'metadata'; v.play().catch(() => {});
+    } else v.pause();
+  }), { threshold: 0.75 });
   reelVideos.forEach(v => io.observe(v));
 }
 document.querySelectorAll('.reel button[data-ig]').forEach(btn => btn.addEventListener('click', () => {
