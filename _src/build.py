@@ -390,7 +390,7 @@ def render_home_new(lang: str, base: str, robots: str) -> str:
         "og_locale": "it_IT" if lang == "it" else "en_US", "jsonld": jsonld,
         "nav1": t["nav"][0], "nav2": t["nav"][1], "nav3": t["nav"][2],
         "nav_all": "Tutti i film" if lang == "it" else "All films", "nav_all_href": PAGES["videos"][lang]["path"],
-        "nav_room": "Stanza" if lang == "it" else "Room", "room_href": "/stanza/" if lang == "it" else "/room/",
+        "nav_room": "Stanza" if lang == "it" else "Room", "home_href": "/it/" if lang == "it" else "/", "room_href": "/stanza/" if lang == "it" else "/room/",
         "h1": t["h1"], "sub": t["sub"], "role": t["role"], "scroll": t["scroll"],
         "nworks": f"{len(H.WORKS):02d}", "frames": "\n".join(frames), "prev": t["prev"], "next": t["next"], "cta_h": t["cta_h"], "cta_mail": t["cta_mail"],
         "facts": facts, "links": links, "tac_h": t["tac_h"], "tac_href": t["tac_all"][1], "tac_all": t["tac_all"][0], "tac_room": t["tac_room"],
@@ -423,6 +423,9 @@ NUOVO_FONTS = ('<link href="https://fonts.googleapis.com/css2?family=Inter+Tight
 NAV_NUOVO = {"it": ("Film", "Tutti i film", "Taccuino", "Stanza", "Contatti"), "en": ("Films", "All films", "Notebook", "Room", "Contact")}
 
 
+BRAND = '<span class="brand" aria-label="Alex Dallolio"><svg viewBox="0 0 764 124" aria-hidden="true"><path d="M2 122 H762 V2" fill="none" stroke="currentColor" stroke-width="4"/></svg><span class="brand-n">alexdallolio</span></span>'
+
+
 def restyle(src: str, lang: str) -> str:
     """Pagine interne nello stile della home nuova (solo con HOME_STYLE = "nuovo")."""
     if HOME_STYLE != "nuovo":
@@ -437,6 +440,7 @@ def restyle(src: str, lang: str) -> str:
               f'    <li><a href="{home}#contatti">{d}</a></li>\n  </ul>')
     src = re.sub(r"(<nav>\s*<a [^>]*class=\"logo\"[^>]*>[^<]*</a>\s*)<ul>.*?</ul>", lambda m: m.group(1) + nav_ul, src, count=1, flags=re.S)
     src = re.sub(r'<link href="https://fonts.googleapis.com/css2\?family=Bodoni[^>]*>\n?', "", src)
+    src = re.sub(r'(<a href="[^"]*" class="logo")>Alex Dallolio</a>', lambda m: m.group(1) + ' aria-label="Alex Dallolio">' + BRAND + '</a>', src, count=1)
     src = src.replace("200,184,154", "236,235,231").replace("#c8b89a", "#d4ff3a")
     src = src.replace('<meta name="theme-color" content="#0d0c0b">', '<meta name="theme-color" content="#000000">')
     css = (SRC / "nuovo.css").read_text()
