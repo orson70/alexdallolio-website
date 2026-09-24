@@ -344,7 +344,7 @@ def render_home_new(lang: str, base: str, robots: str) -> str:
         "nworks": f"{len(H.WORKS):02d}", "frames": "\n".join(frames), "prev": t["prev"], "next": t["next"], "legend": t["legend"],
         "facts": facts, "links": links, "tac_h": t["tac_h"], "tac_href": t["tac_all"][1], "tac_all": t["tac_all"][0],
         "who_h": t["who_h"], "bio": t["bio"], "clients_label": t["clients_label"], "brands": H.BRANDS, "agencies": t["agencies"],
-        "book": t["book"], "other_lang": t["other_lang"][0], "other_href": other_href, "other_code": other, "close": t["close"],
+        "book": t["book"], "other_lang": t["other_lang"][0], "other_href": other_href, "other_code": other, "other_short": other.upper(), "close": t["close"],
     }
     out = (SRC / "home.template.html").read_text()
     for k, v in vals.items():

@@ -55,7 +55,9 @@ a{color:inherit;text-decoration:none}
 .arrows button{all:unset;cursor:pointer;width:46px;height:46px;border:1px solid rgba(236,235,231,.35);border-radius:50%;display:grid;place-items:center;font-size:18px;transition:border-color .2s,color .2s}
 .arrows button:hover,.arrows button:focus-visible{border-color:var(--sig);color:var(--sig)}
 /* menu minimo, compare dopo l'apertura */
-.mnav{position:fixed;top:16px;right:48px;z-index:50;display:flex;gap:22px;opacity:0;pointer-events:none;transition:opacity .4s;mix-blend-mode:difference;color:#fff}
+.lng{position:fixed;top:16px;right:24px;z-index:51;mix-blend-mode:difference;color:#fff;border:1px solid rgba(255,255,255,.5);padding:3px 8px}
+.lng:hover{border-color:#fff}
+.mnav{position:fixed;top:16px;right:84px;z-index:50;display:flex;gap:22px;opacity:0;pointer-events:none;transition:opacity .4s;mix-blend-mode:difference;color:#fff}
 .mnav.on{opacity:1;pointer-events:auto}
 .mnav a:hover{text-decoration:underline;text-underline-offset:4px}
 .hud{position:absolute;inset:14px;pointer-events:none;z-index:5}
@@ -139,7 +141,8 @@ a{color:inherit;text-decoration:none}
 @media (max-width:760px){
   .frame{flex-basis:72vw}.strip{gap:16px}
   .hud .t2{display:none}
-  .mnav{right:20px;gap:14px}
+  .mnav{right:70px;gap:12px}
+  .lng{right:14px}
   .arrows{bottom:64px}
   .facts{padding:14vh 16px}
   .end{padding:22px 16px}
@@ -151,6 +154,7 @@ a{color:inherit;text-decoration:none}
 <body>
 
 <nav class="mnav mono" id="mnav"><a href="#film">{{nav1}}</a><a href="#taccuino">{{nav2}}</a><a href="#contatti">{{nav3}}</a></nav>
+<a class="lng mono" href="{{other_href}}" hreflang="{{other_code}}">{{other_short}}</a>
 
 <header class="open">
   <h1 class="fade">{{h1}}</h1>
