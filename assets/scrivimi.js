@@ -9,7 +9,7 @@
     ok: 'Arrivato. Ti ho mandato una copia: ti rispondo io.', err: 'Non è partito. Riprova, oppure scrivimi a', close: 'Chiudi', back: '← Indietro',
     privacy: 'Uso la tua email solo per risponderti.',
   } : {
-    h: 'Write to me.', p: 'A project, material to transform, a question. It reaches me and I will answer myself.',
+    h: 'Write to me.', p: 'A project, material to transform, a question. It comes straight to me, and I reply personally.',
     msg: 'Your message', mail: 'Your email', name: 'Name (optional)', send: 'Send', sending: 'Sending…',
     ok: 'Received. I sent you a copy: I will get back to you.', err: 'It did not go through. Try again, or write to', close: 'Close', back: '← Back',
     privacy: 'I only use your email to reply to you.',

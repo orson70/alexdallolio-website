@@ -16,12 +16,12 @@ WORKS = [
     ("588LDT1c3zs", "Custodiamo il domani", "Tetra Pak", "Tetra Pak", ""),
 ]
 
-BRANDS = "Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Allianz · Novartis · Sisal · TIM · Webuild"
+BRANDS = "Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Allianz · Novartis · Sisal · TIM · Chopard · Disney · Webuild"
 
 T = {
     "it": {
         "title": "Alex Dallolio, regista a Milano | Video aziendali, brand film e AI",
-        "description": "Regista a Milano. Trasformo il materiale che un'azienda ha già (archivio, girato, immagini di prodotto) in video aziendali e brand film, sul set o con l'AI generativa. Webuild, FILA, Prada, Canali.",
+        "description": "Regista a Milano. Giro quello che serve, il resto lo costruisco dal materiale che l'azienda ha già o con l'AI generativa. Webuild, FILA, Prada, Canali.",
         "og_title": "Alex Dallolio. Non tutto va girato.",
         "og_description": "Giro quello che serve. Il resto esiste già, o lo creo con l'AI.",
         "h1": "Non tutto va <em>girato.</em>",
@@ -38,8 +38,8 @@ T = {
             ("L'AI dove serve.", "Per FILA FW26: tre film sul set, due senza set."),
         ],
         "links": [("Tutti i 30 film →", "/it/videos.html"), ("Taccuino →", "/it/ai-films.html"),
-                  ("Video da archivio →", "/it/video-aziendali-da-archivio.html"),
-                  ("Video con l'AI →", "/it/video-aziendali-ai.html"),
+                  ("Video aziendali da archivio →", "/it/video-aziendali-da-archivio.html"),
+                  ("Video aziendali con l'AI →", "/it/video-aziendali-ai.html"),
                   ("Webuild →", "/it/webuild-caso-studio.html"), ("FILA →", "/it/fila-fashion-film.html")],
         "tac_h": "Taccuino. <em>Appunti AI.</em>",
         "tac_all": ("Tutto il taccuino →", "/it/ai-films.html"),
@@ -54,12 +54,12 @@ T = {
         "cta_mail": "Scrivimi →",
     },
     "en": {
-        "title": "Alex Dallolio, film director in Milan | Corporate films, brand films and AI",
-        "description": "Film director in Milan. I turn the material a company already has (archive, footage, product images) into corporate and brand films, on set or with generative AI. Webuild, FILA, Prada, Canali.",
+        "title": "Alex Dallolio, Film Director in Milan | Corporate & Brand Films",
+        "description": "Film director in Milan. I shoot what's needed and build the rest from the material a company already has, or with generative AI. Webuild, FILA, Prada, Canali.",
         "og_title": "Alex Dallolio. Not everything needs to be shot.",
-        "og_description": "I shoot what is needed. The rest already exists, or I create it with AI.",
+        "og_description": "I shoot what's needed. The rest already exists, or I create it with AI.",
         "h1": "Not everything needs to be <em>shot.</em>",
-        "sub": "I shoot what is needed. The rest already exists, or I create it with AI.",
+        "sub": "I shoot what's needed. The rest already exists, or I create it with AI.",
         "role": "Alex Dallolio · Film director · Milan",
         "scroll": "Scroll ↓",
         "nav": ("Films", "Notebook", "Contact"),
@@ -72,7 +72,7 @@ T = {
             ("AI where it helps.", "For FILA FW26: three films on set, two without one."),
         ],
         "links": [("All 30 films →", "/videos.html"), ("Notebook →", "/ai-films.html"),
-                  ("Films from existing footage →", "/corporate-films-from-existing-footage.html"),
+                  ("Corporate films from existing footage →", "/corporate-films-from-existing-footage.html"),
                   ("AI brand films →", "/ai-brand-films.html"),
                   ("Webuild →", "/webuild-case-study.html"), ("FILA →", "/fila-fashion-films.html")],
         "tac_h": "Notebook. <em>AI sketches.</em>",
@@ -84,7 +84,7 @@ T = {
         "agencies": "Agencies: DLV, Young &amp; Rubicam, JWT, Leo Burnett, Armando Testa. TV: Mediaset, Rai, Sky, Fox.",
         "book": "Book a call ↗", "other_lang": ("Italiano", "/it/"),
         "close": "Close",
-        "cta_h": "Send me what you have.<br><em>I will tell you if there is a film inside.</em>",
+        "cta_h": "Send me what you have.<br><em>I'll tell you if there's a film in it.</em>",
         "cta_mail": "Email me →",
     },
 }

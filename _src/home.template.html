@@ -45,6 +45,8 @@ a{color:inherit;text-decoration:none}
 .open .foot span:last-child{animation:nudge 2s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateY(4px)}}
 .fade{opacity:0;animation:in 1.6s ease forwards}
+.open h1.fade{opacity:1;animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{transform:translateY(.12em)}}
 .fade.d2{animation-delay:1.1s}.fade.d3{animation-delay:2.2s}
 @keyframes in{to{opacity:1}}
 
@@ -215,8 +217,8 @@ a{color:inherit;text-decoration:none}
   <div class="l"><a href="mailto:alexdallolio@alexdallolio.com">{{cta_mail}}</a><a href="https://calendly.com/alexdallolio" target="_blank" rel="noopener">{{book}}</a></div>
 </section>
 
-<div class="sign" aria-label="Alex Dallolio">
-  <video src="/bg-reel.mp4" poster="/og-image.jpg" autoplay muted loop playsinline></video>
+<div class="sign" role="img" aria-label="Alex Dallolio">
+  <video data-src="/bg-reel.mp4" poster="/og-image.jpg" muted loop playsinline preload="none"></video>
   <div class="ink" aria-hidden="true"><span>Alex</span><span>Dallolio</span></div>
 </div>
 <footer class="end mono" id="contatti">
@@ -335,5 +337,14 @@ fetch('/aifilms/reels.json').then(r => r.json()).then(reels => {
 
 </script>
 <script src="/assets/scrivimi.js" defer></script>
+<script>
+(() => {
+  const v = document.querySelector('.sign video');
+  if (!v) return;
+  const go = () => { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); };
+  if (!('IntersectionObserver' in window)) return go();
+  new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? go() : v.pause()), { rootMargin: '400px 0px' }).observe(v);
+})();
+</script>
 </body>
 </html>

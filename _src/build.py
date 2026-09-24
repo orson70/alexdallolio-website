@@ -174,6 +174,10 @@ import landing_pages as LP  # noqa: E402
 import home_texts  # noqa: E402,F401
 
 
+YT_DATES = dict((m[1], m[0]) for m in re.findall(
+    r'"uploadDate": "([^"]+)", "embedUrl": "https://www.youtube.com/embed/([^"]+)"', (SRC / "videos.template.html").read_text()))
+
+
 def film_html(f: dict) -> str:
     cap = f'<div class="cap"><strong>{f["t"]}</strong><span>{f["s"]}</span></div>'
     if "ig" in f:
@@ -197,22 +201,23 @@ def render_landing(key: str, lang: str) -> str:
     secs, faq_items, videos = [], [], []
     for sec in d["sections"]:
         kind, h2 = sec[0], sec[1]
+        h2 = f"<h2>{h2}</h2>" if h2 else ""
         if kind == "prose":
-            secs.append(f'<section><div class="prose"><h2>{h2}</h2>{sec[2]}</div></section>')
+            secs.append(f'<section><div class="prose">{h2}{sec[2]}</div></section>')
         elif kind == "films":
-            secs.append(f'<section><div class="prose"><h2>{h2}</h2></div><div class="films">'
+            secs.append(f'<section>{'<div class="prose">' + h2 + '</div>' if h2 else ''}<div class="films">'
                         + "".join(film_html(f) for f in sec[2]) + "</div></section>")
             for f in sec[2]:
                 if "yt" in f:
                     videos.append({"@type": "VideoObject", "name": f["t"], "description": f'{f["t"]}, {f["s"]}. Alex Dallolio.',
                                    "thumbnailUrl": f'https://i.ytimg.com/vi/{f["yt"]}/hqdefault.jpg',
                                    "embedUrl": f'https://www.youtube.com/embed/{f["yt"]}',
-                                   "uploadDate": "2026-04-29"})
+                                   "uploadDate": YT_DATES.get(f["yt"], "2026-04-29T12:00:00Z")})
         elif kind == "reels":
             db_path = SRC / "aifilms.json"
             reels = json.loads(db_path.read_text()) if db_path.exists() else []
             tiles = []
-            for r in reels:
+            for r in (r for r in reels if not r.get("hide")):
                 cap = html.escape(r["caption"] or "AI film")
                 short = cap if len(cap) < 90 else cap[:88].rsplit(" ", 1)[0] + "…"
                 tiles.append(
@@ -222,8 +227,8 @@ def render_landing(key: str, lang: str) -> str:
                     f'<figcaption>{short}<time datetime="{r["date"]}">{r["date"][8:10]}.{r["date"][5:7]}.{r["date"][:4]}</time></figcaption></figure>')
                 videos.append({"@type": "VideoObject", "name": short, "description": cap + ". Alex Dallolio, AI film.",
                                "thumbnailUrl": f'{SITE}/aifilms/{r["code"]}.jpg', "contentUrl": f'{SITE}/aifilms/{r["code"]}.mp4',
-                               "uploadDate": r["date"], "duration": f'PT{int(round(r["duration"]))}S'})
-            secs.append(f'<section><div class="prose"><h2>{h2}</h2></div><div class="reels">' + "".join(tiles) + "</div></section>")
+                               "uploadDate": r["date"] + "T12:00:00Z", "duration": f'PT{int(round(r["duration"]))}S'})
+            secs.append(f'<section><div class="prose">{h2}</div><div class="reels">' + "".join(tiles) + "</div></section>")
         elif kind == "faq":
             items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in sec[2])
             secs.append(f'<section class="faq"><div class="prose"><h2>{h2}</h2></div>{items}</section>')
@@ -240,14 +245,14 @@ def render_landing(key: str, lang: str) -> str:
 
     graph = [
         {"@type": "WebPage", "@id": url, "url": url, "name": d["title"], "description": d["description"],
-         "inLanguage": lang, "author": {"@type": "Person", "name": "Alex Dallolio", "url": SITE + "/"}},
+         "inLanguage": lang, "author": {"@id": SITE + "/#person"}},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Alex Dallolio", "item": SITE + home},
             {"@type": "ListItem", "position": 2, "name": d["crumb"], "item": url}]},
     ]
     if key in ("archive", "ai"):
         graph.append({"@type": "Service", "name": d["crumb"], "description": d["description"],
-                      "provider": {"@type": "Person", "name": "Alex Dallolio", "url": SITE + "/"},
+                      "provider": {"@id": SITE + "/#person"},
                       "areaServed": "Worldwide", "url": url})
     if faq_items:
         graph.append({"@type": "FAQPage", "mainEntity": faq_items})
@@ -280,12 +285,20 @@ def render_landing(key: str, lang: str) -> str:
 
 def write_sitemap(groups):
     today = __import__("datetime").date.today().isoformat()
+
+    def lastmod(path):
+        f = str(ROOT / (path.lstrip("/") + ("index.html" if path.endswith("/") else "")))
+        dirty = subprocess.run(["git", "status", "--porcelain", "--", f], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        if dirty:
+            return today
+        d = subprocess.run(["git", "log", "-1", "--format=%cs", "--", f], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        return d or today
     rows = []
     for paths in groups:
         alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE}{paths[l]}"/>' for l in LANGS)
         alts += f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE}{paths["en"]}"/>'
         for l in LANGS:
-            rows.append(f"  <url>\n    <loc>{SITE}{paths[l]}</loc>\n    <lastmod>{today}</lastmod>{alts}\n  </url>")
+            rows.append(f"  <url>\n    <loc>{SITE}{paths[l]}</loc>\n    <lastmod>{lastmod(paths[l])}</lastmod>{alts}\n  </url>")
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
@@ -318,7 +331,7 @@ def render_home_new(lang: str, base: str, robots: str) -> str:
         sub = (c_it if lang == "it" else c_en) + (f" · {year}" if year else "")
         frames.append(
             f'      <div class="frame" data-yt="{yt}" data-t="{e(title)}"><button type="button" aria-label="{e(title)}">'
-            f'<img src="https://i.ytimg.com/vi/{yt}/maxresdefault.jpg" alt="{e(title)}, {e(sub)}" loading="{"eager" if i < 3 else "lazy"}">'
+            f'<img src="https://i.ytimg.com/vi_webp/{yt}/maxresdefault.webp" width="1280" height="720" alt="{e(title)}, {e(sub)}" loading="{"eager" if i < 3 else "lazy"}">'
             f'<span class="grain"></span><span class="lines"></span><span class="tag">{i + 1:02d} / {len(H.WORKS):02d}</span>'
             f'<span class="play">{t["film"]}</span></button><div class="cap"><b>{e(title)}</b><span class="mono">{e(sub)}</span></div></div>')
     facts = "\n".join(f"  <p>{a} <span>{b}</span></p>" for a, b in t["facts"])
@@ -326,13 +339,24 @@ def render_home_new(lang: str, base: str, robots: str) -> str:
     alt = {l: SITE + ("/it/" if l == "it" else "/") for l in LANGS}
     hreflang = "" if robots else "\n".join(
         f'<link rel="alternate" hreflang="{l}" href="{alt[l]}">' for l in LANGS) + f'\n<link rel="alternate" hreflang="x-default" href="{alt["en"]}">'
-    jsonld = json.dumps({
-        "@context": "https://schema.org", "@type": "Person", "name": "Alex Dallolio", "alternateName": "Alessandro Dallolio",
+    person = {
+        "@type": "Person", "@id": SITE + "/#person", "name": "Alex Dallolio", "alternateName": "Alessandro Dallolio",
         "jobTitle": "Regista e AI Artist" if lang == "it" else "Film Director & AI Artist",
         "description": t["description"], "url": SITE + "/", "image": SITE + "/og-image.jpg",
         "address": {"@type": "PostalAddress", "addressLocality": "Milano" if lang == "it" else "Milan", "addressCountry": "IT"},
         "sameAs": ["https://www.youtube.com/@alchemistfilm-d4k", "https://www.instagram.com/alexdallolio_aifilms/",
-                   "https://vimeo.com/alexdallolio", "https://www.linkedin.com/in/alexdallolio/"]},
+                   "https://vimeo.com/alexdallolio", "https://www.linkedin.com/in/alexdallolio/"],
+        "knowsAbout": ["corporate video", "brand film", "fashion film", "documentary", "generative AI"]}
+    city = "Milano" if lang == "it" else "Milan"
+    jsonld = json.dumps({"@context": "https://schema.org", "@graph": [
+        person,
+        {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Alex Dallolio",
+         "inLanguage": ["en", "it"], "publisher": {"@id": SITE + "/#person"}},
+        {"@type": "ProfessionalService", "@id": SITE + "/#studio", "name": "Alex Dallolio, " + ("regista" if lang == "it" else "film director"),
+         "url": SITE + "/", "image": SITE + "/og-image.jpg", "email": "alexdallolio@alexdallolio.com",
+         "address": {"@type": "PostalAddress", "addressLocality": city, "addressCountry": "IT"},
+         "areaServed": [city, "Italia" if lang == "it" else "Italy", "Europe"], "founder": {"@id": SITE + "/#person"},
+         "description": t["description"]}]},
         ensure_ascii=False, indent=1)
     other_href = ("/" if lang == "it" else "/it/") + (ALT_HOME + "/" if robots else "")
     vals = {
@@ -359,6 +383,7 @@ def noindex(src: str, lang: str, base: str) -> str:
     src = src.replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n<meta name="robots" content="noindex, follow">', 1)
     src = re.sub(r'<link rel="alternate" hreflang="[^"]+" href="[^"]*">\n?', "", src)
     src = re.sub(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{SITE}{base}">', src, count=1)
+    src = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{SITE}{base}">', src, count=1)
     # selettore lingua: resta dentro la versione alternativa
     other_base = ("/" if lang == "it" else "/it/") + ALT_HOME + "/"
     src = re.sub(r'(<a class="lang-btn[^"]*" href=")/(?:it/)?(" hreflang="(?:en|it)">)',
@@ -382,6 +407,7 @@ def restyle(src: str, lang: str) -> str:
               f'    <li><a href="{LP.PAGES["aifilms"][lang]["path"]}">{c}</a></li>\n'
               f'    <li><a href="{home}#contatti">{d}</a></li>\n  </ul>')
     src = re.sub(r"(<nav>\s*<a [^>]*class=\"logo\"[^>]*>[^<]*</a>\s*)<ul>.*?</ul>", lambda m: m.group(1) + nav_ul, src, count=1, flags=re.S)
+    src = re.sub(r'<link href="https://fonts.googleapis.com/css2\?family=Bodoni[^>]*>\n?', "", src)
     src = src.replace('<meta name="theme-color" content="#0d0c0b">', '<meta name="theme-color" content="#000000">')
     css = (SRC / "nuovo.css").read_text()
     src = src.replace("</body>", '<script src="/assets/scrivimi.js" defer></script>\n</body>', 1)
@@ -418,7 +444,7 @@ def main():
     db = SRC / "aifilms.json"
     if db.exists():
         (ROOT / "aifilms").mkdir(exist_ok=True)
-        (ROOT / "aifilms" / "reels.json").write_text(db.read_text())
+        (ROOT / "aifilms" / "reels.json").write_text(json.dumps([r for r in json.loads(db.read_text()) if not r.get("hide")], ensure_ascii=False, indent=1))
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-/* Stile "Non giro" sopra le pagine interne (applicato da build.py solo con HOME_STYLE = "nuovo") */
+/* Stile "nuovo" sopra le pagine interne (applicato da build.py solo con HOME_STYLE = "nuovo") */
 :root{--bg:#000;--bg2:#0c0c0c;--white:#ecebe7;--grey:#8a867f;--soft:#bdb9b2;--accent:#d4ff3a;--line:rgba(236,235,231,.14);
 --font:"Inter Tight",Helvetica,Arial,sans-serif;--font-display:"Inter Tight",Helvetica,Arial,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
 html,body{background:#000}

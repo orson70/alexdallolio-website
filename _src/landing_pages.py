@@ -44,9 +44,9 @@ PAGES = {
 <p>La regia non è solo quello che succede sul set. È saper vedere struttura, ritmo, tensione e significato dentro il materiale grezzo.</p>
 """),
                 ("prose", "Come lavoro", """
-<p><strong>Mi mandi quello che hai.</strong> Lo guardo tutto e ti dico se dentro c'è un film, e che tipo di film.</p>
+<p><strong>Mandami quello che hai.</strong> Lo guardo tutto e ti dico se dentro c'è un film, e che tipo di film.</p>
 <p>Poi costruisco concept, montaggio, ritmo, musica e trattamento visivo. Dove l'archivio non basta uso l'AI generativa per estendere, riquadrare o immaginare le immagini che mancano. Quando serve davvero si gira, ma in modo mirato.</p>
-<p>Lavoro da remoto. Niente trasferte, niente giornate di produzione, niente permessi. Sono a Milano, ma se il materiale esiste la geografia conta poco.</p>
+<p>Gran parte del lavoro si fa a distanza: tu mi mandi il materiale, io lo trasformo. Sono a Milano, ma se il materiale esiste la geografia conta poco.</p>
 """),
                 ("films", "Alcuni video aziendali", [
                     {"yt": W_GERD, "t": "GERD", "s": "Webuild · Documentario"},
@@ -64,9 +64,9 @@ PAGES = {
                     ("A cosa servono questi video?",
                      "Siti web, fiere, presentazioni, campagne, lanci interni, case history. Dallo stesso materiale si possono ricavare più versioni e formati."),
                     ("Lavori solo a Milano?",
-                     "No. Sono basato a Milano ma lavoro da remoto con aziende ovunque."),
+                     "No. Vivo e lavoro a Milano, e lavoro a distanza con aziende di tutto il mondo."),
                     ("Come si comincia?",
-                     "Scrivimi o prenota una call e raccontami cosa hai. Ti dico se c'è un film e che forma può prendere."),
+                     "Scrivimi o prenota una call e raccontami cosa hai. Partiamo da lì."),
                 ]),
             ],
         },
@@ -83,7 +83,7 @@ PAGES = {
 <p>Most productions begin with a location, a crew and a shooting schedule. Mine often begin with what a company already has:</p>
 <ul>
 <li><strong>Video archive</strong>: site footage, events, old commercials, interviews.</li>
-<li><strong>Product imagery</strong>: photos, catalogues, still life.</li>
+<li><strong>Product imagery</strong>: photos, catalogs, still life.</li>
 <li><strong>Technical material</strong>: renders, drawings, animations, data.</li>
 <li><strong>Fragments</strong>: historical photographs, vintage footage, material scattered across departments.</li>
 </ul>
@@ -92,7 +92,7 @@ PAGES = {
                 ("prose", "How I work", """
 <p><strong>You send me what you have.</strong> I go through all of it and tell you whether there is a film inside, and what kind of film.</p>
 <p>Then I build concept, editing, rhythm, music and visual treatment. Where the archive falls short, I use generative AI to extend, reframe or imagine the missing images. When a shoot is truly needed, it is a targeted one.</p>
-<p>I work remotely. No travel, no production days, no permits. I am based in Milan, but if the material exists, geography matters less.</p>
+<p>Much of the work happens remotely: you send the material, I shape it. I am based in Milan, but if the material exists, geography matters less.</p>
 """),
                 ("films", "Selected corporate films", [
                     {"yt": W_GERD, "t": "GERD", "s": "Webuild · Documentary"},
@@ -103,16 +103,16 @@ PAGES = {
                     {"yt": CALIDA, "t": "Calida Group", "s": "Corporate"},
                 ]),
                 ("faq", "Frequently asked questions", [
-                    ("Do we need to organise a shoot?",
+                    ("Do we need to organize a shoot?",
                      "Often not. We start from what already exists. If something is missing, we decide together: AI-generated imagery or a few targeted shots."),
                     ("What material can I send?",
-                     "Everything you have: archive footage, events, photos, catalogues, renders, presentations, technical material. Even if it looks thin or messy: figuring out what is inside is part of my job."),
+                     "Everything you have: archive footage, events, photos, catalogs, renders, presentations, technical material. Even if it looks thin or messy: figuring out what is inside is part of my job."),
                     ("What are these films used for?",
                      "Websites, trade fairs, presentations, campaigns, internal launches, case studies. The same material can produce several versions and formats."),
                     ("Do you only work in Milan?",
                      "No. I am based in Milan and work remotely with companies anywhere."),
                     ("How do we start?",
-                     "Write to me or book a call and tell me what you have. I will tell you if there is a film and what shape it can take."),
+                     "Write to me or book a call and tell me what you have. We start from there."),
                 ]),
             ],
         },
@@ -126,7 +126,7 @@ PAGES = {
             "crumb": "Video con l'AI",
             "label": "AI generativa · Brand film · Fashion film",
             "h1": "Video con l'AI,<br>ma <em>diretti.</em>",
-            "lede": "L'intelligenza artificiale genera immagini. Un film è un'altra cosa: serve qualcuno che scelga, tagli, dia ritmo e senso. Uso l'AI generativa come parte del processo di regia, non come scorciatoia.",
+            "lede": "L'intelligenza artificiale genera immagini. Un film è un'altra cosa: serve qualcuno che scelga, tagli, dia ritmo e senso. Uso l'AI generativa dentro la regia, come uno strumento tra gli altri.",
             "sections": [
                 ("prose", "Cosa si può fare", """
 <ul>
@@ -134,14 +134,14 @@ PAGES = {
 <li><strong>Film misti</strong>: materiale reale dell'azienda più immagini generate che lo completano, lo estendono o lo reinventano.</li>
 <li><strong>Fashion e prodotto</strong>: dalle immagini di campagna e di prodotto a un film, senza allestire un set.</li>
 </ul>
-<p>Per la collezione FILA FW26, presentata alla Milano Fashion Week, ho fatto cinque fashion film: tre diretti sul set, due creati senza girare un solo fotogramma.</p>
+<p>Per FILA FW26 ho usato le due strade insieme: tre film girati sul set, due generati. <a href="/it/fila-fashion-film.html">Il caso FILA →</a></p>
 """),
                 ("films", "Reel AI", [
                     {"src": "/ai-reel.mp4", "t": "AI Reel 2026", "s": "Interamente generato"},
                 ]),
                 ("prose", "Diretto, non solo promptato", """
-<p>Chiunque oggi può scrivere un prompt. La differenza la fanno le stesse cose di sempre: concept, montaggio, ritmo, musica, trattamento visivo. Faccio immagini da sempre, prima con il disegno e il collage, poi con il cinema e la pubblicità. L'AI è l'ultimo strumento, non il punto di partenza.</p>
-<p>Altri film AI sono su Instagram: <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>.</p>
+<p>Chiunque oggi può scrivere un prompt. La differenza la fanno le stesse cose di sempre: concept, montaggio, ritmo, musica, trattamento visivo. Faccio immagini da sempre, prima con il disegno e il collage, poi con il cinema e la pubblicità. L'AI è l'ultimo strumento che ho preso in mano.</p>
+<p>Gli appunti AI sono nel <a href="/it/ai-films.html">Taccuino</a> e su Instagram: <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>.</p>
 """),
                 ("films", "Altri lavori con l'AI", [
                     {"yt": FILA_FBOX, "t": "FILA F-Box", "s": "Installazione AI · Salone del Mobile 2023"},
@@ -165,10 +165,10 @@ PAGES = {
             "path": "/ai-brand-films.html",
             "title": "AI Brand Films and Corporate Videos, Directed | Alex Dallolio",
             "description": "Corporate videos, brand films and fashion films made with generative AI and directed by a filmmaker. Alex Dallolio, Milan: FILA, AI reel, experimental work.",
-            "crumb": "AI films",
+            "crumb": "AI brand films",
             "label": "Generative AI · Brand films · Fashion films",
             "h1": "AI films,<br>but <em>directed.</em>",
-            "lede": "Artificial intelligence generates images. A film is something else: someone has to choose, cut, and give it rhythm and meaning. I use generative AI as part of the directing process, not as a shortcut.",
+            "lede": "Artificial intelligence generates images. A film is something else: someone has to choose, cut, and give it rhythm and meaning. I use generative AI inside the directing, as one tool among others.",
             "sections": [
                 ("prose", "What it can do", """
 <ul>
@@ -176,14 +176,14 @@ PAGES = {
 <li><strong>Hybrid films</strong>: a company's real material plus generated imagery that completes, extends or reinvents it.</li>
 <li><strong>Fashion and product</strong>: from campaign and product imagery to a film, without building a set.</li>
 </ul>
-<p>For the FILA FW26 collection, presented at Milan Fashion Week, I made five fashion films: three directed on set, two created without shooting a single frame.</p>
+<p>For FILA FW26 I used both paths together: three films shot on set, two generated. <a href="/fila-fashion-films.html">The FILA case →</a></p>
 """),
                 ("films", "AI reel", [
                     {"src": "/ai-reel.mp4", "t": "AI Reel 2026", "s": "Fully generated"},
                 ]),
                 ("prose", "Directed, not just prompted", """
-<p>Anyone can write a prompt today. What makes the difference is what always did: concept, editing, rhythm, music, visual treatment. I have always made images, first drawing and collage, then cinema and advertising. AI is the latest tool, not the starting point.</p>
-<p>More AI films on Instagram: <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>.</p>
+<p>Anyone can write a prompt today. What makes the difference is what always did: concept, editing, rhythm, music, visual treatment. I have always made images, first drawing and collage, then cinema and advertising. AI is the latest tool I have picked up.</p>
+<p>More in the <a href="/ai-films.html">Notebook</a> and on Instagram: <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>.</p>
 """),
                 ("films", "More AI work", [
                     {"yt": FILA_FBOX, "t": "FILA F-Box", "s": "AI installation · Salone del Mobile 2023"},
@@ -209,11 +209,11 @@ PAGES = {
         "it": {
             "path": "/it/webuild-caso-studio.html",
             "title": "Webuild: undici anni di film aziendali | Caso studio, Alex Dallolio",
-            "description": "Undici anni di film per Webuild (ex Salini Impregilo): la diga GERD, WeSearch, Progetto Italia, Railways Experience. Video aziendali costruiti da girato di cantiere, archivio e materiale tecnico.",
+            "description": "Undici anni di film per Webuild (ex Salini Impregilo): diga GERD, WeSearch, Progetto Italia. Film costruiti da girato di cantiere, archivio e materiale tecnico.",
             "crumb": "Caso studio · Webuild",
             "label": "Caso studio · Corporate · Grandi opere",
             "h1": "Webuild.<br>Undici anni di <em>grandi opere</em> in film.",
-            "lede": "Da undici anni faccio film per il gruppo dietro alcuni dei più grandi progetti di costruzione del mondo: dalla diga GERD a WeSearch e Progetto Italia.",
+            "lede": "Da undici anni faccio film per il gruppo dietro alcuni dei più grandi progetti di costruzione del mondo, come la diga GERD. Dai cantieri a WeSearch e Progetto Italia.",
             "sections": [
                 ("prose", "Il materiale", """
 <p>Un cantiere produce una quantità enorme di immagini: riprese dei lavori, droni, fotografie tecniche, render, interviste, archivio storico. Quasi mai nasce come racconto.</p>
@@ -230,7 +230,7 @@ PAGES = {
                     {"yt": W_DREAM, "t": "Dream Builders", "s": "Webuild · Corporate"},
                 ]),
                 ("prose", "Cosa dimostra", """
-<p>Che un'azienda industriale non ha bisogno di una grande produzione per avere dei film. Ha bisogno di qualcuno che sappia vedere cosa c'è nel materiale che produce ogni giorno.</p>
+<p>Che il racconto di un'azienda spesso esiste già, nel materiale che produce ogni giorno. Serve qualcuno che sappia vederlo, e girare solo quello che manca.</p>
 <p>Se la tua azienda ha un archivio simile, <a href="/it/video-aziendali-da-archivio.html">qui spiego come lavoro</a>.</p>
 """),
             ],
@@ -238,14 +238,14 @@ PAGES = {
         "en": {
             "path": "/webuild-case-study.html",
             "title": "Webuild: Eleven Years of Corporate Films | Case Study, Alex Dallolio",
-            "description": "Eleven years of films for Webuild (formerly Salini Impregilo): the GERD dam, WeSearch, Progetto Italia, Railways Experience. Corporate films built from site footage, archive and technical material.",
+            "description": "Eleven years of films for Webuild (formerly Salini Impregilo): the GERD dam, WeSearch, Progetto Italia. Films built from site footage, archive and technical material.",
             "crumb": "Case study · Webuild",
             "label": "Case study · Corporate · Infrastructure",
-            "h1": "Webuild.<br>Eleven years of <em>great works</em> on film.",
-            "lede": "For eleven years I have been making films for the group behind some of the world's largest construction projects: from the GERD dam to WeSearch and Progetto Italia.",
+            "h1": "Webuild.<br>Eleven years of <em>landmark infrastructure</em> on film.",
+            "lede": "For eleven years I have been making films for the group behind some of the world's largest construction projects, such as the GERD dam. From the sites to WeSearch and Progetto Italia.",
             "sections": [
                 ("prose", "The material", """
-<p>A construction site produces a huge amount of imagery: progress footage, drones, technical photography, renders, interviews, historical archive. It is almost never born as a story.</p>
+<p>A construction site produces a huge amount of imagery: progress footage, drones, technical photography, renders, interviews, historical archive. It is almost never shot as a story.</p>
 <p>Much of the work for Webuild is built from exactly that: site footage, archive and technical material, turned into films people actually watch.</p>
 """),
                 ("films", "Films for Webuild", [
@@ -259,7 +259,7 @@ PAGES = {
                     {"yt": W_DREAM, "t": "Dream Builders", "s": "Webuild · Corporate"},
                 ]),
                 ("prose", "What it shows", """
-<p>That an industrial company does not need a large production to have films. It needs someone who can see what is inside the material it produces every day.</p>
+<p>That a company's story often already exists, in the material it produces every day. It takes someone who can see it, and shoot only what is missing.</p>
 <p>If your company has a similar archive, <a href="/corporate-films-from-existing-footage.html">here is how I work</a>.</p>
 """),
             ],
@@ -270,7 +270,7 @@ PAGES = {
         "it": {
             "path": "/it/fila-fashion-film.html",
             "title": "FILA FW26: fashion film sul set e con l'AI | Caso studio, Alex Dallolio",
-            "description": "Cinque fashion film per la collezione FILA FW26 presentati alla Milano Fashion Week: tre diretti sul set, due creati con l'AI senza girare un fotogramma. E l'installazione AI F-Box al Salone del Mobile 2023.",
+            "description": "Cinque fashion film per FILA FW26 alla Milano Fashion Week: tre girati sul set, due creati con l'AI. E l'installazione AI F-Box al Salone del Mobile 2023.",
             "crumb": "Caso studio · FILA",
             "label": "Caso studio · Fashion film · AI",
             "h1": "FILA.<br>Tre film sul set, due <em>senza set.</em>",
@@ -284,19 +284,21 @@ PAGES = {
                     {"ig": "DXgtfvYBFMP", "t": "FILA FW26", "s": "Pubblicato da FILA sul profilo ufficiale @fila_global"},
                     {"ig": "DYHmdXQOWYZ", "t": "FILA FW26 · Milano Fashion Week", "s": "Pubblicato da FILA Japan @fila_japan_official"},
                 ]),
-                ("films", "FILA F-Box, Salone del Mobile 2023", [
-                    {"yt": FILA_FBOX, "t": "FILA F-Box", "s": "Installazione AI · Milano Design Week 2023"},
-                ]),
                 ("prose", "Prima ancora: F-Box", """
 <p>Nel 2023, al Salone del Mobile, l'esperienza AI FILA F-Box: un'installazione per la Milano Design Week.</p>
+"""),
+                ("films", "", [
+                    {"yt": FILA_FBOX, "t": "FILA F-Box", "s": "Installazione AI · Salone del Mobile 2023"},
+                ]),
+                ("prose", "", """
 <p>Altri esempi di <a href="/it/video-aziendali-ai.html">video e brand film con l'AI</a>.</p>
 """),
             ],
         },
         "en": {
             "path": "/fila-fashion-films.html",
-            "title": "FILA FW26 Fashion Films, On Set and with AI | Case Study, Alex Dallolio",
-            "description": "Five fashion films for the FILA FW26 collection presented at Milan Fashion Week: three directed on set, two created with AI without shooting a single frame. Plus the F-Box AI installation at Salone del Mobile 2023.",
+            "title": "FILA FW26 Fashion Films, on Set and with AI | Alex Dallolio",
+            "description": "Five fashion films for FILA FW26 at Milan Fashion Week: three shot on set, two created with AI. Plus the F-Box AI installation at Salone del Mobile 2023.",
             "crumb": "Case study · FILA",
             "label": "Case study · Fashion film · AI",
             "h1": "FILA.<br>Three films on set, two <em>without one.</em>",
@@ -310,11 +312,13 @@ PAGES = {
                     {"ig": "DXgtfvYBFMP", "t": "FILA FW26", "s": "Published by FILA on its official account @fila_global"},
                     {"ig": "DYHmdXQOWYZ", "t": "FILA FW26 · Milan Fashion Week", "s": "Published by FILA Japan @fila_japan_official"},
                 ]),
-                ("films", "FILA F-Box, Salone del Mobile 2023", [
-                    {"yt": FILA_FBOX, "t": "FILA F-Box", "s": "AI installation · Milan Design Week 2023"},
-                ]),
                 ("prose", "Before that: F-Box", """
 <p>In 2023, at Salone del Mobile, the FILA F-Box AI experience: an installation for Milan Design Week.</p>
+"""),
+                ("films", "", [
+                    {"yt": FILA_FBOX, "t": "FILA F-Box", "s": "AI installation · Salone del Mobile 2023"},
+                ]),
+                ("prose", "", """
 <p>More <a href="/ai-brand-films.html">AI brand films and videos</a>.</p>
 """),
             ],
@@ -325,7 +329,7 @@ PAGES = {
     "aifilms": {
         "it": {
             "path": "/it/ai-films.html",
-            "title": "Taccuino: appunti AI, brevi film fatti con l'AI | Alex Dallolio",
+            "title": "Taccuino. Appunti AI, brevi film | Alex Dallolio",
             "description": "I brevi film di Alex Dallolio realizzati con l'intelligenza artificiale generativa: luoghi, persone e atmosfere che non esistono. Un reel nuovo ogni pochi giorni.",
             "crumb": "Taccuino",
             "label": "Appunti AI · da Instagram",
@@ -341,7 +345,7 @@ PAGES = {
         },
         "en": {
             "path": "/ai-films.html",
-            "title": "Notebook: AI Sketches, Short Films Made with AI | Alex Dallolio",
+            "title": "Notebook. AI Sketches, Short Films | Alex Dallolio",
             "description": "Short films by Alex Dallolio made with generative AI: places, people and moods that do not exist. A new reel every few days.",
             "crumb": "Notebook",
             "label": "AI sketches · from Instagram",
@@ -351,7 +355,7 @@ PAGES = {
                 ("reels", "All sketches"),
                 ("prose", "Follow on Instagram", """
 <p>Every film comes out first on <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>. If you are curious how AI can work in your company's films, <a href="/ai-brand-films.html">here is how I work</a>.</p>
-<p><a href="/bozze/stanza.html">Enter the room →</a> Write a thought by hand, a film from the notebook answers.</p>
+<p><a href="/bozze/stanza.html">Enter the room →</a> Write a thought by hand and a film from the notebook answers.</p>
 """),
             ],
         },
@@ -370,7 +374,7 @@ UI = {
     "en": {
         "nav_work": "Work", "nav_all": "All films", "nav_contact": "Contact",
         "related": "Keep exploring", "footer_city": "Milan",
-        "cta_h2": "Send me what you have.<br><em>I will tell you if there is a film inside.</em>",
+        "cta_h2": "Send me what you have.<br><em>I'll tell you if there's a film in it.</em>",
         "cta_p": "Archive footage, product images, a case study, an event, or just a problem to solve.",
         "cta_email": "Email me", "cta_book": "Book a call",
     },
@@ -382,5 +386,5 @@ SHORT = {
     "ai": {"it": ("Servizio", "Video e brand film con l'AI"), "en": ("Service", "AI brand films")},
     "webuild": {"it": ("Caso studio", "Webuild, undici anni di film"), "en": ("Case study", "Webuild, eleven years of films")},
     "fila": {"it": ("Caso studio", "FILA FW26, set e AI"), "en": ("Case study", "FILA FW26, set and AI")},
-    "aifilms": {"it": ("Taccuino", "Appunti AI"), "en": ("Notebook", "AI sketches")},
+    "aifilms": {"it": ("Taccuino", "Taccuino. Appunti AI"), "en": ("Notebook", "Notebook. AI sketches")},
 }
