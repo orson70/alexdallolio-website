@@ -171,6 +171,7 @@ def render(page: str, lang: str) -> str:
 import sys
 sys.path.insert(0, str(SRC))
 import landing_pages as LP  # noqa: E402
+import home_texts  # noqa: E402,F401
 
 
 def film_html(f: dict) -> str:
@@ -299,9 +300,90 @@ def write(path: str, content: str):
     print("scritto", out.relative_to(ROOT))
 
 
+# ── Home: "nuovo" (Non giro, dal 24/09/2026) oppure "classico" (Didot/oro) ──
+# Per tornare al vecchio sito: HOME_STYLE = "classico", poi python3 _src/build.py e push.
+# L'altra versione resta visibile (noindex) su /<nome>/ e /it/<nome>/.
+HOME_STYLE = "nuovo"
+ALT_HOME = {"nuovo": "classico", "classico": "nuovo"}[HOME_STYLE]
+
+
+def render_home_new(lang: str, base: str, robots: str) -> str:
+    import home_texts as H
+    t = H.T[lang]
+    other = "it" if lang == "en" else "en"
+    e = lambda x: html.escape(x, quote=True)
+    url = SITE + base
+    frames = []
+    for i, (yt, title, c_it, c_en, year) in enumerate(H.WORKS):
+        sub = (c_it if lang == "it" else c_en) + (f" · {year}" if year else "")
+        frames.append(
+            f'      <div class="frame" data-yt="{yt}" data-t="{e(title)}"><button type="button" aria-label="{e(title)}">'
+            f'<img src="https://i.ytimg.com/vi/{yt}/maxresdefault.jpg" alt="{e(title)}, {e(sub)}" loading="{"eager" if i < 3 else "lazy"}">'
+            f'<span class="grain"></span><span class="lines"></span><span class="tag">{t["raw"]} · {i + 1:02d}</span>'
+            f'<span class="play">{t["film"]}</span></button><div class="cap"><b>{e(title)}</b><span class="mono">{e(sub)}</span></div></div>')
+    facts = "\n".join(f"  <p>{a} <span>{b}</span></p>" for a, b in t["facts"])
+    links = "\n".join(f'    <a href="{h}">{txt}</a>' for txt, h in t["links"])
+    alt = {l: SITE + ("/it/" if l == "it" else "/") for l in LANGS}
+    hreflang = "" if robots else "\n".join(
+        f'<link rel="alternate" hreflang="{l}" href="{alt[l]}">' for l in LANGS) + f'\n<link rel="alternate" hreflang="x-default" href="{alt["en"]}">'
+    jsonld = json.dumps({
+        "@context": "https://schema.org", "@type": "Person", "name": "Alex Dallolio", "alternateName": "Alessandro Dallolio",
+        "jobTitle": "Regista e AI Artist" if lang == "it" else "Film Director & AI Artist",
+        "description": t["description"], "url": SITE + "/", "image": SITE + "/og-image.jpg",
+        "address": {"@type": "PostalAddress", "addressLocality": "Milano" if lang == "it" else "Milan", "addressCountry": "IT"},
+        "sameAs": ["https://www.youtube.com/@alchemistfilm-d4k", "https://www.instagram.com/alexdallolio_aifilms/",
+                   "https://vimeo.com/alexdallolio", "https://www.linkedin.com/in/alexdallolio/"]},
+        ensure_ascii=False, indent=1)
+    other_href = ("/" if lang == "it" else "/it/") + (ALT_HOME + "/" if robots else "")
+    vals = {
+        "lang": lang, "title": e(t["title"]), "description": e(t["description"]), "robots": robots,
+        "canonical": url, "hreflang": hreflang, "og_title": e(t["og_title"]), "og_description": e(t["og_description"]),
+        "og_locale": "it_IT" if lang == "it" else "en_US", "jsonld": jsonld,
+        "nav1": t["nav"][0], "nav2": t["nav"][1], "nav3": t["nav"][2],
+        "h1": t["h1"], "sub": t["sub"], "role": t["role"], "scroll": t["scroll"],
+        "nworks": f"{len(H.WORKS):02d}", "frames": "\n".join(frames), "prev": t["prev"], "next": t["next"], "legend": t["legend"],
+        "facts": facts, "links": links, "tac_h": t["tac_h"], "tac_href": t["tac_all"][1], "tac_all": t["tac_all"][0],
+        "who_h": t["who_h"], "bio": t["bio"], "clients_label": t["clients_label"], "brands": H.BRANDS, "agencies": t["agencies"],
+        "book": t["book"], "other_lang": t["other_lang"][0], "other_href": other_href, "other_code": other, "close": t["close"],
+    }
+    out = (SRC / "home.template.html").read_text()
+    for k, v in vals.items():
+        out = out.replace("{{" + k + "}}", v)
+    if "{{" in out:
+        raise SystemExit(f"home/{lang}: segnaposto non sostituiti: {re.findall(r'{{(\\w+)}}', out)}")
+    return out
+
+
+def noindex(src: str, lang: str, base: str) -> str:
+    """Versione alternativa della home: visibile ma fuori da Google."""
+    src = src.replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n<meta name="robots" content="noindex, follow">', 1)
+    src = re.sub(r'<link rel="alternate" hreflang="[^"]+" href="[^"]*">\n?', "", src)
+    src = re.sub(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{SITE}{base}">', src, count=1)
+    # selettore lingua: resta dentro la versione alternativa
+    other_base = ("/" if lang == "it" else "/it/") + ALT_HOME + "/"
+    src = re.sub(r'(<a class="lang-btn[^"]*" href=")/(?:it/)?(" hreflang="(?:en|it)">)',
+                 lambda m: m.group(1) + (("/it/" if "it" in m.group(2) else "/") + ALT_HOME + "/") + m.group(2), src)
+    return src
+
+
 def main():
     groups = []
+    for lang in LANGS:
+        base = "/it/" if lang == "it" else "/"
+        alt_base = base + ALT_HOME + "/"
+        classic = render("index", lang)
+        new = render_home_new(lang, base if HOME_STYLE == "nuovo" else alt_base,
+                              "" if HOME_STYLE == "nuovo" else '<meta name="robots" content="noindex, follow">\n')
+        if HOME_STYLE == "nuovo":
+            write(base, new)
+            write(alt_base, noindex(classic, lang, alt_base))
+        else:
+            write(base, classic)
+            write(alt_base, new)
+    groups.append({l: PAGES["index"][l]["path"] for l in LANGS})
     for page in PAGES:
+        if page == "index":
+            continue
         for lang in LANGS:
             write(PAGES[page][lang]["path"], render(page, lang))
         groups.append({l: PAGES[page][l]["path"] for l in LANGS})

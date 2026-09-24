@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Dallolio — Regista a Milano | Video aziendali, brand film e AI</title>
+<meta name="description" content="Regista e AI artist a Milano. Trasformo il materiale che la tua azienda ha già (archivio, girato, immagini di prodotto) in video aziendali e brand film cinematografici, anche con l&#x27;AI generativa. Senza produzione tradizionale.">
+<link rel="canonical" href="https://www.alexdallolio.com/it/classico/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#0d0c0b">
+
+<!-- Open Graph (anteprima quando si condivide il link) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alex Dallolio">
+<meta property="og:title" content="Alex Dallolio — Regista e AI Artist">
+<meta property="og:description" content="Trasformo il materiale che hai già in video aziendali e brand film cinematografici. Senza produzione tradizionale.">
+<meta property="og:url" content="https://www.alexdallolio.com/it/">
+<meta property="og:image" content="https://www.alexdallolio.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="it_IT">
+<meta property="og:locale:alternate" content="en_US">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alex Dallolio — Regista e AI Artist">
+<meta name="twitter:description" content="Trasformo il materiale che hai già in video aziendali e brand film cinematografici. Senza produzione tradizionale.">
+<meta name="twitter:image" content="https://www.alexdallolio.com/og-image.jpg">
+
+<!-- Scheda Google (dati strutturati) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Alex Dallolio",
+  "alternateName": "Alessandro Dallolio",
+  "jobTitle": "Regista e AI Artist",
+  "description": "Regista e AI artist a Milano: trasforma il materiale esistente delle aziende in video aziendali e brand film cinematografici.",
+  "url": "https://www.alexdallolio.com",
+  "image": "https://www.alexdallolio.com/og-image.jpg",
+  "address": { "@type": "PostalAddress", "addressLocality": "Milan", "addressCountry": "IT" },
+  "sameAs": [
+    "https://www.youtube.com/@alchemistfilm-d4k",
+    "https://www.instagram.com/alexdallolio_aifilms/",
+    "https://vimeo.com/alexdallolio",
+    "https://www.linkedin.com/in/alexdallolio/"
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0d0c0b;
+  --bg2: #141210;
+  --white: #f0ede8;
+  --grey: #7a7570;
+  --soft: #b0a99f;
+  --accent: #c8b89a;
+  --line: rgba(200,184,154,0.12);
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Didot", "Bodoni Moda", "Georgia", serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* ── SPLASH SCREEN ─────────────────────────────────────────── */
+#splash {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+#splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+#splash-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0;
+  transition: opacity 1.4s ease;
+}
+#splash-video.loaded { opacity: 1; }
+#splash-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(13,12,11,0.55) 0%, rgba(13,12,11,0.72) 100%);
+  backdrop-filter: brightness(0.92);
+}
+#splash-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 2rem;
+}
+#splash-name {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 200; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--white);
+}
+#splash-role {
+  font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--accent); margin-top: -1rem;
+}
+#splash-enter {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--soft); border: 1px solid rgba(200,184,154,0.3);
+  padding: 0.8rem 2rem; border-radius: 1px;
+  transition: color 0.3s, border-color 0.3s;
+  animation: pulse-border 2.5s ease-in-out infinite;
+}
+#splash-enter:hover { color: var(--white); border-color: var(--accent); }
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(200,184,154,0.25); }
+  50% { border-color: rgba(200,184,154,0.6); }
+}
+#splash-enter .arrow { transition: transform 0.3s; }
+#splash:hover #splash-enter .arrow { transform: translateX(4px); }
+
+/* ── VIDEO BACKGROUND ──────────────────────────────────────── */
+#video-bg-wrap {
+  position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none;
+}
+#yt-player { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none; pointer-events: none; }
+.video-overlay {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(200,184,154,0.07) 0%, transparent 35%),
+    radial-gradient(ellipse at 85% 80%, rgba(80,60,40,0.08) 0%, transparent 40%),
+    linear-gradient(to bottom, rgba(13,12,11,0.6) 0%, rgba(13,12,11,0.45) 50%, rgba(13,12,11,0.75) 100%);
+}
+
+/* ── NAV ───────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.5rem 3rem;
+  background: linear-gradient(to bottom, rgba(13,12,11,0.97) 0%, transparent 100%);
+}
+nav .logo { font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+nav ul { list-style: none; display: flex; gap: 2.4rem; align-items: center; }
+nav ul a { color: var(--grey); text-decoration: none; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.25s; }
+nav ul a:hover { color: var(--white); }
+.lang-switcher { display: flex; gap: 0.3rem; align-items: center; margin-left: 1.8rem; }
+.lang-btn { background: none; border: none; color: var(--grey); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; padding: 3px 6px; font-family: var(--font); transition: color 0.2s; border-radius: 1px; }
+.lang-btn { text-decoration: none; }
+.lang-btn:hover { color: var(--white); }
+.lang-btn.active { color: var(--accent); border-bottom: 1px solid rgba(200,184,154,0.6); }
+
+/* ── HERO ──────────────────────────────────────────────────── */
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 6rem 3rem 4.5rem; border-bottom: 1px solid var(--line); }
+.hero-label { font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.8rem; }
+.hero h1 { font-size: clamp(2.6rem, 6.5vw, 6rem); font-weight: 200; line-height: 1.05; letter-spacing: -0.02em; max-width: 860px; margin-bottom: 2rem; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub { font-size: 0.95rem; color: var(--soft); max-width: 480px; line-height: 1.75; margin-bottom: 3rem; }
+.hero-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.hero-links a { font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 3px; transition: border-color 0.25s, color 0.25s; }
+.hero-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── SECTIONS ──────────────────────────────────────────────── */
+section { padding: 6rem 3rem; border-bottom: 1px solid var(--line); background: transparent; }
+.section-label { font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 3rem; }
+
+/* ── FOR WHOM ──────────────────────────────────────────────── */
+.for-whom h2 { font-size: clamp(1.5rem, 3vw, 2.6rem); font-weight: 200; line-height: 1.2; letter-spacing: -0.01em; max-width: 820px; margin-bottom: 2rem; }
+.for-whom p { color: var(--soft); font-size: 0.92rem; max-width: 640px; line-height: 1.8; }
+
+.forwho-ask { margin-top: 2.4rem; font-size: 1.15rem !important; color: var(--white) !important; line-height: 1.6 !important; max-width: 640px; }
+.forwho-ask em { color: var(--accent); font-style: italic; }
+.forwho-best { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+.forwho-best .best-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-right: 0.4rem; }
+.forwho-best .chip { font-size: 0.74rem; letter-spacing: 0.06em; color: var(--soft); border: 1px solid rgba(200,184,154,0.3); padding: 0.35rem 0.8rem; border-radius: 2px; }
+.cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 820px; margin: 0 auto; text-align: left; }
+.case { border-left: 1px solid rgba(200,184,154,0.25); padding-left: 1.4rem; }
+.case strong { display: block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; font-weight: 500; }
+.case p { font-size: 0.85rem; color: var(--grey); margin: 0; line-height: 1.7; }
+@media (max-width: 760px) { .cases { grid-template-columns: 1fr; } }
+
+/* ── APPROACH ──────────────────────────────────────────────── */
+.approach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.approach h2 { font-size: clamp(1.7rem, 3.2vw, 2.8rem); font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 2rem; }
+.approach p { color: var(--soft); line-height: 1.8; margin-bottom: 1.2rem; font-size: 0.92rem; }
+.approach-points { display: flex; flex-direction: column; gap: 2rem; padding-top: 0.5rem; }
+.point { border-left: 1px solid rgba(200,184,154,0.25); padding-left: 1.4rem; }
+.point strong { display: block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; font-weight: 500; }
+.point p { font-size: 0.88rem; color: var(--grey); margin: 0; line-height: 1.7; }
+
+/* ── WORK ──────────────────────────────────────────────────── */
+.showreel-wrap { max-width: 820px; margin: 0 auto 3rem; position: relative; border-radius: 3px; overflow: hidden; aspect-ratio: 16/9; background: #111; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+.showreel-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+.work-cta { margin-top: 3rem; text-align: center; }
+.work-cta a { display: inline-flex; align-items: center; gap: 0.7rem; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid rgba(200,184,154,0.45); padding: 1rem 2.6rem; border-radius: 1px; transition: color 0.25s, border-color 0.25s, background 0.25s; }
+.work-cta a:hover { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+.work-cta a .arrow { transition: transform 0.25s; }
+.work-cta a:hover .arrow { transform: translateX(4px); }
+
+/* ── AI SECTION ────────────────────────────────────────────── */
+.ai-section h2 { font-size: clamp(1.7rem, 3.2vw, 2.8rem); font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.2rem; }
+.ai-section h2 em { font-style: italic; color: var(--accent); }
+.ai-section > p { color: var(--soft); max-width: 620px; line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem; }
+.ai-reel-wrap { max-width: 820px; margin: 2.8rem auto 0; border-radius: 3px; overflow: hidden; aspect-ratio: 16/9; background: #111; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+.ai-follow { text-align: center; margin-top: 1.6rem; }
+.ai-follow a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px; transition: color 0.25s, border-color 0.25s; }
+.ai-follow a span { color: var(--accent); text-transform: none; letter-spacing: 0.02em; }
+.ai-follow a:hover { color: var(--white); border-color: var(--accent); }
+.ai-reel-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── CLIENTS ───────────────────────────────────────────────── */
+.clients h2 { font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 200; margin-bottom: 3rem; letter-spacing: -0.01em; }
+.clients-system { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-bottom: 3.5rem; }
+.client-cat h3 { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; border-bottom: 1px solid var(--line); padding-bottom: 0.7rem; }
+.client-cat ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.client-cat li { font-size: 0.88rem; color: var(--soft); letter-spacing: 0.04em; }
+.brands-block { border-top: 1px solid var(--line); padding-top: 2.5rem; }
+.brands-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+.brands-wall { display: flex; flex-wrap: wrap; gap: 0.6rem 1.7rem; }
+.brands-wall span { font-size: 0.92rem; color: var(--soft); letter-spacing: 0.03em; transition: color 0.2s; }
+.brands-wall span:hover { color: var(--white); }
+
+/* ── BIO ────────────────────────────────────────────────────── */
+.bio { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--line); max-width: 680px; }
+.bio p { font-size: 0.95rem; color: var(--soft); line-height: 1.85; margin-bottom: 1.3em; }
+.bio p:last-child { margin-bottom: 0; }
+.bio em { color: var(--accent); font-style: italic; }
+
+/* ── CONTACT ───────────────────────────────────────────────── */
+.contact h2 { font-size: clamp(1.8rem, 3.8vw, 3.2rem); font-weight: 200; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.8rem; max-width: 700px; }
+.contact h2 em { font-style: italic; color: var(--accent); }
+.contact p { color: var(--soft); font-size: 0.92rem; max-width: 500px; margin-bottom: 2.5rem; line-height: 1.75; }
+.contact-links { display: flex; gap: 1.6rem; flex-wrap: wrap; align-items: center; }
+.contact-links a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px; transition: color 0.25s, border-color 0.25s; }
+.contact-links a:hover { color: var(--accent); border-color: var(--accent); }
+.contact-links a.cta-book { color: var(--accent); border-color: rgba(200,184,154,0.4); }
+.chip-link { text-decoration: none; transition: color 0.25s, border-color 0.25s; }
+.chip-link:hover { color: var(--white); border-color: var(--accent); }
+.case-more { display: inline-block; margin-top: 0.8rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200,184,154,0.35); padding-bottom: 2px; }
+.case-more:hover { color: var(--white); border-color: var(--white); }
+.footer-links { width: 100%; }
+.footer-links a { color: var(--grey); text-decoration: none; }
+.footer-links a:hover { color: var(--accent); }
+.contact-links a.cta-book:hover { color: var(--white); border-color: var(--white); }
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--line); }
+footer p { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; }
+
+/* ── MOBILE ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 1.2rem 1.5rem; flex-wrap: wrap; gap: 0.8rem; }
+  nav ul { gap: 1.2rem; }
+  .lang-switcher { margin-left: 0; }
+  .hero, section { padding: 4rem 1.5rem; }
+  .approach-grid, .clients-system { grid-template-columns: 1fr; gap: 2.5rem; }
+  footer { padding: 1.5rem; }
+}
+
+/* ── DISPLAY TYPE (serif da cinema sui titoli) ─────────────── */
+#splash-name,
+.hero h1,
+.for-whom h2,
+.approach h2,
+.clients h2,
+.contact h2,
+.ai-section h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.hero h1 { font-size: clamp(3rem, 7.5vw, 7rem); font-weight: 500; }
+.hero h1 em, .contact h2 em, .ai-section h2 em { font-weight: 400; }
+</style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash" onclick="enterSite()">
+  <video id="splash-video" autoplay muted loop playsinline
+    onloadeddata="this.classList.add('loaded')">
+    <source src="/bg-reel.mp4" type="video/mp4">
+  </video>
+  <div id="splash-overlay"></div>
+  <div id="splash-content">
+    <div id="splash-name" data-i18n="name">Alex Dallolio</div>
+    <div id="splash-role" data-i18n="role">Regista · AI Artist · Milano</div>
+    <div id="splash-enter">
+      <span data-i18n="enter">Entra</span>
+      <span class="arrow">&#8594;</span>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO BACKGROUND (main site) -->
+<div id="video-bg-wrap">
+  <video id="yt-player" muted loop playsinline preload="auto">
+    <source src="/bg-reel.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="video-overlay"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/it/" class="logo">Alex Dallolio</a>
+  <ul>
+    <li><a href="#work" data-i18n="nav_work">Lavori</a></li>
+    <li><a href="#ai" data-i18n="nav_ai">AI</a></li>
+    <li><a href="#approach" data-i18n="nav_approach">Metodo</a></li>
+    <li><a href="#clients" data-i18n="nav_clients">Clienti</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contatti</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <a class="lang-btn" href="/classico/" hreflang="en">EN</a>
+    <a class="lang-btn active" href="/it/classico/" hreflang="it">IT</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-label" data-i18n="hero_label">Regista · Video aziendali e brand film · AI</div>
+  <h1 data-i18n-html="hero_h1">Faccio film<br>senza <em>girarli.</em></h1>
+  <p class="hero-sub" data-i18n="hero_sub">Trasformo materiale esistente — riprese d'archivio, immagini di prodotto, AI generativa, motion design — in film di marca cinematografici. Nessuna produzione tradizionale necessaria.</p>
+  <div class="hero-links">
+    <a href="#work" data-i18n="nav_work">Lavori</a>
+    <a href="#contact" data-i18n="hero_cta">Mandami quello che hai</a>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="for-whom" id="forwho">
+  <div class="section-label" data-i18n="forwho_label">A chi è rivolto</div>
+  <h2 data-i18n="forwho_h2">La maggior parte delle aziende ha già tutti gli ingredienti. Manca solo il film.</h2>
+  <p data-i18n="forwho_p">Fabbriche, archivi, case history, processi tecnici, eventi, prodotti, edifici, prototipi, riprese d'epoca. Lavoro con ciò che esiste già e lo trasformo in film per siti web, fiere, presentazioni, campagne e lanci interni.</p>
+  <p class="forwho-ask" data-i18n-html="forwho_ask">Mandami quello che hai già.<br><em>Ti dirò se dentro c'è un film.</em></p>
+  <div class="forwho-best">
+    <span class="best-label" data-i18n="best_label">Ideale per</span>
+    <a class="chip chip-link" href="/it/video-aziendali-da-archivio.html" data-i18n="best_1">Film aziendali da materiale esistente</a>
+    <span class="chip" data-i18n="best_2">Brand film</span>
+    <span class="chip" data-i18n="best_3">Video di lancio</span>
+    <span class="chip" data-i18n="best_4">Fashion film</span>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach" id="approach">
+  <div class="section-label" data-i18n="approach_label">Il Metodo</div>
+  <div class="approach-grid">
+    <div>
+      <h2 data-i18n-html="approach_h2">Un sarto che lavora<br>con qualsiasi tessuto.</h2>
+      <p data-i18n="approach_p1">La maggior parte delle produzioni inizia con una location, una troupe e un piano di riprese. La mia spesso inizia con ciò che un'azienda già possiede: filmati d'archivio, immagini di prodotto, materiale tecnico, render, fotografie, frammenti.</p>
+      <p data-i18n="approach_p2">La regia non è solo ciò che accade sul set. È la capacità di vedere struttura, ritmo, tensione e significato nel materiale grezzo.</p>
+    </div>
+    <div class="approach-points">
+      <div class="point"><strong data-i18n="p1_title">Nessuna ripresa</strong><p data-i18n="p1_text">Lavoro da remoto con gli asset esistenti. Nessun viaggio, nessun giorno di produzione, nessun permesso.</p></div>
+      <div class="point"><strong data-i18n="p2_title">Workflow AI-native</strong><p data-i18n="p2_text">L'AI generativa è parte del processo visivo: per estendere, reinterpretare, immaginare e costruire ciò che l'archivio non può fornire.</p></div>
+      <div class="point"><strong data-i18n="p3_title">Occhio del regista</strong><p data-i18n="p3_text">Concept, montaggio, ritmo, musica e trattamento visivo trasformano materiale sparso in qualcosa che le persone vogliono davvero guardare.</p></div>
+      <div class="point"><strong data-i18n="p4_title">Ovunque nel mondo</strong><p data-i18n="p4_text">Basato a Milano, lavoro globalmente. Se il materiale esiste, la geografia conta meno.</p></div>
+    </div>
+  </div>
+  <div class="bio" data-i18n-html="bio"><p>Alessandro Dallolio è nato a Torino e ha trascorso parte dell'infanzia in Asia — India, Indonesia, Malesia.</p><p>Fa immagini da quando sa ricordare. Prima disegno, pittura, collage. Poi cinema, pubblicità, installazioni, intelligenza artificiale.</p><p>Il suo metodo non è cambiato in trent'anni: prende materiale che non sembra avere un'anima — archivio aziendale, found footage, immagini generate — e lo assembla seguendo <em>un'intuizione musicale</em> più che una logica visiva. Il risultato è riconoscibile prima di essere spiegabile.</p><p>Ha lavorato con Nike, Lavazza, Prada, BMW, Disney. Con Webuild da undici anni. Il lavoro che fa per le aziende usa il linguaggio pubblicitario come cavallo di Troia per infilare dentro qualcosa di più difficile da definire — e da rimuovere dalla memoria.</p><p>Le influenze dichiarate sono Kubrick, Fellini, Buñuel, Gilliam. Il denominatore comune: <em>la perturbazione come metodo, non come effetto.</em></p><p>Vive e lavora a Milano.</p></div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-label" data-i18n="work_label">Lavori Selezionati</div>
+  <div class="showreel-wrap">
+    <iframe src="https://www.youtube.com/embed/N7Ta9EZstzA?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Showreel 2026"></iframe>
+  </div>
+  <div class="cases">
+    <div class="case"><strong>Webuild</strong><p data-i18n="case_webuild">Undici anni di film per il gruppo dietro alcuni dei più grandi progetti di costruzione del mondo — dalla diga GERD a WeSearch e Progetto Italia. In gran parte costruiti da girato di cantiere, archivio e materiale tecnico.</p><a class="case-more" href="/it/webuild-caso-studio.html" data-i18n-html="read_case">Leggi il caso &rarr;</a></div>
+    <div class="case"><strong>FILA</strong><p data-i18n="case_fila">Cinque fashion film per la collezione FW26, presentati alla Milano Fashion Week: tre diretti sul set, due creati senza girare un solo fotogramma.</p><a class="case-more" href="/it/fila-fashion-film.html" data-i18n-html="read_case">Leggi il caso &rarr;</a></div>
+    <div class="case"><strong>Prada · Canali</strong><p data-i18n="case_fashion">Fashion film dove ritmo, musica e trattamento fanno il lavoro di una grande produzione — materiale di campagna e immagini di prodotto trasformati in cinema.</p></div>
+  </div>
+  <div class="work-cta">
+    <a href="/it/videos.html" data-i18n-html="all_work">Guarda tutti i 30 film <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- AI -->
+<section class="ai-section" id="ai">
+  <div class="section-label" data-i18n="ai_label">AI / Generative</div>
+  <h2 data-i18n-html="ai_h2">Quando la macchina<br>diventa <em>cinema.</em></h2>
+  <p data-i18n="ai_p">Un reel costruito interamente con l'AI generativa — diretto, non solo promptato. Stesso occhio, strumenti nuovi.</p>
+  <div class="ai-reel-wrap">
+    <video src="/ai-reel.mp4" controls playsinline preload="metadata"></video>
+  </div>
+  <div class="ai-follow">
+    <a href="/it/ai-films.html" data-i18n-html="ai_all">Taccuino: appunti AI &rarr;</a><br><br>
+    <a href="/it/video-aziendali-ai.html" data-i18n-html="ai_more">Video con l'AI per aziende &rarr;</a>&emsp;
+    <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener" data-i18n-html="ai_follow">Altri film AI su Instagram &rarr; <span>@alexdallolio_aifilms</span></a>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" id="clients">
+  <div class="section-label" data-i18n="clients_label">Clienti Selezionati</div>
+  <h2 data-i18n="clients_h2">Brand e aziende con cui ho lavorato.</h2>
+  <div class="clients-system">
+    <div class="client-cat">
+      <h3 data-i18n="cat_agencies">Agenzie</h3>
+      <ul><li>DLV Agency</li><li>Young &amp; Rubicam</li><li>JWT</li><li>Leo Burnett</li><li>Armando Testa</li></ul>
+    </div>
+    <div class="client-cat">
+      <h3 data-i18n="cat_production">Case di produzione</h3>
+      <ul><li>Movie Magic</li><li>Alto Verbano</li><li>Haibun</li><li>BRW</li><li>Filmaster</li></ul>
+    </div>
+    <div class="client-cat">
+      <h3 data-i18n="cat_broadcast">TV &amp; Broadcast</h3>
+      <ul><li>Mediaset</li><li>Rai</li><li>Sky</li><li>Fox</li></ul>
+    </div>
+  </div>
+  <div class="brands-block">
+    <h3 class="brands-label" data-i18n="cat_brands">Brand</h3>
+    <div class="brands-wall">
+      <span>Prada</span><span>Nike</span><span>BMW</span><span>Volkswagen</span><span>Bugatti</span><span>Ray-Ban</span><span>Timberland</span><span>Converse</span><span>Diadora</span><span>Fila</span><span>Colmar</span><span>Canali</span><span>John Richmond</span><span>Jacob Cohen</span><span>Malìparmi</span><span>Luisa Spagnoli</span><span>Dimensione Danza</span><span>Cromia</span><span>Polaroid</span><span>Lavazza</span><span>Tetra Pak</span><span>Allianz</span><span>Novartis</span><span>Sisal</span><span>TIM</span><span>Webuild</span><span>Best in Parking</span><span>Imetec</span><span>RAS</span><span>AEM</span><span>Transpack</span><span>Tassoni</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label" data-i18n="contact_label">Contatti</div>
+  <h2 data-i18n-html="contact_h2">Facciamo qualcosa<br><em>che valga la pena guardare.</em></h2>
+  <p data-i18n="contact_p">Dimmi cosa hai: riprese d'archivio, immagini di prodotto, una case history, un evento, un'idea o semplicemente un problema. Ti dirò che tipo di film possiamo costruire.</p>
+  <div class="contact-links">
+    <a href="mailto:alexdallolio@alexdallolio.com" data-i18n="contact_email">Email</a>
+    <a href="https://www.youtube.com/@alchemistfilm-d4k" target="_blank">YouTube</a>
+    <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://calendly.com/alexdallolio" target="_blank" class="cta-book" data-i18n="contact_book">Prenota una call</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Alex Dallolio. Tutti i diritti riservati.</p>
+  <p>Milano &mdash; Lavoro in tutto il mondo</p>
+  <p class="footer-links"><a href="/it/video-aziendali-da-archivio.html" data-i18n="f_archive">Video aziendali da archivio</a> &middot; <a href="/it/video-aziendali-ai.html" data-i18n="f_ai">Video aziendali con l'AI</a> &middot; <a href="/it/webuild-caso-studio.html" data-i18n="f_webuild">Caso Webuild</a> &middot; <a href="/it/fila-fashion-film.html" data-i18n="f_fila">Caso FILA</a></p>
+</footer>
+
+<script>
+// ── SPLASH LOGIC ────────────────────────────────────────────────────
+function enterSite() {
+  const splash = document.getElementById('splash');
+  splash.classList.add('hidden');
+  try { sessionStorage.setItem('entered', '1'); } catch (e) {}
+  const bg = document.getElementById('yt-player');
+  if (bg) { bg.play().catch(() => {}); }
+  // restore scroll
+  document.body.style.overflow = '';
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.style.overflow = 'hidden'; // lock scroll on splash
+  // Check if already visited in session
+  let entered = false;
+  try { entered = !!sessionStorage.getItem('entered'); } catch (e) {}
+  if (entered) {
+    enterSite();
+  }
+});
+
+// Also allow ESC to skip splash
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') enterSite();
+});
+</script>
+</body>
+</html>
