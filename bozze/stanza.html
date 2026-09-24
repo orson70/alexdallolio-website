@@ -35,12 +35,8 @@ body.answering .doors{opacity:0;pointer-events:none}
 .prompt span{color:var(--sig)}
 
 /* il foglio */
-.sheet{position:relative;width:min(560px,88vw);min-height:min(46vh,440px);background:var(--paper);
-  background-image:
-    repeating-linear-gradient(transparent 0 43px,rgba(60,80,140,.16) 43px 44px),
-    radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.6),transparent 60%),
-    radial-gradient(ellipse at 80% 90%,rgba(120,90,50,.12),transparent 55%);
-  box-shadow:0 40px 90px rgba(0,0,0,.65),0 2px 0 rgba(255,255,255,.4) inset;
+.sheet{position:relative;width:min(560px,88vw);min-height:min(46vh,440px);background:transparent;
+  filter:drop-shadow(0 34px 40px rgba(0,0,0,.6)) drop-shadow(0 4px 6px rgba(0,0,0,.35));
   padding:34px 40px 70px;cursor:text;transform-origin:50% 0;
   transition:transform 1.1s cubic-bezier(.6,0,.2,1),opacity 1.1s}
 .sheet-wrap{transform-style:preserve-3d;will-change:transform}
@@ -51,7 +47,10 @@ body.answering .doors{opacity:0;pointer-events:none}
 body.dragging,body.dragging .room{cursor:grabbing}
 .gesture-hint{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);color:var(--dim);z-index:6;transition:opacity 1.2s;pointer-events:none;text-align:center}
 .sheet.fold{transform:rotateX(78deg) translateY(-30px) scale(.8);opacity:0}
-.sheet::before{content:"";position:absolute;left:28px;top:0;bottom:0;width:1px;background:rgba(190,60,60,.25)}
+.sheet>canvas.paper{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);z-index:0;pointer-events:none}
+.sheet>*:not(canvas){position:relative;z-index:1}
+.sheet .hint{position:absolute}
+.writing{text-shadow:0 0 .7px rgba(29,35,68,.55),0 0 2px rgba(29,35,68,.12)}
 .writing{font-family:var(--hand);font-weight:500;font-size:34px;line-height:44px;color:var(--ink);white-space:pre-wrap;word-break:break-word;min-height:44px}
 .writing .ch{display:inline-block;animation:ink .22s ease-out both;transform-origin:0 70%}
 .writing .sp{display:inline}
@@ -113,7 +112,7 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
 .box .msg{margin-top:14px;font-weight:500}
 .hp{position:absolute;left:-9999px}
 @media (max-width:600px){.tiers{grid-template-columns:1fr}.box{padding:26px 18px}}
-@media (max-width:600px){.sheet{padding:26px 22px 64px}.sheet::before{left:14px}.writing{font-size:28px;line-height:44px}.hint{left:22px;right:22px}}
+@media (max-width:600px){.sheet{padding:26px 22px 64px}.writing{font-size:28px;line-height:44px}.hint{left:22px;right:22px}}
 @media (prefers-reduced-motion:reduce){.writing .ch{animation:none}.caret{animation:none}}
 </style>
 </head>
@@ -129,6 +128,7 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
   <p class="prompt" id="prompt">Scrivi qualcosa. <span>Un sogno, un'idea, un pensiero.</span></p>
   <div class="sheet-wrap" id="sw">
   <div class="sheet" id="sheet" role="textbox" aria-label="Foglio: scrivi qui">
+    <canvas class="paper" id="paper" aria-hidden="true"></canvas>
     <div class="writing" id="writing"><span class="caret" id="caret"></span></div>
     <div class="hint"><span class="mono">Scrivi con la tastiera</span><button class="done" id="done" type="button">Fatto →</button></div>
   </div>
@@ -232,6 +232,70 @@ document.querySelectorAll('.panel form').forEach(f => f.addEventListener('submit
     msg.innerHTML = 'Non è partito. Riprova, oppure scrivimi a <a href="mailto:alexdallolio@alexdallolio.com" style="color:var(--sig)">alexdallolio@alexdallolio.com</a>.';
   }
 }));
+
+// ── Il foglio: carta disegnata a mano (grana, fibre, righe a china, margine, bordi strappati, data a matita) ──
+(function paper() {
+  const cvp = document.getElementById('paper'), sh = document.getElementById('sheet');
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;   // casuale ripetibile: il foglio non "trema" a ogni ridisegno
+  const noiseTile = document.createElement('canvas'); noiseTile.width = noiseTile.height = 128;
+  (() => { const g = noiseTile.getContext('2d'), im = g.createImageData(128, 128);
+    for (let i = 0; i < im.data.length; i += 4) { const v = 120 + Math.random() * 90; im.data[i] = v; im.data[i + 1] = v * .96; im.data[i + 2] = v * .88; im.data[i + 3] = 26; }
+    g.putImageData(im, 0, 0); })();
+  function draw() {
+    const r = sh.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    const w = sh.offsetWidth + 12, h = sh.offsetHeight + 12;
+    cvp.width = w * dpr; cvp.height = h * dpr;
+    const g = cvp.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); seed = 7;
+    // bordi strappati
+    const pts = [], m = 6, step = 9;
+    for (let x = m; x <= w - m; x += step) pts.push([x, m + rnd() * 2.2]);
+    for (let y = m; y <= h - m; y += step) pts.push([w - m - rnd() * 2.2, y]);
+    for (let x = w - m; x >= m; x -= step) pts.push([x, h - m - rnd() * 2.2]);
+    for (let y = h - m; y >= m; y -= step) pts.push([m + rnd() * 2.2, y]);
+    g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.closePath();
+    g.save(); g.clip();
+    // carta: base calda con luce irregolare
+    g.fillStyle = '#efe6d6'; g.fillRect(0, 0, w, h);
+    let gr = g.createRadialGradient(w * .3, h * .2, 10, w * .3, h * .2, w * .9);
+    gr.addColorStop(0, 'rgba(255,253,246,.75)'); gr.addColorStop(1, 'rgba(255,253,246,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    gr = g.createRadialGradient(w * .85, h * .95, 10, w * .85, h * .95, w * .7);
+    gr.addColorStop(0, 'rgba(150,115,60,.16)'); gr.addColorStop(1, 'rgba(150,115,60,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    g.fillStyle = g.createPattern(noiseTile, 'repeat'); g.fillRect(0, 0, w, h);
+    // fibre
+    for (let i = 0; i < 70; i++) {
+      const x = rnd() * w, y = rnd() * h, l = 6 + rnd() * 18, a = rnd() * Math.PI;
+      g.strokeStyle = `rgba(120,100,70,${(.05 + rnd() * .08).toFixed(3)})`; g.lineWidth = .5;
+      g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + Math.cos(a) * l * .5 + rnd() * 3, y + Math.sin(a) * l * .5 + rnd() * 3, x + Math.cos(a) * l, y + Math.sin(a) * l); g.stroke();
+    }
+    // righe a china: tremolanti, con salti d'inchiostro
+    const top = 34 + 6 + 44, left = 12, right = w - 12;
+    for (let y = top; y < h - 30; y += 44) {
+      g.lineWidth = .9; let skip = 0;
+      for (let x = left; x < right; x += 16) {
+        if (skip-- > 0) continue;
+        if (rnd() < .03) { skip = 1 + Math.floor(rnd() * 2); continue; }
+        g.strokeStyle = `rgba(70,92,160,${(.18 + rnd() * .12).toFixed(3)})`;
+        g.beginPath(); g.moveTo(x, y + (rnd() - .5) * 1.1); g.lineTo(Math.min(x + 17, right), y + (rnd() - .5) * 1.1); g.stroke();
+      }
+    }
+    // margine rosso doppio, a mano
+    [34, 38].forEach((mx0, k) => {
+      g.strokeStyle = `rgba(196,62,58,${k ? .28 : .42})`; g.lineWidth = k ? .7 : 1;
+      g.beginPath(); for (let y = 6; y <= h - 6; y += 14) { const x = mx0 + (rnd() - .5) * 1.2; y === 6 ? g.moveTo(x, y) : g.lineTo(x, y); } g.stroke();
+    });
+    // data a matita
+    const d = new Date(), dd = `${String(d.getDate()).padStart(2, '0')} · ${String(d.getMonth() + 1).padStart(2, '0')} · ${d.getFullYear()}`;
+    g.save(); g.translate(w - 34, 36); g.rotate(-.035);
+    g.font = '500 20px Caveat, cursive'; g.textAlign = 'right'; g.fillStyle = 'rgba(80,78,74,.55)'; g.fillText(dd, 0, 0); g.restore();
+    // angolo in basso a destra appena sollevato
+    gr = g.createLinearGradient(w - 60, h - 60, w, h); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(90,70,40,.18)');
+    g.fillStyle = gr; g.fillRect(w - 70, h - 70, 70, 70);
+    g.restore();
+  }
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(draw);
+  new ResizeObserver(draw).observe(sh);
+})();
 
 // ── Il cubo: solo spigoli, gira piano, reagisce al mouse e alla scrittura ──
 const cv = document.getElementById('cube'), cx = cv.getContext('2d');
@@ -378,6 +442,7 @@ function render(prev, next) {
       if (c !== ' ') s.style.transform = `rotate(${(Math.random() * 3 - 1.5).toFixed(2)}deg) translateY(${(Math.random() * 2 - 1).toFixed(1)}px)`;
       s.style.opacity = (0.82 + Math.random() * 0.18).toFixed(2);
       writing.insertBefore(s, caret);
+      setTimeout(() => { s.style.animation = 'none'; }, 450);   // garanzia: la lettera resta visibile anche se l'animazione non parte
     }
   } else {
     // cancellazione o modifica: riscrive senza animazione
