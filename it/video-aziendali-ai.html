@@ -100,7 +100,7 @@
      "name": "Come si comincia?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Raccontatemi il progetto e mandatemi il materiale che avete. Vi dico cosa si può costruire."
+      "text": "Raccontami il progetto e mandami il materiale che hai. Ti dico cosa si può costruire."
      }
     }
    ]
@@ -246,10 +246,10 @@ footer a:hover { color: var(--accent); }
 <style>
 /* Stile "Non giro" sopra le pagine interne (applicato da build.py solo con HOME_STYLE = "nuovo") */
 :root{--bg:#000;--bg2:#0c0c0c;--white:#ecebe7;--grey:#8a867f;--soft:#bdb9b2;--accent:#d4ff3a;--line:rgba(236,235,231,.14);
---font:"Inter Tight",Helvetica,Arial,sans-serif;--font-display:"Instrument Serif",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+--font:"Inter Tight",Helvetica,Arial,sans-serif;--font-display:"Inter Tight",Helvetica,Arial,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
 html,body{background:#000}
-h1,.page-header h1,.prose h2,.cta h2{font-family:var(--font-display)!important;font-weight:400!important;letter-spacing:-.005em!important}
-h1 em,h2 em,.page-header h1 em{font-style:italic;color:var(--accent)}
+h1,.page-header h1,.prose h2,.cta h2{font-family:var(--font-display)!important;font-weight:900!important;letter-spacing:-.03em!important;word-spacing:.04em}
+h1 em,h2 em,.page-header h1 em{font-family:var(--serif)!important;font-weight:400!important;font-style:italic;letter-spacing:-.01em;color:var(--accent)}
 .prose h2{font-size:clamp(32px,3.6vw,56px)!important;line-height:1!important}
 nav{background:rgba(0,0,0,.88)!important;border-bottom:1px solid var(--line)!important}
 nav .logo,nav ul a,.lang-btn,.label,.section-label,.crumbs,.crumbs a,.film .cap strong,.related a strong,.cta-links a,
@@ -260,7 +260,7 @@ nav ul a,.lang-btn{font-size:11px!important}
 .lang-btn.active{border-bottom-color:var(--accent)!important}
 .label,.section-label{color:var(--accent)!important}
 .page-header::before{display:none}
-.page-header h1{font-size:clamp(56px,8vw,120px)!important;line-height:.92!important}
+.page-header h1{font-size:clamp(48px,7vw,104px)!important;line-height:.95!important}
 .filter-btn{border-radius:0!important}
 .filter-btn.active{border-color:var(--accent)!important;background:transparent!important;color:var(--accent)!important}
 .filter-bar{background:rgba(0,0,0,.85)!important}
@@ -304,13 +304,13 @@ nav ul a,.lang-btn{font-size:11px!important}
 </div></section>
 <section><div class="prose"><h2>Reel AI</h2></div><div class="films"><div class="film"><video src="/ai-reel.mp4" poster="/og-image.jpg" controls playsinline preload="none" style="width:100%;aspect-ratio:16/9;display:block;background:#111"></video><div class="cap"><strong>AI Reel 2026</strong><span>Interamente generato</span></div></div></div></section>
 <section><div class="prose"><h2>Diretto, non solo promptato</h2>
-<p>Chiunque oggi può scrivere un prompt. La differenza la fanno le stesse cose di sempre: concept, montaggio, ritmo, musica, trattamento visivo. Faccio immagini da trent'anni, prima con il disegno e il collage, poi con il cinema e la pubblicità. L'AI è l'ultimo strumento, non il punto di partenza.</p>
+<p>Chiunque oggi può scrivere un prompt. La differenza la fanno le stesse cose di sempre: concept, montaggio, ritmo, musica, trattamento visivo. Faccio immagini da sempre, prima con il disegno e il collage, poi con il cinema e la pubblicità. L'AI è l'ultimo strumento, non il punto di partenza.</p>
 <p>Altri film AI sono su Instagram: <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>.</p>
 </div></section>
 <section><div class="prose"><h2>Altri lavori con l'AI</h2></div><div class="films"><div class="film"><button type="button" data-yt="zJ28dM8DRYo" aria-label="FILA F-Box" style="background-image:url(https://i.ytimg.com/vi/zJ28dM8DRYo/hqdefault.jpg)"></button><div class="cap"><strong>FILA F-Box</strong><span>Installazione AI · Salone del Mobile 2023</span></div></div><div class="film"><button type="button" data-yt="r0N34NuRFZc" aria-label="Wake Up!" style="background-image:url(https://i.ytimg.com/vi/r0N34NuRFZc/hqdefault.jpg)"></button><div class="cap"><strong>Wake Up!</strong><span>AI & Concept</span></div></div><div class="film"><button type="button" data-yt="pbjb2oghBaE" aria-label="Influencer IAP" style="background-image:url(https://i.ytimg.com/vi/pbjb2oghBaE/hqdefault.jpg)"></button><div class="cap"><strong>Influencer IAP</strong><span>AI & Concept</span></div></div><div class="film"><button type="button" data-yt="B4Rv_BOayx8" aria-label="Atomic Dream Dance" style="background-image:url(https://i.ytimg.com/vi/B4Rv_BOayx8/hqdefault.jpg)"></button><div class="cap"><strong>Atomic Dream Dance</strong><span>Dell Ala · Videoclip AI</span></div></div></div></section>
-<section class="faq"><div class="prose"><h2>Domande frequenti</h2></div><details><summary>Il video è fatto tutto con l'AI?</summary><p>Dipende dal progetto. Può essere interamente generato oppure misto: materiale reale dell'azienda completato da immagini generate. Si decide in base a cosa c'è e a cosa serve.</p></details><details><summary>Si possono usare le immagini dei nostri prodotti?</summary><p>Sì. Le immagini di prodotto e di campagna sono uno dei punti di partenza più comuni.</p></details><details><summary>Che differenza c'è con un video fatto da un'app AI?</summary><p>La regia. Un'app produce clip; un film ha una struttura, un ritmo e un'idea. È lo stesso lavoro di sempre, con strumenti nuovi.</p></details><details><summary>Come si comincia?</summary><p>Raccontatemi il progetto e mandatemi il materiale che avete. Vi dico cosa si può costruire.</p></details></section>
+<section class="faq"><div class="prose"><h2>Domande frequenti</h2></div><details><summary>Il video è fatto tutto con l'AI?</summary><p>Dipende dal progetto. Può essere interamente generato oppure misto: materiale reale dell'azienda completato da immagini generate. Si decide in base a cosa c'è e a cosa serve.</p></details><details><summary>Si possono usare le immagini dei nostri prodotti?</summary><p>Sì. Le immagini di prodotto e di campagna sono uno dei punti di partenza più comuni.</p></details><details><summary>Che differenza c'è con un video fatto da un'app AI?</summary><p>La regia. Un'app produce clip; un film ha una struttura, un ritmo e un'idea. È lo stesso lavoro di sempre, con strumenti nuovi.</p></details><details><summary>Come si comincia?</summary><p>Raccontami il progetto e mandami il materiale che hai. Ti dico cosa si può costruire.</p></details></section>
 <section><div class="prose"><h2>Continua</h2></div><div class="related"><a href="/it/video-aziendali-da-archivio.html"><strong>Servizio</strong><span>Video aziendali da archivio</span></a><a href="/it/webuild-caso-studio.html"><strong>Caso studio</strong><span>Webuild, undici anni di film</span></a><a href="/it/fila-fashion-film.html"><strong>Caso studio</strong><span>FILA FW26, set e AI</span></a><a href="/it/ai-films.html"><strong>Taccuino</strong><span>Appunti AI</span></a></div></section>
-<section class="cta" id="contact"><h2>Mandatemi quello che avete.<br><em>Vi dico se dentro c'è un film.</em></h2><p>Archivio, immagini di prodotto, una case history, un evento o solo un problema da risolvere.</p>
+<section class="cta" id="contact"><h2>Mandami quello che hai.<br><em>Ti dico se dentro c'è un film.</em></h2><p>Archivio, immagini di prodotto, una case history, un evento o solo un problema da risolvere.</p>
 <div class="cta-links"><a class="primary" href="https://calendly.com/alexdallolio" target="_blank" rel="noopener">Prenota una call</a>
 <a href="mailto:alexdallolio@alexdallolio.com">Scrivimi</a></div></section>
 </main>

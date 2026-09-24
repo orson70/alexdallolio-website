@@ -229,10 +229,10 @@ footer a:hover { color: var(--accent); }
 <style>
 /* Stile "Non giro" sopra le pagine interne (applicato da build.py solo con HOME_STYLE = "nuovo") */
 :root{--bg:#000;--bg2:#0c0c0c;--white:#ecebe7;--grey:#8a867f;--soft:#bdb9b2;--accent:#d4ff3a;--line:rgba(236,235,231,.14);
---font:"Inter Tight",Helvetica,Arial,sans-serif;--font-display:"Instrument Serif",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+--font:"Inter Tight",Helvetica,Arial,sans-serif;--font-display:"Inter Tight",Helvetica,Arial,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
 html,body{background:#000}
-h1,.page-header h1,.prose h2,.cta h2{font-family:var(--font-display)!important;font-weight:400!important;letter-spacing:-.005em!important}
-h1 em,h2 em,.page-header h1 em{font-style:italic;color:var(--accent)}
+h1,.page-header h1,.prose h2,.cta h2{font-family:var(--font-display)!important;font-weight:900!important;letter-spacing:-.03em!important;word-spacing:.04em}
+h1 em,h2 em,.page-header h1 em{font-family:var(--serif)!important;font-weight:400!important;font-style:italic;letter-spacing:-.01em;color:var(--accent)}
 .prose h2{font-size:clamp(32px,3.6vw,56px)!important;line-height:1!important}
 nav{background:rgba(0,0,0,.88)!important;border-bottom:1px solid var(--line)!important}
 nav .logo,nav ul a,.lang-btn,.label,.section-label,.crumbs,.crumbs a,.film .cap strong,.related a strong,.cta-links a,
@@ -243,7 +243,7 @@ nav ul a,.lang-btn{font-size:11px!important}
 .lang-btn.active{border-bottom-color:var(--accent)!important}
 .label,.section-label{color:var(--accent)!important}
 .page-header::before{display:none}
-.page-header h1{font-size:clamp(56px,8vw,120px)!important;line-height:.92!important}
+.page-header h1{font-size:clamp(48px,7vw,104px)!important;line-height:.95!important}
 .filter-btn{border-radius:0!important}
 .filter-btn.active{border-color:var(--accent)!important;background:transparent!important;color:var(--accent)!important}
 .filter-bar{background:rgba(0,0,0,.85)!important}

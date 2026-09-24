@@ -30,7 +30,7 @@ PAGES = {
             "description": "Video aziendali e corporate costruiti dal materiale che l'azienda ha già: archivio, girato di cantiere, immagini di prodotto, render. Regia di Alex Dallolio, Milano.",
             "crumb": "Video aziendali da archivio",
             "label": "Video aziendali · Corporate · Istituzionali",
-            "h1": "Il video aziendale<br>è già nel vostro <em>archivio.</em>",
+            "h1": "Il video aziendale<br>è già nel tuo <em>archivio.</em>",
             "lede": "Quasi ogni azienda ha ore di girato, foto, render e materiale tecnico che nessuno guarda più. Io parto da lì e ne tiro fuori un film: per il sito, per una fiera, per una presentazione o per un lancio interno.",
             "sections": [
                 ("prose", "Da dove si parte", """
@@ -44,7 +44,7 @@ PAGES = {
 <p>La regia non è solo quello che succede sul set. È saper vedere struttura, ritmo, tensione e significato dentro il materiale grezzo.</p>
 """),
                 ("prose", "Come lavoro", """
-<p><strong>Mi mandate quello che avete.</strong> Lo guardo tutto e vi dico se dentro c'è un film, e che tipo di film.</p>
+<p><strong>Mi mandi quello che hai.</strong> Lo guardo tutto e ti dico se dentro c'è un film, e che tipo di film.</p>
 <p>Poi costruisco concept, montaggio, ritmo, musica e trattamento visivo. Dove l'archivio non basta uso l'AI generativa per estendere, riquadrare o immaginare le immagini che mancano. Quando serve davvero si gira, ma in modo mirato.</p>
 <p>Lavoro da remoto. Niente trasferte, niente giornate di produzione, niente permessi. Sono a Milano, ma se il materiale esiste la geografia conta poco.</p>
 """),
@@ -60,13 +60,13 @@ PAGES = {
                     ("Bisogna organizzare delle riprese?",
                      "Spesso no. Si parte dal materiale che c'è già. Se manca qualcosa si valuta insieme: immagini generate con l'AI oppure poche riprese mirate."),
                     ("Che materiale posso mandare?",
-                     "Tutto quello che avete: girato d'archivio, eventi, foto, cataloghi, render, presentazioni, materiale tecnico. Anche se sembra poco o disordinato: capire cosa c'è dentro è parte del mio lavoro."),
+                     "Tutto quello che hai: girato d'archivio, eventi, foto, cataloghi, render, presentazioni, materiale tecnico. Anche se sembra poco o disordinato: capire cosa c'è dentro è parte del mio lavoro."),
                     ("A cosa servono questi video?",
                      "Siti web, fiere, presentazioni, campagne, lanci interni, case history. Dallo stesso materiale si possono ricavare più versioni e formati."),
                     ("Lavori solo a Milano?",
                      "No. Sono basato a Milano ma lavoro da remoto con aziende ovunque."),
                     ("Come si comincia?",
-                     "Scrivetemi o prenotate una call e raccontatemi cosa avete. Vi dico se c'è un film e che forma può prendere."),
+                     "Scrivimi o prenota una call e raccontami cosa hai. Ti dico se c'è un film e che forma può prendere."),
                 ]),
             ],
         },
@@ -140,7 +140,7 @@ PAGES = {
                     {"src": "/ai-reel.mp4", "t": "AI Reel 2026", "s": "Interamente generato"},
                 ]),
                 ("prose", "Diretto, non solo promptato", """
-<p>Chiunque oggi può scrivere un prompt. La differenza la fanno le stesse cose di sempre: concept, montaggio, ritmo, musica, trattamento visivo. Faccio immagini da trent'anni, prima con il disegno e il collage, poi con il cinema e la pubblicità. L'AI è l'ultimo strumento, non il punto di partenza.</p>
+<p>Chiunque oggi può scrivere un prompt. La differenza la fanno le stesse cose di sempre: concept, montaggio, ritmo, musica, trattamento visivo. Faccio immagini da sempre, prima con il disegno e il collage, poi con il cinema e la pubblicità. L'AI è l'ultimo strumento, non il punto di partenza.</p>
 <p>Altri film AI sono su Instagram: <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>.</p>
 """),
                 ("films", "Altri lavori con l'AI", [
@@ -157,7 +157,7 @@ PAGES = {
                     ("Che differenza c'è con un video fatto da un'app AI?",
                      "La regia. Un'app produce clip; un film ha una struttura, un ritmo e un'idea. È lo stesso lavoro di sempre, con strumenti nuovi."),
                     ("Come si comincia?",
-                     "Raccontatemi il progetto e mandatemi il materiale che avete. Vi dico cosa si può costruire."),
+                     "Raccontami il progetto e mandami il materiale che hai. Ti dico cosa si può costruire."),
                 ]),
             ],
         },
@@ -182,7 +182,7 @@ PAGES = {
                     {"src": "/ai-reel.mp4", "t": "AI Reel 2026", "s": "Fully generated"},
                 ]),
                 ("prose", "Directed, not just prompted", """
-<p>Anyone can write a prompt today. What makes the difference is what always did: concept, editing, rhythm, music, visual treatment. I have been making images for thirty years, first drawing and collage, then cinema and advertising. AI is the latest tool, not the starting point.</p>
+<p>Anyone can write a prompt today. What makes the difference is what always did: concept, editing, rhythm, music, visual treatment. I have always made images, first drawing and collage, then cinema and advertising. AI is the latest tool, not the starting point.</p>
 <p>More AI films on Instagram: <a href="https://www.instagram.com/alexdallolio_aifilms/" target="_blank" rel="noopener">@alexdallolio_aifilms</a>.</p>
 """),
                 ("films", "More AI work", [
@@ -231,7 +231,7 @@ PAGES = {
                 ]),
                 ("prose", "Cosa dimostra", """
 <p>Che un'azienda industriale non ha bisogno di una grande produzione per avere dei film. Ha bisogno di qualcuno che sappia vedere cosa c'è nel materiale che produce ogni giorno.</p>
-<p>Se la vostra azienda ha un archivio simile, <a href="/it/video-aziendali-da-archivio.html">qui spiego come lavoro</a>.</p>
+<p>Se la tua azienda ha un archivio simile, <a href="/it/video-aziendali-da-archivio.html">qui spiego come lavoro</a>.</p>
 """),
             ],
         },
@@ -361,7 +361,7 @@ UI = {
     "it": {
         "nav_work": "Lavori", "nav_all": "Tutti i film", "nav_contact": "Contatti",
         "related": "Continua", "footer_city": "Milano",
-        "cta_h2": "Mandatemi quello che avete.<br><em>Vi dico se dentro c'è un film.</em>",
+        "cta_h2": "Mandami quello che hai.<br><em>Ti dico se dentro c'è un film.</em>",
         "cta_p": "Archivio, immagini di prodotto, una case history, un evento o solo un problema da risolvere.",
         "cta_email": "Scrivimi", "cta_book": "Prenota una call",
     },

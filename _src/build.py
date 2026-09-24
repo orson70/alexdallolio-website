@@ -23,32 +23,32 @@ PAGES = {
     "index": {
         "en": {
             "path": "/",
-            "title": "Alex Dallolio — Film Director & AI Artist in Milan | Corporate and Brand Films",
-            "description": "Film director and AI artist based in Milan. I turn the material you already have — archive, footage, product images, AI — into cinematic corporate and brand films. No traditional production required.",
-            "og_title": "Alex Dallolio — Film Director & AI Artist",
+            "title": "Alex Dallolio: Film Director & AI Artist in Milan | Corporate and Brand Films",
+            "description": "Film director and AI artist based in Milan. I turn the material you already have: archive, footage, product images, AI: into cinematic corporate and brand films. No traditional production required.",
+            "og_title": "Alex Dallolio: Film Director & AI Artist",
             "og_description": "I turn the material you already have into cinematic brand films. No traditional production required.",
         },
         "it": {
             "path": "/it/",
-            "title": "Alex Dallolio — Regista a Milano | Video aziendali, brand film e AI",
+            "title": "Alex Dallolio: Regista a Milano | Video aziendali, brand film e AI",
             "description": "Regista e AI artist a Milano. Trasformo il materiale che la tua azienda ha già (archivio, girato, immagini di prodotto) in video aziendali e brand film cinematografici, anche con l'AI generativa. Senza produzione tradizionale.",
-            "og_title": "Alex Dallolio — Regista e AI Artist",
+            "og_title": "Alex Dallolio: Regista e AI Artist",
             "og_description": "Trasformo il materiale che hai già in video aziendali e brand film cinematografici. Senza produzione tradizionale.",
         },
     },
     "videos": {
         "en": {
             "path": "/videos.html",
-            "title": "All Work — Alex Dallolio | Corporate, Fashion and AI Films",
-            "description": "30 films directed by Alex Dallolio for Webuild, Prada, Fila, Canali, Luisa Spagnoli and more — corporate, fashion, documentary and AI-driven cinematic work.",
-            "og_title": "All Work — Alex Dallolio",
+            "title": "All Work: Alex Dallolio | Corporate, Fashion and AI Films",
+            "description": "30 films directed by Alex Dallolio for Webuild, Prada, Fila, Canali, Luisa Spagnoli and more: corporate, fashion, documentary and AI-driven cinematic work.",
+            "og_title": "All Work: Alex Dallolio",
             "og_description": "30 brand films directed by Alex Dallolio for Webuild, Prada, Fila, Canali, Luisa Spagnoli and more.",
         },
         "it": {
             "path": "/it/videos.html",
-            "title": "Tutti i lavori — Alex Dallolio | Video aziendali, fashion film e AI",
+            "title": "Tutti i lavori: Alex Dallolio | Video aziendali, fashion film e AI",
             "description": "30 film diretti da Alex Dallolio per Webuild, Prada, Fila, Canali, Luisa Spagnoli e altri: video aziendali, fashion film, documentari e lavori con l'AI generativa.",
-            "og_title": "Tutti i lavori — Alex Dallolio",
+            "og_title": "Tutti i lavori: Alex Dallolio",
             "og_description": "30 film diretti da Alex Dallolio per Webuild, Prada, Fila, Canali, Luisa Spagnoli e altri.",
         },
     },
@@ -319,7 +319,7 @@ def render_home_new(lang: str, base: str, robots: str) -> str:
         frames.append(
             f'      <div class="frame" data-yt="{yt}" data-t="{e(title)}"><button type="button" aria-label="{e(title)}">'
             f'<img src="https://i.ytimg.com/vi/{yt}/maxresdefault.jpg" alt="{e(title)}, {e(sub)}" loading="{"eager" if i < 3 else "lazy"}">'
-            f'<span class="grain"></span><span class="lines"></span><span class="tag">{t["raw"]} · {i + 1:02d}</span>'
+            f'<span class="grain"></span><span class="lines"></span><span class="tag">{i + 1:02d} / {len(H.WORKS):02d}</span>'
             f'<span class="play">{t["film"]}</span></button><div class="cap"><b>{e(title)}</b><span class="mono">{e(sub)}</span></div></div>')
     facts = "\n".join(f"  <p>{a} <span>{b}</span></p>" for a, b in t["facts"])
     links = "\n".join(f'    <a href="{h}">{txt}</a>' for txt, h in t["links"])
@@ -341,7 +341,7 @@ def render_home_new(lang: str, base: str, robots: str) -> str:
         "og_locale": "it_IT" if lang == "it" else "en_US", "jsonld": jsonld,
         "nav1": t["nav"][0], "nav2": t["nav"][1], "nav3": t["nav"][2],
         "h1": t["h1"], "sub": t["sub"], "role": t["role"], "scroll": t["scroll"],
-        "nworks": f"{len(H.WORKS):02d}", "frames": "\n".join(frames), "prev": t["prev"], "next": t["next"], "legend": t["legend"],
+        "nworks": f"{len(H.WORKS):02d}", "frames": "\n".join(frames), "prev": t["prev"], "next": t["next"], "cta_h": t["cta_h"], "cta_mail": t["cta_mail"],
         "facts": facts, "links": links, "tac_h": t["tac_h"], "tac_href": t["tac_all"][1], "tac_all": t["tac_all"][0],
         "who_h": t["who_h"], "bio": t["bio"], "clients_label": t["clients_label"], "brands": H.BRANDS, "agencies": t["agencies"],
         "book": t["book"], "other_lang": t["other_lang"][0], "other_href": other_href, "other_code": other, "other_short": other.upper(), "close": t["close"],

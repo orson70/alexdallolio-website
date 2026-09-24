@@ -13,16 +13,16 @@
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Alex Dallolio">
-<meta property="og:title" content="Alex Dallolio. Non giro.">
-<meta property="og:description" content="Prendo quello che esiste già e lo trasformo in film.">
+<meta property="og:title" content="Alex Dallolio. Non tutto va girato.">
+<meta property="og:description" content="Giro quello che serve. Il resto esiste già, o lo creo con l&#x27;AI.">
 <meta property="og:url" content="https://www.alexdallolio.com/it/">
 <meta property="og:image" content="https://www.alexdallolio.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="it_IT">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Alex Dallolio. Non giro.">
-<meta name="twitter:description" content="Prendo quello che esiste già e lo trasformo in film.">
+<meta name="twitter:title" content="Alex Dallolio. Non tutto va girato.">
+<meta name="twitter:description" content="Giro quello che serve. Il resto esiste già, o lo creo con l&#x27;AI.">
 <meta name="twitter:image" content="https://www.alexdallolio.com/og-image.jpg">
 <script type="application/ld+json">
 {
@@ -61,8 +61,8 @@ a{color:inherit;text-decoration:none}
 
 /* 1 · APERTURA: una riga sola */
 .open{height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 16px;position:relative}
-.open h1{font-family:var(--serif);font-weight:400;font-size:clamp(64px,13vw,220px);line-height:.9;letter-spacing:-.01em}
-.open p{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,34px);color:#bdb9b2;margin-top:22px;max-width:26ch;line-height:1.2}
+.open h1{font-family:var(--sans);font-weight:900;font-size:clamp(48px,9.4vw,168px);line-height:.92;letter-spacing:-.032em;word-spacing:.04em;max-width:12ch}
+.open p{font-family:var(--sans);font-weight:400;font-size:clamp(20px,2.4vw,34px);color:#bdb9b2;margin-top:22px;max-width:26ch;line-height:1.2}
 .open .foot{position:absolute;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;color:var(--dim)}
 .open .foot span:last-child{animation:nudge 2s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateY(4px)}}
@@ -123,7 +123,7 @@ a{color:inherit;text-decoration:none}
 /* 3b · AI FILMS da Instagram */
 .ig{padding:10vh 0 14vh;border-top:1px solid var(--line)}
 .ig-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding:0 24px 28px}
-.ig-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(44px,6vw,96px);line-height:.9}
+.ig-head h2{font-family:var(--sans);font-weight:900;letter-spacing:-.04em;font-size:clamp(44px,6vw,96px);line-height:.9}
 .ig-head h2 em{color:var(--sig);font-style:italic}
 .ig-head .l{display:flex;gap:24px}
 .ig-head .l a{border-bottom:1px solid var(--line);padding-bottom:3px}
@@ -141,9 +141,21 @@ a{color:inherit;text-decoration:none}
 #ig-lb iframe{width:min(420px,100%);height:min(760px,92vh);border:0;background:#fff}
 #ig-lb button{position:absolute;top:12px;right:18px;background:none;border:0;color:#fff;font-size:36px;cursor:pointer}
 
+/* accenti: corsivo serif dentro i titoli pesanti */
+.open h1 em,.ig-head h2 em,.who h2 em,.cta2 h2 em{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em}
+.open h1 em{color:var(--sig)}
+/* invito finale */
+.cta2{padding:16vh 24px 12vh;border-top:1px solid var(--line)}
+.cta2 h2{font-family:var(--sans);font-weight:900;font-size:clamp(40px,6.4vw,110px);line-height:.95;letter-spacing:-.03em;word-spacing:.05em;max-width:16ch}
+.cta2 h2 em{color:var(--sig)}
+.cta2 .l{display:flex;gap:28px;flex-wrap:wrap;margin-top:44px}
+.cta2 .l a{font-size:clamp(18px,1.6vw,22px);border-bottom:1px solid var(--line);padding-bottom:4px}
+.cta2 .l a:hover{color:var(--sig);border-color:var(--sig)}
+@media (max-width:760px){.cta2{padding:12vh 16px 10vh}}
+
 /* CHI: bio e clienti, testo piccolo */
 .who{padding:10vh 24px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:32px}
-.who h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5vw,80px);line-height:.9}
+.who h2{font-family:var(--sans);font-weight:900;letter-spacing:-.04em;font-size:clamp(40px,5vw,80px);line-height:.9}
 .who p{color:#bdb9b2;font-size:16px;line-height:1.7;max-width:62ch;margin-bottom:18px}
 .who .cl{color:var(--dim);font-size:14px;line-height:1.7}
 .who .cl b{color:var(--fg);font-weight:500}
@@ -179,8 +191,8 @@ a{color:inherit;text-decoration:none}
 <a class="lng mono" href="/" hreflang="en">EN</a>
 
 <header class="open">
-  <h1 class="fade">Non giro.</h1>
-  <p class="fade d2">Prendo quello che esiste già e lo trasformo in film.</p>
+  <h1 class="fade">Non tutto va <em>girato.</em></h1>
+  <p class="fade d2">Giro quello che serve. Il resto esiste già, o lo creo con l'AI.</p>
   <div class="foot mono fade d3"><span>Alex Dallolio · Regista · Milano</span><span>Scorri ↓</span></div>
 </header>
 
@@ -191,26 +203,25 @@ a{color:inherit;text-decoration:none}
     </div>
     <div class="head"></div>
     <div class="strip" id="strip">
-      <div class="frame" data-yt="N7Ta9EZstzA" data-t="Showreel 2026"><button type="button" aria-label="Showreel 2026"><img src="https://i.ytimg.com/vi/N7Ta9EZstzA/maxresdefault.jpg" alt="Showreel 2026, Concept e regia · 2026" loading="eager"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 01</span><span class="play">▶ FILM</span></button><div class="cap"><b>Showreel 2026</b><span class="mono">Concept e regia · 2026</span></div></div>
-      <div class="frame" data-yt="ySthwmhR-y4" data-t="GERD"><button type="button" aria-label="GERD"><img src="https://i.ytimg.com/vi/ySthwmhR-y4/maxresdefault.jpg" alt="GERD, Webuild · Documentario" loading="eager"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 02</span><span class="play">▶ FILM</span></button><div class="cap"><b>GERD</b><span class="mono">Webuild · Documentario</span></div></div>
-      <div class="frame" data-yt="pbGWFFmW1Fc" data-t="WeSearch"><button type="button" aria-label="WeSearch"><img src="https://i.ytimg.com/vi/pbGWFFmW1Fc/maxresdefault.jpg" alt="WeSearch, Webuild · 2025" loading="eager"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 03</span><span class="play">▶ FILM</span></button><div class="cap"><b>WeSearch</b><span class="mono">Webuild · 2025</span></div></div>
-      <div class="frame" data-yt="r0N34NuRFZc" data-t="Wake Up!"><button type="button" aria-label="Wake Up!"><img src="https://i.ytimg.com/vi/r0N34NuRFZc/maxresdefault.jpg" alt="Wake Up!, AI &amp; Concept" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 04</span><span class="play">▶ FILM</span></button><div class="cap"><b>Wake Up!</b><span class="mono">AI &amp; Concept</span></div></div>
-      <div class="frame" data-yt="zJ28dM8DRYo" data-t="FILA F-Box"><button type="button" aria-label="FILA F-Box"><img src="https://i.ytimg.com/vi/zJ28dM8DRYo/maxresdefault.jpg" alt="FILA F-Box, Salone del Mobile · 2023" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 05</span><span class="play">▶ FILM</span></button><div class="cap"><b>FILA F-Box</b><span class="mono">Salone del Mobile · 2023</span></div></div>
-      <div class="frame" data-yt="fA3pBdKnWbo" data-t="Prada Canali"><button type="button" aria-label="Prada Canali"><img src="https://i.ytimg.com/vi/fA3pBdKnWbo/maxresdefault.jpg" alt="Prada Canali, Fashion" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 06</span><span class="play">▶ FILM</span></button><div class="cap"><b>Prada Canali</b><span class="mono">Fashion</span></div></div>
-      <div class="frame" data-yt="UYnvGmCuroQ" data-t="Builderhero"><button type="button" aria-label="Builderhero"><img src="https://i.ytimg.com/vi/UYnvGmCuroQ/maxresdefault.jpg" alt="Builderhero, Webuild" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 07</span><span class="play">▶ FILM</span></button><div class="cap"><b>Builderhero</b><span class="mono">Webuild</span></div></div>
-      <div class="frame" data-yt="xv2S2flaYJQ" data-t="Chopard"><button type="button" aria-label="Chopard"><img src="https://i.ytimg.com/vi/xv2S2flaYJQ/maxresdefault.jpg" alt="Chopard, Fashion spot" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 08</span><span class="play">▶ FILM</span></button><div class="cap"><b>Chopard</b><span class="mono">Fashion spot</span></div></div>
-      <div class="frame" data-yt="z-GjfCZasFo" data-t="Progetto Italia"><button type="button" aria-label="Progetto Italia"><img src="https://i.ytimg.com/vi/z-GjfCZasFo/maxresdefault.jpg" alt="Progetto Italia, Salini Impregilo" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 09</span><span class="play">▶ FILM</span></button><div class="cap"><b>Progetto Italia</b><span class="mono">Salini Impregilo</span></div></div>
-      <div class="frame" data-yt="B4Rv_BOayx8" data-t="Atomic Dream Dance"><button type="button" aria-label="Atomic Dream Dance"><img src="https://i.ytimg.com/vi/B4Rv_BOayx8/maxresdefault.jpg" alt="Atomic Dream Dance, Dell Ala · AI" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 10</span><span class="play">▶ FILM</span></button><div class="cap"><b>Atomic Dream Dance</b><span class="mono">Dell Ala · AI</span></div></div>
-      <div class="frame" data-yt="YVLem2cHfoc" data-t="Hands"><button type="button" aria-label="Hands"><img src="https://i.ytimg.com/vi/YVLem2cHfoc/maxresdefault.jpg" alt="Hands, Canali · Director&#x27;s cut" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 11</span><span class="play">▶ FILM</span></button><div class="cap"><b>Hands</b><span class="mono">Canali · Director&#x27;s cut</span></div></div>
-      <div class="frame" data-yt="588LDT1c3zs" data-t="Custodiamo il domani"><button type="button" aria-label="Custodiamo il domani"><img src="https://i.ytimg.com/vi/588LDT1c3zs/maxresdefault.jpg" alt="Custodiamo il domani, Tetra Pak" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">GREZZO · 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Custodiamo il domani</b><span class="mono">Tetra Pak</span></div></div>
+      <div class="frame" data-yt="N7Ta9EZstzA" data-t="Showreel 2026"><button type="button" aria-label="Showreel 2026"><img src="https://i.ytimg.com/vi/N7Ta9EZstzA/maxresdefault.jpg" alt="Showreel 2026, Concept e regia · 2026" loading="eager"><span class="grain"></span><span class="lines"></span><span class="tag">01 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Showreel 2026</b><span class="mono">Concept e regia · 2026</span></div></div>
+      <div class="frame" data-yt="ySthwmhR-y4" data-t="GERD"><button type="button" aria-label="GERD"><img src="https://i.ytimg.com/vi/ySthwmhR-y4/maxresdefault.jpg" alt="GERD, Webuild · Documentario" loading="eager"><span class="grain"></span><span class="lines"></span><span class="tag">02 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>GERD</b><span class="mono">Webuild · Documentario</span></div></div>
+      <div class="frame" data-yt="pbGWFFmW1Fc" data-t="WeSearch"><button type="button" aria-label="WeSearch"><img src="https://i.ytimg.com/vi/pbGWFFmW1Fc/maxresdefault.jpg" alt="WeSearch, Webuild · 2025" loading="eager"><span class="grain"></span><span class="lines"></span><span class="tag">03 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>WeSearch</b><span class="mono">Webuild · 2025</span></div></div>
+      <div class="frame" data-yt="r0N34NuRFZc" data-t="Wake Up!"><button type="button" aria-label="Wake Up!"><img src="https://i.ytimg.com/vi/r0N34NuRFZc/maxresdefault.jpg" alt="Wake Up!, AI &amp; Concept" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">04 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Wake Up!</b><span class="mono">AI &amp; Concept</span></div></div>
+      <div class="frame" data-yt="zJ28dM8DRYo" data-t="FILA F-Box"><button type="button" aria-label="FILA F-Box"><img src="https://i.ytimg.com/vi/zJ28dM8DRYo/maxresdefault.jpg" alt="FILA F-Box, Salone del Mobile · 2023" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">05 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>FILA F-Box</b><span class="mono">Salone del Mobile · 2023</span></div></div>
+      <div class="frame" data-yt="fA3pBdKnWbo" data-t="Prada Canali"><button type="button" aria-label="Prada Canali"><img src="https://i.ytimg.com/vi/fA3pBdKnWbo/maxresdefault.jpg" alt="Prada Canali, Fashion" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">06 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Prada Canali</b><span class="mono">Fashion</span></div></div>
+      <div class="frame" data-yt="UYnvGmCuroQ" data-t="Builderhero"><button type="button" aria-label="Builderhero"><img src="https://i.ytimg.com/vi/UYnvGmCuroQ/maxresdefault.jpg" alt="Builderhero, Webuild" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">07 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Builderhero</b><span class="mono">Webuild</span></div></div>
+      <div class="frame" data-yt="xv2S2flaYJQ" data-t="Chopard"><button type="button" aria-label="Chopard"><img src="https://i.ytimg.com/vi/xv2S2flaYJQ/maxresdefault.jpg" alt="Chopard, Fashion spot" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">08 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Chopard</b><span class="mono">Fashion spot</span></div></div>
+      <div class="frame" data-yt="z-GjfCZasFo" data-t="Progetto Italia"><button type="button" aria-label="Progetto Italia"><img src="https://i.ytimg.com/vi/z-GjfCZasFo/maxresdefault.jpg" alt="Progetto Italia, Salini Impregilo" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">09 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Progetto Italia</b><span class="mono">Salini Impregilo</span></div></div>
+      <div class="frame" data-yt="B4Rv_BOayx8" data-t="Atomic Dream Dance"><button type="button" aria-label="Atomic Dream Dance"><img src="https://i.ytimg.com/vi/B4Rv_BOayx8/maxresdefault.jpg" alt="Atomic Dream Dance, Dell Ala · AI" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">10 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Atomic Dream Dance</b><span class="mono">Dell Ala · AI</span></div></div>
+      <div class="frame" data-yt="YVLem2cHfoc" data-t="Hands"><button type="button" aria-label="Hands"><img src="https://i.ytimg.com/vi/YVLem2cHfoc/maxresdefault.jpg" alt="Hands, Canali · Director&#x27;s cut" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">11 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Hands</b><span class="mono">Canali · Director&#x27;s cut</span></div></div>
+      <div class="frame" data-yt="588LDT1c3zs" data-t="Custodiamo il domani"><button type="button" aria-label="Custodiamo il domani"><img src="https://i.ytimg.com/vi/588LDT1c3zs/maxresdefault.jpg" alt="Custodiamo il domani, Tetra Pak" loading="lazy"><span class="grain"></span><span class="lines"></span><span class="tag">12 / 12</span><span class="play">▶ FILM</span></button><div class="cap"><b>Custodiamo il domani</b><span class="mono">Tetra Pak</span></div></div>
     </div>
     <div class="arrows"><button type="button" id="prev" aria-label="Film precedente">←</button><button type="button" id="next" aria-label="Film successivo">→</button></div>
-    <div class="legend mono">La moviola gira da sola: il grezzo arriva da destra e sotto la testina diventa film. Clic sul film per guardarlo.</div>
   </div>
 </section>
 
 <section class="facts">
-  <p>30 anni di regia. <span>Webuild per undici. FILA, Prada, Canali, Nike, Lavazza.</span></p>
+  <p>Spot, documentari, fashion film, installazioni. <span>Webuild da undici anni. FILA, Prada, Canali, Nike, Lavazza.</span></p>
   <p>Si parte da quello che c'è. <span>Archivio, girato di cantiere, immagini di prodotto.</span></p>
   <p>L'AI dove serve. <span>Per FILA FW26: tre film sul set, due senza set.</span></p>
   <div class="links mono">
@@ -237,6 +248,11 @@ a{color:inherit;text-decoration:none}
     <p>Alessandro Dallolio è nato a Torino e ha passato parte dell'infanzia in Asia. Fa immagini da sempre: disegno, pittura, collage, poi cinema, pubblicità, installazioni, intelligenza artificiale. Ha lavorato con Nike, Lavazza, Prada, BMW, Disney, e con Webuild da undici anni. Vive e lavora a Milano.</p>
     <p class="cl"><b>Clienti:</b> Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Allianz · Novartis · Sisal · TIM · Webuild.<br>Agenzie: DLV, Young &amp; Rubicam, JWT, Leo Burnett, Armando Testa. TV: Mediaset, Rai, Sky, Fox.</p>
   </div>
+</section>
+
+<section class="cta2">
+  <h2>Mandami quello che hai.<br><em>Ti dico se dentro c'è un film.</em></h2>
+  <div class="l"><a href="mailto:alexdallolio@alexdallolio.com">Scrivimi →</a><a href="https://calendly.com/alexdallolio" target="_blank" rel="noopener">Prenota una call ↗</a></div>
 </section>
 
 <div class="sign" aria-label="Alex Dallolio">
