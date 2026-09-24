@@ -24,8 +24,13 @@ a{color:inherit;text-decoration:none}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .top{position:fixed;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;z-index:5;color:var(--dim)}
 .top a:hover{color:var(--fg)}
+.doors{position:fixed;left:0;right:0;bottom:18px;z-index:6;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:0 16px;transition:opacity .6s}
+.doors span{color:var(--dim);margin-right:4px}
+.doors a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(236,235,231,.3);padding:8px 12px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);transition:border-color .2s,color .2s}
+.doors a:hover{border-color:var(--sig);color:var(--sig)}
+body.answering .doors{opacity:0;pointer-events:none}
 
-.stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 16px 40px;perspective:1400px}
+.stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 16px 90px;perspective:1400px}
 .prompt{font-family:var(--sans);font-weight:900;letter-spacing:-.03em;font-size:clamp(22px,2.6vw,34px);text-align:center;margin-bottom:22px;transition:opacity .6s}
 .prompt span{color:var(--sig)}
 
@@ -104,7 +109,9 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
 <body>
 <div class="room"></div>
 <canvas id="cube" aria-hidden="true"></canvas>
-<div class="top mono"><a href="/it/">Alex Dallolio</a><a href="/it/#film">Le altre stanze →</a></div>
+<video id="proj" src="/aifilms/DcUTu47R_im.mp4" muted loop playsinline autoplay preload="auto" style="display:none"></video>
+<div class="top mono"><a href="/it/">Alex Dallolio</a><a href="#porte">Le altre stanze ↓</a></div>
+<nav class="doors mono" id="porte" aria-label="Le altre stanze"><span>Le altre stanze</span><a href="/it/#film">La moviola</a><a href="/it/ai-films.html">Il taccuino</a><a href="/it/videos.html">Tutti i film</a><a href="/it/#contatti">Chi sono</a></nav>
 
 <div class="stage" id="stage">
   <p class="prompt" id="prompt">Scrivi qualcosa. <span>Un sogno, un'idea, un pensiero.</span></p>
@@ -216,6 +223,38 @@ function fit() { DPR = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = i
 fit(); addEventListener('resize', fit);
 const V = [[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
 const E = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+const F = [[0,1,2,3],[5,4,7,6],[4,0,3,7],[1,5,6,2],[4,5,1,0],[3,2,6,7]];   // facce (quadrilateri)
+const proj = document.getElementById('proj');
+proj.play().catch(() => {});
+// disegna un fotogramma su un quadrilatero con due triangoli affini (proiezione astratta)
+function tri(img, sx, sy, sw, sh, s0, s1, s2, d0, d1, d2) {
+  cx.save();
+  cx.beginPath(); cx.moveTo(d0[0], d0[1]); cx.lineTo(d1[0], d1[1]); cx.lineTo(d2[0], d2[1]); cx.closePath(); cx.clip();
+  const [x0, y0] = [sx + s0[0] * sw, sy + s0[1] * sh], [x1, y1] = [sx + s1[0] * sw, sy + s1[1] * sh], [x2, y2] = [sx + s2[0] * sw, sy + s2[1] * sh];
+  const den = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0);
+  if (Math.abs(den) < 1e-6) { cx.restore(); return; }
+  const a = ((d1[0] - d0[0]) * (y2 - y0) - (d2[0] - d0[0]) * (y1 - y0)) / den;
+  const b = ((d1[1] - d0[1]) * (y2 - y0) - (d2[1] - d0[1]) * (y1 - y0)) / den;
+  const c = ((d2[0] - d0[0]) * (x1 - x0) - (d1[0] - d0[0]) * (x2 - x0)) / den;
+  const d = ((d2[1] - d0[1]) * (x1 - x0) - (d1[1] - d0[1]) * (x2 - x0)) / den;
+  cx.transform(a, b, c, d, d0[0] - a * x0 - c * y0, d0[1] - b * x0 - d * y0);
+  cx.drawImage(img, 0, 0);
+  cx.restore();
+}
+function projectOn(P) {
+  if (proj.readyState < 2) return;
+  const vw = proj.videoWidth, vh = proj.videoHeight, side = Math.min(vw, vh);
+  const sx = (vw - side) / 2, sy = (vh - side) / 2;   // quadrato centrale del video verticale
+  cx.save(); cx.globalCompositeOperation = 'screen'; cx.globalAlpha = .32;
+  F.forEach(f => {
+    const z = f.reduce((n, i) => n + P[i][2], 0) / 4;
+    if (z < .15) return;                              // solo le pareti lontane, dietro il foglio
+    const q = f.map(i => P[i]);
+    tri(proj, sx, sy, side, side, [0, 0], [1, 0], [1, 1], q[0], q[1], q[2]);
+    tri(proj, sx, sy, side, side, [0, 0], [1, 1], [0, 1], q[0], q[2], q[3]);
+  });
+  cx.restore();
+}
 const cube = { ax: .5, ay: .6, vx: .0011, vy: .0017, kick: 0, scale: 1, target: 1, open: 0, openT: 0 };
 let mx = 0, my = 0;
 addEventListener('pointermove', e => { mx = e.clientX / W - .5; my = e.clientY / H - .5; });
@@ -232,6 +271,7 @@ function drawCube(size, alpha, ax, ay, open) {
     const f = 3.2 / (3.2 + z * .9);
     return [W / 2 + x * size * f, H / 2 + y * size * f, z];
   });
+  if (alpha > .5) projectOn(P);
   E.forEach(([a, b]) => {
     const depth = (P[a][2] + P[b][2]) / 2;
     cx.strokeStyle = `rgba(236,235,231,${(alpha * (0.55 - depth * .22)).toFixed(3)})`;
@@ -327,6 +367,7 @@ function finish() {
   input.blur();
   document.getElementById('prompt').style.opacity = 0;
   document.getElementById('offer').style.opacity = 0;
+  document.body.classList.add('answering');
   sheet.classList.add('fold');
   cube.openT = 1; cube.target = 1.25; cube.kick = 1;
   const r = pick(text);
@@ -345,6 +386,7 @@ document.getElementById('again').onclick = () => {
   document.getElementById('film').innerHTML = '';
   text = ''; input.value = ''; render('x', '');
   cube.openT = 0; cube.target = 1;
+  document.body.classList.remove('answering');
   setTimeout(() => { sheet.classList.remove('fold'); document.getElementById('prompt').style.opacity = 1; document.getElementById('offer').style.opacity = 1; input.focus(); }, 600);
 };
 function openIG(code) {
