@@ -229,11 +229,11 @@ def page_og_image(d: dict) -> str:
             r = load_reels()
             if r:
                 return f"{SITE}/aifilms/{r[0]['code']}.jpg"
-    return SITE + "/og-image.jpg"
+    return SITE + "/og-" + d.get("_lang", "en") + ".jpg"
 
 
 def render_landing(key: str, lang: str) -> str:
-    d = LP.PAGES[key][lang]
+    d = dict(LP.PAGES[key][lang], _lang=lang)
     ui = LP.UI[lang]
     home = "/it/" if lang == "it" else "/"
     url = SITE + d["path"]
@@ -346,6 +346,9 @@ def write_sitemap(groups):
 
 
 def write(path: str, content: str):
+    lang = "it" if path.startswith("/it/") or path == "/stanza/" else "en"
+    for tag in ('property="og:image" content="', 'name="twitter:image" content="'):
+        content = content.replace(tag + SITE + "/og-image.jpg", tag + SITE + f"/og-{lang}.jpg")
     out = ROOT / (path.lstrip("/") + ("index.html" if path.endswith("/") else ""))
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(content)
