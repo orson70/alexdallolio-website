@@ -17,14 +17,16 @@ Object.assign(gl.style, { position: 'fixed', inset: 0, width: '100%', height: '1
 document.querySelector('.stage').before(gl);
 document.body.classList.add('gl');
 renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+gl.addEventListener('webglcontextlost', e => { e.preventDefault(); document.body.classList.remove('gl'); });
+gl.addEventListener('webglcontextrestored', () => { document.body.classList.add('gl'); mesh = null; fit(); });
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(35, 1, 1, 8000);
 
 // ── texture: carta (in cache) + scrittura (ridisegnata quando cambia)
 const tex = document.createElement('canvas'), tg = tex.getContext('2d');
-const bg = document.createElement('canvas'), bgg = bg.getContext('2d');
-const texture = new THREE.CanvasTexture(tex);
+const bg = document.createElement('canvas'), bgg = bg.getContext('2d', { willReadFrequently: true });
+let texture = new THREE.CanvasTexture(tex);
 texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 8;
 let PW = 560, PH = 440;
 
@@ -91,7 +93,11 @@ function paintText(now) {
       if (w === '\n' || w.includes('\n')) { for (const ch of w) { pos[k++] = null; if (ch === '\n') { line++; x = left; } } continue; }
       const ww = tg.measureText(w).width;
       if (!/^\s+$/.test(w) && x + ww > right && x > left) { line++; x = left; }
-      for (const ch of w) { const cw = tg.measureText(ch).width; pos[k++] = [x, top + line * lh * (sz / 34)]; x += cw; }
+      for (const ch of w) {
+        const cw = tg.measureText(ch).width;
+        if (x + cw > right && x > left && !/\s/.test(ch)) { line++; x = left; }
+        pos[k++] = [x, top + line * lh * (sz / 34)]; x += cw;
+      }
     }
     return { pos, lines: line + 1, end: [x, top + line * lh * (sz / 34)] };
   };
@@ -170,7 +176,11 @@ function build() {
   if (mesh) { mesh.geometry.dispose(); scene.remove(mesh); }
   mesh = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH, 90, 70), material);
   scene.add(mesh);
-  paintPaper(); dirty = true;
+  paintPaper();
+  texture.dispose();
+  texture = new THREE.CanvasTexture(tex); texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 8;
+  uniforms.map.value = texture;
+  dirty = true;
 }
 function fit() {
   const W = innerWidth, H = innerHeight;
@@ -187,15 +197,18 @@ addEventListener('pointermove', e => {
   uniforms.uMouse.value.set(((e.clientX - r.left) / r.width - .5) * 2, -((e.clientY - r.top) / r.height - .5) * 2);
 });
 const t0 = performance.now();
+let last = t0;
+const ease = (rate, dt) => 1 - Math.pow(1 - rate, dt * 60);
 function loop(now) {
-  const t = (now - t0) / 1000;
+  const t = (now - t0) / 1000, dt = Math.min(.1, (now - last) / 1000); last = now;
   const r = holder.getBoundingClientRect();
   uniforms.uTime.value = reduce ? 0 : t;
-  kick *= .94; uniforms.uKick.value = kick;
-  foldT += ((folding ? 1 : 0) - foldT) * .06; uniforms.uFold.value = foldT;
-  flyT += ((folding ? 1 : 0) - flyT) * (folding ? .025 : .12);
+  kick *= Math.pow(.94, dt * 60); uniforms.uKick.value = reduce ? 0 : kick;
+  foldT += ((folding ? 1 : 0) - foldT) * (reduce ? 1 : ease(.06, dt)); uniforms.uFold.value = foldT;
+  flyT += ((folding ? 1 : 0) - flyT) * (reduce ? 1 : ease(folding ? .025 : .12, dt));
   const fly = Math.max(0, flyT - .35) / .65;
   uniforms.uFade.value = 1 - fly;
+  mesh.visible = fly < .995;
   mesh.position.set(r.left + r.width / 2 - innerWidth / 2, -(r.top + r.height / 2 - innerHeight / 2) + (reduce ? 0 : Math.sin(t * 1.1) * 6) + fly * 260, fly * 180);
   mesh.rotation.set(my * .32 + (reduce ? 0 : Math.sin(t * .9) * .03) - fly * .6, mx * .42 + (reduce ? 0 : Math.cos(t * .7) * .04), -.02 + fly * .3);
   if (dirty) { dirty = false; paintText(performance.now()); }

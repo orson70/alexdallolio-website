@@ -99,4 +99,8 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://www.alexdallolio.com/it/ai-films.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/ai-films.html"/>
   </url>
+  <url>
+    <loc>https://www.alexdallolio.com/stanza/</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
 </urlset>

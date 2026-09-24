@@ -299,6 +299,8 @@ def write_sitemap(groups):
         alts += f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE}{paths["en"]}"/>'
         for l in LANGS:
             rows.append(f"  <url>\n    <loc>{SITE}{paths[l]}</loc>\n    <lastmod>{lastmod(paths[l])}</lastmod>{alts}\n  </url>")
+    # la stanza: solo italiano per ora
+    rows.append(f"  <url>\n    <loc>{SITE}/stanza/</loc>\n    <lastmod>{lastmod('/stanza/')}</lastmod>\n  </url>")
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
