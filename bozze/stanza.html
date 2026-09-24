@@ -87,7 +87,8 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
 #ig-lb iframe{width:min(420px,100%);height:min(760px,92vh);border:0;background:#fff}
 #ig-lb button{position:absolute;top:12px;right:18px;background:none;border:0;color:#fff;font-size:36px;cursor:pointer}
 /* foglio 3D: la carta e la scrittura le disegna WebGL; il DOM resta per clic, tastiera e accessibilità */
-body.gl .sheet{filter:none}
+body.gl .sheet{filter:none;height:min(46vh,440px);min-height:0;overflow:visible}
+body.gl .sheet .writing{max-height:100%;overflow:hidden}
 body.gl .sheet>canvas.paper,body.gl .sheet .writing,body.gl .sheet::after{opacity:0}
 body.gl .sheet .hint{bottom:-46px;color:var(--dim)}
 body.gl .sheet .done{color:var(--fg);border-color:var(--fg)}
@@ -216,12 +217,14 @@ const SOUND = (() => {
     master = ac.createGain(); master.gain.value = 0; master.connect(ac.destination);
     // ambiente: aria della stanza (rumore marrone filtrato che respira) + ronzio lontano
     const air = ac.createBufferSource(); air.buffer = noiseBuf(6, true); air.loop = true;
-    const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 380;
-    const lfo = ac.createOscillator(), lg = ac.createGain(); lfo.frequency.value = .07; lg.gain.value = 140; lfo.connect(lg).connect(lp.frequency);
-    const ag = ac.createGain(); ag.gain.value = .22; air.connect(lp).connect(ag).connect(master);
-    const hum = ac.createOscillator(), hum2 = ac.createOscillator(), hg = ac.createGain();
-    hum.frequency.value = 55; hum2.frequency.value = 82.6; hum2.detune.value = 7; hg.gain.value = .018;
-    hum.connect(hg); hum2.connect(hg); hg.connect(master);
+    const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1100;
+    const lfo = ac.createOscillator(), lg = ac.createGain(); lfo.frequency.value = .07; lg.gain.value = 500; lfo.connect(lg).connect(lp.frequency);
+    const ag = ac.createGain(); ag.gain.value = .5; air.connect(lp).connect(ag).connect(master);
+    // ronzio da proiettore: armoniche medie, udibili anche dagli altoparlanti del portatile
+    const hum = ac.createOscillator(), hum2 = ac.createOscillator(), hf = ac.createBiquadFilter(), hg = ac.createGain();
+    hum.type = 'sawtooth'; hum2.type = 'sawtooth'; hum.frequency.value = 110; hum2.frequency.value = 165.2; hum2.detune.value = 6;
+    hf.type = 'bandpass'; hf.frequency.value = 520; hf.Q.value = .8; hg.gain.value = .045;
+    hum.connect(hf); hum2.connect(hf); hf.connect(hg).connect(master);
     air.start(); lfo.start(); hum.start(); hum2.start();
     amb = { ag, hg };
   }
@@ -235,8 +238,12 @@ const SOUND = (() => {
     master.gain.linearRampToValueAtTime(v ? .9 : 0, ac.currentTime + (v ? 1.5 : .4));
   }
   btn.addEventListener('click', () => set(!on));
-  let want = false; try { want = localStorage.getItem('stanza-suono') === '1'; } catch (e) {}
-  if (want) addEventListener('pointerdown', function first() { removeEventListener('pointerdown', first); set(true); }, { once: true });
+  let want = true; try { want = localStorage.getItem('stanza-suono') !== '0'; } catch (e) {}
+  const first = e => {
+    removeEventListener('pointerdown', first); removeEventListener('keydown', first);
+    if (want && !(e.target && e.target.id === 'snd')) set(true);
+  };
+  addEventListener('pointerdown', first); addEventListener('keydown', first);
   const burst = (dur, f, q, gain, delay = 0) => {
     if (!on || !ac) return;
     const t = ac.currentTime + delay, src = ac.createBufferSource(); src.buffer = noiseBuf(dur + .05);
@@ -245,14 +252,14 @@ const SOUND = (() => {
     src.connect(bp).connect(g).connect(master); src.start(t); src.stop(t + dur + .05);
   };
   return {
-    pen(ch) { if (ch === ' ') return burst(.03, 1400, 1, .05); burst(.045 + Math.random() * .04, 3200 + Math.random() * 2200, 2.5 + Math.random() * 2, .16); },
-    rustle() { for (let i = 0; i < 9; i++) burst(.07 + Math.random() * .12, 1500 + Math.random() * 4500, 1.2, .12 + Math.random() * .1, i * .07 + Math.random() * .04); },
+    pen(ch) { if (ch === ' ' || ch === '\n') return burst(.05, 1300, 1, .18); burst(.06 + Math.random() * .05, 2600 + Math.random() * 2000, 1.8 + Math.random() * 1.5, .55); },
+    rustle() { for (let i = 0; i < 12; i++) burst(.08 + Math.random() * .14, 1200 + Math.random() * 4000, 1, .35 + Math.random() * .25, i * .06 + Math.random() * .04); },
     swell() {
       if (!on || !ac) return;
       const t = ac.currentTime + .6;
       [220, 277.2, 329.6, 440].forEach((f, i) => {
         const o = ac.createOscillator(), g = ac.createGain(); o.type = i % 2 ? 'triangle' : 'sine'; o.frequency.value = f; o.detune.value = (Math.random() - .5) * 8;
-        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.035, t + 1.6); g.gain.linearRampToValueAtTime(0, t + 5.5);
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.09, t + 1.6); g.gain.linearRampToValueAtTime(0, t + 5.5);
         o.connect(g).connect(master); o.start(t); o.stop(t + 5.6);
       });
     },
