@@ -83,6 +83,12 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
 #ig-lb.open{display:flex}
 #ig-lb iframe{width:min(420px,100%);height:min(760px,92vh);border:0;background:#fff}
 #ig-lb button{position:absolute;top:12px;right:18px;background:none;border:0;color:#fff;font-size:36px;cursor:pointer}
+/* foglio 3D: la carta e la scrittura le disegna WebGL; il DOM resta per clic, tastiera e accessibilità */
+body.gl .sheet{filter:none}
+body.gl .sheet>canvas.paper,body.gl .sheet .writing,body.gl .sheet::after{opacity:0}
+body.gl .sheet .hint{bottom:-46px;color:var(--dim)}
+body.gl .sheet .done{color:var(--fg);border-color:var(--fg)}
+body.gl .offer-line{margin-top:58px}
 /* inviti e pannelli */
 .acts .primary{color:#000!important;background:var(--sig);border:0!important;padding:10px 16px!important;font-weight:500}
 .acts .primary:hover{background:#fff}
@@ -398,6 +404,7 @@ function drawCube(size, alpha, ax, ay, open) {
 const sw = document.getElementById('sw'), sheetEl = document.getElementById('sheet');
 let t0 = performance.now(), sheetKick = 0;
 function moveSheet() {
+  if (document.body.classList.contains('gl')) { sw.style.transform = ''; return; }
   const t = (performance.now() - t0) / 1000;
   const rx = (reduce ? 0 : Math.sin(t * .9) * 2.2) - my * 14 + sheetKick * 3;
   const ry = (reduce ? 0 : Math.cos(t * .7) * 2.6) + mx * 18;
@@ -455,7 +462,7 @@ function render(prev, next) {
   }
   done.classList.toggle('on', next.trim().length > 2);
 }
-input.addEventListener('input', () => { const n = input.value.slice(0, 600); render(text, n); text = n; input.value = n; cube.kick = Math.min(cube.kick + .35, 1.2); sheetKick = Math.min(sheetKick + .6, 1.4); });
+input.addEventListener('input', () => { const n = input.value.slice(0, 600); render(text, n); text = n; input.value = n; window.PAPER?.setText(n); window.PAPER?.kick(); cube.kick = Math.min(cube.kick + .35, 1.2); sheetKick = Math.min(sheetKick + .6, 1.4); });
 sheet.addEventListener('click', () => input.focus());
 addEventListener('keydown', e => {
   if (document.querySelector('.panel.open')) return;
@@ -503,7 +510,7 @@ function finish() {
   document.getElementById('prompt').style.opacity = 0;
   document.getElementById('offer').style.opacity = 0;
   document.body.classList.add('answering');
-  sheet.classList.add('fold');
+  sheet.classList.add('fold'); window.PAPER?.fold();
   cube.openT = 1; cube.target = 1.25; cube.kick = 1;
   const r = pick(text);
   shownFilm = { code: r.code, caption: r.caption };
@@ -521,15 +528,15 @@ document.getElementById('back').onclick = () => {
   document.getElementById('film').innerHTML = '';
   cube.openT = 0; cube.target = 1;
   document.body.classList.remove('answering');
-  setTimeout(() => { sheet.classList.remove('fold'); document.getElementById('prompt').style.opacity = 1; document.getElementById('offer').style.opacity = 1; input.focus(); }, 600);
+  window.PAPER?.unfold(); setTimeout(() => { sheet.classList.remove('fold'); document.getElementById('prompt').style.opacity = 1; document.getElementById('offer').style.opacity = 1; input.focus(); }, 600);
 };
 document.getElementById('again').onclick = () => {
   document.getElementById('answer').classList.remove('on');
   document.getElementById('film').innerHTML = '';
-  text = ''; input.value = ''; render('x', '');
+  text = ''; input.value = ''; render('x', ''); window.PAPER?.setText('');
   cube.openT = 0; cube.target = 1;
   document.body.classList.remove('answering');
-  setTimeout(() => { sheet.classList.remove('fold'); document.getElementById('prompt').style.opacity = 1; document.getElementById('offer').style.opacity = 1; input.focus(); }, 600);
+  window.PAPER?.unfold(); setTimeout(() => { sheet.classList.remove('fold'); document.getElementById('prompt').style.opacity = 1; document.getElementById('offer').style.opacity = 1; input.focus(); }, 600);
 };
 function openIG(code) {
   let lb = document.getElementById('ig-lb');
@@ -544,5 +551,6 @@ function openIG(code) {
   lb.classList.add('open');
 }
 </script>
+<script type="module" src="foglio3d.js"></script>
 </body>
 </html>
