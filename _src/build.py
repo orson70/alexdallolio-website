@@ -367,7 +367,7 @@ def noindex(src: str, lang: str, base: str) -> str:
 
 
 NUOVO_FONTS = ('<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;900'
-               '&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">')
+               '&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">')
 NAV_NUOVO = {"it": ("Film", "Tutti i film", "Taccuino", "Contatti"), "en": ("Films", "All films", "Notebook", "Contact")}
 
 
