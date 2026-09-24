@@ -366,6 +366,27 @@ def noindex(src: str, lang: str, base: str) -> str:
     return src
 
 
+NUOVO_FONTS = ('<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;900'
+               '&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">')
+NAV_NUOVO = {"it": ("Film", "Tutti i film", "Taccuino", "Contatti"), "en": ("Films", "All films", "Notebook", "Contact")}
+
+
+def restyle(src: str, lang: str) -> str:
+    """Pagine interne nello stile della home nuova (solo con HOME_STYLE = "nuovo")."""
+    if HOME_STYLE != "nuovo":
+        return src
+    home = "/it/" if lang == "it" else "/"
+    a, b, c, d = NAV_NUOVO[lang]
+    nav_ul = (f'<ul>\n    <li><a href="{home}#film">{a}</a></li>\n'
+              f'    <li><a href="{PAGES["videos"][lang]["path"]}">{b}</a></li>\n'
+              f'    <li><a href="{LP.PAGES["aifilms"][lang]["path"]}">{c}</a></li>\n'
+              f'    <li><a href="{home}#contatti">{d}</a></li>\n  </ul>')
+    src = re.sub(r"(<nav>\s*<a [^>]*class=\"logo\"[^>]*>[^<]*</a>\s*)<ul>.*?</ul>", lambda m: m.group(1) + nav_ul, src, count=1, flags=re.S)
+    src = src.replace('<meta name="theme-color" content="#0d0c0b">', '<meta name="theme-color" content="#000000">')
+    css = (SRC / "nuovo.css").read_text()
+    return src.replace("</head>", f"{NUOVO_FONTS}\n<style>\n{css}</style>\n</head>", 1)
+
+
 def main():
     groups = []
     for lang in LANGS:
@@ -385,11 +406,11 @@ def main():
         if page == "index":
             continue
         for lang in LANGS:
-            write(PAGES[page][lang]["path"], render(page, lang))
+            write(PAGES[page][lang]["path"], restyle(render(page, lang), lang))
         groups.append({l: PAGES[page][l]["path"] for l in LANGS})
     for key in LP.PAGES:
         for lang in LANGS:
-            write(LP.PAGES[key][lang]["path"], render_landing(key, lang))
+            write(LP.PAGES[key][lang]["path"], restyle(render_landing(key, lang), lang))
         groups.append({l: LP.PAGES[key][l]["path"] for l in LANGS})
     write_sitemap(groups)
     # Copia pubblica dei reel per le altre pagine (es. la home): /aifilms/reels.json
