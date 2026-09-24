@@ -68,6 +68,35 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
 #ig-lb.open{display:flex}
 #ig-lb iframe{width:min(420px,100%);height:min(760px,92vh);border:0;background:#fff}
 #ig-lb button{position:absolute;top:12px;right:18px;background:none;border:0;color:#fff;font-size:36px;cursor:pointer}
+/* inviti e pannelli */
+.acts .primary{color:#000!important;background:var(--sig);border:0!important;padding:10px 16px!important;font-weight:500}
+.acts .primary:hover{background:#fff}
+.offer-line{margin-top:14px;transition:opacity .6s;color:var(--dim);text-align:center}
+.offer-line button{all:unset;cursor:pointer;color:var(--sig);border-bottom:1px solid var(--sig)}
+.panel{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.9);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.panel.open{display:flex}
+.box{width:min(620px,100%);background:#0b0b0b;border:1px solid rgba(236,235,231,.18);padding:32px 30px;position:relative;margin:auto}
+.box h2{font-weight:900;letter-spacing:-.03em;font-size:clamp(28px,3.4vw,42px);line-height:1;margin-bottom:14px}
+.box h2 em{font-style:normal;color:var(--sig)}
+.box p{color:#bdb9b2;font-size:15px;line-height:1.6;margin-bottom:14px}
+.box .x{all:unset;position:absolute;top:10px;right:14px;cursor:pointer;font-size:30px;line-height:1;color:var(--dim)}
+.box .x:hover{color:var(--fg)}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.tier{border:1px solid rgba(236,235,231,.2);padding:14px 12px;cursor:pointer;display:block}
+.tier input{position:absolute;opacity:0}
+.tier b{display:block;font-weight:900;font-size:22px;letter-spacing:-.02em}
+.tier span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--sig);margin:4px 0 8px}
+.tier small{color:#9e9a93;font-size:13px;line-height:1.4;display:block}
+.tier:has(input:checked){border-color:var(--sig);background:rgba(212,255,58,.06)}
+.box label.f{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);margin:14px 0 6px}
+.box input[type=email],.box input[type=text],.box textarea{width:100%;background:#000;border:1px solid rgba(236,235,231,.22);color:var(--fg);font:15px/1.5 var(--sans);padding:10px 12px}
+.box textarea{min-height:90px;font-family:var(--hand);font-size:22px;line-height:1.3}
+.box .small{font-size:12px;color:#8a867f;margin-top:12px}
+.box .send{all:unset;cursor:pointer;display:inline-block;margin-top:18px;background:var(--sig);color:#000;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 18px}
+.box .send[disabled]{opacity:.4;cursor:wait}
+.box .msg{margin-top:14px;font-weight:500}
+.hp{position:absolute;left:-9999px}
+@media (max-width:600px){.tiers{grid-template-columns:1fr}.box{padding:26px 18px}}
 @media (max-width:600px){.sheet{padding:26px 22px 64px}.sheet::before{left:14px}.writing{font-size:28px;line-height:44px}.hint{left:22px;right:22px}}
 @media (prefers-reduced-motion:reduce){.writing .ch{animation:none}.caret{animation:none}}
 </style>
@@ -78,28 +107,105 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0}
 <div class="top mono"><a href="/it/">Alex Dallolio</a><a href="/it/#film">Le altre stanze →</a></div>
 
 <div class="stage" id="stage">
-  <p class="prompt" id="prompt">Scrivi qualcosa. <span>Un'idea, una domanda, un pensiero.</span></p>
+  <p class="prompt" id="prompt">Scrivi qualcosa. <span>Un sogno, un'idea, un pensiero.</span></p>
   <div class="sheet" id="sheet" role="textbox" aria-label="Foglio: scrivi qui">
     <div class="writing" id="writing"><span class="caret" id="caret"></span></div>
     <div class="hint"><span class="mono">Scrivi con la tastiera</span><button class="done" id="done" type="button">Fatto →</button></div>
   </div>
+  <p class="offer-line mono" id="offer">Hai un sogno da vedere? <button type="button" data-open="commission">Lo trasformo in un film unico, da 150 €</button></p>
 </div>
 <textarea id="in" autocapitalize="sentences" autocomplete="off" spellcheck="false" aria-label="Scrivi qui"></textarea>
 
 <div class="answer" id="answer" aria-live="polite">
-  <div class="lbl mono">Dalla tua idea, un film</div>
+  <div class="lbl mono">Dalle tue parole, un film del mio taccuino</div>
   <div class="yours" id="yours"></div>
   <div class="film" id="film"></div>
   <div class="cap" id="cap"></div>
   <div class="acts">
-    <a id="send" href="#">Mandalo ad Alex</a>
-    <span class="soon mono" title="In arrivo">Lascialo sul muro · presto</span>
+    <button type="button" class="primary" data-open="commission">Fanne un'opera unica · da 150 €</button>
+    <button type="button" data-open="note">Mandalo ad Alex</button>
     <button type="button" id="again">Scrivi un altro foglio</button>
     <a href="/it/#film">Le altre stanze →</a>
   </div>
 </div>
 
+<div class="panel" id="commission" role="dialog" aria-modal="true" aria-labelledby="c-t">
+  <form class="box" data-kind="commission">
+    <button type="button" class="x" aria-label="Chiudi">×</button>
+    <h2 id="c-t">Un sogno, un film. <em>Opera unica.</em></h2>
+    <p>Un sogno, un ricordo, un'immagine che hai in testa e non puoi fotografare. Scrivimela: la trasformo in un film di una sola scena, al massimo 20 secondi. Esiste in un solo esemplare: è tuo, numerato, e non lo rifaccio per nessun altro.</p>
+    <div class="tiers">
+      <label class="tier"><input type="radio" name="livello" value="Appunto, 150 €"><b>150 €</b><span>Appunto</span><small>Una scena di 10 secondi</small></label>
+      <label class="tier"><input type="radio" name="livello" value="Scena, 250 €" checked><b>250 €</b><span>Scena</span><small>20 secondi, con suono</small></label>
+      <label class="tier"><input type="radio" name="livello" value="Opera, 350 €"><b>350 €</b><span>Opera</span><small>20 secondi, suono e certificato di unicità firmato a mano</small></label>
+    </div>
+    <label class="f" for="c-p">Il tuo sogno, o il tuo pensiero</label>
+    <textarea id="c-p" name="pensiero" required></textarea>
+    <label class="f" for="c-e">La tua email</label>
+    <input id="c-e" type="email" name="email" required autocomplete="email">
+    <label class="f" for="c-n">Nome (facoltativo)</label>
+    <input id="c-n" type="text" name="nome" autocomplete="name">
+    <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
+    <p class="small">Leggo ogni pensiero. Se ci vedo un film ti scrivo io con i tempi e il pagamento; se no, te lo dico. Paghi solo se accetto. Il film lo mostro nel mio taccuino solo se sei d'accordo. Uso la tua email solo per risponderti.</p>
+    <button type="submit" class="send">Manda il pensiero</button>
+    <div class="msg" aria-live="polite"></div>
+  </form>
+</div>
+
+<div class="panel" id="note" role="dialog" aria-modal="true" aria-labelledby="n-t">
+  <form class="box" data-kind="note">
+    <button type="button" class="x" aria-label="Chiudi">×</button>
+    <h2 id="n-t">Mandalo ad <em>Alex.</em></h2>
+    <p>Un'idea, una domanda, un pensiero: arriva a me, così come l'hai scritto.</p>
+    <label class="f" for="n-p">Il tuo foglio</label>
+    <textarea id="n-p" name="pensiero" required></textarea>
+    <label class="f" for="n-e">La tua email (se vuoi una risposta)</label>
+    <input id="n-e" type="email" name="email" autocomplete="email">
+    <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
+    <p class="small">Uso la tua email solo per risponderti.</p>
+    <button type="submit" class="send">Manda</button>
+    <div class="msg" aria-live="polite"></div>
+  </form>
+</div>
+
 <script>
+// ── Pannelli: invio diretto, senza aprire programmi di posta ──
+const FORM_URL = 'https://formsubmit.co/ajax/alexdallolio@alexdallolio.com';
+document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => {
+  const p = document.getElementById(b.dataset.open);
+  const ta = p.querySelector('textarea');
+  if (!ta.value && typeof text === 'string') ta.value = text.trim();
+  p.classList.add('open');
+  setTimeout(() => (ta.value ? p.querySelector('input[type=email]') : ta).focus(), 50);
+}));
+document.querySelectorAll('.panel').forEach(p => {
+  const close = () => p.classList.remove('open');
+  p.querySelector('.x').onclick = close;
+  p.addEventListener('click', e => { if (e.target === p) close(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+});
+document.querySelectorAll('.panel form').forEach(f => f.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = f.querySelector('.send'), msg = f.querySelector('.msg');
+  const data = Object.fromEntries(new FormData(f).entries());
+  if (data._honey) return;
+  const kind = f.dataset.kind;
+  data._subject = kind === 'commission' ? `Opera unica dalla stanza: ${data.livello}` : 'Un foglio dalla stanza';
+  data._template = 'box';
+  if (data.email) data._replyto = data.email;
+  btn.disabled = true; msg.textContent = 'Invio…';
+  try {
+    const r = await fetch(FORM_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || j.success === 'false' || j.success === false) throw new Error(j.message || r.status);
+    msg.textContent = kind === 'commission' ? 'Ricevuto. Lo leggo e ti rispondo io.' : 'Arrivato. Grazie.';
+    f.querySelectorAll('input,textarea').forEach(i => { if (i.type !== 'radio') i.disabled = true; });
+  } catch (err) {
+    btn.disabled = false;
+    msg.innerHTML = 'Non è partito. Riprova, oppure scrivimi a <a href="mailto:alexdallolio@alexdallolio.com" style="color:var(--sig)">alexdallolio@alexdallolio.com</a>.';
+  }
+}));
+
 // ── Il cubo: solo spigoli, gira piano, reagisce al mouse e alla scrittura ──
 const cv = document.getElementById('cube'), cx = cv.getContext('2d');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -175,6 +281,7 @@ function render(prev, next) {
 input.addEventListener('input', () => { const n = input.value.slice(0, 600); render(text, n); text = n; input.value = n; cube.kick = Math.min(cube.kick + .35, 1.2); });
 sheet.addEventListener('click', () => input.focus());
 addEventListener('keydown', e => {
+  if (document.querySelector('.panel.open')) return;
   if (document.activeElement !== input && e.key.length === 1 && !e.metaKey && !e.ctrlKey) input.focus();
   if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') finish();
 });
@@ -217,6 +324,7 @@ function finish() {
   if (text.trim().length < 3 || !REELS.length) return;
   input.blur();
   document.getElementById('prompt').style.opacity = 0;
+  document.getElementById('offer').style.opacity = 0;
   sheet.classList.add('fold');
   cube.openT = 1; cube.target = 1.25; cube.kick = 1;
   const r = pick(text);
@@ -226,7 +334,6 @@ function finish() {
   film.onclick = () => openIG(r.code);
   film.style.cursor = 'pointer';
   document.getElementById('cap').innerHTML = `${(r.caption || 'AI film').replace(/</g, '&lt;')} <span>· ${r.date.slice(8,10)}.${r.date.slice(5,7)}.${r.date.slice(0,4)} · clic per l'audio</span>`;
-  document.getElementById('send').href = 'mailto:alexdallolio@alexdallolio.com?subject=' + encodeURIComponent('Un foglio dalla stanza') + '&body=' + encodeURIComponent(text.trim());
   setTimeout(() => document.getElementById('answer').classList.add('on'), 500);
 }
 done.addEventListener('click', finish);
@@ -235,7 +342,7 @@ document.getElementById('again').onclick = () => {
   document.getElementById('film').innerHTML = '';
   text = ''; input.value = ''; render('x', '');
   cube.openT = 0; cube.target = 1;
-  setTimeout(() => { sheet.classList.remove('fold'); document.getElementById('prompt').style.opacity = 1; input.focus(); }, 600);
+  setTimeout(() => { sheet.classList.remove('fold'); document.getElementById('prompt').style.opacity = 1; document.getElementById('offer').style.opacity = 1; input.focus(); }, 600);
 };
 function openIG(code) {
   let lb = document.getElementById('ig-lb');
