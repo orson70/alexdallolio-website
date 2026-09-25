@@ -152,12 +152,12 @@ body.gl .offer-line{margin-top:58px}
 @media (max-width:600px){
   .stage{padding:64px 12px 96px}
   .prompt{font-size:22px;margin-bottom:14px}
-  body.gl .sheet,.sheet{width:92vw;height:min(54vh,480px)}
+  body.gl .sheet,.sheet{width:78vw;height:min(40vh,380px)}
 }
 /* tastiera aperta: il foglio sale e occupa lo spazio che resta, il resto si nasconde */
-body.kb .stage{height:var(--vvh);bottom:auto;padding:14px 10px 58px;justify-content:flex-start}
+body.kb .stage{height:var(--vvh);bottom:auto;padding:28px 10px 58px;justify-content:flex-start}
 body.kb .prompt,body.kb .offer-line,body.kb .doors,body.kb .gesture-hint,body.kb .top{opacity:0;pointer-events:none}
-body.kb.gl .sheet,body.kb .sheet{height:calc(var(--vvh) - 86px);min-height:0}
+body.kb.gl .sheet,body.kb .sheet{width:76vw;height:min(calc(var(--vvh) - 120px),340px);min-height:0}
 body.kb.gl .sheet .hint{bottom:-40px}
 @media (prefers-reduced-motion:reduce){.writing .ch{animation:none}.caret{animation:none}}
 </style>
@@ -587,8 +587,11 @@ const countEl = document.getElementById('count');
 // tastiera del telefono: il foglio si adatta allo spazio visibile
 if (window.visualViewport) {
   const vv = visualViewport;
+  let fullH = Math.max(vv.height, document.documentElement.clientHeight);
+  addEventListener('orientationchange', () => setTimeout(() => { fullH = Math.max(vv.height, document.documentElement.clientHeight); }, 400));
   const onVV = () => {
-    const kb = matchMedia('(pointer: coarse)').matches && vv.height < innerHeight - 140 && document.activeElement === input;
+    fullH = Math.max(fullH, vv.height);
+    const kb = matchMedia('(pointer: coarse)').matches && vv.height < fullH * 0.8 && document.activeElement === input;
     document.documentElement.style.setProperty('--vvh', vv.height + 'px');
     document.body.classList.toggle('kb', kb);
     if (kb) scrollTo(0, 0);
