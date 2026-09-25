@@ -147,6 +147,18 @@ body.gl .offer-line{margin-top:58px}
 @media (pointer:coarse){.g-touch{display:inline}.g-mouse{display:none}}
 .back{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 @media (max-width:600px){.answer{padding-top:52px}.back{position:static;align-self:flex-start;margin-bottom:4px}.answer .film{height:min(46vh,420px)}.gesture-hint{bottom:auto;top:64px}.top{flex-wrap:wrap;gap:8px}}
+.sheet .hint{transition:opacity .3s}
+/* telefono: foglio verticale, come una pagina di quaderno */
+@media (max-width:600px){
+  .stage{padding:64px 12px 96px}
+  .prompt{font-size:22px;margin-bottom:14px}
+  body.gl .sheet,.sheet{width:92vw;height:min(54vh,480px)}
+}
+/* tastiera aperta: il foglio sale e occupa lo spazio che resta, il resto si nasconde */
+body.kb .stage{height:var(--vvh);bottom:auto;padding:14px 10px 58px;justify-content:flex-start}
+body.kb .prompt,body.kb .offer-line,body.kb .doors,body.kb .gesture-hint,body.kb .top{opacity:0;pointer-events:none}
+body.kb.gl .sheet,body.kb .sheet{height:calc(var(--vvh) - 86px);min-height:0}
+body.kb.gl .sheet .hint{bottom:-40px}
 @media (prefers-reduced-motion:reduce){.writing .ch{animation:none}.caret{animation:none}}
 </style>
 </head>
@@ -572,6 +584,18 @@ function render(prev, next) {
   done.classList.toggle('on', next.trim().length > 2);
 }
 const countEl = document.getElementById('count');
+// tastiera del telefono: il foglio si adatta allo spazio visibile
+if (window.visualViewport) {
+  const vv = visualViewport;
+  const onVV = () => {
+    const kb = matchMedia('(pointer: coarse)').matches && vv.height < innerHeight - 140 && document.activeElement === input;
+    document.documentElement.style.setProperty('--vvh', vv.height + 'px');
+    document.body.classList.toggle('kb', kb);
+    if (kb) scrollTo(0, 0);
+  };
+  vv.addEventListener('resize', onVV); vv.addEventListener('scroll', onVV);
+  input.addEventListener('focus', () => setTimeout(onVV, 300)); input.addEventListener('blur', () => setTimeout(onVV, 100));
+}
 input.addEventListener('input', () => {
   if (input.value.split('\n').length > 9) input.value = input.value.split('\n').slice(0, 9).join(' ');
   countEl.textContent = input.value.length > 500 ? `· ${600 - input.value.length}` : '';
