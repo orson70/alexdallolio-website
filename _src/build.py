@@ -435,14 +435,19 @@ def noindex(src: str, lang: str, base: str) -> str:
     return src
 
 
-NUOVO_FONTS = '<link rel="preload" href="/assets/fonts/inter-tight-900.woff2" as="font" type="font/woff2" crossorigin>\n<style>@font-face{font-family:\'Inter Tight\';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/inter-tight-400.woff2) format(\'woff2\')}@font-face{font-family:\'Inter Tight\';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/inter-tight-500.woff2) format(\'woff2\')}@font-face{font-family:\'Inter Tight\';font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fonts/inter-tight-900.woff2) format(\'woff2\')}@font-face{font-family:\'IBM Plex Mono\';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-400.woff2) format(\'woff2\')}@font-face{font-family:\'IBM Plex Mono\';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-500.woff2) format(\'woff2\')}</style>'
+NUOVO_FONTS = '<link rel="preload" href="/assets/fonts/montserrat-300.woff2" as="font" type="font/woff2" crossorigin>\n<style>@font-face{font-family:\'Montserrat\';font-style:normal;font-weight:300;font-display:swap;src:url(/assets/fonts/montserrat-300.woff2) format(\'woff2\')}@font-face{font-family:\'Montserrat\';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/montserrat-400.woff2) format(\'woff2\')}@font-face{font-family:\'Montserrat\';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/montserrat-500.woff2) format(\'woff2\')}@font-face{font-family:\'Inter Tight\';font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fonts/inter-tight-900.woff2) format(\'woff2\')}</style>'
 NAV_NUOVO = {"it": ("Film", "Tutti i film", "Taccuino", "Stanza", "Contatti"), "en": ("Films", "All films", "Notebook", "Room", "Contact")}
 
 
 BRAND = '<span class="brand" aria-label="Alex Dallolio"><svg viewBox="0 0 764 124" aria-hidden="true"><path d="M2 122 H762 V2" fill="none" stroke="currentColor" stroke-width="4"/></svg><span class="brand-n">alexdallolio</span></span>'
 
 
-def restyle(src: str, lang: str) -> str:
+# Ogni pagina ha la sua luce, dentro lo stesso mondo: notte (inchiostro) o carta
+THEME = {"videos": "notte", "aifilms": "notte", "ai": "notte", "webuild": "notte",
+         "archive": "carta", "fashion": "carta", "fila": "carta"}
+
+
+def restyle(src: str, lang: str, key: str = "") -> str:
     """Pagine interne nello stile della home nuova (solo con HOME_STYLE = "nuovo")."""
     if HOME_STYLE != "nuovo":
         return src
@@ -458,8 +463,9 @@ def restyle(src: str, lang: str) -> str:
     src = re.sub(r'<link href="https://fonts.googleapis.com/css2\?family=Bodoni[^>]*>\n?', "", src)
     src = re.sub(r'<link rel="preconnect" href="https://fonts.(googleapis|gstatic).com"[^>]*>\n?', "", src)
     src = re.sub(r'(<a href="[^"]*" class="logo")>Alex Dallolio</a>', lambda m: m.group(1) + ' aria-label="Alex Dallolio">' + BRAND + '</a>', src, count=1)
-    src = src.replace("200,184,154", "236,235,231").replace("#c8b89a", "#d4ff3a")
-    src = src.replace('<meta name="theme-color" content="#0d0c0b">', '<meta name="theme-color" content="#000000">')
+    src = src.replace("<body>", f'<body class="{THEME.get(key, "notte")}">', 1)
+    src = src.replace("200,184,154", "213,184,147").replace("#c8b89a", "#D5B893")
+    src = src.replace('<meta name="theme-color" content="#0d0c0b">', '<meta name="theme-color" content="#1B2632">')
     css = (SRC / "nuovo.css").read_text()
     src = src.replace("</body>", '<script src="/assets/scrivimi.js" defer></script>\n</body>', 1)
     return src.replace("</head>", f"{NUOVO_FONTS}\n<style>\n{css}</style>\n</head>", 1)
@@ -484,11 +490,11 @@ def main():
         if page == "index":
             continue
         for lang in LANGS:
-            write(PAGES[page][lang]["path"], restyle(render(page, lang), lang))
+            write(PAGES[page][lang]["path"], restyle(render(page, lang), lang, page))
         groups.append({l: PAGES[page][l]["path"] for l in LANGS})
     for key in LP.PAGES:
         for lang in LANGS:
-            write(LP.PAGES[key][lang]["path"], restyle(render_landing(key, lang), lang))
+            write(LP.PAGES[key][lang]["path"], restyle(render_landing(key, lang), lang, key))
         groups.append({l: LP.PAGES[key][l]["path"] for l in LANGS})
     # la stanza in inglese, generata dalla versione italiana
     import room_en

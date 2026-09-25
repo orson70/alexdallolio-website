@@ -18,19 +18,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-<link rel="preload" href="/assets/fonts/inter-tight-900.woff2" as="font" type="font/woff2" crossorigin>
-<style>@font-face{font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/inter-tight-400.woff2) format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/inter-tight-500.woff2) format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fonts/inter-tight-900.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-400.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-500.woff2) format('woff2')}</style>
+<link rel="preload" href="/assets/fonts/montserrat-300.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:'Montserrat';font-style:normal;font-weight:300;font-display:swap;src:url(/assets/fonts/montserrat-300.woff2) format('woff2')}@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/montserrat-400.woff2) format('woff2')}@font-face{font-family:'Montserrat';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/montserrat-500.woff2) format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fonts/inter-tight-900.woff2) format('woff2')}</style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--fg:#ecebe7;--dim:#8a867f;--sig:#d4ff3a;--ink:#1d2344;--paper:#f3ecdf;
---sans:"Inter Tight",Helvetica,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--hand:"Caveat",cursive}
+:root{--fg:#EEE9DF;--dim:#A9A294;--sig:#D5B893;--ink:#1d2344;--paper:#f3ecdf;
+--sans:"Montserrat",Helvetica,Arial,sans-serif;--mono:"Montserrat",Helvetica,Arial,sans-serif;--hand:"Caveat",cursive}
 html,body{height:100%}
-body{background:#000;color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
+body{background:#1B2632;color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
 a{color:inherit;text-decoration:none}
-.mono{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase}
+.mono{font-family:var(--mono);font-size:11.5px;font-weight:400;letter-spacing:.22em;text-transform:lowercase}
 
 /* la stanza: buio, e un cubo di soli spigoli */
-.room{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 45%,#0d0d0d,#000 70%)}
+.room{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 45%,#25344F,#141c26 72%)}
 #cube{position:fixed;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .room::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -50,7 +50,7 @@ a{color:inherit;text-decoration:none}
 body.answering .doors,body.answering .gesture-hint{opacity:0;pointer-events:none}
 
 .stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 16px 90px;perspective:1400px}
-.prompt{font-family:var(--sans);font-weight:900;letter-spacing:-.03em;font-size:clamp(22px,2.6vw,34px);text-align:center;margin-bottom:22px;transition:opacity .6s}
+.prompt{font-family:var(--sans);font-weight:300;letter-spacing:-.01em;font-size:clamp(22px,2.6vw,34px);text-align:center;margin-bottom:22px;transition:opacity .6s}
 .prompt span{color:var(--sig)}
 
 /* il foglio */
@@ -94,7 +94,7 @@ textarea#in{position:fixed;left:-9999px;top:0;opacity:0;font-size:16px}
 .answer .yours{font-family:var(--hand);font-size:clamp(22px,2.4vw,30px);color:#d8cfbf;max-width:36ch;text-align:center;line-height:1.2;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .answer .film{position:relative;height:min(58vh,560px);aspect-ratio:9/16;background:#111;box-shadow:0 30px 80px rgba(0,0,0,.7)}
 .answer video{width:100%;height:100%;object-fit:cover;display:block}
-.answer .cap{font-family:var(--sans);font-weight:900;letter-spacing:-.02em;font-size:clamp(18px,1.8vw,24px);text-align:center;max-width:34ch}
+.answer .cap{font-family:var(--sans);font-weight:400;letter-spacing:0;font-size:clamp(18px,1.8vw,24px);text-align:center;max-width:34ch}
 .answer .cap span{color:var(--dim);font-weight:500}
 .acts{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
 .acts a,.acts button{all:unset;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(236,235,231,.3);padding-bottom:3px}
@@ -118,8 +118,8 @@ body.gl .offer-line{margin-top:58px}
 .offer-line button{all:unset;cursor:pointer;color:var(--sig);border-bottom:1px solid var(--sig)}
 .panel{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.9);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
 .panel.open{display:flex}
-.box{width:min(620px,100%);background:#0b0b0b;border:1px solid rgba(236,235,231,.18);padding:32px 30px;position:relative;margin:auto}
-.box h2{font-weight:900;letter-spacing:-.03em;font-size:clamp(28px,3.4vw,42px);line-height:1;margin-bottom:14px}
+.box{width:min(620px,100%);background:#1B2632;border:1px solid rgba(236,235,231,.18);padding:32px 30px;position:relative;margin:auto}
+.box h2{font-weight:300;letter-spacing:-.01em;font-size:clamp(28px,3.4vw,42px);line-height:1;margin-bottom:14px}
 .box h2 em{font-style:normal;color:var(--sig)}
 .box p{color:#bdb9b2;font-size:15px;line-height:1.6;margin-bottom:14px}
 .box .x{all:unset;position:absolute;top:10px;right:14px;cursor:pointer;font-size:30px;line-height:1;color:var(--dim)}
@@ -127,10 +127,10 @@ body.gl .offer-line{margin-top:58px}
 .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
 .tier{border:1px solid rgba(236,235,231,.2);padding:14px 12px;cursor:pointer;display:block}
 .tier input{position:absolute;opacity:0}
-.tier b{display:block;font-weight:900;font-size:22px;letter-spacing:-.02em}
+.tier b{display:block;font-weight:400;font-size:22px;letter-spacing:-.02em}
 .tier span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--sig);margin:4px 0 8px}
 .tier small{color:#9e9a93;font-size:13px;line-height:1.4;display:block}
-.tier:has(input:checked){border-color:var(--sig);background:rgba(212,255,58,.06)}
+.tier:has(input:checked){border-color:var(--sig);background:rgba(213,184,147,.08)}
 .box label.f{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);margin:14px 0 6px}
 .box input[type=email],.box input[type=text],.box textarea{width:100%;background:#000;border:1px solid rgba(236,235,231,.22);color:var(--fg);font:16px/1.5 var(--sans);padding:10px 12px}
 .box textarea{min-height:90px;font-family:var(--hand);font-size:22px;line-height:1.3}

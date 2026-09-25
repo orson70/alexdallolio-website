@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Prova palette</title>
+<style>
+@font-face{font-family:'Montserrat';font-weight:300;src:url(montserrat-300.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-weight:400;src:url(montserrat-400.woff2) format('woff2')}
+*{box-sizing:border-box;margin:0;padding:0}
+/* A · NOTTE: inchiostro, cuoio, carta calda */
+body.a{--bg:#1B2632;--bg2:#25344F;--ink:#EEE9DF;--soft:#C9C1B1;--acc:#D5B893;--warm:#A35139;--line:rgba(213,184,147,.35);--paper:#EEE9DF;--paperInk:#1B2632}
+/* B · CARTA: carta calda, inchiostro, cuoio */
+body.b{--bg:#EEE9DF;--bg2:#DCD7C9;--ink:#1B2632;--soft:#6F4D38;--acc:#A35139;--warm:#A35139;--line:rgba(27,38,50,.25);--paper:#1B2632;--paperInk:#EEE9DF}
+body{background:var(--bg);color:var(--ink);font-family:Montserrat,Arial,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.sp{letter-spacing:.32em;text-transform:lowercase;font-size:12px;font-weight:400}
+/* il segno del logo: una linea sottile che inquadra */
+.corner{position:absolute;border-color:var(--acc);border-style:solid;border-width:0}
+.corner.br{right:0;bottom:0;width:38%;height:46%;border-right-width:1.5px;border-bottom-width:1.5px}
+.corner.tl{left:0;top:0;width:22%;height:30%;border-left-width:1.5px;border-top-width:1.5px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;padding:26px 40px}
+.brand{display:inline-flex;flex-direction:column;align-items:flex-end;gap:6px;color:#b7aa99}
+body.b .brand{color:#6F4D38}
+.brand i{display:block;width:170px;height:26px;border-right:2px solid currentColor;border-bottom:2px solid currentColor}
+.brand span{font-family:Arial,sans-serif;font-size:12px;letter-spacing:.42em;margin-right:-.42em}
+nav{display:flex;gap:28px;padding-top:8px}
+nav a{opacity:.85}nav a:hover{color:var(--acc)}
+.hero{position:relative;margin:9vh 40px 0;padding:9vh 5vw 11vh;min-height:62vh;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-weight:300;font-size:clamp(46px,8.4vw,132px);line-height:.98;letter-spacing:-.01em;text-transform:lowercase}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero p{margin-top:28px;font-size:clamp(17px,1.7vw,23px);color:var(--soft);max-width:30ch;line-height:1.45}
+.hero .role{position:absolute;right:5vw;bottom:3vh}
+.films{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;padding:12vh 40px;background:var(--bg2)}
+.film{position:relative;padding:14px}
+.film img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;filter:saturate(.85) contrast(1.02)}
+.film .corner.br{width:34%;height:40%}
+.film b{display:block;margin-top:16px;font-weight:400;font-size:18px}
+.film small{color:var(--soft)}
+.facts{background:var(--paper);color:var(--paperInk);padding:14vh 40px}
+.facts p{font-size:clamp(26px,3.6vw,52px);line-height:1.15;max-width:22ch;margin-bottom:.8em;font-weight:300}
+.facts p span{color:var(--warm)}
+body.b .facts p span{color:#D5B893}
+.cta{padding:14vh 40px;position:relative}
+.cta h2{font-weight:300;font-size:clamp(34px,5vw,76px);line-height:1.05;max-width:18ch}
+.cta h2 em{font-style:normal;color:var(--acc)}
+.cta .l{margin-top:34px;display:flex;gap:26px}
+.cta .l a{border-bottom:1px solid var(--acc);padding-bottom:5px}
+@media (max-width:760px){header.top{padding:20px 16px}nav{display:none}.hero{margin:4vh 16px 0;padding:8vh 6vw}.films{grid-template-columns:1fr;padding:8vh 16px}.facts,.cta{padding:10vh 16px}.brand i{width:130px;height:20px}}
+</style>
+</head>
+<body class="a">
+<header class="top"><a class="brand" href="#"><i></i><span>alexdallolio</span></a>
+<nav class="sp"><a href="#">film</a><a href="#">tutti i film</a><a href="#">taccuino</a><a href="#">stanza</a><a href="#">contatti</a><a href="#">en</a></nav></header>
+<section class="hero">
+  <span class="corner tl"></span><span class="corner br"></span>
+  <h1>non tutto va <em>girato.</em></h1>
+  <p>Giro quello che serve. Il resto esiste già, o lo creo con l'AI.</p>
+  <span class="role sp">regista · milano</span>
+</section>
+<section class="films">
+  <div class="film"><span class="corner br"></span><img src="https://i.ytimg.com/vi_webp/ySthwmhR-y4/maxresdefault.webp" alt=""><b>GERD</b><small class="sp">webuild · documentario</small></div>
+  <div class="film"><span class="corner br"></span><img src="https://i.ytimg.com/vi_webp/YVLem2cHfoc/maxresdefault.webp" alt=""><b>Hands</b><small class="sp">canali · director's cut</small></div>
+  <div class="film"><span class="corner br"></span><img src="https://i.ytimg.com/vi_webp/zJ28dM8DRYo/maxresdefault.webp" alt=""><b>FILA F-Box</b><small class="sp">salone del mobile</small></div>
+</section>
+<section class="facts">
+  <p>Spot, documentari, fashion film, installazioni. <span>Webuild da undici anni. FILA, Prada, Canali.</span></p>
+  <p>L'AI dove serve. <span>Per FILA FW26: tre film sul set, due senza set.</span></p>
+</section>
+<section class="cta">
+  <h2>Mandami quello che hai. <em>Ti dico se dentro c'è un film.</em></h2>
+  <div class="l sp"><a href="#">scrivimi →</a><a href="#">prenota una call ↗</a></div>
+</section>
+<script>if (location.hash === '#b') document.body.className = 'b';</script>
+</body>
+</html>

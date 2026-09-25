@@ -17,19 +17,19 @@
   const css = `
   .sv-p{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
   .sv-p.sv-on{display:flex}
-  .sv-b button:focus-visible,.sv-b input:focus-visible,.sv-b textarea:focus-visible{outline:2px solid #d4ff3a;outline-offset:3px}
-  .sv-b{width:min(560px,100%);background:#0b0b0b;border:1px solid rgba(236,235,231,.18);padding:30px 28px;position:relative;margin:auto;color:#ecebe7;font-family:"Inter Tight",Helvetica,Arial,sans-serif}
-  .sv-b h2{font-weight:900;letter-spacing:-.03em;font-size:clamp(30px,3.6vw,44px);line-height:1;margin:0 0 12px;color:#ecebe7}
+  .sv-b button:focus-visible,.sv-b input:focus-visible,.sv-b textarea:focus-visible{outline:2px solid #D5B893;outline-offset:3px}
+  .sv-b{width:min(560px,100%);background:#1B2632;border:1px solid rgba(236,235,231,.18);padding:30px 28px;position:relative;margin:auto;color:#ecebe7;font-family:"Montserrat",Helvetica,Arial,sans-serif}
+  .sv-b h2{font-weight:300;letter-spacing:-.01em;font-size:clamp(30px,3.6vw,44px);line-height:1;margin:0 0 12px;color:#ecebe7}
   .sv-b p{color:#bdb9b2;font-size:15px;line-height:1.6;margin:0 0 12px}
-  .sv-b label{display:block;font:11px "IBM Plex Mono",monospace;letter-spacing:.07em;text-transform:uppercase;color:#8a867f;margin:14px 0 6px}
-  .sv-b input,.sv-b textarea{width:100%;box-sizing:border-box;background:#000;border:1px solid rgba(236,235,231,.22);color:#ecebe7;font:16px/1.5 "Inter Tight",Helvetica,sans-serif;padding:10px 12px;border-radius:0}
+  .sv-b label{display:block;font:11px "Montserrat",sans-serif;letter-spacing:.07em;text-transform:uppercase;color:#8a867f;margin:14px 0 6px}
+  .sv-b input,.sv-b textarea{width:100%;box-sizing:border-box;background:#000;border:1px solid rgba(236,235,231,.22);color:#ecebe7;font:16px/1.5 "Montserrat",Helvetica,sans-serif;padding:10px 12px;border-radius:0}
   .sv-b textarea{min-height:120px}
-  .sv-b .sv-s{all:unset;cursor:pointer;display:inline-block;margin-top:18px;background:#d4ff3a;color:#000;font:12px "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;padding:12px 18px}
+  .sv-b .sv-s{all:unset;cursor:pointer;display:inline-block;margin-top:18px;background:#D5B893;color:#000;font:12px "Montserrat",sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:12px 18px}
   .sv-b .sv-s[disabled]{opacity:.4}
   .sv-b .sv-x{all:unset;cursor:pointer;position:absolute;top:10px;right:14px;font-size:30px;line-height:1;color:#8a867f}
-  .sv-b .sv-bk{all:unset;cursor:pointer;font:11px "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:#8a867f;margin-bottom:12px;display:inline-block}
+  .sv-b .sv-bk{all:unset;cursor:pointer;font:11px "Montserrat",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#8a867f;margin-bottom:12px;display:inline-block}
   .sv-b .sv-m{margin-top:14px;font-weight:500}
-  .sv-b .sv-m a{color:#d4ff3a}
+  .sv-b .sv-m a{color:#D5B893}
   .sv-b small{display:block;color:#8a867f;font-size:12px;margin-top:10px}
   .sv-hp{position:absolute;left:-9999px}`;
   const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);

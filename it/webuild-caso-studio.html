@@ -10,7 +10,7 @@
 <link rel="alternate" hreflang="it" href="https://www.alexdallolio.com/it/webuild-caso-studio.html">
 <link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/webuild-case-study.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#1B2632">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Alex Dallolio">
 <meta property="og:title" content="Webuild: undici anni di film aziendali | Caso studio, Alex Dallolio">
@@ -125,7 +125,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --bg: #0d0c0b; --bg2: #141210; --white: #f0ede8; --grey: #7a7570; --soft: #b0a99f;
-  --accent: #d4ff3a; --line: rgba(236,235,231,0.12);
+  --accent: #D5B893; --line: rgba(213,184,147,0.12);
   --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-display: "Didot", "Bodoni Moda", "Georgia", serif;
 }
@@ -141,7 +141,7 @@ nav ul a:hover { color: var(--white); }
 .lang-switcher { display: flex; gap: 0.3rem; margin-left: 1.8rem; }
 .lang-btn { color: var(--grey); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 6px; text-decoration: none; }
 .lang-btn:hover { color: var(--white); }
-.lang-btn.active { color: var(--accent); border-bottom: 1px solid rgba(236,235,231,0.6); }
+.lang-btn.active { color: var(--accent); border-bottom: 1px solid rgba(213,184,147,0.6); }
 
 .crumbs { padding: 2rem 3rem 0; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); }
 .crumbs a { text-decoration: none; color: var(--grey); }
@@ -158,14 +158,14 @@ main section { padding: 5rem 3rem; border-bottom: 1px solid var(--line); }
 .prose h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 1.6rem; }
 .prose p { color: var(--soft); font-size: 0.97rem; line-height: 1.85; margin-bottom: 1.2rem; }
 .prose ul { list-style: none; margin: 0 0 1.4rem; }
-.prose li { color: var(--soft); font-size: 0.95rem; line-height: 1.7; padding: 0.45rem 0 0.45rem 1.4rem; border-left: 1px solid rgba(236,235,231,0.25); margin-bottom: 0.4rem; }
+.prose li { color: var(--soft); font-size: 0.95rem; line-height: 1.7; padding: 0.45rem 0 0.45rem 1.4rem; border-left: 1px solid rgba(213,184,147,0.25); margin-bottom: 0.4rem; }
 .prose li strong { color: var(--white); font-weight: 500; }
 
 .films { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.6rem; margin-top: 2.4rem; }
 .film { background: var(--bg2); border-radius: 3px; overflow: hidden; }
 .film button { all: unset; cursor: pointer; display: block; position: relative; width: 100%; aspect-ratio: 16/9; background: #111 center/cover no-repeat; }
-.film button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; transform: translate(-50%,-50%); border-radius: 50%; background: rgba(13,12,11,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='%23f0ede8'/%3E%3C/svg%3E") center/26px no-repeat; border: 1px solid rgba(236,235,231,0.5); transition: background-color 0.25s; }
-.film button:hover::after { background-color: rgba(236,235,231,0.35); }
+.film button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; transform: translate(-50%,-50%); border-radius: 50%; background: rgba(13,12,11,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='%23f0ede8'/%3E%3C/svg%3E") center/26px no-repeat; border: 1px solid rgba(213,184,147,0.5); transition: background-color 0.25s; }
+.film button:hover::after { background-color: rgba(213,184,147,0.35); }
 .film button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .film iframe { width: 100%; aspect-ratio: 16/9; border: 0; display: block; }
 .films:has(.film-ig) { grid-template-columns: repeat(auto-fill, minmax(300px, 400px)); }
@@ -204,7 +204,7 @@ main section { padding: 5rem 3rem; border-bottom: 1px solid var(--line); }
 .cta-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
 .cta-links a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px; }
 .cta-links a:hover { color: var(--accent); border-color: var(--accent); }
-.cta-links a.primary { color: var(--accent); border-color: rgba(236,235,231,0.5); }
+.cta-links a.primary { color: var(--accent); border-color: rgba(213,184,147,0.5); }
 
 footer { padding: 2rem 3rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 footer p, footer a { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.06em; text-decoration: none; }
@@ -220,53 +220,79 @@ footer a:hover { color: var(--accent); }
   .films { grid-template-columns: 1fr; }
 }
 </style>
-<link rel="preload" href="/assets/fonts/inter-tight-900.woff2" as="font" type="font/woff2" crossorigin>
-<style>@font-face{font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/inter-tight-400.woff2) format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/inter-tight-500.woff2) format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fonts/inter-tight-900.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-400.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-500.woff2) format('woff2')}</style>
+<link rel="preload" href="/assets/fonts/montserrat-300.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:'Montserrat';font-style:normal;font-weight:300;font-display:swap;src:url(/assets/fonts/montserrat-300.woff2) format('woff2')}@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/montserrat-400.woff2) format('woff2')}@font-face{font-family:'Montserrat';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/montserrat-500.woff2) format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fonts/inter-tight-900.woff2) format('woff2')}</style>
 <style>
-/* Stile "nuovo" sopra le pagine interne (applicato da build.py solo con HOME_STYLE = "nuovo") */
-:root{--bg:#000;--bg2:#0c0c0c;--white:#ecebe7;--grey:#8a867f;--soft:#bdb9b2;--accent:#d4ff3a;--line:rgba(236,235,231,.14);
---font:"Inter Tight",Helvetica,Arial,sans-serif;--font-display:"Inter Tight",Helvetica,Arial,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
-html,body{background:#000}
-h1,.page-header h1,.prose h2,.cta h2{font-family:var(--font-display)!important;font-weight:900!important;letter-spacing:-.03em!important;word-spacing:.04em}
-h1 em,h2 em,.page-header h1 em{font-family:var(--font-display)!important;font-weight:900!important;font-style:normal!important;color:var(--accent)}
-.prose h2{font-size:clamp(32px,3.6vw,56px)!important;line-height:1!important}
-nav{background:rgba(0,0,0,.88)!important;border-bottom:1px solid var(--line)!important}
+/* Stile "nuovo" sopra le pagine interne (applicato da build.py solo con HOME_STYLE = "nuovo").
+   Un solo mondo, due luci: notte (inchiostro) e carta. La voce è quella del logo di Alex:
+   leggera, minuscola, spaziata; l'angolo del suo rettangolo inquadra le sezioni. */
+:root,body.notte{--bg:#1B2632;--bg2:#25344F;--white:#EEE9DF;--grey:#A9A294;--soft:#C9C1B1;--accent:#D5B893;--warm:#A35139;--line:rgba(213,184,147,.22);--brand:#b7aa99;--navbg:rgba(27,38,50,.92)}
+body.carta{--bg:#EEE9DF;--bg2:#DCD7C9;--white:#1B2632;--grey:#6F4D38;--soft:#3d3a36;--accent:#A35139;--warm:#A35139;--line:rgba(27,38,50,.18);--brand:#6F4D38;--navbg:rgba(238,233,223,.94)}
+:root{--font:"Montserrat",Helvetica,Arial,sans-serif;--font-display:"Montserrat",Helvetica,Arial,sans-serif;--mono:"Montserrat",Helvetica,Arial,sans-serif}
+html,body{background:var(--bg)!important;color:var(--white)}
+body{font-family:var(--font)!important;font-weight:300}
+h1,.page-header h1,.prose h2,.cta h2,.faq h2{font-family:var(--font-display)!important;font-weight:300!important;letter-spacing:-.01em!important;word-spacing:0}
+h1 em,h2 em,.page-header h1 em{font-family:var(--font-display)!important;font-weight:300!important;font-style:normal!important;color:var(--accent)}
+.prose h2{font-size:clamp(30px,3.4vw,52px)!important;line-height:1.05!important}
+.prose p,.prose li,.lede,.page-intro{color:var(--soft)!important}
+.prose a{color:var(--white)!important;border-bottom:1px solid var(--accent)!important;text-decoration:none!important}
+nav{background:var(--navbg)!important;border-bottom:1px solid var(--line)!important}
 nav .logo,nav ul a,.lang-btn,.label,.section-label,.crumbs,.crumbs a,.film .cap strong,.related a strong,.cta-links a,
 footer p,footer a,.reel time,.video-title,.video-tag,.filter-btn,.lb-close,.lb-title,.page-header-meta,.faq summary::after{
-  font-family:var(--mono)!important;letter-spacing:.07em!important}
-nav .logo{font-size:12px!important}
-nav ul a,.lang-btn{font-size:11px!important}
-.lang-btn.active{border-bottom-color:var(--accent)!important}
+  font-family:var(--mono)!important;font-weight:400!important;letter-spacing:.22em!important;text-transform:lowercase!important}
+nav ul a,.lang-btn{font-size:11.5px!important;color:var(--white)!important;opacity:.8}
+nav ul a:hover,.lang-btn:hover{opacity:1;color:var(--accent)!important}
+.lang-btn.active{border-bottom-color:var(--accent)!important;color:var(--accent)!important;opacity:1}
 .label,.section-label{color:var(--accent)!important}
+.crumbs,.crumbs a{color:var(--grey)!important}
 .page-header::before{display:none}
-.page-header h1{font-size:clamp(48px,7vw,104px)!important;line-height:.95!important}
-.filter-btn{border-radius:0!important}
+.page-header h1{font-size:clamp(44px,6.4vw,96px)!important;line-height:1!important}
+.filter-btn{border-radius:0!important;color:var(--white)!important;border-color:var(--line)!important}
 .filter-btn.active{border-color:var(--accent)!important;background:transparent!important;color:var(--accent)!important}
-.filter-bar{background:rgba(0,0,0,.85)!important}
+.filter-bar{background:var(--navbg)!important}
 .play-icon{border-color:var(--accent)!important}
-.video-card,.film,.reel button{border-radius:0!important;background:#0c0c0c!important}
+.video-card,.film,.reel button{border-radius:0!important;background:var(--bg2)!important}
+.video-title{color:var(--white)!important}
 .video-tag{color:var(--grey)!important;opacity:1!important}
-.related a{border-radius:0!important}
+.related a{border-radius:0!important;border-color:var(--line)!important;background:transparent!important}
 .related a:hover,.cta-links a:hover{border-color:var(--accent)!important}
+.cta{background:var(--bg2)!important}
 .cta h2 em{color:var(--accent)}
+.cta-links a.primary{background:var(--accent)!important;color:var(--bg)!important;border-color:var(--accent)!important}
+footer{border-top:1px solid var(--line)!important}
+.faq details{border-color:var(--line)!important}
+.faq summary{color:var(--white)!important}
+
+/* l'angolo del logo: inquadra ogni sezione e ogni film (in basso a destra, come il rettangolo di Alex) */
+main section,body>section,.page-header,.cta,.page-more{position:relative}
+.page-header::after,main section::after,body>section::after{
+  content:"";position:absolute;right:clamp(16px,3vw,48px);bottom:clamp(14px,2.4vw,36px);width:min(34%,260px);height:clamp(40px,6vw,90px);
+  border-right:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);pointer-events:none;opacity:.9}
+.film,.video-card{position:relative}
+.film::after,.video-card::after{content:"";position:absolute;right:-7px;bottom:-7px;width:32%;height:34%;
+  border-right:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);pointer-events:none;opacity:.75;transition:opacity .2s}
+.film:hover::after,.video-card:hover::after{opacity:1}
+.work-grid,.films{padding-bottom:12px}
+
 /* menu compatto su telefono */
 @media (max-width:768px){
   nav{padding:12px 16px!important;gap:6px!important}
   nav ul{flex-wrap:wrap;gap:6px 14px!important}
   nav ul a{white-space:nowrap}
+  .page-header::after,main section::after,body>section::after{width:40%;height:44px}
 }
 
-/* logo di Alex: l'inquadratura + alexdallolio (colore tortora) */
-.brand{--brand:#b7aa99;display:inline-flex;flex-direction:column;align-items:flex-end;gap:5px;color:var(--brand);line-height:1;text-decoration:none}
+/* logo di Alex: l'inquadratura + alexdallolio */
+.brand{display:inline-flex;flex-direction:column;align-items:flex-end;gap:5px;color:var(--brand,#b7aa99);line-height:1;text-decoration:none}
 .brand svg{display:block;width:170px;height:auto;overflow:visible}
 .brand svg path{vector-effect:non-scaling-stroke;stroke-width:2px}
 .brand-n{font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.42em;margin-right:-.42em;text-transform:lowercase;font-weight:400}
-a:hover .brand,.brand:hover{--brand:#d8cdbd}
+a:hover .brand,.brand:hover{color:var(--accent)}
 @media (max-width:760px){.brand svg{width:150px}.brand svg path{stroke-width:2.2px}.brand-n{font-size:11.5px;letter-spacing:.36em;margin-right:-.36em}}
 nav .logo{display:inline-flex}
 </style>
 </head>
-<body>
+<body class="notte">
 
 <nav>
   <a href="/it/" class="logo" aria-label="Alex Dallolio"><span class="brand" aria-label="Alex Dallolio"><svg viewBox="0 0 764 124" aria-hidden="true"><path d="M2 122 H762 V2" fill="none" stroke="currentColor" stroke-width="4"/></svg><span class="brand-n">alexdallolio</span></span></a>
