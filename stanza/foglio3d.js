@@ -10,13 +10,13 @@ try {
 } catch (e) { renderer = null; }
 if (!renderer || !renderer.getContext()) throw new Error('niente WebGL: resta il foglio classico');
 
-const S = 2;                                               // risoluzione della texture (x2)
+const S = Math.min(3, Math.max(2, Math.ceil(devicePixelRatio || 1)));   // risoluzione della texture: 3x sugli schermi Retina del telefono
 const gl = renderer.domElement;
 gl.id = 'paper3d';
 Object.assign(gl.style, { position: 'fixed', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 });
 document.querySelector('.stage').before(gl);
 document.body.classList.add('gl');
-renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 3));
 gl.addEventListener('webglcontextlost', e => { e.preventDefault(); document.body.classList.remove('gl'); });
 gl.addEventListener('webglcontextrestored', () => { document.body.classList.add('gl'); mesh = null; fit(); });
 

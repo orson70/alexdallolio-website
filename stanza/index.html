@@ -354,7 +354,7 @@ document.querySelectorAll('.panel form').forEach(f => f.addEventListener('submit
     for (let i = 0; i < im.data.length; i += 4) { const v = 120 + Math.random() * 90; im.data[i] = v; im.data[i + 1] = v * .96; im.data[i + 2] = v * .88; im.data[i + 3] = 26; }
     g.putImageData(im, 0, 0); })();
   function draw() {
-    const r = sh.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    const r = sh.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 3);
     const w = sh.offsetWidth + 12, h = sh.offsetHeight + 12;
     cvp.width = w * dpr; cvp.height = h * dpr;
     const g = cvp.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); seed = 7;
@@ -412,7 +412,7 @@ document.querySelectorAll('.panel form').forEach(f => f.addEventListener('submit
 const cv = document.getElementById('cube'), cx = cv.getContext('2d');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W, H, DPR;
-function fit() { DPR = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; cx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+function fit() { DPR = Math.min(devicePixelRatio || 1, 3); W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; cx.setTransform(DPR, 0, 0, DPR, 0, 0); }
 fit(); addEventListener('resize', fit);
 const V = [[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
 const E = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
