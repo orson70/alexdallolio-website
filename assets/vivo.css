@@ -100,3 +100,7 @@ html[data-luce] .video-card,html[data-luce] .film,html[data-luce] .reel button,h
 html[data-luce] body.carta,html[data-luce] body.notte{--bg:transparent;--bg2:rgba(0,0,0,.22);--white:var(--L-testo);--grey:color-mix(in srgb,var(--L-testo) 72%,transparent);--soft:color-mix(in srgb,var(--L-testo) 85%,transparent);--accent:var(--L-chiaro);--warm:var(--L-chiaro);--line:color-mix(in srgb,var(--L-chiaro) 30%,transparent);--brand:var(--L-testo);--navbg:rgba(0,0,0,.22)}
 html[data-luce] .video-card img{filter:grayscale(1) sepia(1) hue-rotate(var(--L-hue)) saturate(2.6) brightness(.85) contrast(1.08);transition:filter 1.1s ease}
 html[data-luce] .video-card:hover img{filter:none}
+/* la Stanza (cubo 3D): anche lei prende la luce */
+html[data-luce] .room{background:radial-gradient(ellipse at 50% 40%,var(--L-a) 0%,var(--L-b) 30%,var(--L-c) 65%,var(--L-scuro) 100%) !important;animation:L-accendi 1.6s steps(1,end) .15s both,L-respira 9s ease-in-out 2s infinite}
+html[data-luce] .box{background:var(--L-scuro) !important}
+html[data-luce] .tier:has(input:checked){background:color-mix(in srgb,var(--L-neon) 14%,transparent) !important}
