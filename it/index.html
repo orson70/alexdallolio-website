@@ -269,6 +269,7 @@ a:hover .brand,.brand:hover{--brand:#d8cdbd}
 @media (prefers-reduced-motion:reduce){.frame .grain,.fade,.open .foot .role{font:inherit;letter-spacing:inherit;text-transform:inherit;margin:0;text-align:left}
 .open .foot span:last-child{animation:none;opacity:1}}
 </style>
+<link rel="stylesheet" href="/assets/vivo.css">
 </head>
 <body>
 
@@ -281,6 +282,13 @@ a:hover .brand,.brand:hover{--brand:#d8cdbd}
   <p class="fade d2">Giro quello che serve. Il resto esiste già, o lo creo con l'AI.</p>
   <div class="foot mono fade d3"><h1 class="role">Alex Dallolio · Regista a Milano · Brand film, documentari, AI</h1><span>Scorri ↓</span></div>
 </header>
+<section class="sr" aria-label="Showreel 2026"><div class="sr-in">
+  <div class="sr-head mono"><span><b>Showreel</b> · 2026 · 41 s</span><span>alex dallolio</span></div>
+  <div class="sr-box"><video src="/showreel-2026.mp4" poster="/showreel-2026.jpg" preload="metadata" playsinline></video><button type="button" class="sr-play" aria-label="guarda con l'audio"><span>▶ guarda con l'audio</span></button>
+    <div class="sr-angolo" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 100 H100 V0"/></svg></div></div>
+  <p class="sr-cred mono">Pianoforte: Salamander Grand Piano, Alexander Holm (CC-BY 3.0)</p>
+</div></section>
+
 
 <section class="reel" id="film">
   <div class="stage">
@@ -333,7 +341,7 @@ a:hover .brand,.brand:hover{--brand:#d8cdbd}
   <h2>Chi</h2>
   <div>
     <p>Alessandro Dallolio è nato a Torino e ha passato parte dell'infanzia in Asia. Fa immagini da sempre: disegno, pittura, collage, poi cinema, pubblicità, installazioni, intelligenza artificiale. Ha lavorato con Nike, Lavazza, Prada, BMW, Disney, e con Webuild da undici anni. Vive e lavora a Milano.</p>
-    <p class="cl"><b>Clienti:</b> Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Allianz · Novartis · Sisal · TIM · Chopard · Disney · Webuild.<br>Agenzie: DLV, Young &amp; Rubicam, JWT, Leo Burnett, Armando Testa. TV: Mediaset, Rai, Sky, Fox.</p>
+    <p class="cl"><b>Clienti:</b> Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Transpack · Allianz · Novartis · Sisal · TIM · Chopard · Disney · Webuild.<br>Agenzie: DLV, Young &amp; Rubicam, JWT, Leo Burnett, Armando Testa. TV: Mediaset, Rai, Sky, Fox.</p>
   </div>
 </section>
 
@@ -493,5 +501,6 @@ fetch('/aifilms/reels.json').then(r => r.json()).then(reels => {
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "58b944eb6fc94ecb8296d9cb5182b782"}'></script><!-- End Cloudflare Web Analytics -->
+<script src="/assets/vivo.js" defer></script>
 </body>
 </html>

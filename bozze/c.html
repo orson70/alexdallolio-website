@@ -85,6 +85,7 @@ footer a:hover{color:var(--ink)}
   footer{margin:8vh 16px 0}
 }
 </style>
+<link rel="stylesheet" href="/assets/vivo.css">
 </head>
 <body>
 
@@ -164,5 +165,6 @@ WORKS.slice(0, 7).forEach((w, i) => {
 document.getElementById('brands').innerHTML = BRANDS.filter(b => !['Rai','Mediaset','Sky','Fox'].includes(b)).map(b => `<span>${b}</span>`).join(' ');
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "58b944eb6fc94ecb8296d9cb5182b782"}'></script><!-- End Cloudflare Web Analytics -->
+<script src="/assets/vivo.js" defer></script>
 </body>
 </html>
