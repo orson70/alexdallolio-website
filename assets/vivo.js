@@ -3,6 +3,14 @@
   var d = document, root = d.documentElement;
   d.querySelectorAll('.brand svg path, .sr-angolo path').forEach(function (p) { p.setAttribute('pathLength', '1'); });
   root.classList.add('vivo');
+  if (root.dataset.luce) {
+    var st=d.createElement('div'); st.className='L-stanza'; d.body.prepend(st);
+    var ns='http://www.w3.org/2000/svg', sv=d.createElementNS(ns,'svg'); sv.setAttribute('class','L-binari'); sv.setAttribute('viewBox','0 0 1000 1000'); sv.setAttribute('preserveAspectRatio','none'); sv.setAttribute('aria-hidden','true');
+    [[150,440],[380,480],[620,520],[850,560]].forEach(function(x){var l=d.createElementNS(ns,'line');l.setAttribute('x1',x[0]);l.setAttribute('y1',0);l.setAttribute('x2',x[1]);l.setAttribute('y2',520);sv.appendChild(l);});
+    d.body.prepend(sv);
+    if (matchMedia('(pointer:fine)').matches) { var lp=d.createElement('div'); lp.className='L-lampada'; d.body.appendChild(lp);
+      addEventListener('pointermove',function(e){lp.style.left=e.clientX+'px';lp.style.top=e.clientY+'px';},{passive:true}); }
+  }
 
   function spezza(el){
     var i=0;
@@ -14,7 +22,7 @@
             if(!t) return;
             if(/^\s+$/.test(t)){f.appendChild(d.createTextNode(t));return;}
             var w=d.createElement('span');w.className='w';
-            t.split('').forEach(function(l){var c=d.createElement('span');c.className='c';c.style.setProperty('--i',i++);c.textContent=l;w.appendChild(c);});
+            t.split('').forEach(function(l){var c=d.createElement('span');c.className='c';var n=i++;c.style.setProperty('--i',n);c.style.setProperty('--d',((n*0.035)+((n*37)%11)*0.05).toFixed(2)+'s');c.style.setProperty('--x',(n*0.11).toFixed(2)+'s');c.textContent=l;w.appendChild(c);});
             f.appendChild(w);
           });
           node.replaceChild(f,ch);
