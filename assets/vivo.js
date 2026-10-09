@@ -34,6 +34,18 @@
   var titoli = d.querySelectorAll('.open .h1, main section h2, section.cta2 h2, .who h2, .ig-head h2, .page-hero h1');
   titoli.forEach(spezza);
 
+
+  // il corridoio: su telefono le stanze si accendono una alla volta mentre scorri
+  if (!matchMedia('(hover:hover)').matches && 'IntersectionObserver' in window) {
+    var ioS=new IntersectionObserver(function(v){v.forEach(function(e){e.target.classList.toggle('acceso',e.isIntersecting);});},{rootMargin:'-40% 0px -40% 0px'});
+    d.querySelectorAll('.st').forEach(function(e){ioS.observe(e);});
+  }
+  // la stanza COMMERCIAL: nella pagina dei film mostra solo gli spot
+  if (location.hash==='#commercial' && d.querySelector('.video-card')) {
+    var SPOT=['Chopard','Best in Parking','Molto Bello','John Richmond','Luisa Spagnoli','Cromia','Dimensione Danza','Canali Mood'];
+    d.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+    d.querySelectorAll('.video-card').forEach(function(c){var t=c.textContent;c.style.display=SPOT.some(function(x){return t.indexOf(x)>-1;})?'':'none';});
+  }
   var cose = d.querySelectorAll('.sp, .prose p, .sr');
   if (!('IntersectionObserver' in window)) { cose.forEach(function (e) { e.classList.add('qui'); }); return; }
   var io = new IntersectionObserver(function (voci) {

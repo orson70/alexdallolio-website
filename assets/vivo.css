@@ -104,3 +104,20 @@ html[data-luce] .video-card:hover img{filter:none}
 html[data-luce] .room{background:radial-gradient(ellipse at 50% 40%,var(--L-a) 0%,var(--L-b) 30%,var(--L-c) 65%,var(--L-scuro) 100%) !important;animation:L-accendi 1.6s steps(1,end) .15s both,L-respira 9s ease-in-out 2s infinite}
 html[data-luce] .box{background:var(--L-scuro) !important}
 html[data-luce] .tier:has(input:checked){background:color-mix(in srgb,var(--L-neon) 14%,transparent) !important}
+
+/* ===== IL CORRIDOIO DELLE STANZE (home) ===== */
+.corr{position:relative;padding:12vh 24px 14vh;border-top:1px solid var(--line,rgba(255,255,255,.15))}
+.corr-t{font-family:'Bodoni Moda',Didot,serif;letter-spacing:.2em;font-size:12px;opacity:.75;margin:0 0 5vh;text-transform:lowercase}
+.corr-g{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.st{--c:#fff;position:relative;display:block;padding:7vh 3vw 6vh;text-decoration:none !important;color:inherit;border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent);border-right:1px solid color-mix(in srgb,currentColor 18%,transparent);overflow:hidden}
+.st:nth-child(3n){border-right:0}
+.st b{display:block;font-family:'Bodoni Moda',Didot,serif;font-weight:700;font-size:clamp(34px,4.6vw,78px);line-height:1;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(255,240,228,.6);transition:color .25s,text-shadow .25s,-webkit-text-stroke-color .25s}
+.st span{display:block;margin-top:16px;font-family:'Bodoni Moda',Didot,serif;font-style:italic;font-size:16px;opacity:0;transform:translateY(6px);transition:opacity .6s ease .1s,transform .6s ease .1s}
+.st::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 90% at 50% 100%,var(--c),transparent 70%);opacity:0;transition:opacity .5s ease;z-index:-1}
+.st:hover b,.st.acceso b{color:#fff;-webkit-text-stroke-color:transparent;animation:st-neon 1s linear both;text-shadow:0 0 6px #fff,0 0 20px var(--c),0 0 50px var(--c)}
+.st:hover span,.st.acceso span{opacity:.95;transform:none}
+.st:hover::before,.st.acceso::before{opacity:.35}
+@keyframes st-neon{0%{opacity:.2}12%{opacity:1}18%{opacity:.25}28%{opacity:1}100%{opacity:1}}
+.st-film{--c:#3b86ff}.st-commercial{--c:#ff2a1f}.st-fashion{--c:#ffc21f}.st-corporate{--c:#ff9a2e}.st-emotional{--c:#ff5a1f}.st-ai{--c:#b26bff}
+@media (max-width:800px){.corr-g{grid-template-columns:1fr 1fr}.st:nth-child(3n){border-right:1px solid color-mix(in srgb,currentColor 18%,transparent)}.st:nth-child(2n){border-right:0}}
+@media (hover:none){.st span{opacity:.8;transform:none}}
