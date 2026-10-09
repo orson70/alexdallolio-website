@@ -127,4 +127,5 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://www.alexdallolio.com/stanza/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/room/"/>
   </url>
+  <url><loc>https://www.alexdallolio.com/it/mestiere.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>
