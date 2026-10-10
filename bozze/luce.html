@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Luce — prova</title>
+<style>
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;src:url(/assets/fonts/bodoni-moda-normal.woff2) format('woff2')}
+@font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;src:url(/assets/fonts/bodoni-moda-italic.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-weight:300;src:url(/assets/fonts/montserrat-300.woff2) format('woff2')}
+:root{
+  --neon:#ff5a1f;          /* la luce della stanza */
+  --neon-2:#ff8a3d;
+  --buio:#0b0504;
+  --fondo:#3a0f06;         /* la stanza accesa */
+  --testo:#ffe2cc;
+  --alone:rgba(255,90,31,.55);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--buio)}
+body{color:var(--testo);font-family:Montserrat,Helvetica,sans-serif;font-weight:300;overflow-x:hidden}
+/* la stanza: prima buia, poi si accende */
+.stanza{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(120% 80% at 50% 0%,#ff6a2b 0%,#c2350f 28%,#5a1607 62%,var(--fondo) 100%);
+  opacity:0;animation:accendi 2.2s steps(1,end) .4s forwards, respira 9s ease-in-out 3s infinite}
+@keyframes accendi{0%{opacity:0}8%{opacity:.85}12%{opacity:.1}20%{opacity:.9}24%{opacity:.25}34%{opacity:1}100%{opacity:1}}
+@keyframes respira{50%{filter:brightness(1.06) saturate(1.05)}}
+/* i binari di luce sul soffitto, in prospettiva */
+.binari{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;animation:su 1s ease 1.4s forwards}
+.binari line{stroke:#ffd0a8;stroke-width:1;opacity:.35}
+@keyframes su{to{opacity:1}}
+/* l'alone del mouse: la lampada che porti con te */
+.lampada{position:fixed;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(255,170,110,.22),rgba(255,90,31,0) 65%);mix-blend-mode:screen;transition:opacity .6s;left:50%;top:40%}
+
+header{position:relative;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 16px}
+.brand,.brand *{text-decoration:none !important}
+.brand{position:absolute;top:22px;left:24px;display:inline-flex;flex-direction:column;align-items:flex-end;gap:8px;color:var(--testo)}
+.brand svg{width:170px;overflow:visible}
+.brand path{fill:none;stroke:var(--neon-2);stroke-width:2.4px;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;
+  filter:drop-shadow(0 0 4px var(--neon)) drop-shadow(0 0 12px var(--alone));animation:filo 1.9s cubic-bezier(.65,0,.35,1) 1.6s forwards}
+@keyframes filo{0%{stroke-dashoffset:1}82%{stroke-dashoffset:.137}100%{stroke-dashoffset:0}}
+.brand span{font-family:'Bodoni Moda',serif;font-weight:500;font-size:13px;letter-spacing:.5em;margin-right:-.5em;opacity:0;animation:su 1s ease 3.2s forwards}
+nav{position:absolute;top:24px;right:28px;display:flex;gap:24px;font-family:'Bodoni Moda',serif;font-weight:500;font-size:13px;letter-spacing:.16em;opacity:0;animation:su 1s ease 3s forwards}
+nav a{color:var(--testo);text-decoration:none}
+nav a:hover{color:#fff;text-shadow:0 0 8px var(--neon),0 0 22px var(--neon)}
+
+h1{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(52px,9vw,160px);line-height:1;letter-spacing:-.015em;max-width:12ch}
+h1 em{font-style:italic;color:#fff}
+/* insegna: ogni lettera si accende per conto suo, poi resta accesa e calda */
+.neon .c{opacity:.06;text-shadow:none}
+.neon.on .c{animation:lettera 1.4s linear forwards,fuoco 9s ease-in-out infinite;animation-delay:var(--d),calc(var(--x) + 3s)}
+@keyframes fuoco{0%,55%,100%{filter:blur(0);transform:none}
+  64%{filter:blur(5px);transform:scale(1.05) translateY(-.02em);text-shadow:-2px 0 6px rgba(255,60,20,.7),2px 0 6px rgba(255,200,140,.6)}
+  72%{filter:blur(1.2px);transform:scale(1.015)}
+  80%{filter:blur(0);transform:none}}
+.neon.on{animation:respiro 11s ease-in-out 3s infinite}
+@keyframes respiro{50%{transform:scale(1.012)}}
+.firma.on{animation:insegna 3s ease forwards,fuocofirma 13s ease-in-out 4s infinite}
+@keyframes fuocofirma{0%,60%,100%{filter:blur(0)}68%{filter:blur(6px)}76%{filter:blur(0)}}
+@keyframes lettera{0%{opacity:.06}10%{opacity:1;text-shadow:0 0 6px #fff,0 0 18px var(--neon),0 0 42px var(--neon)}14%{opacity:.15;text-shadow:none}
+  22%{opacity:1;text-shadow:0 0 6px #fff,0 0 18px var(--neon),0 0 42px var(--neon)}100%{opacity:1;text-shadow:0 0 3px rgba(255,255,255,.6),0 0 14px var(--alone),0 0 34px rgba(255,90,31,.35)}}
+.sub{margin-top:28px;font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(19px,2.2vw,30px);color:#ffcfae;max-width:30ch;opacity:0;animation:su 1.4s ease 4.4s forwards}
+.giu{position:absolute;bottom:24px;font-family:'Bodoni Moda',serif;letter-spacing:.2em;font-size:12px;opacity:.7}
+
+section{position:relative;padding:16vh 24px;max-width:1360px;margin:0 auto}
+h2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(38px,5.4vw,92px);line-height:1.04;letter-spacing:-.01em;max-width:16ch;margin-bottom:6vh}
+h2 em{font-style:italic;color:#fff}
+.film{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.film figure{position:relative;aspect-ratio:4/5;overflow:hidden;background:#200803}
+.film img{width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(1) contrast(1.15) brightness(.9);transition:filter 1.2s ease,transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.film figure::after{content:"";position:absolute;inset:0;background:var(--neon);mix-blend-mode:multiply;opacity:.92;transition:opacity 1.2s ease}
+.film figure:hover img{filter:none;transform:scale(1.03)}
+.film figure:hover::after{opacity:0}
+.film figcaption{position:absolute;left:14px;bottom:12px;z-index:2;font-family:'Bodoni Moda',serif;font-style:italic;font-size:18px;color:#fff;text-shadow:0 0 12px rgba(0,0,0,.6)}
+.nota{margin-top:14px;font-family:'Bodoni Moda',serif;font-size:12px;letter-spacing:.16em;opacity:.7}
+.firma{font-family:'Bodoni Moda',serif;font-weight:900;font-size:8.5vw;line-height:.86;text-align:center;letter-spacing:-.025em;padding:10vh 0 6vh;
+  color:transparent;-webkit-text-stroke:1px rgba(255,214,180,.55)}
+@keyframes insegna{0%{color:transparent}30%{color:transparent}31%{color:#ffe2cc;text-shadow:0 0 20px var(--neon),0 0 60px var(--neon)}33%{color:transparent;text-shadow:none}
+  40%{color:#ffe2cc;text-shadow:0 0 20px var(--neon),0 0 60px var(--neon)}100%{color:#ffe2cc;text-shadow:0 0 18px rgba(255,90,31,.6),0 0 70px rgba(255,90,31,.35)}}
+@media (max-width:760px){.film{grid-template-columns:1fr 1fr}nav{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}.stanza,.binari,.brand span,nav,.sub{opacity:1}.brand path{stroke-dashoffset:0}.neon .c{opacity:1}.firma{color:#ffe2cc}}
+</style>
+</head>
+<body>
+<div class="stanza"></div>
+<svg class="binari" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+  <line x1="150" y1="0" x2="440" y2="520"/><line x1="380" y1="0" x2="480" y2="520"/>
+  <line x1="620" y1="0" x2="520" y2="520"/><line x1="850" y1="0" x2="560" y2="520"/>
+</svg>
+<div class="lampada" id="lampada"></div>
+
+<header>
+  <a class="brand" href="#"><svg viewBox="0 0 764 124"><path pathLength="1" d="M2 122 H762 V2"/></svg><span>alexdallolio</span></a>
+  <nav><a href="#">film</a><a href="#">peso specifico</a><a href="#">taccuino</a><a href="#">stanza</a><a href="#">contatti</a></nav>
+  <h1 class="neon" data-split>non tutto va <em>girato.</em></h1>
+  <p class="sub">Giro quello che serve. Il resto esiste già, o lo creo.</p>
+  <span class="giu">scorri ↓</span>
+</header>
+
+<section>
+  <h2 class="neon" data-split>Ogni film è <em>una luce.</em></h2>
+  <div class="film">
+    <figure><img src="/showreel-2026.jpg" alt=""><figcaption>Peso specifico</figcaption></figure>
+    <figure><img src="/aifilms/DcUTu47R_im.jpg" alt=""><figcaption>Woman at the mirror</figcaption></figure>
+    <figure><img src="/og-image.jpg" alt=""><figcaption>Showreel</figcaption></figure>
+  </div>
+  <p class="nota">passa sopra un'immagine: torna il suo colore vero</p>
+</section>
+
+<div class="firma" id="firma">ALEX<br>DALLOLIO</div>
+
+<script>
+// spezza i titoli in lettere, con un ordine d'accensione "da insegna" (deterministico)
+document.querySelectorAll('[data-split]').forEach(function(el){
+  var n=0;
+  (function walk(node){[].slice.call(node.childNodes).forEach(function(ch){
+    if(ch.nodeType===3){var f=document.createDocumentFragment();
+      ch.textContent.split('').forEach(function(l){
+        if(l===' '){f.appendChild(document.createTextNode(' '));return;}
+        var c=document.createElement('span');c.className='c';c.textContent=l;
+        var d=(n*0.07)+((n*37)%11)*0.06; c.style.setProperty('--d',d.toFixed(2)+'s'); c.style.setProperty('--x',(n*0.11).toFixed(2)+'s'); n++; f.appendChild(c);});
+      node.replaceChild(f,ch);} else if(ch.nodeType===1) walk(ch);});})(el);
+});
+var h1=document.querySelector('h1');setTimeout(function(){h1.classList.add('on')},2300);
+var io=new IntersectionObserver(function(v){v.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.4});
+document.querySelectorAll('section .neon, .firma').forEach(function(e){io.observe(e)});
+var L=document.getElementById('lampada');
+addEventListener('pointermove',function(e){L.style.left=e.clientX+'px';L.style.top=e.clientY+'px';});
+</script>
+</body>
+</html>

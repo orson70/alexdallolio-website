@@ -269,12 +269,10 @@ a:hover .brand,.brand:hover{--brand:#d8cdbd}
 @media (prefers-reduced-motion:reduce){.frame .grain,.fade,.open .foot .role{font:inherit;letter-spacing:inherit;text-transform:inherit;margin:0;text-align:left}
 .open .foot span:last-child{animation:none;opacity:1}}
 </style>
-<script>(function(){var L=['rosso','blu','giallo','arancio'],p=null;try{p=localStorage.getItem('luce')}catch(e){}var c=L.filter(function(x){return x!==p});var s=c[Math.floor(Math.random()*c.length)];document.documentElement.setAttribute('data-luce',s);try{localStorage.setItem('luce',s)}catch(e){}})();</script>
-<link rel="stylesheet" href="/assets/vivo.css">
 </head>
 <body>
 
-<nav class="mnav mono" id="mnav"><a href="#film">Film</a><a href="/it/mestiere.html">Emotional</a><a href="/it/videos.html">Tutti i film</a><a href="#taccuino">Taccuino</a><a href="/stanza/">Stanza</a><a href="#contatti">Contatti</a></nav>
+<nav class="mnav mono" id="mnav"><a href="#film">Film</a><a href="/it/videos.html">Tutti i film</a><a href="#taccuino">Taccuino</a><a href="/stanza/">Stanza</a><a href="#contatti">Contatti</a></nav>
 <a class="lng mono" href="/" hreflang="en">EN</a>
 
 <header class="open">
@@ -283,9 +281,6 @@ a:hover .brand,.brand:hover{--brand:#d8cdbd}
   <p class="fade d2">Giro quello che serve. Il resto esiste già, o lo creo con l'AI.</p>
   <div class="foot mono fade d3"><h1 class="role">Alex Dallolio · Regista a Milano · Brand film, documentari, AI</h1><span>Scorri ↓</span></div>
 </header>
-<section class="corr" aria-label="le stanze"><p class="corr-t">le stanze</p><div class="corr-g"><a class="st st-film" href="/it/webuild-caso-studio.html"><b>Film</b><span>documentari e film lunghi</span></a><a class="st st-commercial" href="/it/videos.html#commercial"><b>Commercial</b><span>spot e campagne</span></a><a class="st st-fashion" href="/it/fashion-film.html"><b>Fashion</b><span>moda e lusso</span></a><a class="st st-corporate" href="/it/video-aziendali-da-archivio.html"><b>Corporate</b><span>film dall'archivio delle aziende</span></a><a class="st st-emotional" href="/it/mestiere.html"><b>Emotional</b><span>aziende storiche, mani, anniversari</span></a><a class="st st-ai" href="/it/ai-films.html"><b>AI</b><span>il taccuino, appunti con le macchine</span></a></div></section>
-
-
 
 <section class="reel" id="film">
   <div class="stage">
@@ -338,7 +333,7 @@ a:hover .brand,.brand:hover{--brand:#d8cdbd}
   <h2>Chi</h2>
   <div>
     <p>Alessandro Dallolio è nato a Torino e ha passato parte dell'infanzia in Asia. Fa immagini da sempre: disegno, pittura, collage, poi cinema, pubblicità, installazioni, intelligenza artificiale. Ha lavorato con Nike, Lavazza, Prada, BMW, Disney, e con Webuild da undici anni. Vive e lavora a Milano.</p>
-    <p class="cl"><b>Clienti:</b> Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Transpack · Allianz · Novartis · Sisal · TIM · Chopard · Disney · Webuild.<br>Agenzie: DLV, Young &amp; Rubicam, JWT, Leo Burnett, Armando Testa. TV: Mediaset, Rai, Sky, Fox.</p>
+    <p class="cl"><b>Clienti:</b> Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Allianz · Novartis · Sisal · TIM · Chopard · Disney · Webuild.<br>Agenzie: DLV, Young &amp; Rubicam, JWT, Leo Burnett, Armando Testa. TV: Mediaset, Rai, Sky, Fox.</p>
   </div>
 </section>
 
@@ -497,7 +492,5 @@ fetch('/aifilms/reels.json').then(r => r.json()).then(reels => {
   new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? go() : v.pause()), { rootMargin: '400px 0px' }).observe(v);
 })();
 </script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "58b944eb6fc94ecb8296d9cb5182b782"}'></script><!-- End Cloudflare Web Analytics -->
-<script src="/assets/vivo.js" defer></script>
 </body>
 </html>

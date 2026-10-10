@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Caratteri a confronto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Big+Shoulders+Display:wght@100..900&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1B2632;--carta:#EFE7DA;--sig:#D5B893;--dim:#A9A294}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--carta);font-family:Montserrat,Helvetica,sans-serif}
+.top{padding:28px 24px;color:var(--dim);font:11px/1.6 monospace;letter-spacing:.2em;text-transform:lowercase;display:flex;justify-content:space-between;gap:16px}
+.top button{background:none;border:1px solid var(--dim);color:var(--carta);font:inherit;letter-spacing:inherit;padding:8px 14px;cursor:pointer}
+section{min-height:92vh;padding:9vh 24px 6vh;border-top:1px solid rgba(213,184,147,.22);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative}
+.lab{position:absolute;top:22px;left:24px;color:var(--dim);font:11px monospace;letter-spacing:.2em;text-transform:lowercase;text-align:left;max-width:60ch;line-height:1.7}
+.lab b{color:var(--sig);font-weight:400}
+.h{font-size:clamp(48px,9vw,156px);line-height:1;max-width:12ch}
+.h em{font-style:normal;color:var(--sig)}
+.sub{margin-top:28px;font-size:clamp(18px,2vw,28px);color:#C9C1B1;max-width:30ch;line-height:1.35}
+.brand{margin-top:9vh;display:inline-flex;flex-direction:column;align-items:flex-end;gap:10px;color:#d8cdbd}
+.brand svg{width:clamp(180px,22vw,320px);overflow:visible}
+.brand path{fill:none;stroke:currentColor;stroke-width:2px;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
+.on .brand path{animation:filo 1.9s cubic-bezier(.65,0,.35,1) .9s forwards}
+@keyframes filo{0%{stroke-dashoffset:1}82%{stroke-dashoffset:.137}100%{stroke-dashoffset:0}}
+.n{white-space:nowrap}
+.w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em}
+.c{display:inline-block}
+
+/* 1 Bodoni Moda: le lettere salgono da sotto una linea, come da una fessura */
+.f1 .h,.f1 .n{font-family:"Bodoni Moda",serif}
+.f1 .h{font-weight:500;font-optical-sizing:auto;letter-spacing:-.02em}
+.f1 .h em{font-style:italic}
+.f1 .sub{font-family:"Bodoni Moda",serif;font-style:italic;font-weight:400}
+.f1 .n{font-size:15px;letter-spacing:.5em;margin-right:-.5em;font-weight:500}
+.f1 .c{transform:translateY(105%)}
+.f1.on .c{transform:none;transition:transform 1.1s cubic-bezier(.2,.7,.1,1);transition-delay:calc(var(--i)*38ms)}
+
+/* 2 Fraunces: il peso cresce, la lettera si riempie d'inchiostro */
+.f2 .h,.f2 .n,.f2 .sub{font-family:"Fraunces",serif}
+.f2 .h{font-variation-settings:"SOFT" 50,"WONK" 1;letter-spacing:-.02em}
+.f2 .n{font-size:15px;letter-spacing:.42em;margin-right:-.42em;font-weight:400}
+.f2 .sub{font-weight:300}
+.f2 .c{font-weight:100;opacity:0}
+.f2.on .c{font-weight:650;opacity:1;transition:font-weight 1.6s cubic-bezier(.3,.6,.2,1),opacity .9s ease;transition-delay:calc(var(--i)*45ms)}
+
+/* 3 Big Shoulders Display: industriale, alto e stretto; le lettere si allungano in verticale */
+.f3 .h,.f3 .n,.f3 .sub{font-family:"Big Shoulders Display",sans-serif;text-transform:uppercase}
+.f3 .h{font-weight:800;letter-spacing:.01em;font-size:clamp(58px,11vw,190px)}
+.f3 .sub{text-transform:none;font-weight:400;letter-spacing:.03em}
+.f3 .n{font-size:17px;letter-spacing:.55em;margin-right:-.55em;font-weight:600;text-transform:lowercase}
+.f3 .c{transform:scaleY(0);transform-origin:bottom}
+.f3.on .c{transform:none;transition:transform .9s cubic-bezier(.7,0,.2,1);transition-delay:calc(var(--i)*30ms)}
+
+/* 4 Syne: contemporaneo, da galleria; le lettere si stringono e si posano */
+.f4 .h,.f4 .n,.f4 .sub{font-family:"Syne",sans-serif}
+.f4 .h{font-weight:700;letter-spacing:-.03em}
+.f4 .sub{font-weight:400}
+.f4 .n{font-size:14px;letter-spacing:.5em;margin-right:-.5em;font-weight:500}
+.f4 .c{opacity:0;filter:blur(8px);transform:translateX(.3em)}
+.f4.on .c{opacity:1;filter:none;transform:none;transition:opacity 1s ease,filter 1.2s ease,transform 1.2s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i)*40ms)}
+</style>
+</head>
+<body>
+<div class="top"><span>caratteri a confronto · ogni sezione si anima quando entra nello schermo</span><button type="button" id="rifai">↻ rifai le animazioni</button></div>
+
+<section class="f1"><div class="lab"><b>1 · Bodoni Moda</b><br>italiano, da Parma (1798): moda, editoria, heritage. Contrasto forte tra pieni e filetti.<br>animazione: le lettere salgono da una fessura</div>
+<p class="h" data-split>non tutto va <em>girato.</em></p><p class="sub">Giro quello che serve. Il resto esiste già.</p>
+<span class="brand"><svg viewBox="0 0 764 124"><path pathLength="1" d="M2 122 H762 V2"/></svg><span class="n" data-split>alexdallolio</span></span></section>
+
+<section class="f2"><div class="lab"><b>2 · Fraunces</b><br>serif morbido con carattere, un po' storto: artigianale, umano.<br>animazione: la lettera si riempie d'inchiostro (il peso cresce)</div>
+<p class="h" data-split>non tutto va <em>girato.</em></p><p class="sub">Giro quello che serve. Il resto esiste già.</p>
+<span class="brand"><svg viewBox="0 0 764 124"><path pathLength="1" d="M2 122 H762 V2"/></svg><span class="n" data-split>alexdallolio</span></span></section>
+
+<section class="f3"><div class="lab"><b>3 · Big Shoulders Display</b><br>industriale, alto e stretto, da cantiere e cartellonistica: Webuild, fabbrica.<br>animazione: le lettere si alzano come costruite</div>
+<p class="h" data-split>non tutto va <em>girato.</em></p><p class="sub">Giro quello che serve. Il resto esiste già.</p>
+<span class="brand"><svg viewBox="0 0 764 124"><path pathLength="1" d="M2 122 H762 V2"/></svg><span class="n" data-split>alexdallolio</span></span></section>
+
+<section class="f4"><div class="lab"><b>4 · Syne</b><br>contemporaneo, da galleria d'arte, forme larghe.<br>animazione: le lettere escono dalla sfocatura e si posano</div>
+<p class="h" data-split>non tutto va <em>girato.</em></p><p class="sub">Giro quello che serve. Il resto esiste già.</p>
+<span class="brand"><svg viewBox="0 0 764 124"><path pathLength="1" d="M2 122 H762 V2"/></svg><span class="n" data-split>alexdallolio</span></span></section>
+
+<script>
+document.querySelectorAll('[data-split]').forEach(function(el){
+  var i=0;
+  (function walk(node){
+    [].slice.call(node.childNodes).forEach(function(ch){
+      if(ch.nodeType===3){
+        var frag=document.createDocumentFragment();
+        ch.textContent.split(/(\s+)/).forEach(function(tok){
+          if(!tok) return;
+          if(/^\s+$/.test(tok)){frag.appendChild(document.createTextNode(tok));return;}
+          var w=document.createElement('span');w.className='w';
+          tok.split('').forEach(function(l){var c=document.createElement('span');c.className='c';c.style.setProperty('--i',i++);c.textContent=l;w.appendChild(c);});
+          frag.appendChild(w);
+        });
+        node.replaceChild(frag,ch);
+      } else if(ch.nodeType===1) walk(ch);
+    });
+  })(el);
+});
+var io=new IntersectionObserver(function(v){v.forEach(function(e){if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.35});
+document.querySelectorAll('section').forEach(function(s){io.observe(s);});
+document.getElementById('rifai').onclick=function(){
+  document.querySelectorAll('section').forEach(function(s){s.classList.remove('on');});
+  setTimeout(function(){document.querySelectorAll('section').forEach(function(s){var r=s.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)s.classList.add('on');});},400);
+};
+</script>
+</body>
+</html>

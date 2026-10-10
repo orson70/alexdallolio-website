@@ -269,8 +269,6 @@ a:hover .brand,.brand:hover{--brand:#d8cdbd}
 @media (prefers-reduced-motion:reduce){.frame .grain,.fade,.open .foot .role{font:inherit;letter-spacing:inherit;text-transform:inherit;margin:0;text-align:left}
 .open .foot span:last-child{animation:none;opacity:1}}
 </style>
-<script>(function(){var L=['rosso','blu','giallo','arancio'],p=null;try{p=localStorage.getItem('luce')}catch(e){}var c=L.filter(function(x){return x!==p});var s=c[Math.floor(Math.random()*c.length)];document.documentElement.setAttribute('data-luce',s);try{localStorage.setItem('luce',s)}catch(e){}})();</script>
-<link rel="stylesheet" href="/assets/vivo.css">
 </head>
 <body>
 
@@ -283,9 +281,6 @@ a:hover .brand,.brand:hover{--brand:#d8cdbd}
   <p class="fade d2">I shoot what's needed. The rest already exists, or I create it with AI.</p>
   <div class="foot mono fade d3"><h1 class="role">Alex Dallolio · Film director in Milan · Brand films, documentaries, AI</h1><span>Scroll ↓</span></div>
 </header>
-<section class="corr" aria-label="the rooms"><p class="corr-t">the rooms</p><div class="corr-g"><a class="st st-film" href="/webuild-case-study.html"><b>Film</b><span>documentaries and long films</span></a><a class="st st-commercial" href="/videos.html#commercial"><b>Commercial</b><span>spots and campaigns</span></a><a class="st st-fashion" href="/fashion-films.html"><b>Fashion</b><span>fashion and luxury</span></a><a class="st st-corporate" href="/corporate-films-from-existing-footage.html"><b>Corporate</b><span>films from a company's archive</span></a><a class="st st-emotional" href="/emotional-films.html"><b>Emotional</b><span>heritage companies, hands, anniversaries</span></a><a class="st st-ai" href="/ai-films.html"><b>AI</b><span>the notebook, sketches with machines</span></a></div></section>
-
-
 
 <section class="reel" id="film">
   <div class="stage">
@@ -338,7 +333,7 @@ a:hover .brand,.brand:hover{--brand:#d8cdbd}
   <h2>Who</h2>
   <div>
     <p>Alessandro Dallolio was born in Turin and spent part of his childhood in Asia. He has always made images: drawing, painting, collage, then cinema, advertising, installations, artificial intelligence. He has worked with Nike, Lavazza, Prada, BMW, Disney, and with Webuild for eleven years. He lives and works in Milan.</p>
-    <p class="cl"><b>Clients:</b> Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Transpack · Allianz · Novartis · Sisal · TIM · Chopard · Disney · Webuild.<br>Agencies: DLV, Young &amp; Rubicam, JWT, Leo Burnett, Armando Testa. TV: Mediaset, Rai, Sky, Fox.</p>
+    <p class="cl"><b>Clients:</b> Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Allianz · Novartis · Sisal · TIM · Chopard · Disney · Webuild.<br>Agencies: DLV, Young &amp; Rubicam, JWT, Leo Burnett, Armando Testa. TV: Mediaset, Rai, Sky, Fox.</p>
   </div>
 </section>
 
@@ -497,7 +492,5 @@ fetch('/aifilms/reels.json').then(r => r.json()).then(reels => {
   new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? go() : v.pause()), { rootMargin: '400px 0px' }).observe(v);
 })();
 </script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "58b944eb6fc94ecb8296d9cb5182b782"}'></script><!-- End Cloudflare Web Analytics -->
-<script src="/assets/vivo.js" defer></script>
 </body>
 </html>
