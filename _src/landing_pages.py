@@ -208,12 +208,12 @@ PAGES = {
     "webuild": {
         "it": {
             "path": "/it/webuild-caso-studio.html",
-            "title": "Webuild: undici anni di film aziendali | Caso studio, Alex Dallolio",
-            "description": "Undici anni di film per Webuild (ex Salini Impregilo): diga GERD, WeSearch, Progetto Italia. Film costruiti da girato di cantiere, archivio e materiale tecnico.",
+            "title": "Webuild: dieci anni di film aziendali | Caso studio, Alex Dallolio",
+            "description": "Dieci anni di film per Webuild (ex Salini Impregilo): diga GERD, WeSearch, Progetto Italia. Film costruiti da girato di cantiere, archivio e materiale tecnico.",
             "crumb": "Caso studio · Webuild",
             "label": "Caso studio · Corporate · Grandi opere",
-            "h1": "Webuild.<br>Undici anni di <em>grandi opere</em> in film.",
-            "lede": "Da undici anni faccio film per il gruppo dietro alcuni dei più grandi progetti di costruzione del mondo, come la diga GERD. Dai cantieri a WeSearch e Progetto Italia.",
+            "h1": "Webuild.<br>Dieci anni di <em>grandi opere</em> in film.",
+            "lede": "Da dieci anni faccio film per il gruppo dietro alcuni dei più grandi progetti di costruzione del mondo, come la diga GERD. Dai cantieri a WeSearch e Progetto Italia.",
             "sections": [
                 ("prose", "Il materiale", """
 <p>Un cantiere produce una quantità enorme di immagini: riprese dei lavori, droni, fotografie tecniche, render, interviste, archivio storico. Quasi mai nasce come racconto.</p>
@@ -237,12 +237,12 @@ PAGES = {
         },
         "en": {
             "path": "/webuild-case-study.html",
-            "title": "Webuild: Eleven Years of Corporate Films | Case Study, Alex Dallolio",
-            "description": "Eleven years of films for Webuild (formerly Salini Impregilo): the GERD dam, WeSearch, Progetto Italia. Films built from site footage, archive and technical material.",
+            "title": "Webuild: Ten Years of Corporate Films | Case Study, Alex Dallolio",
+            "description": "Ten years of films for Webuild (formerly Salini Impregilo): the GERD dam, WeSearch, Progetto Italia. Films built from site footage, archive and technical material.",
             "crumb": "Case study · Webuild",
             "label": "Case study · Corporate · Infrastructure",
-            "h1": "Webuild.<br>Eleven years of <em>landmark infrastructure</em> on film.",
-            "lede": "For eleven years I have been making films for the group behind some of the world's largest construction projects, such as the GERD dam. From the sites to WeSearch and Progetto Italia.",
+            "h1": "Webuild.<br>Ten years of <em>landmark infrastructure</em> on film.",
+            "lede": "For ten years I have been making films for the group behind some of the world's largest construction projects, such as the GERD dam. From the sites to WeSearch and Progetto Italia.",
             "sections": [
                 ("prose", "The material", """
 <p>A construction site produces a huge amount of imagery: progress footage, drones, technical photography, renders, interviews, historical archive. It is almost never shot as a story.</p>
@@ -473,7 +473,7 @@ UI = {
 SHORT = {
     "archive": {"it": ("Servizio", "Video aziendali da archivio"), "en": ("Service", "Corporate films from existing footage")},
     "ai": {"it": ("Servizio", "Video e brand film con l'AI"), "en": ("Service", "AI brand films")},
-    "webuild": {"it": ("Caso studio", "Webuild, undici anni di film"), "en": ("Case study", "Webuild, eleven years of films")},
+    "webuild": {"it": ("Caso studio", "Webuild, dieci anni di film"), "en": ("Case study", "Webuild, ten years of films")},
     "fila": {"it": ("Caso studio", "FILA FW26, set e AI"), "en": ("Case study", "FILA FW26, set and AI")},
     "fashion": {"it": ("Servizio", "Fashion film"), "en": ("Service", "Fashion films")},
     "aifilms": {"it": ("Taccuino", "Taccuino. Appunti AI"), "en": ("Notebook", "Notebook. AI sketches")},
