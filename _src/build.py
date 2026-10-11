@@ -354,6 +354,21 @@ CORRIDOIO = {"it": '<section class="corr" aria-label="le stanze"><p class="corr-
 EMOTIONAL = {"it": "/it/mestiere.html"}
 
 
+# Reel di stanza sulle pagine generate (stesso componente .sr di Mestiere)
+def reel_sr(nome, durata, src, poster, lang, ratio="1920/804"):
+    play = "▶ guarda con l'audio" if lang == "it" else "▶ watch with sound"
+    return (f'<section class="sr" aria-label="{nome}, 2026"><div class="sr-in">\n'
+            f'  <div class="sr-head mono"><span><b>{nome}</b> · 2026 · {durata}</span><span>alex dallolio</span></div>\n'
+            f'  <div class="sr-box" style="aspect-ratio:{ratio}"><video src="{src}" poster="{poster}" preload="metadata" playsinline></video>'
+            f'<button type="button" class="sr-play" aria-label="{play[2:]}"><span>{play}</span></button>\n'
+            f'    <div class="sr-angolo" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 100 H100 V0"/></svg></div></div>\n'
+            f'</div></section>\n')
+
+
+REEL_STANZA = {"webuild": lambda lang: reel_sr("Il peso" if lang == "it" else "The weight", "60 s",
+                                               f"/il-peso-webuild-{lang}.mp4", "/il-peso-webuild.jpg", lang)}
+
+
 def vivo(content: str) -> str:
     if "/assets/vivo.css" not in content:
         content = content.replace("</head>", VIVO_HEAD + "\n</head>", 1)
@@ -513,7 +528,10 @@ def main():
         groups.append({l: PAGES[page][l]["path"] for l in LANGS})
     for key in LP.PAGES:
         for lang in LANGS:
-            write(LP.PAGES[key][lang]["path"], restyle(render_landing(key, lang), lang, key))
+            page = render_landing(key, lang)
+            if key in REEL_STANZA:
+                page = page.replace("</header>\n", "</header>\n\n" + REEL_STANZA[key](lang), 1)
+            write(LP.PAGES[key][lang]["path"], restyle(page, lang, key))
         groups.append({l: LP.PAGES[key][l]["path"] for l in LANGS})
     # la stanza in inglese, generata dalla versione italiana
     import room_en
