@@ -366,7 +366,9 @@ def reel_sr(nome, durata, src, poster, lang, ratio="1920/804"):
 
 
 REEL_STANZA = {"webuild": lambda lang: reel_sr("Il peso" if lang == "it" else "The weight", "60 s",
-                                               f"/il-peso-webuild-{lang}.mp4", "/il-peso-webuild.jpg", lang)}
+                                               f"/il-peso-webuild-{lang}.mp4", "/il-peso-webuild.jpg", lang),
+               "fashion": lambda lang: reel_sr("Leggero" if lang == "it" else "Light", "57 s",
+                                               f"/il-peso-moda-{lang}.mp4", "/il-peso-moda.jpg", lang)}
 
 
 def vivo(content: str) -> str:
