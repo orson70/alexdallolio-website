@@ -53,7 +53,7 @@ PAGES = {
                     {"yt": W_BUILDERHERO, "t": "Builderhero", "s": "Webuild · Corporate"},
                     {"yt": W_RAILWAYS, "t": "Railways Experience", "s": "Webuild · Corporate"},
                     {"yt": W_PROGETTO_ITALIA, "t": "Progetto Italia", "s": "Salini Impregilo"},
-                    {"yt": TETRA, "t": "Custodiamo il domani", "s": "Tetra Pak · Corporate"},
+                    {"yt": TETRA, "t": "Custodiamo il domani", "s": "Transpack · Corporate"},
                     {"yt": CALIDA, "t": "Calida Group", "s": "Corporate"},
                 ]),
                 ("faq", "Domande frequenti", [
@@ -99,7 +99,7 @@ PAGES = {
                     {"yt": W_BUILDERHERO, "t": "Builderhero", "s": "Webuild · Corporate"},
                     {"yt": W_RAILWAYS, "t": "Railways Experience", "s": "Webuild · Corporate"},
                     {"yt": W_PROGETTO_ITALIA, "t": "Progetto Italia", "s": "Salini Impregilo"},
-                    {"yt": TETRA, "t": "Custodiamo il domani", "s": "Tetra Pak · Corporate"},
+                    {"yt": TETRA, "t": "Custodiamo il domani", "s": "Transpack · Corporate"},
                     {"yt": CALIDA, "t": "Calida Group", "s": "Corporate"},
                 ]),
                 ("faq", "Frequently asked questions", [

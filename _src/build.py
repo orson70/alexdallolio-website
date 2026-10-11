@@ -345,10 +345,28 @@ def write_sitemap(groups):
     print("scritto sitemap.xml")
 
 
+# ── Stanza di luce, analytics, corridoio delle stanze (09/10/2026) ──
+# Stanno QUI e non a mano nelle pagine: il sync dei reel rigenera tutto (il 10/10 le aveva cancellate).
+VIVO_HEAD = "<script>(function(){var L=['rosso','blu','giallo','arancio'],p=null;try{p=localStorage.getItem('luce')}catch(e){}var c=L.filter(function(x){return x!==p});var s=c[Math.floor(Math.random()*c.length)];document.documentElement.setAttribute('data-luce',s);try{localStorage.setItem('luce',s)}catch(e){}})();</script>" + '\n<link rel="stylesheet" href="/assets/vivo.css">'
+VIVO_BODY = '<!-- Cloudflare Web Analytics --><script defer src=\'https://static.cloudflareinsights.com/beacon.min.js\' data-cf-beacon=\'{"token": "58b944eb6fc94ecb8296d9cb5182b782"}\'></script><!-- End Cloudflare Web Analytics -->' + '\n<script src="/assets/vivo.js" defer></script>'
+CORRIDOIO = {"it": '<section class="corr" aria-label="le stanze"><p class="corr-t">le stanze</p><div class="corr-g"><a class="st st-film" href="/it/webuild-caso-studio.html"><b>Film</b><span>documentari e film lunghi</span></a><a class="st st-commercial" href="/it/videos.html#commercial"><b>Commercial</b><span>spot e campagne</span></a><a class="st st-fashion" href="/it/fashion-film.html"><b>Fashion</b><span>moda e lusso</span></a><a class="st st-corporate" href="/it/video-aziendali-da-archivio.html"><b>Corporate</b><span>film dall\'archivio delle aziende</span></a><a class="st st-emotional" href="/it/mestiere.html"><b>Emotional</b><span>aziende storiche, mani, anniversari</span></a><a class="st st-ai" href="/it/ai-films.html"><b>AI</b><span>il taccuino, appunti con le macchine</span></a></div></section>',
+             "en": '<section class="corr" aria-label="the rooms"><p class="corr-t">the rooms</p><div class="corr-g"><a class="st st-film" href="/webuild-case-study.html"><b>Film</b><span>documentaries and long films</span></a><a class="st st-commercial" href="/videos.html#commercial"><b>Commercial</b><span>spots and campaigns</span></a><a class="st st-fashion" href="/fashion-films.html"><b>Fashion</b><span>fashion and luxury</span></a><a class="st st-corporate" href="/corporate-films-from-existing-footage.html"><b>Corporate</b><span>films from a company\'s archive</span></a><a class="st st-emotional" href="/emotional-films.html"><b>Emotional</b><span>heritage companies, hands, anniversaries</span></a><a class="st st-ai" href="/ai-films.html"><b>AI</b><span>the notebook, sketches with machines</span></a></div></section>'}
+EMOTIONAL = {"it": "/it/mestiere.html"}
+
+
+def vivo(content: str) -> str:
+    if "/assets/vivo.css" not in content:
+        content = content.replace("</head>", VIVO_HEAD + "\n</head>", 1)
+    if "/assets/vivo.js" not in content:
+        content = content.replace("</body>", VIVO_BODY + "\n</body>", 1)
+    return content
+
+
 def write(path: str, content: str):
     lang = "it" if path.startswith("/it/") or path == "/stanza/" else "en"
     for tag in ('property="og:image" content="', 'name="twitter:image" content="'):
         content = content.replace(tag + SITE + "/og-image.jpg", tag + SITE + f"/og-{lang}.jpg")
+    content = vivo(content)
     out = ROOT / (path.lstrip("/") + ("index.html" if path.endswith("/") else ""))
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(content)
@@ -405,7 +423,7 @@ def render_home_new(lang: str, base: str, robots: str) -> str:
         "lang": lang, "title": e(t["title"]), "description": e(t["description"]), "robots": robots,
         "canonical": url, "hreflang": hreflang, "og_title": e(t["og_title"]), "og_description": e(t["og_description"]),
         "og_locale": "it_IT" if lang == "it" else "en_US", "jsonld": jsonld,
-        "nav1": t["nav"][0], "nav2": t["nav"][1], "nav3": t["nav"][2],
+        "nav1": t["nav"][0], "nav_emotional": f'<a href="{EMOTIONAL[lang]}">Emotional</a>' if lang in EMOTIONAL else "", "corridoio": CORRIDOIO[lang], "nav2": t["nav"][1], "nav3": t["nav"][2],
         "nav_all": "Tutti i film" if lang == "it" else "All films", "nav_all_href": PAGES["videos"][lang]["path"],
         "nav_room": "Stanza" if lang == "it" else "Room", "home_href": "/it/" if lang == "it" else "/", "room_href": "/stanza/" if lang == "it" else "/room/",
         "h1": t["h1"], "sub": t["sub"], "role": t["role"], "scroll": t["scroll"],
@@ -455,7 +473,8 @@ def restyle(src: str, lang: str, key: str = "") -> str:
     a, b, c, r, d = NAV_NUOVO[lang]
     room = "/stanza/" if lang == "it" else "/room/"
     nav_ul = (f'<ul>\n    <li><a href="{home}#film">{a}</a></li>\n'
-              f'    <li><a href="{PAGES["videos"][lang]["path"]}">{b}</a></li>\n'
+              + (f'    <li><a href="{EMOTIONAL[lang]}">Emotional</a></li>\n' if lang in EMOTIONAL else "")
+              + f'    <li><a href="{PAGES["videos"][lang]["path"]}">{b}</a></li>\n'
               f'    <li><a href="{LP.PAGES["aifilms"][lang]["path"]}">{c}</a></li>\n'
               f'    <li><a href="{room}">{r}</a></li>\n'
               f'    <li><a href="{home}#contatti">{d}</a></li>\n  </ul>')
@@ -505,6 +524,7 @@ def main():
         room = room.replace(it_txt, en_txt)
     write("/room/", room)
     groups.append({"it": "/stanza/", "en": "/room/"})
+    groups.append({"it": EMOTIONAL["it"], "en": "/emotional-films.html"})  # pagine scritte a mano, non generate
     write_sitemap(groups)
     # Copia pubblica dei reel per le altre pagine (es. la home): /aifilms/reels.json
     db = SRC / "aifilms.json"

@@ -16,7 +16,7 @@ WORKS = [
     ("588LDT1c3zs", "Custodiamo il domani", "Tetra Pak", "Tetra Pak", ""),
 ]
 
-BRANDS = "Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Allianz · Novartis · Sisal · TIM · Chopard · Disney · Webuild"
+BRANDS = "Prada · Nike · BMW · Volkswagen · Bugatti · Ray-Ban · Timberland · Converse · Diadora · FILA · Colmar · Canali · John Richmond · Jacob Cohen · Luisa Spagnoli · Polaroid · Lavazza · Tetra Pak · Transpack · Allianz · Novartis · Sisal · TIM · Chopard · Disney · Webuild"
 
 T = {
     "it": {
