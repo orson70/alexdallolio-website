@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Webuild: dieci anni di film aziendali | Caso studio, Alex Dallolio</title>
 <meta name="description" content="Dieci anni di film per Webuild (ex Salini Impregilo): diga GERD, WeSearch, Progetto Italia. Film costruiti da girato di cantiere, archivio e materiale tecnico.">
 <link rel="canonical" href="https://www.alexdallolio.com/it/webuild-caso-studio.html">
@@ -174,6 +175,21 @@ main section { padding: 5rem 3rem; border-bottom: 1px solid var(--line); }
 .film .cap strong { display: block; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
 .film .cap span { font-size: 0.8rem; color: var(--grey); }
 
+.case-list { max-width: 1080px; }
+.case { padding: 0 0 5rem; margin: 0 0 5rem; border-bottom: 1px solid var(--line); }
+.case:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: 0; }
+.case-head { display: grid; grid-template-columns: minmax(64px, 0.2fr) 1fr; gap: 1.2rem; align-items: baseline; margin-bottom: 2rem; }
+.case-number { color: var(--accent); font-size: 0.72rem; letter-spacing: 0.16em; }
+.case h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.9rem, 4vw, 3.5rem); line-height: 1.08; }
+.case-sub { grid-column: 2; color: var(--grey); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.case-video { margin-bottom: 2rem; background: var(--bg2); }
+.case-video .film { border-radius: 0; }
+.case-placeholder { display: grid; place-items: center; width: 100%; aspect-ratio: 16 / 9; padding: 1.5rem; border: 1px solid var(--line); color: var(--grey); font-size: 0.72rem; letter-spacing: 0.15em; text-align: center; text-transform: uppercase; }
+.case-copy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+.case-copy div { border-top: 1px solid var(--line); padding-top: 0.8rem; }
+.case-copy h3 { color: var(--accent); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.65rem; }
+.case-copy p { color: var(--soft); font-size: 0.92rem; line-height: 1.75; }
+
 .reels { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2.2rem 1.2rem; margin-top: 2.4rem; }
 .reel button { all: unset; cursor: pointer; display: block; width: 100%; background: #111; border-radius: 3px; overflow: hidden; position: relative; }
 .reel button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -218,6 +234,8 @@ footer a:hover { color: var(--accent); }
   header.page-hero { padding-top: 3rem; }
   main section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
   .films { grid-template-columns: 1fr; }
+  .case { padding-bottom: 3.5rem; margin-bottom: 3.5rem; }
+  .case-copy { grid-template-columns: 1fr; gap: 1.2rem; }
 }
 </style>
 <link rel="preload" href="/assets/fonts/montserrat-300.woff2" as="font" type="font/woff2" crossorigin>

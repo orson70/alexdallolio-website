@@ -218,6 +218,35 @@ def film_html(f: dict) -> str:
             f'style="background-image:url(https://i.ytimg.com/vi/{yt}/hqdefault.jpg)"></button>{cap}</div>')
 
 
+def case_html(case: dict, number: int) -> str:
+    """Caso verticale della selezione AI; usa lo stesso player YouTube delle landing."""
+    title = html.escape(case["titolo"])
+    sub = html.escape(case["sotto"])
+    if case["yt"]:
+        video = (f'<div class="film"><button type="button" data-yt="{case["yt"]}" aria-label="{title}" '
+                 f'style="background-image:url(https://i.ytimg.com/vi/{case["yt"]}/hqdefault.jpg)"></button></div>')
+    elif case.get("vimeo"):
+        video = (f'<div class="film"><iframe src="https://player.vimeo.com/video/{case["vimeo"]}?dnt=1&title=0&byline=0&portrait=0" '
+                 f'title="{title}" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen '
+                 f'style="width:100%;aspect-ratio:16/9;display:block;border:0;background:#111"></iframe></div>')
+    elif case.get("ig"):
+        codes = case["ig"] if isinstance(case["ig"], list) else [case["ig"]]
+        video = '<div style="display:flex;flex-wrap:wrap;gap:1.2rem">' + "".join(
+            f'<div class="film film-ig" style="flex:1 1 300px;max-width:400px"><iframe src="https://www.instagram.com/reel/{c}/embed/" '
+            f'title="{title}" loading="lazy" scrolling="no" allowtransparency="true"></iframe></div>' for c in codes) + '</div>'
+    else:
+        video = '<div class="case-placeholder">Video da inserire</div>'
+    blocks = "".join(
+        f'<div><h3>{label}</h3><p>{html.escape(case[key])}</p></div>'
+        for label, key in (("Il brief", "brief"), ("Il problema", "problema"), ("La soluzione", "soluzione")))
+    agency = (f'<p style="margin-top:2rem;padding-top:1.4rem;border-top:1px solid var(--line);font-size:1.05rem">'
+              f'<strong style="color:var(--accent)">Cosa puoi proporre tu.</strong> {html.escape(case["agenzia"])}</p>'
+              if case.get("agenzia") else "")
+    return (f'<article class="case"><header class="case-head"><span class="case-number">{number:02d}</span>'
+            f'<h2>{title}</h2><p class="case-sub">{sub}</p></header>'
+            f'<div class="case-video">{video}</div><div class="case-copy">{blocks}</div>{agency}</article>')
+
+
 def page_og_image(d: dict) -> str:
     """Anteprima social: il primo film della pagina (YouTube) o il primo reel del Taccuino."""
     for sec in d["sections"]:
@@ -234,6 +263,7 @@ def page_og_image(d: dict) -> str:
 
 def render_landing(key: str, lang: str) -> str:
     d = dict(LP.PAGES[key][lang], _lang=lang)
+    single_language = d.get("single_language", False)
     ui = LP.UI[lang]
     home = "/it/" if lang == "it" else "/"
     url = SITE + d["path"]
@@ -254,6 +284,9 @@ def render_landing(key: str, lang: str) -> str:
                                    "thumbnailUrl": f'https://i.ytimg.com/vi/{f["yt"]}/hqdefault.jpg',
                                    "embedUrl": f'https://www.youtube.com/embed/{f["yt"]}',
                                    "uploadDate": YT_DATES.get(f["yt"], "2026-04-29T12:00:00Z")})
+        elif kind == "cases":
+            secs.append('<section><div class="case-list">' + "".join(
+                case_html(case, number) for number, case in enumerate(sec[2], 1)) + "</div></section>")
         elif kind == "reels":
             tiles = []
             for r in load_reels():
@@ -274,10 +307,11 @@ def render_landing(key: str, lang: str) -> str:
             faq_items += [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
                           for q, a in sec[2]]
 
-    rel = "".join(
-        f'<a href="{LP.PAGES[k][lang]["path"]}"><strong>{LP.SHORT[k][lang][0]}</strong><span>{LP.SHORT[k][lang][1]}</span></a>'
-        for k in LP.PAGES if k != key)
-    secs.append(f'<section><div class="prose"><h2>{ui["related"]}</h2></div><div class="related">{rel}</div></section>')
+    if not single_language:
+        rel = "".join(
+            f'<a href="{LP.PAGES[k][lang]["path"]}"><strong>{LP.SHORT[k][lang][0]}</strong><span>{LP.SHORT[k][lang][1]}</span></a>'
+            for k in LP.PAGES if k != key and lang in LP.PAGES[k] and not LP.PAGES[k][lang].get("single_language"))
+        secs.append(f'<section><div class="prose"><h2>{ui["related"]}</h2></div><div class="related">{rel}</div></section>')
     secs.append(f'''<section class="cta" id="contact"><h2>{ui["cta_h2"]}</h2><p>{ui["cta_p"]}</p>
 <div class="cta-links"><a class="primary" href="https://calendly.com/alexdallolio" target="_blank" rel="noopener">{ui["cta_book"]}</a>
 <a href="mailto:alexdallolio@alexdallolio.com">{ui["cta_email"]}</a></div></section>''')
@@ -298,16 +332,19 @@ def render_landing(key: str, lang: str) -> str:
     graph += videos
     jsonld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
 
-    alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{LP.PAGES[key][l]["path"]}">' for l in LANGS)
-    alts += f'\n<link rel="alternate" hreflang="x-default" href="{SITE}{LP.PAGES[key]["en"]["path"]}">'
-    lang_links = "".join(
+    alts = "" if single_language else "\n".join(
+        f'<link rel="alternate" hreflang="{l}" href="{SITE}{LP.PAGES[key][l]["path"]}">' for l in LANGS)
+    if not single_language:
+        alts += f'\n<link rel="alternate" hreflang="x-default" href="{SITE}{LP.PAGES[key]["en"]["path"]}">'
+    lang_links = "" if single_language else "".join(
         f'<a class="lang-btn{" active" if l == lang else ""}" href="{LP.PAGES[key][l]["path"]}" hreflang="{l}">{l.upper()}</a>'
         for l in LANGS)
-    footer_links = " &middot; ".join(
-        f'<a href="{LP.PAGES[k][lang]["path"]}">{LP.SHORT[k][lang][1]}</a>' for k in LP.PAGES)
+    footer_links = "" if single_language else " &middot; ".join(
+        f'<a href="{LP.PAGES[k][lang]["path"]}">{LP.SHORT[k][lang][1]}</a>'
+        for k in LP.PAGES if lang in LP.PAGES[k] and not LP.PAGES[k][lang].get("single_language"))
 
     vals = {
-        "lang": lang, "title": e(d["title"]), "description": e(d["description"]), "canonical": url,
+        "lang": lang, "robots": '<meta name="robots" content="noindex,nofollow">' if d.get("noindex") else "", "title": e(d["title"]), "description": e(d["description"]), "canonical": url,
         "hreflang": alts, "og_image": page_og_image(d), "og_locale": "it_IT" if lang == "it" else "en_US",
         "jsonld": jsonld, "home": home, "videos": PAGES["videos"][lang]["path"],
         "nav_work": ui["nav_work"], "nav_all": ui["nav_all"], "nav_contact": ui["nav_contact"],
@@ -479,7 +516,7 @@ BRAND = '<span class="brand" aria-label="Alex Dallolio"><svg viewBox="0 0 764 12
 
 # Ogni pagina ha la sua luce, dentro lo stesso mondo: notte (inchiostro) o carta
 THEME = {"videos": "notte", "aifilms": "notte", "ai": "notte", "webuild": "notte",
-         "archive": "carta", "fashion": "carta", "fila": "carta"}
+         "archive": "carta", "fashion": "carta", "fila": "carta", "selezione_ai": "carta"}
 
 
 def restyle(src: str, lang: str, key: str = "") -> str:
@@ -529,12 +566,13 @@ def main():
             write(PAGES[page][lang]["path"], restyle(render(page, lang), lang, page))
         groups.append({l: PAGES[page][l]["path"] for l in LANGS})
     for key in LP.PAGES:
-        for lang in LANGS:
+        for lang in LP.PAGES[key]:
             page = render_landing(key, lang)
             if key in REEL_STANZA:
                 page = page.replace("</header>\n", "</header>\n\n" + REEL_STANZA[key](lang), 1)
             write(LP.PAGES[key][lang]["path"], restyle(page, lang, key))
-        groups.append({l: LP.PAGES[key][l]["path"] for l in LANGS})
+        if not LP.PAGES[key].get("it", {}).get("noindex"):
+            groups.append({l: LP.PAGES[key][l]["path"] for l in LANGS})
     # la stanza in inglese, generata dalla versione italiana
     import room_en
     room = (ROOT / "stanza" / "index.html").read_text()

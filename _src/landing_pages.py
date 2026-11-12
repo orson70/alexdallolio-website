@@ -21,7 +21,55 @@ AI_IAP = "pbjb2oghBaE"
 AI_DELLALA = "B4Rv_BOayx8"
 SHOWREEL = "N7Ta9EZstzA"
 
+# Selezione privata: i testi restano qui, in una lista semplice da aggiornare.
+SELEZIONE_AI_CASES = [
+    {"titolo": "FILA F-Box", "sotto": "FILA · Salone del Mobile 2023", "yt": FILA_FBOX,
+     "brief": "Per i cinquant'anni del marchio, alla Milano Design Week: prendere l'F-Box, il logo storico di FILA, e farlo esplorare, scomporre e reinventare dall'intelligenza artificiale.",
+     "problema": "Nel 2023 l'AI generativa non sapeva scrivere. Lettere e loghi uscivano deformati: ogni F diventava un'altra cosa. E il lavoro era tutto su una lettera.",
+     "soluzione": "Ho smesso di chiederle di scrivere. Ho trovato il modo di farle riconoscere la F come forma, non come testo. Da lì il logo ha potuto esplodere nello spazio, moltiplicarsi e tornare a sé stesso.",
+     "agenzia": "Un marchio storico reinventato per un evento, senza toccare il logo e senza tradirlo."},
+    {"titolo": "FILA FW26", "sotto": "FILA · Milano Fashion Week", "yt": "", "ig": ["DXgtfvYBFMP", "DYHmdXQOWYZ"],
+     "brief": "Cinque fashion film per la collezione FW26, presentata alla Milano Fashion Week e pubblicata da FILA sui suoi profili ufficiali.",
+     "problema": "Tre film si potevano girare sul set. Due chiedevano luoghi che non esistono. E dovevano stare accanto agli altri tre senza che si vedesse la cucitura: stessa collezione, stessi capi, stesso sguardo.",
+     "soluzione": "Tre diretti sul set, due creati senza girare un fotogramma: sono i due qui sopra. Stessa regia, stessa luce, stesso montaggio: FILA li ha pubblicati insieme, come un'unica campagna.",
+     "agenzia": "Una campagna in cui il set e l'AI lavorano insieme, e il cliente vede solo la collezione."},
+    {"titolo": "Fake / Egoïste", "sotto": "Ricerca personale · 2026", "yt": "", "ig": "DfINAfLBD6e",
+     "brief": "Nessun cliente: un brief che mi sono dato. Un omaggio a Égoïste, il film di Jean-Paul Goude, partendo da una stanza vera, dalle sue finestre e dalle donne che ci ho visto dentro.",
+     "problema": "Quel film era una produzione enorme: un luogo costruito, decine di interpreti, un coro. Rifarne lo spirito senza girare vuol dire tenere coerenti luogo, volti e ritmo da un'inquadratura all'altra.",
+     "soluzione": "Un minuto di film senza set e senza troupe, costruito inquadratura per inquadratura. La regia fa quello che fa sempre: sceglie, taglia, dà ritmo.",
+     "agenzia": "L'idea ambiziosa che di solito muore al preventivo, portata al cliente già fatta."},
+    {"titolo": "Custodiamo il domani", "sotto": "Transpack Group · Corporate", "yt": TETRA,
+     "brief": "Il film istituzionale di un gruppo che da oltre cinquant'anni fa imballaggi in carta e legno. Con una promessa da far vedere: proteggere i beni, le persone, il pianeta.",
+     "problema": "Un imballaggio è fatto per sparire: lo apri e lo butti. E natura, cura, materia che si trasforma sono parole che in uno stabilimento non si lasciano filmare.",
+     "soluzione": "Ho tenuto vero il lavoro e ho generato quello che la fabbrica non poteva mostrare: la natura da cui parte la materia, la carta e il legno che cambiano forma sotto gli occhi.",
+     "agenzia": "Un film di valori per un'azienda industriale che non ha immagini all'altezza delle sue parole."},
+    {"titolo": "Leonardo", "sotto": "Webuild · 2024", "yt": "f52oa8DJdXo",
+     "brief": "Per la mostra «Leonardo da Vinci – 500 Years of Genius» in Australia, Webuild voleva un film che legasse il Leonardo ingegnere alle opere che il gruppo costruisce oggi.",
+     "problema": "Il protagonista è morto da cinquecento anni. Di lui restano disegni e codici, non immagini da montare.",
+     "soluzione": "Ho fatto parlare lui. La voce legge la lettera con cui Leonardo si offre a Ludovico il Moro come ingegnere: ponti, canali, edifici. Le immagini generate gli danno un corpo, una bottega, una Firenze.",
+     "agenzia": "Un anniversario, un fondatore, una storia d'archivio: il passato del cliente che torna in scena."},
+    {"titolo": "WeSearch 2025", "sotto": "Webuild · Film di fine anno", "yt": W_WESEARCH,
+     "brief": "Il film di fine anno del gruppo: premi, cantieri, nuovi contratti, numeri. Un 2024 intero in due minuti.",
+     "problema": "Un elenco di risultati è una slide, non un film. E le opere sono sparse per il mondo, con immagini di ogni qualità e provenienza.",
+     "soluzione": "Un'idea sola: una barra di ricerca. «Nel 2024 abbiamo cercato…» e ogni risultato dell'anno diventa una risposta. Le scene generate fanno da ponte tra un cantiere e l'altro e danno a tutto la stessa mano.",
+     "agenzia": "Il bilancio dell'anno, la convention, il report: i numeri del cliente in un film che si guarda fino in fondo."},
+]
+
 PAGES = {
+    "selezione_ai": {
+        "it": {
+            "path": "/it/selezione-ai.html",
+            "title": "Sei film fatti con l'AI | Alex Dallolio",
+            "description": "Sei casi di film fatti con l'intelligenza artificiale.",
+            "crumb": "Selezione AI",
+            "label": "Selezione privata · AI",
+            "h1": "Sei film che non si potevano <em>girare.</em>",
+            "lede": "Sei brief che chiedevano un set, una troupe o un budget che non c'era. Per ognuno: la richiesta, l'ostacolo, la soluzione. E quello che può proporre al suo cliente un'agenzia con un regista così alle spalle.",
+            "single_language": True,
+            "noindex": True,
+            "sections": [("cases", "", SELEZIONE_AI_CASES)],
+        },
+    },
     # ─────────────────────────────────────────────────────────────
     "archive": {
         "it": {
