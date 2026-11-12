@@ -218,7 +218,7 @@ def film_html(f: dict) -> str:
             f'style="background-image:url(https://i.ytimg.com/vi/{yt}/hqdefault.jpg)"></button>{cap}</div>')
 
 
-def case_html(case: dict, number: int) -> str:
+def case_html(case: dict, number: int, lang="it") -> str:
     """Caso verticale della selezione AI; usa lo stesso player YouTube delle landing."""
     title = html.escape(case["titolo"])
     sub = html.escape(case["sotto"])
@@ -238,9 +238,9 @@ def case_html(case: dict, number: int) -> str:
         video = '<div class="case-placeholder">Video da inserire</div>'
     blocks = "".join(
         f'<div><h3>{label}</h3><p>{html.escape(case[key])}</p></div>'
-        for label, key in (("Il brief", "brief"), ("Il problema", "problema"), ("La soluzione", "soluzione")))
+        for label, key in [((("The brief", "The problem", "The solution") if lang == "en" else ("Il brief", "Il problema", "La soluzione"))[i], k) for i, k in enumerate(("brief", "problema", "soluzione"))])
     agency = (f'<p style="margin-top:2rem;padding-top:1.4rem;border-top:1px solid var(--line);font-size:1.05rem">'
-              f'<strong style="color:var(--accent)">Cosa puoi proporre tu.</strong> {html.escape(case["agenzia"])}</p>'
+              f'<strong style="color:var(--accent)">{"What you can pitch." if lang == "en" else "Cosa puoi proporre tu."}</strong> {html.escape(case["agenzia"])}</p>'
               if case.get("agenzia") else "")
     return (f'<article class="case"><header class="case-head"><span class="case-number">{number:02d}</span>'
             f'<h2>{title}</h2><p class="case-sub">{sub}</p></header>'
@@ -286,7 +286,7 @@ def render_landing(key: str, lang: str) -> str:
                                    "uploadDate": YT_DATES.get(f["yt"], "2026-04-29T12:00:00Z")})
         elif kind == "cases":
             secs.append('<section><div class="case-list">' + "".join(
-                case_html(case, number) for number, case in enumerate(sec[2], 1)) + "</div></section>")
+                case_html(case, number, lang) for number, case in enumerate(sec[2], 1)) + "</div></section>")
         elif kind == "reels":
             tiles = []
             for r in load_reels():
@@ -336,7 +336,7 @@ def render_landing(key: str, lang: str) -> str:
         f'<link rel="alternate" hreflang="{l}" href="{SITE}{LP.PAGES[key][l]["path"]}">' for l in LANGS)
     if not single_language:
         alts += f'\n<link rel="alternate" hreflang="x-default" href="{SITE}{LP.PAGES[key]["en"]["path"]}">'
-    lang_links = "" if single_language else "".join(
+    lang_links = "" if (single_language and not d.get("lang_switch")) else "".join(
         f'<a class="lang-btn{" active" if l == lang else ""}" href="{LP.PAGES[key][l]["path"]}" hreflang="{l}">{l.upper()}</a>'
         for l in LANGS)
     footer_links = "" if single_language else " &middot; ".join(
