@@ -123,9 +123,9 @@ PAGES = {
             "path": "/it/video-aziendali-da-archivio.html",
             "title": "Video aziendali da materiale d'archivio | Alex Dallolio, regista a Milano",
             "description": "Video aziendali e corporate costruiti dal materiale che l'azienda ha già: archivio, girato di cantiere, immagini di prodotto, render. Regia di Alex Dallolio, Milano.",
-            "crumb": "Video aziendali da archivio",
-            "label": "Video aziendali · Corporate · Istituzionali",
-            "h1": "Il video aziendale<br>è già nel tuo <em>archivio.</em>",
+            "crumb": "Brand film da archivio",
+            "label": "Brand film · Corporate · Istituzionali",
+            "h1": "Il film<br>è già nel tuo <em>archivio.</em>",
             "lede": "Quasi ogni azienda ha ore di girato, foto, render e materiale tecnico che nessuno guarda più. Io parto da lì e ne tiro fuori un film: per il sito, per una fiera, per una presentazione o per un lancio interno.",
             "sections": [
                 ("prose", "Da dove si parte", """
@@ -143,7 +143,7 @@ PAGES = {
 <p>Poi costruisco concept, montaggio, ritmo, musica e trattamento visivo. Dove l'archivio non basta uso l'AI generativa per estendere, riquadrare o immaginare le immagini che mancano. Quando serve davvero si gira, ma in modo mirato.</p>
 <p>Gran parte del lavoro si fa a distanza: tu mi mandi il materiale, io lo trasformo. Sono a Milano, ma se il materiale esiste la geografia conta poco.</p>
 """),
-                ("films", "Alcuni video aziendali", [
+                ("films", "Alcuni brand film", [
                     {"yt": W_GERD, "t": "GERD", "s": "Webuild · Documentario"},
                     {"yt": W_BUILDERHERO, "t": "Builderhero", "s": "Webuild · Corporate"},
                     {"yt": W_RAILWAYS, "t": "Railways Experience", "s": "Webuild · Corporate"},
@@ -566,7 +566,7 @@ UI = {
 
 # Etichette brevi per i link incrociati tra pagine
 SHORT = {
-    "archive": {"it": ("Servizio", "Video aziendali da archivio"), "en": ("Service", "Corporate films from existing footage")},
+    "archive": {"it": ("Servizio", "Brand film da archivio"), "en": ("Service", "Corporate films from existing footage")},
     "ai": {"it": ("Servizio", "Video e brand film con l'AI"), "en": ("Service", "AI brand films")},
     "webuild": {"it": ("Caso studio", "Webuild, dieci anni di film"), "en": ("Case study", "Webuild, ten years of films")},
     "fila": {"it": ("Caso studio", "FILA FW26, set e AI"), "en": ("Case study", "FILA FW26, set and AI")},

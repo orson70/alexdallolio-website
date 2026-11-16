@@ -121,3 +121,18 @@ html[data-luce] .tier:has(input:checked){background:color-mix(in srgb,var(--L-ne
 .st-film{--c:#3b86ff}.st-commercial{--c:#ff2a1f}.st-fashion{--c:#ffc21f}.st-corporate{--c:#ff9a2e}.st-emotional{--c:#ff5a1f}.st-ai{--c:#b26bff}
 @media (max-width:800px){.corr-g{grid-template-columns:1fr 1fr}.st:nth-child(3n){border-right:1px solid color-mix(in srgb,currentColor 18%,transparent)}.st:nth-child(2n){border-right:0}}
 @media (hover:none){.st span{opacity:.8;transform:none}}
+
+/* LOGO FISSO (16/11): il logo resta chiaro, non prende il colore della stanza */
+html[data-luce] .brand,html[data-luce] a:hover .brand,html[data-luce] .brand:hover{color:#EEE9DF !important}
+html[data-luce] .vivo .brand svg path,html.vivo[data-luce] .brand svg path{stroke:#EEE9DF;filter:drop-shadow(0 0 5px rgba(238,233,223,.28))}
+
+/* RITOCCHI HOME (16/11): stanze leggibili, menu su fascia, logo piu grande, fatti in Bodoni */
+html[data-luce] .st:not(:hover):not(.acceso) b{color:color-mix(in srgb,var(--L-testo) 30%,transparent);-webkit-text-stroke:1px color-mix(in srgb,var(--L-testo) 95%,transparent)}
+html[data-luce] .st span{opacity:.8;transform:none}
+@media (min-width:761px){
+  html[data-luce] .mnav.on::before{content:"";position:absolute;left:-100vw;right:-100vw;top:-16px;height:54px;z-index:-1;background:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.5));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid color-mix(in srgb,var(--L-chiaro) 22%,transparent)}
+  html[data-luce] .brand svg{width:215px}
+  html[data-luce] .vivo .brand-n,html.vivo[data-luce] .brand-n{font-size:15px}
+}
+html[data-luce] .facts p{font-family:'Bodoni Moda',Didot,serif;font-weight:400;letter-spacing:0;line-height:1.16}
+@media (max-width:800px){html[data-luce] .st b{font-size:clamp(20px,6.3vw,34px)}html[data-luce] .st{padding-left:14px;padding-right:8px}}

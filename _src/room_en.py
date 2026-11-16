@@ -12,7 +12,7 @@ PAIRS = [
     ('<meta property="og:title" content="La stanza · Alex Dallolio">', '<meta property="og:title" content="The room · Alex Dallolio">'),
     ('<meta property="og:description" content="Scrivi un sogno. Ti risponde un film.">', '<meta property="og:description" content="Write a dream. A film answers.">'),
     ('<meta property="og:url" content="https://www.alexdallolio.com/stanza/">', '<meta property="og:url" content="https://www.alexdallolio.com/room/">'),
-    ('<a href="/it/">← Torna al sito</a>', '<a href="/">← Back to the site</a>'),
+    ('<a href="/it/" title="Torna al sito" aria-label="Alex Dallolio, torna al sito">', '<a href="/" title="Back to the site" aria-label="Alex Dallolio, back to the site">'),
     ("♪ Suono: no</button>", "♪ Sound: off</button>"),
     ("btn.textContent = v ? '♪ Suono: sì' : '♪ Suono: no';", "btn.textContent = v ? '♪ Sound: on' : '♪ Sound: off';"),
     ('Trascina lo spazio per girarlo · rotella per avvicinarti', 'Drag the space to turn it · scroll to move closer'),
