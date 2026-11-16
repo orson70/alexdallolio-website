@@ -236,6 +236,11 @@ def case_html(case: dict, number: int, lang="it") -> str:
             f'title="{title}" loading="lazy" scrolling="no" allowtransparency="true"></iframe></div>' for c in codes) + '</div>'
     else:
         video = '<div class="case-placeholder">Video da inserire</div>'
+    if case.get("testo"):  # "A modo mio": un solo racconto, senza etichette
+        return (f'<article class="case"><header class="case-head"><span class="case-number">{number:02d}</span>'
+                f'<h2>{title}</h2><p class="case-sub">{sub}</p></header>'
+                f'<div class="case-video">{video}</div><div class="case-copy" style="display:block;max-width:46rem">'
+                f'<p style="font-size:1.12rem;line-height:1.75">{html.escape(case["testo"])}</p></div></article>')
     blocks = "".join(
         f'<div><h3>{label}</h3><p>{html.escape(case[key])}</p></div>'
         for label, key in [((("The brief", "The problem", "The solution") if lang == "en" else ("Il brief", "Il problema", "La soluzione"))[i], k) for i, k in enumerate(("brief", "problema", "soluzione"))])
@@ -386,8 +391,8 @@ def write_sitemap(groups):
 # Stanno QUI e non a mano nelle pagine: il sync dei reel rigenera tutto (il 10/10 le aveva cancellate).
 VIVO_HEAD = "<script>(function(){var L=['rosso','blu','giallo','arancio'],p=null;try{p=localStorage.getItem('luce')}catch(e){}var c=L.filter(function(x){return x!==p});var s=c[Math.floor(Math.random()*c.length)];document.documentElement.setAttribute('data-luce',s);try{localStorage.setItem('luce',s)}catch(e){}})();</script>" + '\n<link rel="stylesheet" href="/assets/vivo.css">'
 VIVO_BODY = '<!-- Cloudflare Web Analytics --><script defer src=\'https://static.cloudflareinsights.com/beacon.min.js\' data-cf-beacon=\'{"token": "58b944eb6fc94ecb8296d9cb5182b782"}\'></script><!-- End Cloudflare Web Analytics -->' + '\n<script src="/assets/vivo.js" defer></script>'
-CORRIDOIO = {"it": '<section class="corr" aria-label="le stanze"><p class="corr-t">le stanze</p><div class="corr-g"><a class="st st-film" href="/it/webuild-caso-studio.html"><b>Film</b><span>documentari e film lunghi</span></a><a class="st st-commercial" href="/it/videos.html#commercial"><b>Commercial</b><span>spot e campagne</span></a><a class="st st-fashion" href="/it/fashion-film.html"><b>Fashion</b><span>moda e lusso</span></a><a class="st st-corporate" href="/it/video-aziendali-da-archivio.html"><b>Corporate</b><span>film dall\'archivio delle aziende</span></a><a class="st st-emotional" href="/it/mestiere.html"><b>Emotional</b><span>aziende storiche, mani, anniversari</span></a><a class="st st-ai" href="/it/ai-films.html"><b>AI</b><span>il taccuino, appunti con le macchine</span></a></div></section>',
-             "en": '<section class="corr" aria-label="the rooms"><p class="corr-t">the rooms</p><div class="corr-g"><a class="st st-film" href="/webuild-case-study.html"><b>Film</b><span>documentaries and long films</span></a><a class="st st-commercial" href="/videos.html#commercial"><b>Commercial</b><span>spots and campaigns</span></a><a class="st st-fashion" href="/fashion-films.html"><b>Fashion</b><span>fashion and luxury</span></a><a class="st st-corporate" href="/corporate-films-from-existing-footage.html"><b>Corporate</b><span>films from a company\'s archive</span></a><a class="st st-emotional" href="/emotional-films.html"><b>Emotional</b><span>heritage companies, hands, anniversaries</span></a><a class="st st-ai" href="/ai-films.html"><b>AI</b><span>the notebook, sketches with machines</span></a></div></section>'}
+CORRIDOIO = {"it": '<section class="corr" aria-label="le stanze"><p class="corr-t">le stanze</p><div class="corr-g"><a class="st st-film" href="/it/webuild-caso-studio.html"><b>Film</b><span>documentari e film lunghi</span></a><a class="st st-commercial" href="/it/videos.html#commercial"><b>Commercial</b><span>spot e campagne</span></a><a class="st st-fashion" href="/it/fashion-film.html"><b>Fashion</b><span>moda e lusso</span></a><a class="st st-corporate" href="/it/video-aziendali-da-archivio.html"><b>Corporate</b><span>film dall\'archivio delle aziende</span></a><a class="st st-emotional" href="/it/mestiere.html"><b>Emotional</b><span>aziende storiche, mani, anniversari</span></a><a class="st st-ai" href="/it/a-modo-mio.html"><b>AI</b><span>sei film, a modo mio</span></a></div></section>',
+             "en": '<section class="corr" aria-label="the rooms"><p class="corr-t">the rooms</p><div class="corr-g"><a class="st st-film" href="/webuild-case-study.html"><b>Film</b><span>documentaries and long films</span></a><a class="st st-commercial" href="/videos.html#commercial"><b>Commercial</b><span>spots and campaigns</span></a><a class="st st-fashion" href="/fashion-films.html"><b>Fashion</b><span>fashion and luxury</span></a><a class="st st-corporate" href="/corporate-films-from-existing-footage.html"><b>Corporate</b><span>films from a company\'s archive</span></a><a class="st st-emotional" href="/emotional-films.html"><b>Emotional</b><span>heritage companies, hands, anniversaries</span></a><a class="st st-ai" href="/my-way.html"><b>AI</b><span>six films, my way</span></a></div></section>'}
 EMOTIONAL = {"it": "/it/mestiere.html"}
 
 
@@ -516,7 +521,7 @@ BRAND = '<span class="brand" aria-label="Alex Dallolio"><svg viewBox="0 0 764 12
 
 # Ogni pagina ha la sua luce, dentro lo stesso mondo: notte (inchiostro) o carta
 THEME = {"videos": "notte", "aifilms": "notte", "ai": "notte", "webuild": "notte",
-         "archive": "carta", "fashion": "carta", "fila": "carta", "selezione_ai": "carta"}
+         "archive": "carta", "fashion": "carta", "fila": "carta", "selezione_ai": "carta", "a_modo_mio": "notte"}
 
 
 def restyle(src: str, lang: str, key: str = "") -> str:

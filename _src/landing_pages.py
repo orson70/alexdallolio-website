@@ -22,6 +22,37 @@ AI_DELLALA = "B4Rv_BOayx8"
 SHOWREEL = "N7Ta9EZstzA"
 
 # Selezione privata: i testi restano qui, in una lista semplice da aggiornare.
+# "A modo mio" (16/11/2026): sei film raccontati nella voce di Alex, dal dubbio alla soluzione.
+# Fatti dettati da Alex il 16/11 (F-Box, Transpack, Leonardo, WeSearch). FW26 ed Egoiste: solo fatti gia noti, niente dettagli dedotti.
+A_MODO_MIO_CASES = [
+    {"titolo": 'FILA F-Box', "sotto": 'FILA · Salone del Mobile 2023', "yt": FILA_FBOX,
+     "testo": "Cinquant'anni di FILA, la Design Week, e il logo, l'F-Box. Era il 2023, un mondo in cui l'intelligenza artificiale non riusciva ancora a fare le scritte, le chiedevi una F e ti tornava un'altra cosa... e il lavoro era tutto su un logo. L'intuizione è stata quella: se riesco a costruire la possibilità di quella scritta, con un'AI proprio agli inizi, poi posso raccontare delle storie. Una tecnica di time lapse, e ogni volta una storia diversa, ma partendo sempre dal logo."},
+    {"titolo": 'FILA FW26', "sotto": 'FILA · Milano Fashion Week', "yt": "", "ig": ["DXgtfvYBFMP", "DYHmdXQOWYZ"],
+     "testo": "Cinque film per la collezione, Milano Fashion Week. Tre li ho girati sul set, come si è sempre fatto. Gli altri due li ho fatti senza girare un fotogramma, e lì il dubbio era uno solo: messi vicino agli altri, si vedrà la cucitura? Credo che il trucco sia non cambiare sguardo solo perché cambia l'attrezzo. FILA li ha pubblicati sui suoi profili. I due senza set sono questi qui sopra, ma così non vale, te l'ho detto io."},
+    {"titolo": 'Fake / Egoïste', "sotto": 'Ricerca personale · 2026', "yt": "", "ig": "DfINAfLBD6e",
+     "testo": "Qui il cliente non c'era, me lo sono chiesto da solo. Un omaggio a Égoïste di Jean-Paul Goude, che era una produzione enorme, un luogo costruito apposta, decine di interpreti, un coro... Si può rifare lo spirito di una cosa così senza set e senza troupe? Non lo so ancora, forse no. Però è venuto fuori, costruito un'inquadratura alla volta, e il lavoro alla fine era quello di sempre: scegliere, tagliare, dare il ritmo."},
+    {"titolo": 'Custodiamo il domani', "sotto": 'Transpack Group · Corporate', "yt": "588LDT1c3zs",
+     "testo": "Un gruppo che da più di cinquant'anni fa imballaggi di carta e legno, e un film che doveva essere istituzionale, molto istituzionale. Qui volevo essere preciso: casse enormi riprese come col braccio, il porto, proprio le loro cose. L'ho fatto un anno fa, quando l'intelligenza artificiale non era quella di adesso, e ho dovuto un po' impazzire: il reale dove c'era, il resto generato, mischiati. Niente uffici, niente impiegati al computer... ho cercato di far parlare un'azienda che vende ad altre aziende come un marchio, con una specie di filosofia unica, un linguaggio suo."},
+    {"titolo": 'Leonardo', "sotto": 'Webuild · 2024', "yt": "f52oa8DJdXo",
+     "testo": "Una mostra su Leonardo in Australia, e Webuild che vuole legare il Leonardo ingegnere alle opere che costruisce oggi. Tutto è partito da una lettera, quella in cui si offre a Ludovico il Moro, che in un certo senso è il primo curriculum della storia: elenca tutto quello che sa fare, ponti, canali, edifici... che poi sono le stesse cose che fa Webuild. Non ricordo più se l'idea sia stata nostra o del cliente. Il guaio era che il protagonista è morto da cinquecento anni e di lui restano disegni e codici, mica riprese. Però c'era l'AI di prima generazione, ancora grezza, e per una cosa era il sistema migliore: prendere i disegni di Leonardo e trasformarli nelle opere di Webuild. Un filo rosso tra il mondo antico e quello moderno... e gli italiani di questa conoscenza sono i depositari, credo."},
+    {"titolo": 'WeSearch 2025', "sotto": 'Webuild · Film di fine anno', "yt": "pbGWFFmW1Fc",
+     "testo": 'Il film di fine anno del gruppo: premi, cantieri, contratti nuovi, numeri, un anno intero in due minuti. Al cliente quelle cose servono precise, sono coordinate, numeri, spesso economici, e gliele devi dare esatte. La frase era la loro, «Nel 2024 abbiamo cercato…». Ma un elenco di numeri resta una slide... allora ho provato a fondere due cose: una grafica che gli dà esattamente i suoi punti, e un viaggio, con dentro elementi che portano avanti il racconto senza appesantirlo. O almeno ci ho provato.'},
+]
+A_MODO_MIO_CASES_EN = [
+    {"titolo": 'FILA F-Box', "sotto": 'FILA · Salone del Mobile 2023', "yt": FILA_FBOX,
+     "testo": "Fifty years of FILA, Design Week, and the logo, the F-Box. It was 2023, a world where artificial intelligence still couldn't do lettering, you asked for an F and got something else back... and the whole job was about a logo. That was the intuition: if I can build the possibility of that lettering, with an AI at its very beginnings, then I can tell stories. A time-lapse technique, a different story each time, but always starting from the logo."},
+    {"titolo": 'FILA FW26', "sotto": 'FILA · Milan Fashion Week', "yt": "", "ig": ["DXgtfvYBFMP", "DYHmdXQOWYZ"],
+     "testo": "Five films for the collection, Milan Fashion Week. Three I shot on set, the way it has always been done. The other two I made without shooting a single frame, and there was only one doubt: next to the others, will the seam show? I think the trick is not to change your eye just because the tool changes. FILA published them on its own profiles. The two without a set are the ones above, but that's cheating, I just told you."},
+    {"titolo": 'Fake / Egoïste', "sotto": 'Personal research · 2026', "yt": "", "ig": "DfINAfLBD6e",
+     "testo": "No client here, I asked it of myself. A homage to Égoïste by Jean-Paul Goude, which was a huge production, a location built for it, dozens of performers, a chorus... Can you redo the spirit of something like that with no set and no crew? I still don't know, maybe not. But it came out, built one shot at a time, and in the end the work was the usual one: choosing, cutting, giving it rhythm."},
+    {"titolo": 'Custodiamo il domani', "sotto": 'Transpack Group · Corporate', "yt": "588LDT1c3zs",
+     "testo": "A group that has been making paper and wood packaging for more than fifty years, and a film that had to be institutional, very institutional. Here I wanted to be precise: huge crates filmed as if from a crane, the port, their own things. I made it a year ago, when artificial intelligence wasn't what it is now, and it drove me a little crazy: the real where it existed, the rest generated, mixed together. No offices, no people at their computers... I tried to make a company that sells to other companies speak like a brand, with a kind of philosophy of its own, a language of its own."},
+    {"titolo": 'Leonardo', "sotto": 'Webuild · 2024', "yt": "f52oa8DJdXo",
+     "testo": "An exhibition on Leonardo in Australia, and Webuild wanting to tie Leonardo the engineer to the works it builds today. It all started from a letter, the one in which he offers himself to Ludovico il Moro, which in a way is the first CV in history: it lists everything he can do, bridges, canals, buildings... which happen to be the same things Webuild does. I no longer remember whether the idea was ours or the client's. The trouble was that the lead has been dead for five hundred years and what's left of him is drawings and codices, not footage. But there was first-generation AI, still rough, and for one thing it was the best system: taking Leonardo's drawings and turning them into Webuild's works. A red thread between the ancient world and the modern one... and Italians are the keepers of that knowledge, I think."},
+    {"titolo": 'WeSearch 2025', "sotto": 'Webuild · End-of-year film', "yt": "pbGWFFmW1Fc",
+     "testo": "The group's end-of-year film: awards, sites, new contracts, numbers, a whole year in two minutes. The client needs those things exact, they are coordinates, figures, often financial, and you have to give them exactly. The line was theirs, «In 2024 we searched for…». But a list of figures is still a slide... so I tried to fuse two things: graphics that give them exactly their points, and a journey, with elements inside that carry the story forward without weighing it down. Or at least I tried."},
+]
+
 SELEZIONE_AI_CASES = [
     {"titolo": "FILA F-Box", "sotto": "FILA · Salone del Mobile 2023", "yt": FILA_FBOX,
      "brief": "Per i cinquant'anni del marchio, alla Milano Design Week: prendere l'F-Box, il logo storico di FILA, e farlo esplorare, scomporre e reinventare dall'intelligenza artificiale.",
@@ -89,6 +120,28 @@ SELEZIONE_AI_CASES_EN = [
 ]
 
 PAGES = {
+    "a_modo_mio": {
+        "it": {
+            "path": "/it/a-modo-mio.html",
+            "title": "A modo mio: sei film fatti con l'AI | Alex Dallolio, regista a Milano",
+            "description": "Sei film fatti con l'intelligenza artificiale, raccontati da chi li ha diretti: il dubbio da cui è partito ognuno e come è stato risolto. FILA, Webuild, Transpack.",
+            "crumb": "A modo mio",
+            "label": "Sei film · il dubbio, poi il film",
+            "h1": "A modo <em>mio.</em>",
+            "lede": "Un cliente di solito vuole che il suo marchio si veda, grande, e ha pure ragione, lo paga lui... io però finisco sempre a cercare un'altra cosa, quella che non si vede. Prima, per film così, c'era l'image bank: immagini di altri, buone per tutti, e ti toccava restare sul vago, sull'emozione. Oggi posso essere preciso, proprio le tue cose, e posso togliere quello che non serve più, gli uffici, gli impiegati al computer. L'intelligenza artificiale ormai la usa chiunque. E allora cosa cambia? Forse solo il modo di guardare, credo.",
+            "sections": [("cases", "", A_MODO_MIO_CASES)],
+        },
+        "en": {
+            "path": "/my-way.html",
+            "title": "My way: six films made with AI | Alex Dallolio, film director in Milan",
+            "description": "Six films made with artificial intelligence, told by the director who made them: the doubt each one started from and how it was solved. FILA, Webuild, Transpack.",
+            "crumb": "My way",
+            "label": "Six films · the doubt, then the film",
+            "h1": "My <em>way.</em>",
+            "lede": "A client usually wants the brand to be seen, big, and fair enough, they're paying... but I always end up looking for something else, the thing you don't see. For films like these there used to be the image bank: other people's pictures, good for everyone, so you had to stay vague, emotional. Today I can be precise, your own things, and I can take out what's no longer needed, the offices, the people at their computers. Everyone uses artificial intelligence by now. So what changes? Maybe only the way of looking, I think.",
+            "sections": [("cases", "", A_MODO_MIO_CASES_EN)],
+        },
+    },
     "selezione_ai": {
         "it": {
             "path": "/it/selezione-ai.html",
@@ -566,6 +619,7 @@ UI = {
 
 # Etichette brevi per i link incrociati tra pagine
 SHORT = {
+    "a_modo_mio": {"it": ("Sei film", "A modo mio"), "en": ("Six films", "My way")},
     "archive": {"it": ("Servizio", "Brand film da archivio"), "en": ("Service", "Corporate films from existing footage")},
     "ai": {"it": ("Servizio", "Video e brand film con l'AI"), "en": ("Service", "AI brand films")},
     "webuild": {"it": ("Caso studio", "Webuild, le grandi opere in film"), "en": ("Case study", "Webuild, landmark infrastructure on film")},

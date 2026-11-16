@@ -165,14 +165,14 @@ body.kb.gl .sheet .hint{bottom:-40px}
 .brand{display:inline-flex;flex-direction:column;align-items:flex-end;gap:5px;color:#EEE9DF;line-height:1}
 .brand svg{display:block;width:170px;height:auto;overflow:visible}
 .brand svg path{vector-effect:non-scaling-stroke;stroke-width:2px}
-.brand-n{font-family:'Bodoni Moda',Didot,serif;font-size:13px;letter-spacing:.5em;margin-right:-.5em;text-transform:lowercase;font-weight:500}
+.brand-n{text-transform:lowercase}
 .top{align-items:flex-start}
 @media (min-width:601px){
   .stage{justify-content:flex-end;padding-bottom:128px}
   .sheet{width:min(470px,84vw);min-height:min(34vh,320px)}
   body.gl .sheet{width:min(470px,84vw);height:min(34vh,320px);min-height:0}
 }
-@media (max-width:600px){.brand svg{width:120px}.brand-n{font-size:11px;letter-spacing:.36em;margin-right:-.36em}}
+@media (max-width:600px){.brand svg{width:120px}html[data-luce] .brand-n{font-size:10.5px;letter-spacing:.34em;margin-right:-.34em}html[data-luce] .brand{gap:7px}}
 .done{opacity:.5;white-space:nowrap}
 .hint{gap:12px}
 .done.on,body.gl .sheet .done.on{opacity:1;background:var(--sig);color:#000;border:0;padding:9px 14px}

@@ -30,6 +30,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/videos.html"/>
   </url>
   <url>
+    <loc>https://www.alexdallolio.com/my-way.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alexdallolio.com/my-way.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.alexdallolio.com/it/a-modo-mio.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/my-way.html"/>
+  </url>
+  <url>
+    <loc>https://www.alexdallolio.com/it/a-modo-mio.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alexdallolio.com/my-way.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.alexdallolio.com/it/a-modo-mio.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alexdallolio.com/my-way.html"/>
+  </url>
+  <url>
     <loc>https://www.alexdallolio.com/corporate-films-from-existing-footage.html</loc>
     <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.alexdallolio.com/corporate-films-from-existing-footage.html"/>
